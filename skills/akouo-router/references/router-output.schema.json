@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/router-output.schema.json",
+  "title": "akoúō Router Output",
+  "description": "Output structure for akouo-router route selection.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_listened_to",
+    "input_type",
+    "user_intent",
+    "available_evidence",
+    "unavailable_evidence",
+    "primary_mode",
+    "secondary_mode",
+    "corrective_mode",
+    "route_reasoning",
+    "risks",
+    "must_not_assume",
+    "recommended_command",
+    "recommended_next_mode"
+  ],
+  "properties": {
+    "object_listened_to": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_type": {
+      "$ref": "listening-output.schema.json#/$defs/input_type"
+    },
+    "user_intent": {
+      "type": "string"
+    },
+    "available_evidence": {
+      "$ref": "#/$defs/text_list"
+    },
+    "unavailable_evidence": {
+      "$ref": "#/$defs/text_list"
+    },
+    "primary_mode": {
+      "$ref": "listening-output.schema.json#/$defs/listening_mode"
+    },
+    "secondary_mode": {
+      "$ref": "listening-output.schema.json#/$defs/listening_mode"
+    },
+    "corrective_mode": {
+      "$ref": "listening-output.schema.json#/$defs/listening_mode"
+    },
+    "route_reasoning": {
+      "$ref": "#/$defs/text_list"
+    },
+    "risks": {
+      "$ref": "#/$defs/text_list"
+    },
+    "must_not_assume": {
+      "$ref": "#/$defs/text_list"
+    },
+    "recommended_command": {
+      "$ref": "#/$defs/command"
+    },
+    "recommended_next_mode": {
+      "$ref": "listening-output.schema.json#/$defs/listening_mode"
+    }
+  },
+  "$defs": {
+    "command": {
+      "type": "string",
+      "enum": [
+        "/listen",
+        "/full-ear",
+        "/study",
+        "/tech",
+        "/reference",
+        "/litany",
+        "/fiction",
+        "/forensic",
+        "/transduce",
+        "/one-sound-many-ears"
+      ]
+    },
+    "text_list": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": []
+    }
+  }
+}

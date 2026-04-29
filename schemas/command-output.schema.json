@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/command-output.schema.json",
+  "title": "akoúō Command Output",
+  "description": "Shared wrapper for commands that call one or more akoúō skills.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "command",
+    "object_listened_to",
+    "input_type",
+    "skills_called",
+    "execution_order",
+    "outputs",
+    "synthesis",
+    "claim_summary",
+    "risks",
+    "recommended_next_mode"
+  ],
+  "properties": {
+    "command": {
+      "$ref": "router-output.schema.json#/$defs/command"
+    },
+    "object_listened_to": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_type": {
+      "$ref": "listening-output.schema.json#/$defs/input_type"
+    },
+    "skills_called": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/callable_skill"
+      },
+      "minItems": 1
+    },
+    "execution_order": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "router_output": {
+      "$ref": "router-output.schema.json"
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "$ref": "listening-output.schema.json"
+      },
+      "default": []
+    },
+    "synthesis": {
+      "type": "string"
+    },
+    "claim_summary": {
+      "$ref": "claim-taxonomy.schema.json"
+    },
+    "reference_map": {
+      "$ref": "reference-map.schema.json"
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": []
+    },
+    "recommended_next_mode": {
+      "oneOf": [
+        { "$ref": "listening-output.schema.json#/$defs/listening_mode" },
+        { "type": "string", "enum": ["none", "undetermined"] }
+      ]
+    }
+  },
+  "$defs": {
+    "callable_skill": {
+      "type": "string",
+      "enum": [
+        "akouo-router",
+        "signal-inspection-listening",
+        "acoulogical-object-listening",
+        "embodied-affective-listening",
+        "transductive-media-listening",
+        "forensic-archival-listening",
+        "ecological-posthuman-listening",
+        "critical-political-listening",
+        "symbolic-fictional-listening",
+        "reference-layer"
+      ]
+    },
+    "text_list": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": []
+    }
+  }
+}

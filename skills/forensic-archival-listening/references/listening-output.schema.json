@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/listening-output.schema.json",
+  "title": "akoúō Standard Listening Output",
+  "description": "Common output structure for every akoúō listening mode.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_listened_to",
+    "input_type",
+    "listening_mode",
+    "listening_claims",
+    "what_appears",
+    "what_remains_hidden",
+    "mediations",
+    "risks",
+    "main_reading",
+    "alternative_reading",
+    "recommended_next_mode"
+  ],
+  "properties": {
+    "object_listened_to": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_type": {
+      "$ref": "#/$defs/input_type"
+    },
+    "listening_mode": {
+      "$ref": "#/$defs/listening_mode"
+    },
+    "listening_claims": {
+      "$ref": "claim-taxonomy.schema.json"
+    },
+    "what_appears": {
+      "$ref": "#/$defs/text_list"
+    },
+    "what_remains_hidden": {
+      "$ref": "#/$defs/text_list"
+    },
+    "mediations": {
+      "$ref": "#/$defs/mediations"
+    },
+    "risks": {
+      "$ref": "#/$defs/risks"
+    },
+    "main_reading": {
+      "type": "string"
+    },
+    "alternative_reading": {
+      "type": "string"
+    },
+    "recommended_next_mode": {
+      "oneOf": [
+        { "$ref": "#/$defs/listening_mode" },
+        { "type": "string", "enum": ["none", "undetermined"] }
+      ]
+    }
+  },
+  "$defs": {
+    "input_type": {
+      "type": "string",
+      "enum": [
+        "audio_file",
+        "sound_prompt",
+        "transcript",
+        "field_note",
+        "archive_note",
+        "dataset_description",
+        "spectrogram",
+        "waveform",
+        "video",
+        "metadata",
+        "model_output",
+        "mixed",
+        "unknown",
+        "other"
+      ]
+    },
+    "listening_mode": {
+      "type": "string",
+      "enum": [
+        "signal-inspection-listening",
+        "acoulogical-object-listening",
+        "embodied-affective-listening",
+        "transductive-media-listening",
+        "forensic-archival-listening",
+        "ecological-posthuman-listening",
+        "critical-political-listening",
+        "symbolic-fictional-listening"
+      ]
+    },
+    "text_list": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": []
+    },
+    "mediations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "technical",
+        "cultural",
+        "spatial",
+        "bodily",
+        "archival",
+        "computational"
+      ],
+      "properties": {
+        "technical": { "$ref": "#/$defs/text_list" },
+        "cultural": { "$ref": "#/$defs/text_list" },
+        "spatial": { "$ref": "#/$defs/text_list" },
+        "bodily": { "$ref": "#/$defs/text_list" },
+        "archival": { "$ref": "#/$defs/text_list" },
+        "computational": { "$ref": "#/$defs/text_list" }
+      }
+    },
+    "risks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hallucination",
+        "over_identification",
+        "cultural_flattening",
+        "forensic_overreach",
+        "source_confusion",
+        "aesthetic_overstatement"
+      ],
+      "properties": {
+        "hallucination": { "$ref": "#/$defs/text_list" },
+        "over_identification": { "$ref": "#/$defs/text_list" },
+        "cultural_flattening": { "$ref": "#/$defs/text_list" },
+        "forensic_overreach": { "$ref": "#/$defs/text_list" },
+        "source_confusion": { "$ref": "#/$defs/text_list" },
+        "aesthetic_overstatement": { "$ref": "#/$defs/text_list" }
+      }
+    }
+  }
+}
