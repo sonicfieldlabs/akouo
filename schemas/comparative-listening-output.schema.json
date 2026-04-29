@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/comparative-listening-output.schema.json",
+  "title": "akoúō Comparative Listening Output",
+  "description": "Output structure for one sound many ears comparative listening.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "command",
+    "sound_object",
+    "input_type",
+    "mode_comparison",
+    "shared_claim_summary",
+    "contradictions",
+    "productive_tensions",
+    "most_responsible_reading",
+    "most_interesting_next_mode"
+  ],
+  "properties": {
+    "command": {
+      "type": "string",
+      "const": "/one-sound-many-ears"
+    },
+    "sound_object": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_type": {
+      "$ref": "listening-output.schema.json#/$defs/input_type"
+    },
+    "mode_comparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "signal_inspection",
+        "acoulogical_object",
+        "embodied_affective",
+        "transductive_media",
+        "forensic_archival",
+        "ecological_posthuman",
+        "critical_political",
+        "symbolic_fictional"
+      ],
+      "properties": {
+        "signal_inspection": { "$ref": "listening-output.schema.json" },
+        "acoulogical_object": { "$ref": "listening-output.schema.json" },
+        "embodied_affective": { "$ref": "listening-output.schema.json" },
+        "transductive_media": { "$ref": "listening-output.schema.json" },
+        "forensic_archival": { "$ref": "listening-output.schema.json" },
+        "ecological_posthuman": { "$ref": "listening-output.schema.json" },
+        "critical_political": { "$ref": "listening-output.schema.json" },
+        "symbolic_fictional": { "$ref": "listening-output.schema.json" }
+      }
+    },
+    "shared_claim_summary": {
+      "$ref": "claim-taxonomy.schema.json"
+    },
+    "contradictions": {
+      "$ref": "#/$defs/text_list"
+    },
+    "productive_tensions": {
+      "$ref": "#/$defs/text_list"
+    },
+    "most_responsible_reading": {
+      "type": "string"
+    },
+    "most_interesting_next_mode": {
+      "oneOf": [
+        { "$ref": "listening-output.schema.json#/$defs/listening_mode" },
+        { "type": "string", "enum": ["none", "undetermined"] }
+      ]
+    }
+  },
+  "$defs": {
+    "text_list": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": []
+    }
+  }
+}

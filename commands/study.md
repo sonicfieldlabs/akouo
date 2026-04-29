@@ -1,0 +1,70 @@
+# /study
+
+## Purpose
+
+`/study` is the sound studies and research command. It turns a sonic object into a disciplined research note, separating perceptual description, critique, ecological or fictional routes, and conceptual references.
+
+## When To Use
+
+Use `/study` for:
+
+- essays and research notes
+- sonic methodologies
+- sound studies interpretation
+- archival reflection
+- field recording analysis
+- theoretical development
+- artistic research
+- interdisciplinary sound inquiry
+
+## Skills Called
+
+- `acoulogical-object-listening`
+- `critical-political-listening`
+- `ecological-posthuman-listening` or `symbolic-fictional-listening`, selected according to the object
+- `reference-layer`
+
+## Execution Order
+
+1. Run `acoulogical-object-listening` to establish the sound as perceptual object.
+2. Run `critical-political-listening` to identify mediations, exclusions, infrastructures, and risks.
+3. Run `ecological-posthuman-listening` when place, environment, habitat, nonhuman agency, field recording, or sensor mediation matters.
+4. Run `symbolic-fictional-listening` when the object invokes myth, ritual, fiction, dream, speculative worlds, or symbolic registers.
+5. Run `reference-layer` to map concepts, methods, authors, traditions, cautions, adjacent modes, and research routes.
+6. Synthesize into a research-oriented listening note.
+
+## Expected Output
+
+Use `schemas/command-output.schema.json`.
+
+The output must include:
+
+- perceptual grounding
+- critical-political cautions
+- ecological or symbolic route
+- reference map
+- claim summary using the shared taxonomy
+- research questions
+- sonic methodologies
+- recommended next mode
+
+## Guardrails
+
+- Theory should clarify the listening situation, not decorate it.
+- Do not produce a random bibliography.
+- Methods, concepts, and research questions should be tied to the listening modes already used.
+- Do not universalize Western or Northern sound studies categories.
+- Keep speculation separate from interpretation and evidence.
+- Make clear when context is missing.
+
+## Must Not Do
+
+- Do not reduce sound to source identification.
+- Do not over-theorize a thin input.
+- Do not treat all sound as automatically political, ecological, mystical, or liberatory.
+- Do not turn references into authority claims.
+- Do not erase the object's perceptual specificity.
+
+## Recommended Follow-Up
+
+Recommend `/reference` for deeper conceptual mapping, `/litany` for critique of sound-versus-vision assumptions, or `/one-sound-many-ears` for comparative method building.
