@@ -12,6 +12,11 @@ AKOÚŌ does not pretend that agents hear like humans. It gives them accountable
 
 This public release contains the portable AKOÚŌ skills, router, command definitions, and schemas. The local app is intentionally not included in this release.
 
+## Version Status
+
+- `v0.1` marks the first public portable-skills release.
+- `v0.2` refines the listening modes with stronger theoretical distinctions, clearer evidence boundaries, and more explicit public-repo hygiene.
+
 ## Core Idea
 
 A sound is never only a source. It can be approached as:
@@ -39,6 +44,17 @@ Every output must distinguish its findings into the following epistemic categori
 - `undetermined`: what cannot be responsibly claimed
 
 This taxonomy is the main public contract of the system, preventing LLMs from hallucinating certainty or confusing a theoretical reading for a forensic measurement.
+
+## v0.2 Conceptual Discipline
+
+The v0.2 skills keep the same public schemas and mode names, but sharpen the conceptual boundaries between:
+
+- signal, perceptual object, affect, mediation, evidence, ecology, politics, and speculation
+- soundscape, acoustemology, and aurality
+- machine listening, ASR, voice agents, neural audio codecs, and generative audio
+- affect and named emotion
+- testimony, archive, legal evidence, and symbolic witness
+- declared sonic fiction and evidentiary claims
 
 ## Core Architecture
 
@@ -182,6 +198,8 @@ akouo/
 
 This repository is safe for public release. It contains no private recordings, API keys, personal data, or local system paths. All skills use generic framework-agnostic instructions with no dependency on a specific model provider. `node_modules/` and build artifacts are excluded by `.gitignore`.
 
+Conceptual refinements should be incorporated as public-facing skill language only. Do not bundle private notes, local research directories, unpublished source maps, private file paths, or personal identifiers into the portable skills.
+
 Run `./scripts/validate-release.sh` before publishing to verify skill structure, schema consistency, hygiene, and absence of generated build artifacts.
 
 ## Roadmap
@@ -189,6 +207,7 @@ Run `./scripts/validate-release.sh` before publishing to verify skill structure,
 Done: 
 - First versions of 8 skills for multi-modal listening
 - First version of the router
+- v0.2 conceptual refresh of router and listening modes
 Next: 
 - Standalone app for quick use of the functions and chat
 - Web version of the agent so you can load and describe sounds in browser.

@@ -1,7 +1,7 @@
 ---
 name: akouo-router
 description: >
-  AKOÚŌ meta-router for multimodal listening. Use this skill whenever an agent is asked to listen to, analyze, interpret, describe, or evaluate any sound, audio file, recording, transcript, field note, spectrogram, archive fragment, dataset, or sonic concept. Use it when the user asks about audio without specifying how to listen, when routing between technical, perceptual, affective, forensic, ecological, political, or fictional analysis, when preventing overreach in sensitive listening situations, or when recommending a listening chain for another agentic workflow. Always use this router first before applying any specialized listening mode.
+  AKOÚŌ meta-router for multimodal listening. Use this skill whenever an agent is asked to listen to, analyze, interpret, describe, or evaluate any sound, audio file, recording, transcript, field note, spectrogram, archive fragment, dataset, model output, platform artifact, or sonic concept. Use it when the user asks about audio without specifying how to listen, when routing between technical, perceptual, affective, forensic, ecological, political, or fictional analysis, when preventing overreach in sensitive listening situations, or when recommending a listening chain for another agentic workflow. Always use this router first before applying any specialized listening mode.
 compatibility: >
   Works with any LLM agent that supports skill injection (OpenCode, Claude, Gemini, etc.).
   Requires the AKOÚŌ JSON schemas for strict output formatting; bundled in this skill's `references/` folder.
@@ -14,6 +14,8 @@ compatibility: >
 `akouo-router` is the meta-ear of akoúō. It does not analyze the sound directly. It analyzes the listening situation and chooses which listening modes should be used.
 
 The router keeps the system from treating every sonic object as the same kind of problem. It decides whether the next response should remain descriptive, technical, forensic, ecological, critical, speculative, or comparative.
+
+In v0.2, the router also checks conceptual confusion: signal versus meaning, soundscape versus acoustemology versus aurality, machine listening versus voice agent, archive versus evidence, affect versus emotion, and speculation versus proof.
 
 ## When To Use
 
@@ -29,6 +31,14 @@ Use this skill whenever an agent is asked to:
 
 What kind of listening does this situation require?
 
+## Routing Refinements
+
+- Route by evidence first: audio file, metadata, waveform, spectrogram, transcript, prompt, field note, archive note, model output, or mixed input do not support the same claims.
+- Route by risk second: forensic, legal, political, colonial, identity, accessibility, surveillance, and platform contexts need corrective caution.
+- Route by conceptual frame third: technical measurement, perceptual morphology, bodily affect, transduction, testimony, ecological relation, political mediation, or declared fiction.
+- Add a corrective mode whenever the likely primary mode could overreach, aestheticize harm, erase mediation, or convert speculation into evidence.
+- Prefer multi-mode commands when the user asks for a complete reading or when the object crosses evidence, mediation, politics, and fiction.
+
 ## Input Assumptions
 
 The router may receive:
@@ -38,6 +48,7 @@ The router may receive:
 - a transcript or caption
 - a field note, archive note, or dataset description
 - a spectrogram, waveform, image, or video description
+- a machine-listening output, ASR transcript, classifier label, neural-codec description, or AI audio output
 - user intent, research question, or desired command
 
 The router must identify what kind of input is actually available before recommending modes. It must not pretend that a text prompt provides the same evidence as a measured audio file.
@@ -47,12 +58,13 @@ The router must identify what kind of input is actually available before recomme
 1. Identify the object being listened to.
 2. Identify the input type and available evidence.
 3. Identify the user's likely intent or research task.
-4. Identify risk level: forensic, political, personal, sensitive, speculative, technical, or low-risk exploratory.
-5. Decide the primary ear: the mode most suited to the task.
-6. Decide the secondary ear: the mode that adds a necessary adjacent perspective.
-7. Decide the corrective ear: the mode that prevents false certainty, aesthetic overreach, source confusion, cultural flattening, or technical confusion.
-8. State what cannot be known from the available input.
-9. Recommend whether to run `/listen`, `/full-ear`, `/forensic`, `/tech`, `/fiction`, `/study`, `/transduce`, `/litany`, `/reference`, or `/one-sound-many-ears`.
+4. Identify conceptual frame: signal inspection, acoulogical object, affect/body, transduction/media, forensic/archive, ecology/place, politics/power, or symbolic fiction.
+5. Identify risk level: forensic, legal, political, colonial, identity, accessibility, surveillance, personal, sensitive, speculative, technical, or low-risk exploratory.
+6. Decide the primary ear: the mode most suited to the task.
+7. Decide the secondary ear: the mode that adds a necessary adjacent perspective.
+8. Decide the corrective ear: the mode that prevents false certainty, aesthetic overreach, source confusion, cultural flattening, mediation erasure, or technical confusion.
+9. State what cannot be known from the available input.
+10. Recommend whether to run `/listen`, `/full-ear`, `/forensic`, `/tech`, `/fiction`, `/study`, `/transduce`, `/litany`, `/reference`, or `/one-sound-many-ears`.
 
 ## Output Structure
 
@@ -92,6 +104,9 @@ The router should also preserve the shared claim taxonomy when it makes claims:
 - Do not ignore risk: evidence, testimony, surveillance, political violence, voice data, and archives require caution.
 - Do not collapse the sound into source identification.
 - Do not recommend a single mode when a corrective mode is needed.
+- Do not conflate soundscape, acoustemology, and aurality; route ecology, situated knowledge, and historical listening regimes differently.
+- Do not conflate machine listening, voice agents, ASR, neural codecs, and generative audio.
+- Do not route declared fiction to forensic certainty, or forensic evidence to symbolic speculation.
 - Do not place cultural theory or affective readings in `inferred`. `inferred` is strictly for logical, forensic deduction. All theory, culture, and context belong in `interpreted`.
 
 ## Recommended Next Modes
@@ -101,11 +116,11 @@ Choose from:
 - `signal-inspection-listening` for file, waveform, spectrogram, metadata, clipping, loudness, frequency, noise, or technical uncertainty
 - `acoulogical-object-listening` for perceptual sound description before source or meaning claims
 - `embodied-affective-listening` for pressure, mood, fatigue, pleasure, dread, propulsion, alarms, bass, drone, ASMR, or bodily force
-- `transductive-media-listening` for sensors, microphones, codecs, compression, AI audio, datasets, sonification, or model mediation
+- `transductive-media-listening` for sensors, microphones, codecs, compression, AI audio, ASR, machine listening, datasets, sonification, neural codecs, or model mediation
 - `forensic-archival-listening` for evidence, testimony, archive, damage, authentication, protest recordings, or legal stakes
-- `ecological-posthuman-listening` for field recording, more-than-human relations, habitat, weather, animals, hydrophones, contact mics, or soundwalks
-- `critical-political-listening` for platform, labor, race, class, gender, coloniality, surveillance, market, policing, accessibility, or infrastructure stakes
-- `symbolic-fictional-listening` for sonic fiction, myth, ritual, dream, alien voice, speculative worlds, and declared imaginative readings
+- `ecological-posthuman-listening` for field recording, more-than-human relations, habitat, weather, animals, acoustic ecology, acoustemology, hydrophones, contact mics, or soundwalks
+- `critical-political-listening` for platform, labor, race, class, gender, coloniality, surveillance, market, policing, acoustic justice, accessibility, extraction, or infrastructure stakes
+- `symbolic-fictional-listening` for sonic fiction, myth, ritual, dream, alien voice, hauntology, hallucination-as-glitch, speculative worlds, and declared imaginative readings
 
 ## Examples
 
@@ -136,3 +151,10 @@ Choose from:
 - Secondary: `embodied-affective-listening`
 - Corrective: `critical-political-listening`
 - Must not assume: fictional imagery is evidence of real sonic content
+
+### AI Voice Agent Demo
+
+- Primary: `transductive-media-listening`
+- Secondary: `critical-political-listening`
+- Corrective: `signal-inspection-listening`
+- Must not assume: ASR, voice-agent behavior, neural codec representation, consent, dataset provenance, or emotional truth without evidence

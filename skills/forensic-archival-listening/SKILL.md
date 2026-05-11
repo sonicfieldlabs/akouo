@@ -1,7 +1,7 @@
 ---
 name: forensic-archival-listening
 description: >
-  AKOÚŌ evidentiary and archival ear. Use this skill whenever an agent needs to treat sound as trace, testimony, archive, memory, or evidence with strict epistemic caution. Use it for recordings of violence, political testimony, surveillance audio, protest recordings, historical archives, damaged tapes, oral history, legal contexts, and authentication review. Use it when the user mentions evidence, testimony, archive, damage, chain of custody, or when any listening situation carries legal, historical, or sensitive stakes. This mode resists narrative completion and refuses to invent evidence.
+  AKOÚŌ evidentiary and archival ear. Use this skill whenever an agent needs to treat sound as trace, testimony, archive, memory, witness, damage, or evidence with strict epistemic caution. Use it for recordings of violence, political testimony, surveillance audio, protest recordings, courtroom or legal audio, historical archives, damaged tapes, oral history, sonic witness, chain-of-custody review, and authentication review. Use it when the user mentions evidence, testimony, archive, damage, law, custody, witness, silence, or when any listening situation carries legal, historical, or sensitive stakes. This mode resists narrative completion and refuses to invent evidence.
 compatibility: >
   Works with any LLM agent that supports skill injection (OpenCode, Claude, Gemini, etc.).
   Requires the AKOÚŌ JSON schemas for strict output formatting; bundled in this skill's `references/` folder.
@@ -13,7 +13,7 @@ compatibility: >
 
 `forensic-archival-listening` is the evidentiary ear of akoúō. It treats sound as trace, testimony, archive, memory, damage, silence, or reconstruction.
 
-This mode is stricter than the others. It resists narrative completion and refuses to invent evidence.
+This mode is stricter than the others. It resists narrative completion, foregrounds mediation, and refuses to invent evidence.
 
 ## When To Use
 
@@ -37,6 +37,14 @@ Use this skill for:
 
 What can this sound testify, and where does testimony break down?
 
+## Conceptual Refinements
+
+- Sound can bear witness, but witness is not the same as proof; testimony depends on context, custody, mediation, and corroboration.
+- Background sound may reveal conditions of recording, law, space, or power, but it is not automatically a clue.
+- Archives decide what is preserved, named, damaged, excluded, and made listenable; treat archival authority as mediated.
+- Silence, dropout, remanence, hiss, edits, and degradation can matter, but their causes must remain uncertain unless inspected.
+- Legal or acoustic-jurisprudence contexts require special caution: do not convert sonic ambiguity into accusation, identity, sequence, or intent.
+
 ## Input Assumptions
 
 This skill can work with:
@@ -49,6 +57,7 @@ This skill can work with:
 - witness descriptions
 - metadata
 - signal inspection results
+- legal, courtroom, custody, or archive catalog notes
 
 If the actual audio, metadata, or archive context is missing, the skill must mark evidentiary claims as limited. It must not fill gaps with plausible narratives.
 
@@ -60,10 +69,11 @@ If the actual audio, metadata, or archive context is missing, the skill must mar
 4. Describe audible content conservatively.
 5. Record measured technical facts only when verified by signal inspection or metadata.
 6. Identify possible clues as inferred, not proven: background sounds, spatial cues, temporal cues, speech quality, damage, edits, or tampering indicators.
-7. Identify significant silences, absences, dropouts, interruptions, or damaged sections.
-8. Separate testimony from interpretation.
-9. State confidence levels and what remains undetermined.
-10. Recommend a corrective or adjacent mode only if it does not weaken evidentiary caution.
+7. Identify significant silences, absences, remanence, hiss, dropouts, interruptions, edits, gaps, or damaged sections.
+8. Distinguish foreground testimony from background conditions, courtroom/archive acoustics, and recording artifacts.
+9. Separate testimony from interpretation, and interpretation from accusation.
+10. State confidence levels and what remains undetermined.
+11. Recommend a corrective or adjacent mode only if it does not weaken evidentiary caution.
 
 ## Output Structure
 
@@ -109,6 +119,8 @@ Always separate:
 - `speculative`: normally empty unless the user explicitly requests speculative work outside forensic mode
 - `undetermined`: unknown source, speaker identity, location, sequence, intent, editing history, or cause
 
+Treat background sounds, silences, degraded sections, and archive labels as evidence only when their status is supported. Otherwise they belong in `inferred` or `undetermined`.
+
 ## Guardrails
 
 - Never invent evidence.
@@ -117,6 +129,8 @@ Always separate:
 - Never use poetic language by default.
 - Never treat transcript as the whole recording.
 - Never treat degraded audio as transparent testimony.
+- Never infer legal responsibility, speaker identity, weapon type, place, or chronology from sonic ambiguity alone.
+- Never treat archive metadata, filename, caption, or platform label as neutral authority.
 - Avoid speculation unless the user explicitly asks for a separate speculative pass.
 - If speculation is requested, route to `symbolic-fictional-listening` and label it outside forensic evidence.
 - Do not place cultural theory or affective readings in `inferred`. `inferred` is strictly for logical, forensic deduction. All theory, culture, and context belong in `interpreted`.
@@ -132,9 +146,9 @@ Always separate:
 
 Input: a phone recording described as a protest event.
 
-- Heard: crowd-like voices, abrupt impacts, intermittent shouting if present in the audio or description
-- Measured: duration, clipping, noise, and spectral traits only if inspected
-- Inferred: possible dense public setting or overloaded phone microphone
-- Interpreted: evidentiary value depends on archive context, chain of mediation, and corroboration
-- Speculative: none in forensic mode
-- Undetermined: exact event, location, identities, sequence, causes of impacts, and political meaning
+- Heard: `[{"statement":"Crowd-like voices, abrupt impacts, or intermittent shouting may be reported only if present in the audio or supplied description.","confidence":"medium","basis":"Available audible or described content"}]`
+- Measured: `[{"statement":"Duration, clipping, noise, edits, and spectral traits belong here only after file or signal inspection.","confidence":"high","basis":"Verified technical evidence"}]`
+- Inferred: `[{"statement":"A dense public setting or overloaded phone microphone may be possible, but neither is proven.","confidence":"low","basis":"Plausible clue from described sound conditions"}]`
+- Interpreted: `[{"statement":"Evidentiary value depends on archive context, custody, mediation, corroboration, and the politics of who is heard.","confidence":"medium","basis":"Forensic-archival listening frame"}]`
+- Speculative: `[]`
+- Undetermined: `[{"statement":"Exact event, location, identities, sequence, causes of impacts, editing history, custody, and political meaning remain unknown.","confidence":"high","basis":"Unavailable corroborating evidence"}]`

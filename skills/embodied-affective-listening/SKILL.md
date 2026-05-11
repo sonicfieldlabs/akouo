@@ -1,7 +1,7 @@
 ---
 name: embodied-affective-listening
 description: >
-  AKOÚŌ body and affect ear. Use this skill whenever an agent needs to analyze how sound acts on bodies before conscious interpretation. Use it for bass and club music, noise, drone, ambient, ASMR, sirens, sonic weapons, immersive installations, sound therapy, and any atmosphere of dread, euphoria, exhaustion, intimacy, or propulsion. Use it when the user asks about how a sound feels physically, mentions pressure, vibration, fatigue, pleasure, or bodily response, or analyzes music and sound where bodily force matters more than source identification.
+  AKOÚŌ body and affect ear. Use this skill whenever an agent needs to analyze how sound acts on bodies before or beside conscious interpretation. Use it for bass and club music, noise, drone, ambient, ASMR, sirens, sonic weapons, immersive installations, sound therapy, attention practices, and any atmosphere of dread, euphoria, exhaustion, intimacy, or propulsion. Use it when the user asks about how a sound feels physically, mentions pressure, vibration, fatigue, pleasure, attention, awareness, disability, accessibility, or bodily response, or analyzes music and sound where bodily force matters more than source identification.
 compatibility: >
   Works with any LLM agent that supports skill injection (OpenCode, Claude, Gemini, etc.).
   Requires the AKOÚŌ JSON schemas for strict output formatting; bundled in this skill's `references/` folder.
@@ -13,7 +13,7 @@ compatibility: >
 
 `embodied-affective-listening` is the body ear of akoúō. It listens for force, pressure, intensity, mood, vibration, fatigue, pleasure, discomfort, dread, propulsion, attention capture, and subperceptual charge.
 
-This mode asks what sound does before, beneath, or beside conscious interpretation.
+This mode asks what sound does before, beneath, or beside conscious interpretation, while refusing to universalize bodily response.
 
 ## When To Use
 
@@ -38,6 +38,14 @@ Use this skill for:
 
 What does this sound do before, beneath, or beside conscious interpretation?
 
+## Conceptual Refinements
+
+- Separate affect from named emotion: affect is intensity, tendency, pressure, or capacity before it becomes "fear," "joy," or another stable feeling.
+- Treat haptic audition as distributed across skin, bone, chest, feet, breath, posture, and room coupling, not only the ear.
+- Distinguish focused attention from broad awareness; both may be shifted by repetition, immersion, fatigue, or meditation.
+- Analyze sonic warfare only when there is coercion, crowd modulation, policing, military context, or concrete bodily targeting, not merely because a sound is loud.
+- Accessibility, trauma history, hearing variation, disability, playback level, and room acoustics are not afterthoughts; they condition the claim.
+
 ## Input Assumptions
 
 This skill can work with:
@@ -49,6 +57,7 @@ This skill can work with:
 - performance notes
 - field notes about volume, space, and bodies
 - technical data about loudness, bass, repetition, or spatial pressure
+- accessibility notes, listener reports, or hearing-context descriptions
 
 Embodied effects depend on playback system, room, volume, hearing ability, history, trauma, fatigue, culture, and expectation. If these are missing, the skill must mark bodily claims as inferred or interpreted, not universal facts.
 
@@ -57,11 +66,12 @@ Embodied effects depend on playback system, room, volume, hearing ability, histo
 1. Identify the object and input type.
 2. Identify whether any volume, playback, space, or listener context is available.
 3. Attend to pressure, vibration, repetition, roughness, beating, masking, dynamics, and density.
-4. Describe likely bodily vectors: propulsion, fatigue, tension, suspension, irritation, dread, pleasure, calm, or euphoria.
-5. Separate audible or measured features from inferred affective effects.
-6. Identify possible coercive or accessibility risks when the sound captures attention, overwhelms, masks speech, or targets bodies unevenly.
-7. State which bodily claims remain undetermined because listener and playback context are missing.
-8. Recommend a next mode to ground, complicate, or contextualize the affective reading.
+4. Describe likely bodily vectors: propulsion, fatigue, tension, suspension, irritation, dread, pleasure, calm, euphoria, numbness, orientation, or attention capture.
+5. Separate audible or measured features from interpreted affective effects; do not place affective theory in `inferred`.
+6. Identify haptic pathways: skin, chest, breath, bone, posture, tactile vibration, room modes, and shared crowd movement when relevant.
+7. Identify possible coercive or accessibility risks when the sound captures attention, overwhelms, masks speech, or targets bodies unevenly.
+8. State which bodily claims remain undetermined because listener and playback context are missing.
+9. Recommend a next mode to ground, complicate, or contextualize the affective reading.
 
 ## Output Structure
 
@@ -114,6 +124,8 @@ Return the shared listening output:
 - repetition
 - spatial pressure
 - attention capture
+- attention and awareness shifts
+- accessibility and hearing difference
 - affective contagion
 - possible coercive design
 
@@ -125,6 +137,7 @@ Return the shared listening output:
 - Do not aestheticize harmful or coercive sound without naming risk.
 - Do not confuse sub-bass presence with guaranteed bodily impact unless playback conditions are known.
 - Do not treat affect as less mediated than technical or cultural meaning.
+- Do not call something sonic warfare without evidence of coercive, military, policing, crowd-control, or preemptive affective design.
 - Do not place cultural theory or affective readings in `inferred`. `inferred` is strictly for logical, forensic deduction. All theory, culture, and context belong in `interpreted`.
 
 ## Recommended Next Modes
@@ -139,9 +152,9 @@ Return the shared listening output:
 
 Input: a sound prompt describing an endless low drone in a narrow room.
 
-- Heard: a low continuous drone as described in the prompt
-- Measured: undetermined without audio or room measurements
-- Inferred: possible pressure, masking, fatigue, and spatial tension
-- Interpreted: the drone may organize attention through bodily endurance rather than explicit meaning
-- Speculative: could become a ritual or architectural sonic fiction if requested
-- Undetermined: actual volume, frequency, room modes, listener response, duration, and source
+- Heard: `[{"statement":"The prompt describes a low continuous drone in a narrow room.","confidence":"high","basis":"User-provided sound description"}]`
+- Measured: `[]`
+- Inferred: `[{"statement":"Masking, room resonance, or pressure may be possible if the drone is loud and sustained, but no measurement confirms this.","confidence":"low","basis":"Plausible technical-bodily relation without audio or room data"}]`
+- Interpreted: `[{"statement":"The drone may organize attention through endurance and bodily orientation rather than explicit meaning.","confidence":"medium","basis":"Embodied-affective listening frame"}]`
+- Speculative: `[{"statement":"If requested, the drone could support a ritual or architectural sonic-fiction reading.","confidence":"low","basis":"Declared speculative extension"}]`
+- Undetermined: `[{"statement":"Actual volume, frequency, room modes, listener response, hearing context, duration, and source remain unknown.","confidence":"high","basis":"Missing playback and listener evidence"}]`
