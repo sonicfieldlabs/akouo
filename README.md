@@ -208,6 +208,7 @@ Done:
 - First versions of 8 skills for multi-modal listening
 - First version of the router
 - v0.2 conceptual refresh of router and listening modes
+
 Next: 
 - Standalone app for quick use of the functions and chat
 - Web version of the agent so you can load and describe sounds in browser.
