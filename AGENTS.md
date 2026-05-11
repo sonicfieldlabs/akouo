@@ -2,7 +2,7 @@
 
 ## What This Project Is
 
-AKOÚŌ is a multimodal listening system and portable skill library for AI agents. It gives agents accountable, switchable, operational ears for analyzing sound, audio, and sonic concepts across eight distinct epistemic modes.
+AKOÚŌ is a multimodal listening system and portable skill library for AI agents. It gives agents accountable, switchable, operational ears for analyzing sound, audio, music, and sonic concepts across nine distinct epistemic modes.
 
 It is NOT a generic audio-analysis tool. It is a framework for *how* agents should listen, what each mode reveals, what it hides, and what must remain unknown.
 
@@ -81,9 +81,10 @@ skill-name/
 
 ## Versioning And Release Workflow
 
-- Current public release baseline: `v0.1`.
+- Public release baseline: `v0.1`.
 - Conceptually refreshed release: `v0.2`.
-- Use a release branch for v0.2 work and tag the improved commit as `v0.2`.
+- Musical/aesthetic listening integration target: `v0.3`.
+- Use a release branch for v0.3 work and tag the improved commit as `v0.3` only when explicitly instructed to commit/tag/push.
 - Keep the repository remote unchanged unless explicitly instructed.
 - Use the public GitHub username `emezzzzz` for release commits and tags; do not expose local Git identity or local network email.
 - Do not commit untracked app prototypes, generated outputs, local caches, or private research material into the public portable-skills release.

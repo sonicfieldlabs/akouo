@@ -124,6 +124,7 @@ Return the shared listening output:
 ## Recommended Next Modes
 
 - `acoulogical-object-listening` when technical traits need perceptual description
+- `musical-aesthetic-listening` when measured or suspected tempo, pitch, tuning, rhythm, harmony, texture, or dynamics need musical/aesthetic interpretation
 - `transductive-media-listening` when artifacts, codecs, microphones, sensors, platforms, or AI systems shape the sound
 - `forensic-archival-listening` when signal traits may matter as evidence
 - `embodied-affective-listening` when loudness, pressure, repetition, bass, or harshness may affect bodies

@@ -3,6 +3,7 @@
     "agentic listening",
     "claim taxonomy",
     "auditum and acoulogical object",
+    "musical and aesthetic listening",
     "transduction and media conversion",
     "critical-political and decolonial listening"
   ],
@@ -10,11 +11,14 @@
     "mode selection before answer",
     "claim taxonomy audit",
     "auditum-first description",
+    "musical specificity before genre naming",
     "source-domain to target-domain mapping",
     "mediation and infrastructure critique"
   ],
   "authors_or_traditions": [
     "Pierre Schaeffer / Michel Chion",
+    "music analysis",
+    "sound design practice",
     "Jonathan Sterne",
     "digital sound studies",
     "critical sound studies",
@@ -23,12 +27,14 @@
   "possible_research_routes": [
     "sound as multidimensional event rather than single source",
     "describe sonic shape before source identity",
+    "describe rhythm, pitch, harmony, timbre, texture, form, and production gesture",
     "map what is transformed, lost, invented, and compressed",
     "name concrete mediations and asymmetries"
   ],
   "research_questions": [
     "Which claims are heard, measured, inferred, interpreted, speculative, or undetermined?",
     "What is the heard object before it becomes a source claim?",
+    "What is the sound doing musically before it becomes a genre label?",
     "What does the mediation chain hide, smooth, or invent?",
     "Who or what becomes inaudible in this frame?"
   ],
@@ -36,11 +42,13 @@
     "Do not use references as decoration when the input is thin.",
     "Do not let theory override claim discipline.",
     "Do not confuse source with auditum.",
+    "Do not infer genre, culture, instrument, or tradition from sparse musical cues.",
     "Do not treat mediated sound as direct access to source.",
     "Critique must not become automatic accusation."
   ],
   "adjacent_modes": [
     "acoulogical-object-listening",
+    "musical-aesthetic-listening",
     "transductive-media-listening",
     "critical-political-listening"
   ]

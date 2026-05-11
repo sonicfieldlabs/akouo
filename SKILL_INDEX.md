@@ -4,7 +4,7 @@ A quick-reference manifest of all portable listening skills in this repository.
 
 ## Version Notes
 
-`v0.2` preserves the original skill names and schemas while refining each listening mode with clearer evidence discipline, mediation awareness, and public conceptual boundaries.
+`v0.3` adds `musical-aesthetic-listening` as a public listening mode for music, rhythm, pitch, harmony, texture, sound-design utility, poetic usefulness, and genre/cultural caution. `v0.2` preserved the original mode set while refining evidence discipline, mediation awareness, and public conceptual boundaries.
 
 ## Meta-Router
 
@@ -23,6 +23,7 @@ A quick-reference manifest of all portable listening skills in this repository.
 | [`forensic-archival-listening`](skills/forensic-archival-listening/SKILL.md) | Evidentiary and archival ear. | Recordings of violence, testimony, surveillance, protest recordings, archives, damaged tapes, legal or custody contexts. |
 | [`ecological-posthuman-listening`](skills/ecological-posthuman-listening/SKILL.md) | More-than-human and ecological ear. | Field recordings, weather, hydrophones, animal sound, acoustic ecology, urban ecology, soundwalks, habitat and infrastructure listening. |
 | [`critical-political-listening`](skills/critical-political-listening/SKILL.md) | Critical and political ear. | AI audio platforms, surveillance, colonial archives, acoustic justice, sonic policing, marginalized voices, platform critique. |
+| [`musical-aesthetic-listening`](skills/musical-aesthetic-listening/SKILL.md) | Musical, aesthetic, and sound-design ear. | Music, rhythm, pulse, meter, tempo, pitch, harmony, interval, melody, contour, timbre, texture, form, production aesthetics, sound-design utility, poetic usefulness, and genre/cultural caution. |
 | [`symbolic-fictional-listening`](skills/symbolic-fictional-listening/SKILL.md) | Speculative and symbolic ear. | Sonic fiction, myth, ritual, hauntology, game audio, film worlds, ambient fantasy, creative worldbuilding. |
 
 ## Schema Bundles

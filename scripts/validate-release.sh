@@ -25,6 +25,7 @@ EXPECTED_SKILLS=(
   "forensic-archival-listening"
   "ecological-posthuman-listening"
   "critical-political-listening"
+  "musical-aesthetic-listening"
   "symbolic-fictional-listening"
 )
 

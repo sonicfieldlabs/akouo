@@ -138,6 +138,7 @@ Return the shared listening output:
 
 - `signal-inspection-listening` when artifacts, compression, noise, or metadata require technical inspection
 - `critical-political-listening` when mediation involves platforms, institutions, labor, voice data, colonial archives, surveillance, or market systems
+- `musical-aesthetic-listening` when mediation shapes music, production aesthetics, AI-generated tracks, sound design, rhythm, timbre, texture, or creative utility
 - `ecological-posthuman-listening` when sensors or field devices mediate more-than-human environments
 - `forensic-archival-listening` when mediated sound is treated as evidence or testimony
 - `acoulogical-object-listening` when the mediated object needs perceptual description before source claims

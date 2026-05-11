@@ -16,7 +16,7 @@ Use `/one-sound-many-ears` for:
 - sound design exploration
 - sonic artwork analysis
 - prompts or recordings with several possible readings
-- identifying contradictions between technical, perceptual, affective, archival, ecological, political, and speculative ears
+- identifying contradictions between technical, perceptual, musical/aesthetic, affective, archival, ecological, political, and speculative ears
 
 ## Skills Called
 
@@ -27,6 +27,7 @@ Use `/one-sound-many-ears` for:
 - `forensic-archival-listening`
 - `ecological-posthuman-listening`
 - `critical-political-listening`
+- `musical-aesthetic-listening`
 - `symbolic-fictional-listening`
 
 ## Execution Order
@@ -38,9 +39,10 @@ Use `/one-sound-many-ears` for:
 5. Run `forensic-archival-listening`.
 6. Run `ecological-posthuman-listening`.
 7. Run `critical-political-listening`.
-8. Run `symbolic-fictional-listening`.
-9. Compare mode outputs for contradictions, productive tensions, overreach risks, and methodological value.
-10. Produce the most responsible reading and the most interesting next mode.
+8. Run `musical-aesthetic-listening`.
+9. Run `symbolic-fictional-listening`.
+10. Compare mode outputs for contradictions, productive tensions, overreach risks, and methodological value.
+11. Produce the most responsible reading and the most interesting next mode.
 
 ## Expected Output
 
