@@ -1,3 +1,5 @@
+<img width="3966" height="1586" alt="akouo" src="https://github.com/user-attachments/assets/bd53f4b7-662e-4bad-b92e-21773f814864" />
+
 # AKOÚŌ 
 
 ## Operational ears for the agentic era
