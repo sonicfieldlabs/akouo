@@ -140,6 +140,7 @@ Ask whether the sound is produced by the listener or user. Self-produced sound h
 ## Recommended Next Modes
 
 - `signal-inspection-listening` when perceptual traits need measurement or technical grounding
+- `musical-aesthetic-listening` when rhythm, pitch, harmony, texture, production aesthetics, sound-design utility, or musical form matters
 - `embodied-affective-listening` when the sound's force, pressure, fatigue, or pleasure matters
 - `transductive-media-listening` when production chain, microphone, codec, sensor, or AI generation matters
 - `symbolic-fictional-listening` when the sound opens a declared fictional or symbolic world

@@ -16,6 +16,7 @@ This public release contains the portable AKOÚŌ skills, router, command defini
 
 - `v0.1` marks the first public portable-skills release.
 - `v0.2` refines the listening modes with stronger theoretical distinctions, clearer evidence boundaries, and more explicit public-repo hygiene.
+- `v0.3` adds `musical-aesthetic-listening` as a public mode for music, rhythm, pitch, harmony, texture, sound-design utility, poetic usefulness, and genre/cultural caution.
 
 ## Core Idea
 
@@ -28,6 +29,7 @@ A sound is never only a source. It can be approached as:
 - an archive, testimony, or damaged record
 - an ecological relation
 - a cultural and political mediation
+- a musical and aesthetic organization
 - a symbolic, fictional, or speculative world
 
 akoúō keeps these dimensions distinct through explicit listening modes and a strictly enforced JSON claim taxonomy.
@@ -45,6 +47,10 @@ Every output must distinguish its findings into the following epistemic categori
 
 This taxonomy is the main public contract of the system, preventing LLMs from hallucinating certainty or confusing a theoretical reading for a forensic measurement.
 
+## v0.3 Musical/Aesthetic Integration
+
+The v0.3 release promotes musical and aesthetic listening into the public core. `musical-aesthetic-listening` lets agents describe rhythm, pitch, harmony, timbre, texture, production aesthetics, form, sound-design utility, and poetic usefulness without collapsing into genre labels, cultural overreach, or unsupported claims about tradition, instrument, source, or scene.
+
 ## v0.2 Conceptual Discipline
 
 The v0.2 skills keep the same public schemas and mode names, but sharpen the conceptual boundaries between:
@@ -58,7 +64,7 @@ The v0.2 skills keep the same public schemas and mode names, but sharpen the con
 
 ## Core Architecture
 
-akoúō is organized as one meta-router and eight distinct listening modes. These are packaged as portable agent skills (`skills/`) that can be injected into any LLM agent supporting skill-based system prompts or custom instructions.
+akoúō is organized as one meta-router and nine distinct listening modes. These are packaged as portable agent skills (`skills/`) that can be injected into any LLM agent supporting skill-based system prompts or custom instructions.
 
 - `akouo-router`
 - `signal-inspection-listening`
@@ -68,6 +74,7 @@ akoúō is organized as one meta-router and eight distinct listening modes. Thes
 - `forensic-archival-listening`
 - `ecological-posthuman-listening`
 - `critical-political-listening`
+- `musical-aesthetic-listening`
 - `symbolic-fictional-listening`
 
 Each skill lives in its own folder with a `SKILL.md` file, following the standard skill format used by OpenCode, Claude Code, and compatible agent frameworks.
@@ -186,6 +193,9 @@ akouo/
     critical-political-listening/
       SKILL.md
       references/
+    musical-aesthetic-listening/
+      SKILL.md
+      references/
     symbolic-fictional-listening/
       SKILL.md
       references/
@@ -202,13 +212,15 @@ Conceptual refinements should be incorporated as public-facing skill language on
 
 Run `./scripts/validate-release.sh` before publishing to verify skill structure, schema consistency, hygiene, and absence of generated build artifacts.
 
+For a full operational guide covering commands, workflows, benchmark ingestion, and data structure, see [`SYSTEM_GUIDE.md`](SYSTEM_GUIDE.md).
+
 ## Roadmap
 
 Done: 
-- First versions of 8 skills for multi-modal listening
+- First versions of 9 listening modes for multimodal listening
 - First version of the router
 - v0.2 conceptual refresh of router and listening modes
-
+- v0.3 integration of `musical-aesthetic-listening`
 Next: 
 - Standalone app for quick use of the functions and chat
 - Web version of the agent so you can load and describe sounds in browser.

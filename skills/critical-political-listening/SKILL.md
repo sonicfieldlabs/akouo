@@ -152,6 +152,7 @@ Return the shared listening output:
 ## Recommended Next Modes
 
 - `transductive-media-listening` when platform, codec, dataset, AI model, microphone, or infrastructure mediation matters
+- `musical-aesthetic-listening` when critique involves music, genre, taste, scene, tradition, cultural coding, sound-design labor, or aesthetic value
 - `forensic-archival-listening` when evidence, testimony, violence, archive, or legal stakes require restraint
 - `acoulogical-object-listening` when critique needs a clearer perceptual object before interpretation
 - `signal-inspection-listening` when technical claims should be grounded by measurement

@@ -144,6 +144,7 @@ Return the shared listening output:
 ## Recommended Next Modes
 
 - `acoulogical-object-listening` when symbolic reading needs perceptual grounding
+- `musical-aesthetic-listening` when fiction depends on rhythm, song, ritual music, sonic motif, texture, harmony, or production aesthetics
 - `embodied-affective-listening` when fictional force depends on pressure, dread, pleasure, trance, fatigue, or ritual intensity
 - `ecological-posthuman-listening` when the sonic world involves nonhuman agencies, habitats, cosmologies, or elemental scales
 - `critical-political-listening` when symbolic reading risks flattening real histories, cultures, identities, archives, or power relations

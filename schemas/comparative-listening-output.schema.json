@@ -39,6 +39,7 @@
         "forensic_archival",
         "ecological_posthuman",
         "critical_political",
+        "musical_aesthetic",
         "symbolic_fictional"
       ],
       "properties": {
@@ -49,6 +50,7 @@
         "forensic_archival": { "$ref": "listening-output.schema.json" },
         "ecological_posthuman": { "$ref": "listening-output.schema.json" },
         "critical_political": { "$ref": "listening-output.schema.json" },
+        "musical_aesthetic": { "$ref": "listening-output.schema.json" },
         "symbolic_fictional": { "$ref": "listening-output.schema.json" }
       }
     },
