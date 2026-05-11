@@ -22,6 +22,7 @@ Use `/full-ear` for:
 - `akouo-router` as a planning pass for contextual mode selection
 - `signal-inspection-listening`
 - `acoulogical-object-listening`
+- `musical-aesthetic-listening` when music, rhythm, pitch, harmony, texture, production aesthetics, or sound-design utility matters
 - `embodied-affective-listening`
 - `transductive-media-listening`
 - one router-selected contextual mode when useful
@@ -32,11 +33,12 @@ Use `/full-ear` for:
 1. Run `akouo-router` to identify input type, risks, and the contextual mode.
 2. Run `signal-inspection-listening`.
 3. Run `acoulogical-object-listening`.
-4. Run `embodied-affective-listening`.
-5. Run `transductive-media-listening`.
-6. Run the router-selected contextual mode if it adds a dimension not already covered.
-7. Run `critical-political-listening` as corrective when the sound involves platforms, archives, voice, surveillance, labor, coloniality, policing, markets, accessibility, or cultural stakes.
-8. Synthesize the results as a multi-ear report.
+4. Run `musical-aesthetic-listening` when musical or aesthetic organization matters.
+5. Run `embodied-affective-listening`.
+6. Run `transductive-media-listening`.
+7. Run the router-selected contextual mode if it adds a dimension not already covered.
+8. Run `critical-political-listening` as corrective when the sound involves platforms, archives, voice, surveillance, labor, coloniality, policing, markets, accessibility, or cultural stakes.
+9. Synthesize the results as a multi-ear report.
 
 ## Expected Output
 
@@ -56,7 +58,7 @@ The output must show:
 ## Guardrails
 
 - Keep technical observations distinct from perceptual, affective, mediated, political, and speculative readings.
-- Do not force all eight listening modes if a compact full-ear pass is more responsible.
+- Do not force all nine listening modes if a compact full-ear pass is more responsible.
 - Do not turn the synthesis into a total interpretation.
 - Mark absent measurements as `undetermined` when no real audio or signal data exists.
 - Use `critical-political-listening` when the sound is socially or institutionally loaded, not as generic decoration.

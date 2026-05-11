@@ -143,6 +143,7 @@ Return the shared listening output:
 ## Recommended Next Modes
 
 - `signal-inspection-listening` when loudness, frequency, dynamic range, or repetition should be measured
+- `musical-aesthetic-listening` when affect is tied to groove, rhythm, bass, harmony, texture, dance, repetition, or musical form
 - `critical-political-listening` when bodily force intersects with policing, military sound, accessibility, platform design, labor, or public space
 - `acoulogical-object-listening` when affective response needs clearer perceptual grounding
 - `ecological-posthuman-listening` when bodily listening is part of habitat, weather, animal, or environmental relation

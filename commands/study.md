@@ -20,18 +20,20 @@ Use `/study` for:
 ## Skills Called
 
 - `acoulogical-object-listening`
+- `musical-aesthetic-listening` when music, sound design, rhythm, pitch, form, or aesthetic usefulness matters
 - `critical-political-listening`
-- `ecological-posthuman-listening` or `symbolic-fictional-listening`, selected according to the object
+- `ecological-posthuman-listening`, `musical-aesthetic-listening`, or `symbolic-fictional-listening`, selected according to the object
 - `reference-layer`
 
 ## Execution Order
 
 1. Run `acoulogical-object-listening` to establish the sound as perceptual object.
-2. Run `critical-political-listening` to identify mediations, exclusions, infrastructures, and risks.
-3. Run `ecological-posthuman-listening` when place, environment, habitat, nonhuman agency, field recording, or sensor mediation matters.
-4. Run `symbolic-fictional-listening` when the object invokes myth, ritual, fiction, dream, speculative worlds, or symbolic registers.
-5. Run `reference-layer` to map concepts, methods, authors, traditions, cautions, adjacent modes, and research routes.
-6. Synthesize into a research-oriented listening note.
+2. Run `musical-aesthetic-listening` when the object has musical structure, production aesthetics, or creative/sound-design stakes.
+3. Run `critical-political-listening` to identify mediations, exclusions, infrastructures, and risks.
+4. Run `ecological-posthuman-listening` when place, environment, habitat, nonhuman agency, field recording, or sensor mediation matters.
+5. Run `symbolic-fictional-listening` when the object invokes myth, ritual, fiction, dream, speculative worlds, or symbolic registers.
+6. Run `reference-layer` to map concepts, methods, authors, traditions, cautions, adjacent modes, and research routes.
+7. Synthesize into a research-oriented listening note.
 
 ## Expected Output
 
@@ -40,6 +42,7 @@ Use `schemas/command-output.schema.json`.
 The output must include:
 
 - perceptual grounding
+- musical/aesthetic specificity when relevant
 - critical-political cautions
 - ecological or symbolic route
 - reference map
