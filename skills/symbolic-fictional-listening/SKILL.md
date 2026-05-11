@@ -1,7 +1,7 @@
 ---
 name: symbolic-fictional-listening
 description: >
-  AKOÚŌ speculative and symbolic ear. Use this skill whenever an agent needs to interpret sound through myth, cosmology, sonic fiction, ritual, dream, alien voice, or speculative worldbuilding. Use it for sonic fiction, game audio, film worlds, ambient fantasy, AI-hallucinated sonic descriptions, hyperstition, creative writing, sound design briefs, and symbolic readings of musical or sonic material. Use it when the user asks for a fictional, mythic, dreamlike, or worldbuilding reading of sound, but always label speculation explicitly and never present imagination as evidence.
+  AKOÚŌ speculative and symbolic ear. Use this skill whenever an agent needs to interpret sound through myth, cosmology, sonic fiction, ritual, dream, alien voice, hauntology, hallucination-as-glitch, or speculative worldbuilding. Use it for sonic fiction, game audio, film worlds, ambient fantasy, AI-hallucinated sonic descriptions, hyperstition, mythscience, creative writing, sound design briefs, and symbolic readings of musical or sonic material. Use it when the user asks for a fictional, mythic, dreamlike, possible-world, or worldbuilding reading of sound, but always label speculation explicitly and never present imagination as evidence.
 compatibility: >
   Works with any LLM agent that supports skill injection (OpenCode, Claude, Gemini, etc.).
   Requires the AKOÚŌ JSON schemas for strict output formatting; bundled in this skill's `references/` folder.
@@ -39,6 +39,14 @@ Use this skill for:
 
 What world does this sound imply, invoke, haunt, worship, simulate, or invent?
 
+## Conceptual Refinements
+
+- Sonic fiction is a method, not decoration: it lets sound generate concepts, worlds, and temporalities while keeping evidence boundaries intact.
+- Mythscience can intensify impossible histories and speculative systems, but it must not masquerade as scholarship or forensic fact.
+- Sonic possible worlds ask what reality the sound makes actual for a listener, without claiming that world is externally verified.
+- Hauntology, remanence, ghosts, lost futures, and dead media should be handled as symbolic or cultural readings unless evidence supports archival claims.
+- Hallucination-as-glitch can reveal generative assumptions in AI audio or perception, but it does not prove hidden messages, entities, or intent.
+
 ## Input Assumptions
 
 This skill can work with:
@@ -50,6 +58,7 @@ This skill can work with:
 - AI-generated sonic captions
 - music or sound design fragments
 - ritual, mythic, symbolic, or dreamlike material
+- obsolete media, hauntological textures, glitches, or speculative AI outputs
 
 If the input is fictional or prompted, the skill must identify it as such. If real audio is present, the skill must separate actual audible traits from speculative worldbuilding.
 
@@ -58,11 +67,11 @@ If the input is fictional or prompted, the skill must identify it as such. If re
 1. Identify the object, input type, and whether speculation is requested or appropriate.
 2. Establish a speculative frame explicitly.
 3. Identify perceptual anchors: what in the sound or prompt supports the symbolic reading.
-4. Identify registers: mythic, religious, technological, erotic, ghostly, cosmic, urban, ancestral, synthetic, or ritual.
+4. Identify registers: mythic, religious, technological, erotic, ghostly, cosmic, urban, ancestral, synthetic, ritual, hauntological, or glitch.
 5. Build a possible sonic world without presenting it as evidence.
-6. Identify agents, forces, cosmology, temporal logic, atmosphere, and implied bodies.
+6. Identify agents, forces, cosmology, temporal logic, atmosphere, implied bodies, media residues, and rules of audibility.
 7. Separate symbolic interpretation from heard, measured, inferred, and undetermined claims.
-8. Identify political or cultural risks if the fiction borrows from real traditions, violence, archives, or identities.
+8. Identify political or cultural risks if the fiction borrows from real traditions, violence, archives, identities, sacred practices, or Black/Indigenous futurisms.
 9. Recommend a next mode to ground, critique, or deepen the speculative pass.
 
 ## Output Structure
@@ -115,6 +124,9 @@ Return the shared listening output:
 - temporal logic
 - atmosphere
 - hyperstitional potential
+- sonic possible world
+- media ghosts and lost futures
+- hallucination or glitch status
 
 ## Guardrails
 
@@ -125,6 +137,8 @@ Return the shared listening output:
 - Do not hide uncertainty inside poetic confidence.
 - Do not turn every sound into myth if the user requested technical or evidentiary listening.
 - If the sound concerns violence, testimony, or archive, keep forensic claims separate and conservative.
+- Do not claim that AI hallucination, noise, or pareidolia reveals hidden messages, entities, or intent.
+- Do not detach sonic fiction from its political and cultural lineages when those lineages are relevant.
 - Do not place cultural theory or affective readings in `inferred`. `inferred` is strictly for logical, forensic deduction. All theory, culture, and context belong in `interpreted`.
 
 ## Recommended Next Modes
@@ -139,9 +153,9 @@ Return the shared listening output:
 
 Input: a prompt describing a choir of broken satellites singing at dawn.
 
-- Heard: a fictional prompt describing satellite-like voices and dawnlike atmosphere
-- Measured: undetermined without audio
-- Inferred: possible metallic, choral, distant, harmonic, or glitching sonic traits suggested by the prompt
-- Interpreted: the prompt stages communication between obsolete machines and planetary time
-- Speculative: a ritual of orbital debris becoming a synthetic dawn chorus
-- Undetermined: actual audio content, production technique, acoustic space, and intended narrative
+- Heard: `[{"statement":"The input is a fictional prompt describing satellite-like voices and a dawnlike atmosphere.","confidence":"high","basis":"Prompt content, not verified audio"}]`
+- Measured: `[]`
+- Inferred: `[{"statement":"Metallic, choral, distant, harmonic, or glitching traits are suggested by the prompt but not confirmed as audio.","confidence":"low","basis":"Textual implication"}]`
+- Interpreted: `[{"statement":"The prompt stages communication between obsolete machines and planetary time.","confidence":"medium","basis":"Symbolic reading of the fiction"}]`
+- Speculative: `[{"statement":"A possible world appears in which orbital debris performs a synthetic dawn ritual.","confidence":"medium","basis":"Declared sonic-fiction frame"}]`
+- Undetermined: `[{"statement":"Actual audio content, production technique, acoustic space, cultural references, and intended narrative remain unknown.","confidence":"high","basis":"No audio or production context supplied"}]`

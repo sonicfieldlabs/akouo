@@ -1,7 +1,7 @@
 ---
 name: acoulogical-object-listening
 description: >
-  AKOÚŌ perceptual object ear for sound-as-auditum. Use this skill whenever an agent needs to describe a sound's perceptual qualities before rushing to source identification or meaning. Use it for sound design samples, electroacoustic and experimental music, Foley, synthetic sounds, AI-generated audio, ambiguous sources, everyday sonic textures, and prompts describing unclear or impossible sounds. Use it when the user asks what something sounds like, describes a sonic texture, or needs reduced listening that separates timbre, grain, density, and spatial image from causal guesses.
+  AKOÚŌ perceptual object ear for sound-as-auditum. Use this skill whenever an agent needs to describe a sound's perceptual qualities before rushing to source identification or meaning. Use it for sound design samples, electroacoustic and experimental music, Foley, synthetic sounds, AI-generated audio, ambiguous sources, everyday sonic textures, acousmatic situations, and prompts describing unclear or impossible sounds. Use it when the user asks what something sounds like, describes a sonic texture, or needs reduced listening that separates timbre, grain, density, spatial image, causal guesses, semantic codes, and figurative effects.
 compatibility: >
   Works with any LLM agent that supports skill injection (OpenCode, Claude, Gemini, etc.).
   Requires the AKOÚŌ JSON schemas for strict output formatting; bundled in this skill's `references/` folder.
@@ -13,7 +13,7 @@ compatibility: >
 
 `acoulogical-object-listening` is the perceptual object ear of akoúō. It treats sound as an auditum: the sound as heard, distinct from its real cause, cultural meaning, bodily effect, or technical production chain.
 
-This mode slows down premature identification. It asks what the sound is like before deciding what made it or what it means.
+This mode slows down premature identification. It asks what the sound is like before deciding what made it, what it represents, or what it means.
 
 ## When To Use
 
@@ -36,6 +36,14 @@ Use this skill for:
 
 What is the perceptual shape of this sound, and how does that shape change when source, meaning, and material behavior are separated?
 
+## Conceptual Refinements
+
+- Reduced listening is a technique, not a natural or pure ear; it depends on attention, repetition, training, playback, and mediation.
+- Acousmatic listening is an epistemic relation: source, cause, and effect may be spaced apart, uncertain, or differently known by different listeners.
+- Describe morphology before source: mass, harmonic timbre, grain, dynamic envelope, allure, melodic profile, mass profile, density, contour, and spatial image.
+- Separate four intentions: causal listening asks what made the sound; semantic listening asks what it signifies; figurative listening asks what it represents; reduced listening asks what traits appear as sound.
+- Include ergo-audition when the listener or user produces the sound themself, such as voice, footsteps, instrument playing, typing, or gesture.
+
 ## Input Assumptions
 
 This skill can work with:
@@ -55,12 +63,13 @@ If no audio is available, the skill must say it is listening to a description ra
 1. Identify the object and input type.
 2. Describe the sound's perceptual qualities without rushing to source.
 3. Attend to timbre, mass, grain, texture, density, attack, decay, movement, rhythm, pitch stability, and spatial image.
-4. Separate reduced or perceptual description from causal guesses.
-5. Mark possible causes as inferred rather than heard.
+4. Separate reduced or perceptual description from causal guesses, semantic codes, and figurative representations.
+5. Mark possible causes as inferred rather than heard, and distinguish known source from apparent source.
 6. Identify semantic features only when the sound belongs to a code, language, alert, musical convention, or communicative system.
 7. Identify figurative or representational effects without confusing them with real causes.
-8. State what remains unavailable: source, intention, recording conditions, listener context, or cultural placement.
-9. Recommend a next mode that can correct or expand the perceptual reading.
+8. Note whether the sound is self-produced or heard at a distance, because ergo-audition changes what can be known.
+9. State what remains unavailable: source, intention, recording conditions, listener context, cultural placement, or technical mediation.
+10. Recommend a next mode that can correct or expand the perceptual reading.
 
 ## Output Structure
 
@@ -114,10 +123,15 @@ Ask whether the sound participates in a language, code, alert, genre, signal sys
 
 Ask what the sound represents, stages, evokes, or makes imaginable without treating representation as evidence.
 
+### Ergo-Auditory
+
+Ask whether the sound is produced by the listener or user. Self-produced sound has feedback, habit, masking, and bodily scotomization that differ from passive audition.
+
 ## Guardrails
 
 - Avoid the fantasy of the pure ear.
 - Reduced listening is a technique, not an escape from culture, training, technology, or mediation.
+- Do not treat acousmatic uncertainty as proof of mystery, hidden agency, or source absence.
 - Do not identify a source as fact unless the evidence supports it.
 - Do not replace perceptual description with mood adjectives only.
 - Do not collapse sound into music genre, source object, or symbolic meaning.
@@ -135,9 +149,9 @@ Ask what the sound represents, stages, evokes, or makes imaginable without treat
 
 Input: a short metallic scrape with a swelling noisy tail.
 
-- Heard: bright scrape, rough grain, rising density, noisy decay
-- Measured: undetermined unless signal analysis is available
-- Inferred: possible metal contact, bowed object, processed sample, or synthetic gesture
-- Interpreted: tension emerges from the contrast between sharp attack and unstable decay
-- Speculative: could become a fictional signal from a damaged machine if asked for sonic fiction
-- Undetermined: actual source, production chain, recording space, intention
+- Heard: `[{"statement":"A bright scrape, rough grain, rising density, and noisy decay are present in the supplied sound or description.","confidence":"medium","basis":"Perceptual description before source identification"}]`
+- Measured: `[]`
+- Inferred: `[{"statement":"Metal contact, a bowed object, a processed sample, or a synthetic gesture are possible causes, but none is confirmed.","confidence":"low","basis":"Causal possibilities from perceptual traits"}]`
+- Interpreted: `[{"statement":"Tension emerges from the contrast between sharp attack and unstable decay.","confidence":"medium","basis":"Acoulogical reading of morphology"}]`
+- Speculative: `[{"statement":"If requested, the sound could be framed as a fictional signal from a damaged machine.","confidence":"low","basis":"Declared possible-world reading, not evidence"}]`
+- Undetermined: `[{"statement":"Actual source, production chain, recording space, self-produced status, and intention remain unknown.","confidence":"high","basis":"Unavailable contextual evidence"}]`
