@@ -1,7 +1,7 @@
 ---
 name: akouo-router
 description: >
-  AKOÚŌ meta-router for multimodal listening. Use this skill whenever an agent is asked to listen to, analyze, interpret, describe, or evaluate any sound, audio file, music fragment, rhythm, song, recording, transcript, field note, spectrogram, archive fragment, dataset, model output, platform artifact, or sonic concept. Use it when the user asks about audio without specifying how to listen, when routing between technical, perceptual, musical/aesthetic, affective, forensic, ecological, political, or fictional analysis, when preventing overreach in sensitive listening situations, or when recommending a listening chain for another agentic workflow. Always use this router first before applying any specialized listening mode.
+  AKOÚŌ meta-router for multimodal listening. Use this skill whenever an agent is asked to listen to, analyze, interpret, describe, or evaluate any sound, audio file, music fragment, rhythm, song, voice, speech, transcript, field note, spectrogram, archive fragment, video, caption, dataset, model output, platform artifact, interface sound, accessibility issue, or sonic concept. Use it when the user asks about audio without specifying how to listen, when routing between technical, perceptual, musical/aesthetic, affective, voice/speech, audiovisual/scenic, accessibility, material/event, forensic, ecological, political, or fictional analysis, when preventing overreach in sensitive listening situations, or when recommending a listening chain for another agentic workflow. Always use this router first before applying any specialized listening mode.
 compatibility: >
   Works with any LLM agent that supports skill injection (OpenCode, Claude, Gemini, etc.).
   Requires the AKOÚŌ JSON schemas for strict output formatting; bundled in this skill's `references/` folder.
@@ -15,7 +15,7 @@ compatibility: >
 
 The router keeps the system from treating every sonic object as the same kind of problem. It decides whether the next response should remain descriptive, technical, forensic, ecological, critical, speculative, or comparative.
 
-In v0.3, the router also checks conceptual confusion: signal versus meaning, music versus genre label, aesthetic reading versus evidence, soundscape versus acoustemology versus aurality, machine listening versus voice agent, archive versus evidence, affect versus emotion, and speculation versus proof.
+The router also checks conceptual confusion: signal versus meaning, music versus genre label, voice versus transcript, speech versus identity, caption versus sound, audiovisual synchronization versus causality, access versus normal-hearing assumption, material vibration versus measured evidence, soundscape versus acoustemology versus aurality, machine listening versus voice agent, archive versus evidence, affect versus emotion, and speculation versus proof.
 
 ## When To Use
 
@@ -23,7 +23,7 @@ Use this skill whenever an agent is asked to:
 
 - listen to a sound, audio file, recording, prompt, transcript, field note, spectrogram, archive fragment, dataset, or sonic concept
 - analyze or interpret audio without a clearly specified mode
-- choose between technical, perceptual, musical/aesthetic, affective, archival, ecological, political, or fictional listening
+- choose between technical, perceptual, musical/aesthetic, affective, voice/speech, audiovisual/scenic, accessibility, material/event, archival, ecological, political, or fictional listening
 - prevent overreach in a sensitive or uncertain listening situation
 - recommend a listening chain for another command or agentic workflow
 
@@ -35,9 +35,10 @@ What kind of listening does this situation require?
 
 - Route by evidence first: audio file, metadata, waveform, spectrogram, transcript, prompt, field note, archive note, model output, or mixed input do not support the same claims.
 - Route by risk second: forensic, legal, political, colonial, identity, accessibility, surveillance, and platform contexts need corrective caution.
-- Route by conceptual frame third: technical measurement, perceptual morphology, musical/aesthetic organization, bodily affect, transduction, testimony, ecological relation, political mediation, or declared fiction.
+- Route by conceptual frame third: technical measurement, perceptual morphology, musical/aesthetic organization, bodily affect, voice/speech, audiovisual scene, accessibility and hearing norm, material event, transduction, testimony, ecological relation, political mediation, or declared fiction.
 - Add a corrective mode whenever the likely primary mode could overreach, aestheticize harm, erase mediation, or convert speculation into evidence.
 - Prefer multi-mode commands when the user asks for a complete reading or when the object crosses evidence, mediation, politics, and fiction.
+- For autonomous workflows, return enough evidence limits, forbidden assumptions, and mode-chain logic that another app or agent can execute the route without inventing missing evidence.
 
 ## Input Assumptions
 
@@ -47,7 +48,7 @@ The router may receive:
 - a text prompt describing a sound
 - a transcript or caption
 - a field note, archive note, or dataset description
-- a spectrogram, waveform, image, or video description
+- a spectrogram, waveform, image, video, caption, subtitle, or interface description
 - a machine-listening output, ASR transcript, classifier label, neural-codec description, or AI audio output
 - user intent, research question, or desired command
 
@@ -58,13 +59,13 @@ The router must identify what kind of input is actually available before recomme
 1. Identify the object being listened to.
 2. Identify the input type and available evidence.
 3. Identify the user's likely intent or research task.
-4. Identify conceptual frame: signal inspection, acoulogical object, musical/aesthetic organization, affect/body, transduction/media, forensic/archive, ecology/place, politics/power, or symbolic fiction.
+4. Identify conceptual frame: signal inspection, acoulogical object, musical/aesthetic organization, affect/body, voice/speech, audiovisual scene, accessibility/hearing norm, material event, transduction/media, forensic/archive, ecology/place, politics/power, or symbolic fiction.
 5. Identify risk level: forensic, legal, political, colonial, identity, accessibility, surveillance, personal, sensitive, speculative, technical, or low-risk exploratory.
 6. Decide the primary ear: the mode most suited to the task.
 7. Decide the secondary ear: the mode that adds a necessary adjacent perspective.
 8. Decide the corrective ear: the mode that prevents false certainty, aesthetic overreach, source confusion, cultural flattening, mediation erasure, or technical confusion.
 9. State what cannot be known from the available input.
-10. Recommend whether to run `/listen`, `/full-ear`, `/forensic`, `/tech`, `/fiction`, `/study`, `/transduce`, `/litany`, `/reference`, or `/one-sound-many-ears`.
+10. Recommend whether to run `/listen`, `/full-ear`, `/forensic`, `/tech`, `/fiction`, `/study`, `/transduce`, `/litany`, `/reference`, `/voice`, `/audiovision`, `/access`, `/field`, `/method`, `/route`, or `/one-sound-many-ears`.
 
 ## Output Structure
 
@@ -93,7 +94,7 @@ The router should also preserve the shared claim taxonomy when it makes claims:
 - `speculative`
 - `undetermined`
 
-> **Note to LLMs/Agents:** You MUST strictly follow the JSON schema provided in `references/router-output.schema.json`. Router output does not include `listening_claims`; use `available_evidence`, `unavailable_evidence`, `risks`, and `must_not_assume` to preserve the same epistemic discipline before any listening mode runs.
+> **Note to LLMs/Agents:** You MUST strictly follow the JSON schema provided in `references/router-output.schema.json`. Router output does not include `listening_claims`; use `available_evidence`, `unavailable_evidence`, `risks`, and `must_not_assume` to preserve the same epistemic discipline before any listening mode runs. When another app or agent needs an expanded handoff, use `references/routing-plan.schema.json` as the route-plan contract.
 
 ## Guardrails
 
@@ -106,6 +107,10 @@ The router should also preserve the shared claim taxonomy when it makes claims:
 - Do not recommend a single mode when a corrective mode is needed.
 - Do not conflate soundscape, acoustemology, and aurality; route ecology, situated knowledge, and historical listening regimes differently.
 - Do not conflate machine listening, voice agents, ASR, neural codecs, and generative audio.
+- Do not conflate voice, speech, transcript, identity, emotion, consent, and ASR output.
+- Do not conflate audiovisual synchronization with real-world causality.
+- Do not assume a normal hearing listener, complete caption access, or universal intelligibility.
+- Do not treat material vibration, resonance, or process as measured fact without measurement.
 - Do not route declared fiction to forensic certainty, or forensic evidence to symbolic speculation.
 - Do not place cultural theory or affective readings in `inferred`. `inferred` is strictly for logical, forensic deduction. All theory, culture, and context belong in `interpreted`.
 
@@ -122,6 +127,10 @@ Choose from:
 - `critical-political-listening` for platform, labor, race, class, gender, coloniality, surveillance, market, policing, acoustic justice, accessibility, extraction, or infrastructure stakes
 - `musical-aesthetic-listening` for music, rhythm, pulse, meter, tempo, pitch, interval, harmony, melody, contour, timbre, texture, form, production aesthetics, sound-design utility, poetic usefulness, and genre/cultural caution
 - `symbolic-fictional-listening` for sonic fiction, myth, ritual, dream, alien voice, hauntology, hallucination-as-glitch, speculative worlds, and declared imaginative readings
+- `audiovisual-scenic-listening` for video, film, games, UI sound, captions, subtitles, synchronization, offscreen sound, diegesis, audiovisual phrasing, or sound-image-text-scene relations
+- `voice-speech-listening` for spoken sound, transcripts, ASR, TTS, voice agents, voice cloning, diarization, podcasts, radio, prosody, intelligibility, identity caution, or consent
+- `accessibility-normative-listening` for captions, transcripts, haptics, deaf or hard-of-hearing access, assistive technology, sensory variation, fatigue, masking, alerts, or implied listener assumptions
+- `material-event-listening` for vibration, resonance, feedback, duration, flux, rumble, low frequencies, installation sound, propagation, loudspeakers, room coupling, or sonic process
 
 ## Examples
 
@@ -162,7 +171,28 @@ Choose from:
 
 ### AI Voice Agent Demo
 
-- Primary: `transductive-media-listening`
-- Secondary: `critical-political-listening`
+- Primary: `voice-speech-listening`
+- Secondary: `transductive-media-listening`
+- Corrective: `accessibility-normative-listening`
+- Must not assume: ASR accuracy, speaker identity, voice-agent behavior, neural codec representation, consent, dataset provenance, disability, age, gender, ethnicity, or emotional truth without evidence
+
+### Captioned Game Scene
+
+- Primary: `audiovisual-scenic-listening`
+- Secondary: `voice-speech-listening`
+- Corrective: `accessibility-normative-listening`
+- Must not assume: frame-accurate synchronization, source causality, caption accuracy, player hearing context, or interface intent without evidence
+
+### Sonic Access Audit
+
+- Primary: `accessibility-normative-listening`
+- Secondary: `voice-speech-listening`
+- Corrective: `critical-political-listening`
+- Must not assume: normal hearing, adequate captions, universal intelligibility, assistive-technology behavior, or user comfort without testing
+
+### Resonant Installation
+
+- Primary: `material-event-listening`
+- Secondary: `embodied-affective-listening`
 - Corrective: `signal-inspection-listening`
-- Must not assume: ASR, voice-agent behavior, neural codec representation, consent, dataset provenance, or emotional truth without evidence
+- Must not assume: exact frequency, amplitude, tactile effect, room coupling, material composition, or listener response without measurement and context

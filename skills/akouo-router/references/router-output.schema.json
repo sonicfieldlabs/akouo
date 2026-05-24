@@ -75,7 +75,13 @@
         "/fiction",
         "/forensic",
         "/transduce",
-        "/one-sound-many-ears"
+        "/one-sound-many-ears",
+        "/voice",
+        "/audiovision",
+        "/access",
+        "/field",
+        "/method",
+        "/route"
       ]
     },
     "text_list": {
