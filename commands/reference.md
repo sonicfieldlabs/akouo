@@ -16,6 +16,7 @@ Use `/reference` for:
 - conceptual clarification
 - thesis, essay, or project development
 - connecting a listening report to adjacent methods
+- routing concepts for voice, audiovisual, accessibility, field, material, and agentic listening workflows
 - identifying cautions before deeper interpretation
 
 ## Skills Called

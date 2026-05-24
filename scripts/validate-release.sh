@@ -27,6 +27,10 @@ EXPECTED_SKILLS=(
   "critical-political-listening"
   "musical-aesthetic-listening"
   "symbolic-fictional-listening"
+  "audiovisual-scenic-listening"
+  "voice-speech-listening"
+  "accessibility-normative-listening"
+  "material-event-listening"
 )
 
 while IFS= read -r skill_path; do

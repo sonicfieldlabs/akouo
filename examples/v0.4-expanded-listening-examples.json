@@ -1,0 +1,153 @@
+{
+  "title": "AKOÚŌ v0.4 Expanded Listening Examples",
+  "examples": [
+    {
+      "mode": "audiovisual-scenic-listening",
+      "object_listened_to": "Captioned game cutscene with offscreen alarm",
+      "input_type": "video",
+      "listening_claims": {
+        "heard": [
+          {
+            "statement": "The supplied description links an offscreen alarm to a captioned game cutscene.",
+            "confidence": "high",
+            "basis": "User-provided audiovisual description"
+          }
+        ],
+        "measured": [],
+        "inferred": [
+          {
+            "statement": "The alarm may cue offscreen threat or interface state, but timing requires video/audio inspection.",
+            "confidence": "low",
+            "basis": "Scene inference from description"
+          }
+        ],
+        "interpreted": [
+          {
+            "statement": "The scene should be read through sound, image, caption, interface, and timing together rather than as audio-only evidence.",
+            "confidence": "medium",
+            "basis": "Audiovisual-scenic listening frame"
+          }
+        ],
+        "speculative": [],
+        "undetermined": [
+          {
+            "statement": "Frame timing, mix level, caption accuracy, visual content, source, and production intent remain unknown.",
+            "confidence": "high",
+            "basis": "Unavailable media evidence"
+          }
+        ]
+      }
+    },
+    {
+      "mode": "voice-speech-listening",
+      "object_listened_to": "ASR transcript from a voice-agent demo",
+      "input_type": "transcript",
+      "listening_claims": {
+        "heard": [
+          {
+            "statement": "The supplied input is an ASR-style transcript from a voice-agent demo.",
+            "confidence": "high",
+            "basis": "Provided transcript"
+          }
+        ],
+        "measured": [],
+        "inferred": [
+          {
+            "statement": "The text may represent a speech-to-text stage, but it does not verify vocal quality or speaker identity.",
+            "confidence": "medium",
+            "basis": "Transcript format"
+          }
+        ],
+        "interpreted": [
+          {
+            "statement": "The voice-agent workflow should separate vocal sound, transcript, model behavior, consent, and access.",
+            "confidence": "high",
+            "basis": "Voice-speech listening frame"
+          }
+        ],
+        "speculative": [],
+        "undetermined": [
+          {
+            "statement": "Prosody, timbre, accent, speaker identity, consent, ASR accuracy, model stack, and dataset provenance remain unknown.",
+            "confidence": "high",
+            "basis": "No audio or provenance supplied"
+          }
+        ]
+      }
+    },
+    {
+      "mode": "accessibility-normative-listening",
+      "object_listened_to": "Audio-only alert workflow",
+      "input_type": "sound_prompt",
+      "listening_claims": {
+        "heard": [
+          {
+            "statement": "The prompt describes a workflow where alerts are audio-only.",
+            "confidence": "high",
+            "basis": "User-provided design description"
+          }
+        ],
+        "measured": [],
+        "inferred": [
+          {
+            "statement": "Users with muted devices, noisy environments, hearing variation, or unavailable speakers may miss alert state changes.",
+            "confidence": "medium",
+            "basis": "Design inference from audio-only alert path"
+          }
+        ],
+        "interpreted": [
+          {
+            "statement": "The workflow implies a default hearing listener and should provide visual, textual, and possibly haptic alternatives.",
+            "confidence": "high",
+            "basis": "Accessibility-normative listening frame"
+          }
+        ],
+        "speculative": [],
+        "undetermined": [
+          {
+            "statement": "Alert urgency, volume, masking, visual state, haptic support, captioning, user testing, and assistive-technology behavior remain unknown.",
+            "confidence": "high",
+            "basis": "Missing design and testing evidence"
+          }
+        ]
+      }
+    },
+    {
+      "mode": "material-event-listening",
+      "object_listened_to": "Long feedback tone in a resonant room",
+      "input_type": "sound_prompt",
+      "listening_claims": {
+        "heard": [
+          {
+            "statement": "The prompt describes a long feedback tone in a resonant room.",
+            "confidence": "high",
+            "basis": "User-provided sound description"
+          }
+        ],
+        "measured": [],
+        "inferred": [
+          {
+            "statement": "Sustained feedback and room resonance are possible, but frequency, amplitude, and coupling require measurement.",
+            "confidence": "low",
+            "basis": "Technical-material inference from prompt"
+          }
+        ],
+        "interpreted": [
+          {
+            "statement": "The sound can be approached as an event across loudspeaker, room, air, surfaces, and listener body.",
+            "confidence": "medium",
+            "basis": "Material-event listening frame"
+          }
+        ],
+        "speculative": [],
+        "undetermined": [
+          {
+            "statement": "Actual waveform, frequency, loudness, room dimensions, speaker position, material composition, and bodily effect remain unknown.",
+            "confidence": "high",
+            "basis": "No measured signal or room data supplied"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/routing-plan.schema.json",
+  "title": "akoúō Routing Plan",
+  "description": "Expanded route plan for agent handoff, weighted mode selection, evidence limits, and claim permissions.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_listened_to",
+    "input_type",
+    "route_confidence",
+    "evidence_level",
+    "mode_chain",
+    "claim_permissions",
+    "agent_handoff",
+    "stop_conditions"
+  ],
+  "properties": {
+    "object_listened_to": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_type": {
+      "$ref": "listening-output.schema.json#/$defs/input_type"
+    },
+    "route_confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low", "undetermined"]
+    },
+    "evidence_level": {
+      "type": "string",
+      "enum": [
+        "none",
+        "prompt_only",
+        "metadata_only",
+        "decoded_audio_metadata",
+        "measured_signal",
+        "transcript_or_caption",
+        "contextual_note",
+        "mixed"
+      ]
+    },
+    "mode_chain": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["mode", "role", "reason"],
+        "properties": {
+          "mode": {
+            "$ref": "listening-output.schema.json#/$defs/listening_mode"
+          },
+          "role": {
+            "type": "string",
+            "enum": ["primary", "secondary", "corrective", "optional", "deferred"]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "claim_permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "heard_allowed",
+        "measured_allowed",
+        "inferred_allowed",
+        "interpreted_allowed",
+        "speculative_allowed",
+        "must_include_undetermined"
+      ],
+      "properties": {
+        "heard_allowed": { "type": "boolean" },
+        "measured_allowed": { "type": "boolean" },
+        "inferred_allowed": { "type": "boolean" },
+        "interpreted_allowed": { "type": "boolean" },
+        "speculative_allowed": { "type": "boolean" },
+        "must_include_undetermined": { "type": "boolean" }
+      }
+    },
+    "agent_handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary", "required_inputs", "forbidden_assumptions", "recommended_command"],
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "required_inputs": {
+          "$ref": "#/$defs/text_list"
+        },
+        "forbidden_assumptions": {
+          "$ref": "#/$defs/text_list"
+        },
+        "recommended_command": {
+          "$ref": "router-output.schema.json#/$defs/command"
+        }
+      }
+    },
+    "stop_conditions": {
+      "$ref": "#/$defs/text_list"
+    }
+  },
+  "$defs": {
+    "text_list": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": []
+    }
+  }
+}

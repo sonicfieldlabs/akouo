@@ -4,7 +4,7 @@ A quick-reference manifest of all portable listening skills in this repository.
 
 ## Version Notes
 
-`v0.3` adds `musical-aesthetic-listening` as a public listening mode for music, rhythm, pitch, harmony, texture, sound-design utility, poetic usefulness, and genre/cultural caution. `v0.2` preserved the original mode set while refining evidence discipline, mediation awareness, and public conceptual boundaries.
+`v0.4` expands the system with `voice-speech-listening`, `audiovisual-scenic-listening`, `accessibility-normative-listening`, and `material-event-listening` for agentic routing across speech, video, captions, access, interfaces, and material events. `v0.3` added `musical-aesthetic-listening`; `v0.2` preserved the original mode set while refining evidence discipline, mediation awareness, and public conceptual boundaries.
 
 ## Meta-Router
 
@@ -25,6 +25,10 @@ A quick-reference manifest of all portable listening skills in this repository.
 | [`critical-political-listening`](skills/critical-political-listening/SKILL.md) | Critical and political ear. | AI audio platforms, surveillance, colonial archives, acoustic justice, sonic policing, marginalized voices, platform critique. |
 | [`musical-aesthetic-listening`](skills/musical-aesthetic-listening/SKILL.md) | Musical, aesthetic, and sound-design ear. | Music, rhythm, pulse, meter, tempo, pitch, harmony, interval, melody, contour, timbre, texture, form, production aesthetics, sound-design utility, poetic usefulness, and genre/cultural caution. |
 | [`symbolic-fictional-listening`](skills/symbolic-fictional-listening/SKILL.md) | Speculative and symbolic ear. | Sonic fiction, myth, ritual, hauntology, game audio, film worlds, ambient fantasy, creative worldbuilding. |
+| [`audiovisual-scenic-listening`](skills/audiovisual-scenic-listening/SKILL.md) | Sound-image-text-scene ear. | Video, film, games, UI sound, captions, subtitles, synchronization, offscreen sound, diegesis, audiovisual phrasing, and sound-versus-vision cautions. |
+| [`voice-speech-listening`](skills/voice-speech-listening/SKILL.md) | Voice, speech, and transcript ear. | Spoken audio, transcripts, ASR, TTS, voice agents, voice cloning, podcasts, radio, diarization, intelligibility, consent, and identity caution. |
+| [`accessibility-normative-listening`](skills/accessibility-normative-listening/SKILL.md) | Accessibility and hearing-norm ear. | Captions, transcripts, haptics, deaf and hard-of-hearing access, sensory variation, fatigue, masking, alerts, assistive technology, and implied listener audits. |
+| [`material-event-listening`](skills/material-event-listening/SKILL.md) | Material, vibration, and event ear. | Resonance, vibration, duration, flux, feedback, low frequencies, installation sound, propagation, loudspeakers, room coupling, and sonic process. |
 
 ## Schema Bundles
 
@@ -33,6 +37,7 @@ Each skill folder includes a `references/` directory containing the JSON schemas
 - `listening-output.schema.json` — shared output structure for all listening modes
 - `claim-taxonomy.schema.json` — epistemic claim categories (heard, measured, inferred, interpreted, speculative, undetermined)
 - `router-output.schema.json` — router-specific output structure (bundled with `akouo-router` only)
+- `routing-plan.schema.json` — expanded agent handoff route structure (bundled with `akouo-router` only)
 
 ## Compatibility
 
