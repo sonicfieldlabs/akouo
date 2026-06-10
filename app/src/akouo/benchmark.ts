@@ -38,7 +38,6 @@ export interface BenchmarkAgentConfig {
 
 export interface BenchmarkConfig {
   apiUrl: string;
-  apiKey: string;
   autoSave: boolean;
   model: BenchmarkModelConfig;
   agent: BenchmarkAgentConfig;
@@ -333,7 +332,6 @@ const DEFAULT_BENCHMARK_API_KEY = import.meta.env.VITE_AKOUO_BENCHMARK_API_KEY ?
 export function createDefaultBenchmarkConfig(): BenchmarkConfig {
   return {
     apiUrl: DEFAULT_BENCHMARK_API,
-    apiKey: DEFAULT_BENCHMARK_API_KEY,
     autoSave: true,
     model: {
       id: 'akouo-local-deterministic',
@@ -428,11 +426,7 @@ export async function updateBenchmarkReview(runId: string, review: BenchmarkRevi
 }
 
 export function benchmarkExportUrl(apiUrl: string, exportName: string): string {
-  const url = new URL(`${apiUrl}/api/export/${exportName}`);
-  if (DEFAULT_BENCHMARK_API_KEY) {
-    url.searchParams.set('api_key', DEFAULT_BENCHMARK_API_KEY);
-  }
-  return url.toString();
+  return new URL(`${apiUrl}/api/export/${exportName}`).toString();
 }
 
 export async function fetchBenchmarkComparison(
@@ -466,13 +460,16 @@ export async function checkBenchmarkHealth(apiUrl = DEFAULT_BENCHMARK_API): Prom
   }
 }
 
-async function requestJson<T>(apiUrl: string, path: string, init?: RequestInit): Promise<T> {
-  const headers = new Headers(init?.headers);
+export function benchmarkHeaders(extra?: HeadersInit): Headers {
+  const headers = new Headers(extra);
   if (DEFAULT_BENCHMARK_API_KEY && !headers.has('Authorization') && !headers.has('X-Bench-API-Key')) {
     headers.set('X-Bench-API-Key', DEFAULT_BENCHMARK_API_KEY);
   }
+  return headers;
+}
 
-  const response = await fetch(`${apiUrl}${path}`, { ...init, headers });
+async function requestJson<T>(apiUrl: string, path: string, init?: RequestInit): Promise<T> {
+  const response = await fetch(`${apiUrl}${path}`, { ...init, headers: benchmarkHeaders(init?.headers) });
   const data = await response.json().catch(() => null) as unknown;
 
   if (!response.ok) {

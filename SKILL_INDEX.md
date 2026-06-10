@@ -4,13 +4,14 @@ A quick-reference manifest of all portable listening skills in this repository.
 
 ## Version Notes
 
-`v0.4` expands the system with `voice-speech-listening`, `audiovisual-scenic-listening`, `accessibility-normative-listening`, and `material-event-listening` for agentic routing across speech, video, captions, access, interfaces, and material events. `v0.3` added `musical-aesthetic-listening`; `v0.2` preserved the original mode set while refining evidence discipline, mediation awareness, and public conceptual boundaries.
+`v0.5` consolidates the agentic routing layer with `reference-layer`, expanded routing plans, evidence-level claim permissions, and deeper browser-side signal estimates in the app. `v0.4` expanded the system with `voice-speech-listening`, `audiovisual-scenic-listening`, `accessibility-normative-listening`, and `material-event-listening`; `v0.3` added `musical-aesthetic-listening`; `v0.2` preserved the original mode set while refining evidence discipline, mediation awareness, and public conceptual boundaries.
 
-## Meta-Router
+## Meta-Skills
 
 | Skill | Description |
 |-------|-------------|
 | [`akouo-router`](skills/akouo-router/SKILL.md) | Meta-router that analyzes the listening situation, evidence type, risk level, conceptual frame, and assigns primary, secondary, and corrective listening modes. Use this first before any specialized mode. |
+| [`reference-layer`](skills/reference-layer/SKILL.md) | Conceptual mapping layer that turns a sonic object or prior listening output into concepts, sonic methodologies, authors or traditions, research routes, questions, cautions, and adjacent modes. Used by `/reference`, `/study`, and `/method`. |
 
 ## Listening Modes
 
@@ -38,6 +39,7 @@ Each skill folder includes a `references/` directory containing the JSON schemas
 - `claim-taxonomy.schema.json` — epistemic claim categories (heard, measured, inferred, interpreted, speculative, undetermined)
 - `router-output.schema.json` — router-specific output structure (bundled with `akouo-router` only)
 - `routing-plan.schema.json` — expanded agent handoff route structure (bundled with `akouo-router` only)
+- `reference-map.schema.json` — conceptual mapping output structure (bundled with `reference-layer` only)
 
 ## Compatibility
 

@@ -21,6 +21,7 @@ Use `/litany` for:
 
 ## Skills Called
 
+- `akouo-router` as an implicit planning pass that supplies the evidence inventory, risks, and forbidden assumptions the synthesis must respect
 - `critical-political-listening`
 - `transductive-media-listening`
 - `audiovisual-scenic-listening`

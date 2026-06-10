@@ -24,6 +24,7 @@ Use `/transduce` for:
 
 ## Skills Called
 
+- `akouo-router` as an implicit planning pass that supplies the evidence inventory, risks, and forbidden assumptions the synthesis must respect
 - `transductive-media-listening`
 - `signal-inspection-listening`
 - `critical-political-listening` when mediation has institutional, colonial, platform, labor, surveillance, access, or market stakes

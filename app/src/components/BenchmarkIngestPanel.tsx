@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import {
+  benchmarkHeaders,
   ingestBenchmarkRun,
   type BenchmarkConfig,
 } from '../akouo/benchmark';
@@ -106,7 +107,7 @@ export function BenchmarkIngestPanel({ apiUrl, benchmarkConfig, onIngested }: Be
 
       const res = await fetch(`${apiUrl}/api/runs/ingest/batch`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: benchmarkHeaders({ 'Content-Type': 'application/json' }),
         body: JSON.stringify(payloads),
       });
 

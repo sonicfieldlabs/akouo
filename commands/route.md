@@ -30,7 +30,7 @@ Use `/route` for:
 
 Use `schemas/router-output.schema.json`.
 
-When the receiving system supports expanded routing plans, also use `schemas/routing-plan.schema.json`.
+When the receiving system supports expanded routing plans, also use `schemas/routing-plan.schema.json`. When the result is wrapped as a command output, the expanded plan travels in the optional `routing_plan` field of `schemas/command-output.schema.json`; the reference app emits it this way, deriving `claim_permissions` from the router's Evidence Ladder. See `examples/routing-plan-example.json`.
 
 The output must include:
 

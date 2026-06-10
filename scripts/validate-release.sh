@@ -15,9 +15,8 @@ echo "Repository: $REPO_ROOT"
 echo
 
 # 1. Check skill folder structure
-echo "[1/7] Checking skill folder structure..."
-EXPECTED_SKILLS=(
-  "akouo-router"
+echo "[1/8] Checking skill folder structure..."
+LISTENING_MODES=(
   "signal-inspection-listening"
   "acoulogical-object-listening"
   "embodied-affective-listening"
@@ -31,6 +30,11 @@ EXPECTED_SKILLS=(
   "voice-speech-listening"
   "accessibility-normative-listening"
   "material-event-listening"
+)
+EXPECTED_SKILLS=(
+  "akouo-router"
+  "reference-layer"
+  "${LISTENING_MODES[@]}"
 )
 
 while IFS= read -r skill_path; do
@@ -77,7 +81,7 @@ done
 
 # 2. Check no old flat .md files remain in skills/
 echo
-echo "[2/7] Checking for old flat skill files..."
+echo "[2/8] Checking for old flat skill files..."
 FLAT_MD=$(find "$SKILLS_DIR" -maxdepth 1 -name '*.md' -type f 2>/dev/null || true)
 if [ -n "$FLAT_MD" ]; then
   echo "  ERROR: Old flat .md files found in skills/:"
@@ -89,7 +93,7 @@ fi
 
 # 3. Check bundled schemas match canonical schemas
 echo
-echo "[3/7] Checking bundled schema consistency..."
+echo "[3/8] Checking bundled schema consistency..."
 SCHEMA_OK=1
 for skill in "${EXPECTED_SKILLS[@]}"; do
   ref_dir="$SKILLS_DIR/$skill/references"
@@ -102,7 +106,10 @@ for skill in "${EXPECTED_SKILLS[@]}"; do
 
   required_refs=("claim-taxonomy.schema.json" "listening-output.schema.json")
   if [ "$skill" = "akouo-router" ]; then
-    required_refs+=("router-output.schema.json")
+    required_refs+=("router-output.schema.json" "routing-plan.schema.json")
+  fi
+  if [ "$skill" = "reference-layer" ]; then
+    required_refs+=("reference-map.schema.json")
   fi
 
   for required_ref in "${required_refs[@]}"; do
@@ -137,24 +144,70 @@ fi
 
 # 4. Check schema references in SKILL.md point to existing files
 echo
-echo "[4/7] Checking schema references in SKILL.md files..."
+echo "[4/8] Checking schema references in SKILL.md files..."
+REFS_OK=1
 for skill in "${EXPECTED_SKILLS[@]}"; do
   skill_md="$SKILLS_DIR/$skill/SKILL.md"
-  ref_dir="$SKILLS_DIR/$skill/references"
   refs=$(grep -oE 'references/[^` ]+\.json' "$skill_md" || true)
   for ref in $refs; do
     ref_path="$SKILLS_DIR/$skill/$ref"
     if [ ! -f "$ref_path" ]; then
       echo "  ERROR: $skill references missing file: $ref"
       ERRORS=$((ERRORS + 1))
+      REFS_OK=0
     fi
   done
 done
-echo "  OK: All schema references resolve"
+if [ "$REFS_OK" -eq 1 ]; then
+  echo "  OK: All schema references resolve"
+fi
 
-# 5. Check for personal data patterns
+# 5. Check schema enums stay aligned with skill folders and command files
 echo
-echo "[5/7] Checking for personal data and secrets..."
+echo "[5/8] Checking schema enums against skills/ and commands/..."
+ENUMS_OK=1
+
+for mode in "${LISTENING_MODES[@]}"; do
+  if ! grep -q "\"$mode\"" "$SCHEMAS_DIR/listening-output.schema.json"; then
+    echo "  ERROR: listening-output.schema.json listening_mode enum missing: $mode"
+    ERRORS=$((ERRORS + 1))
+    ENUMS_OK=0
+  fi
+done
+
+for skill in "${EXPECTED_SKILLS[@]}"; do
+  if ! grep -q "\"$skill\"" "$SCHEMAS_DIR/command-output.schema.json"; then
+    echo "  ERROR: command-output.schema.json callable_skill enum missing: $skill"
+    ERRORS=$((ERRORS + 1))
+    ENUMS_OK=0
+  fi
+done
+
+while IFS= read -r enum_command; do
+  command_file="$REPO_ROOT/commands/${enum_command#/}.md"
+  if [ ! -f "$command_file" ]; then
+    echo "  ERROR: router-output.schema.json command enum lists $enum_command but commands/${enum_command#/}.md is missing"
+    ERRORS=$((ERRORS + 1))
+    ENUMS_OK=0
+  fi
+done < <(grep -oE '"/[a-z-]+"' "$SCHEMAS_DIR/router-output.schema.json" | tr -d '"')
+
+while IFS= read -r command_path; do
+  command_name="/$(basename "$command_path" .md)"
+  if ! grep -q "\"$command_name\"" "$SCHEMAS_DIR/router-output.schema.json"; then
+    echo "  ERROR: commands/$(basename "$command_path") exists but $command_name is missing from router-output.schema.json command enum"
+    ERRORS=$((ERRORS + 1))
+    ENUMS_OK=0
+  fi
+done < <(find "$REPO_ROOT/commands" -maxdepth 1 -name '*.md' -type f)
+
+if [ "$ENUMS_OK" -eq 1 ]; then
+  echo "  OK: Schema enums match skill folders and command files"
+fi
+
+# 6. Check for personal data patterns
+echo
+echo "[6/8] Checking for personal data and secrets..."
 PATTERNS=(
   'password\s*=\s*['\''"]'
   'secret\s*=\s*['\''"]'
@@ -188,9 +241,9 @@ if [ "$FOUND" -eq 0 ]; then
   echo "  OK: No obvious secrets or personal data found"
 fi
 
-# 6. Check .gitignore covers sensitive files
+# 7. Check .gitignore covers sensitive files
 echo
-echo "[6/7] Checking .gitignore coverage..."
+echo "[7/8] Checking .gitignore coverage..."
 REQUIRED_IGNORES=('node_modules/' '.env' '*.pem' '*.key' '*.wav' '*.mp3')
 MISSING=0
 for item in "${REQUIRED_IGNORES[@]}"; do
@@ -203,9 +256,9 @@ if [ "$MISSING" -eq 0 ]; then
   echo "  OK: .gitignore covers standard exclusions"
 fi
 
-# 7. Check generated build outputs are absent
+# 8. Check generated build outputs are absent
 echo
-echo "[7/7] Checking generated build outputs are absent..."
+echo "[8/8] Checking generated build outputs are absent..."
 GENERATED_FOUND=0
 if [ -d "$REPO_ROOT/app/dist" ]; then
   echo "  ERROR: Generated build directory exists: app/dist"

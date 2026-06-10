@@ -46,6 +46,8 @@ The output must include:
 - handoff notes for another agent, app, or framework
 - recommended next mode or command
 
+When the receiving system supports expanded routing plans, carry them in the optional `routing_plan` field (`schemas/routing-plan.schema.json`); the reference app emits this for `/method` so the handoff includes evidence level, claim permissions, and stop conditions.
+
 ## Guardrails
 
 - Method is operational: it must guide what to do next, not only describe theory.

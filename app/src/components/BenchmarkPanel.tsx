@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
   benchmarkExportUrl,
+  benchmarkHeaders,
   fetchBenchmarkComparison,
   fetchBenchmarkRun,
   fetchBenchmarkRuns,
@@ -520,18 +521,33 @@ function BenchmarkSuites({
 }
 
 function BenchmarkExportActions({ apiUrl }: { apiUrl: string }) {
-  function openExport(exportName: 'runs.csv' | 'claims.csv' | 'scores.csv' | 'flags.csv' | 'runs.json' | 'report.html' | 'report.md') {
-    window.open(benchmarkExportUrl(apiUrl, exportName), '_blank', 'noopener,noreferrer');
+  async function openExport(exportName: 'runs.csv' | 'claims.csv' | 'scores.csv' | 'flags.csv' | 'runs.json' | 'report.html' | 'report.md') {
+    const response = await fetch(benchmarkExportUrl(apiUrl, exportName), { headers: benchmarkHeaders() });
+    if (!response.ok) return;
+
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+
+    if (exportName.endsWith('.html')) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = exportName;
+      link.click();
+    }
+
+    window.setTimeout(() => URL.revokeObjectURL(url), 30000);
   }
 
   return (
     <div className="benchmark-export-actions">
-      <button type="button" onClick={() => openExport('runs.csv')}>RUNS CSV</button>
-      <button type="button" onClick={() => openExport('claims.csv')}>CLAIMS CSV</button>
-      <button type="button" onClick={() => openExport('scores.csv')}>SCORES CSV</button>
-      <button type="button" onClick={() => openExport('flags.csv')}>FLAGS CSV</button>
-      <button type="button" onClick={() => openExport('report.html')}>REPORT HTML</button>
-      <button type="button" onClick={() => openExport('report.md')}>REPORT MD</button>
+      <button type="button" onClick={() => void openExport('runs.csv')}>RUNS CSV</button>
+      <button type="button" onClick={() => void openExport('claims.csv')}>CLAIMS CSV</button>
+      <button type="button" onClick={() => void openExport('scores.csv')}>SCORES CSV</button>
+      <button type="button" onClick={() => void openExport('flags.csv')}>FLAGS CSV</button>
+      <button type="button" onClick={() => void openExport('report.html')}>REPORT HTML</button>
+      <button type="button" onClick={() => void openExport('report.md')}>REPORT MD</button>
     </div>
   );
 }
@@ -660,7 +676,7 @@ function BenchmarkRunInspector({ run, apiUrl, schema, onRunUpdate }: { run: Benc
   async function deleteRun() {
     if (!confirm('Are you sure you want to delete this run? This cannot be undone.')) return;
     try {
-      const res = await fetch(`${apiUrl}/api/runs/${encodeURIComponent(run.id)}`, { method: 'DELETE' });
+      const res = await fetch(`${apiUrl}/api/runs/${encodeURIComponent(run.id)}`, { method: 'DELETE', headers: benchmarkHeaders() });
       if (!res.ok) throw new Error('Delete failed');
       onRunUpdate(null);
     } catch (error) {

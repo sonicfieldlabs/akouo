@@ -149,6 +149,56 @@ export interface RouterOutput {
   recommended_next_mode: ListeningMode;
 }
 
+export const evidenceLevels = [
+  'none',
+  'prompt_only',
+  'metadata_only',
+  'decoded_audio_metadata',
+  'measured_signal',
+  'transcript_or_caption',
+  'contextual_note',
+  'mixed',
+] as const;
+
+export type EvidenceLevel = (typeof evidenceLevels)[number];
+
+export type RouteConfidence = 'high' | 'medium' | 'low' | 'undetermined';
+
+export type ModeChainRole = 'primary' | 'secondary' | 'corrective' | 'optional' | 'deferred';
+
+export interface ModeChainItem {
+  mode: ListeningMode;
+  role: ModeChainRole;
+  reason: string;
+}
+
+export interface ClaimPermissions {
+  heard_allowed: boolean;
+  measured_allowed: boolean;
+  inferred_allowed: boolean;
+  interpreted_allowed: boolean;
+  speculative_allowed: boolean;
+  must_include_undetermined: boolean;
+}
+
+export interface AgentHandoff {
+  summary: string;
+  required_inputs: string[];
+  forbidden_assumptions: string[];
+  recommended_command: CommandName;
+}
+
+export interface RoutingPlan {
+  object_listened_to: string;
+  input_type: InputType;
+  route_confidence: RouteConfidence;
+  evidence_level: EvidenceLevel;
+  mode_chain: ModeChainItem[];
+  claim_permissions: ClaimPermissions;
+  agent_handoff: AgentHandoff;
+  stop_conditions: string[];
+}
+
 export interface CommandDefinition {
   name: CommandName;
   label: string;
@@ -165,6 +215,7 @@ export interface CommandOutput {
   skills_called: SkillId[];
   execution_order: string[];
   router_output?: RouterOutput;
+  routing_plan?: RoutingPlan;
   outputs: ListeningOutput[];
   synthesis: string;
   claim_summary: ClaimTaxonomy;
@@ -218,6 +269,15 @@ export interface AudioInspection {
   warnings: string[];
 }
 
+export interface BandEnergy {
+  sub: number;
+  bass: number;
+  lowMid: number;
+  mid: number;
+  high: number;
+  air: number;
+}
+
 export interface AudioFeatures {
   peakDbfs: number | null;
   rmsDbfs: number | null;
@@ -228,4 +288,16 @@ export interface AudioFeatures {
   spectralCentroidHz: number | null;
   spectralRolloffHz: number | null;
   spectralFlatness: number | null;
+  spectralCentroidStdHz: number | null;
+  bandEnergy: BandEnergy | null;
+  integratedLufs: number | null;
+  loudnessRangeLu: number | null;
+  onsetCount: number | null;
+  onsetDensityPerSec: number | null;
+  bpmCandidate: number | null;
+  interChannelCorrelation: number | null;
+  stereoWidth: number | null;
+  channelBalanceDb: number | null;
+  clippedSampleRatio: number | null;
+  analyzedSeconds: number | null;
 }

@@ -11,6 +11,7 @@ import type {
   Mediations,
   ReferenceMap,
   Risks,
+  RoutingPlan,
 } from '../akouo/types';
 import { BracketWrap } from './FuiDecorations';
 
@@ -96,6 +97,8 @@ function StandardReport({ result }: { result: CommandOutput }) {
         </div>
       ) : null}
 
+      {result.routing_plan ? <RoutingPlanView plan={result.routing_plan} /> : null}
+
       <div className="data-panel">
         <header className="data-panel-header">SYNTHESIS</header>
         <div className="data-panel-content">
@@ -117,11 +120,17 @@ function StandardReport({ result }: { result: CommandOutput }) {
         </div>
       ) : (
         <div className="data-panel">
-          <div className="data-panel-content">REFERENCE MAP ONLY. NO MODE OUTPUT.</div>
+          <div className="data-panel-content">{emptyModeOutputLabel(result)}</div>
         </div>
       )}
     </div>
   );
+}
+
+function emptyModeOutputLabel(result: CommandOutput): string {
+  if (result.command === '/route') return 'ROUTER PLAN ONLY. NO MODE OUTPUT.';
+  if (result.reference_map) return 'REFERENCE MAP ONLY. NO MODE OUTPUT.';
+  return 'NO MODE OUTPUT.';
 }
 
 function ComparativeReport({ result }: { result: ComparativeListeningOutput }) {
@@ -192,6 +201,46 @@ function ModeSlot({ label, value }: { label: string; value: string }) {
     <div className="mode-slot">
       <span>{label}</span>
       <strong>{value}</strong>
+    </div>
+  );
+}
+
+function RoutingPlanView({ plan }: { plan: RoutingPlan }) {
+  const permissions = Object.entries(plan.claim_permissions)
+    .map(([key, allowed]) => `${key.replace(/_allowed$/, '').replace(/_/g, ' ')}: ${allowed ? 'yes' : 'no'}`);
+
+  return (
+    <div className="data-panel">
+      <header className="data-panel-header">
+        ROUTING PLAN — EVIDENCE: {plan.evidence_level.toUpperCase()} / CONFIDENCE: {plan.route_confidence.toUpperCase()}
+      </header>
+      <div className="data-panel-content">
+        <p>{plan.agent_handoff.summary}</p>
+
+        <div className="route-stack-three" style={{ margin: '10px 0' }}>
+          {plan.mode_chain.map((item) => (
+            <div className="mode-slot" key={`${item.role}-${item.mode}`} title={item.reason}>
+              <span>{item.role.toUpperCase()}</span>
+              <strong>{item.mode}</strong>
+            </div>
+          ))}
+        </div>
+
+        <p style={{ fontSize: '0.65rem', color: 'var(--text-dim)' }}>
+          CLAIM PERMISSIONS — {permissions.join(' · ')}
+        </p>
+
+        {plan.stop_conditions.length > 0 ? (
+          <div style={{ marginTop: '8px' }}>
+            <strong style={{ fontSize: '0.65rem' }}>STOP CONDITIONS</strong>
+            <ul>
+              {plan.stop_conditions.map((condition) => (
+                <li key={condition}>{condition}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }

@@ -32,6 +32,14 @@ Use this skill for:
 
 Who is the implied listener, and what access paths are missing?
 
+## Conceptual Refinements
+
+- Every sonic design implies a listener: a hearing range, a language, an attention budget, a device, and an environment. Naming that implied listener is the first analytic act.
+- Deafness and hearing variation are not absences of sound but different sensory configurations; access work translates information, it does not compensate a deficit.
+- Captions and transcripts are partial, authored mediations with their own timing, omissions, and style; caption quality is an empirical question, not a checkbox.
+- Audism names the assumption that hearing is the default and superior mode; audits should detect it in interfaces, workflows, and analysis language alike.
+- Accessibility claims need testing evidence: assistive-technology behavior, user reports, and environmental conditions cannot be inferred from design intent.
+
 ## Input Assumptions
 
 This skill can work with:

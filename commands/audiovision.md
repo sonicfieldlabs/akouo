@@ -16,6 +16,7 @@ Use `/audiovision` for:
 
 ## Skills Called
 
+- `akouo-router` as an implicit planning pass that supplies the evidence inventory, risks, and forbidden assumptions the synthesis must respect
 - `audiovisual-scenic-listening`
 - `acoulogical-object-listening`
 - `voice-speech-listening` when speech, subtitles, captions, or dialogue matter

@@ -1,5 +1,15 @@
 import { listeningModes } from './types';
-import type { CommandName, ListeningMode, ListeningRequest, RouterOutput } from './types';
+import type {
+  ClaimPermissions,
+  CommandName,
+  EvidenceLevel,
+  ListeningMode,
+  ListeningRequest,
+  ModeChainItem,
+  RouteConfidence,
+  RouterOutput,
+  RoutingPlan,
+} from './types';
 
 type RouteRole = Pick<RouterOutput, 'primary_mode' | 'secondary_mode' | 'corrective_mode'>;
 
@@ -88,6 +98,142 @@ export function createRouteDraft(request: ListeningRequest): RouterOutput {
     recommended_command: request.command ?? inferRecommendedCommand(scores, request),
     recommended_next_mode: route.secondary_mode,
   };
+}
+
+// Expanded handoff plan (schemas/routing-plan.schema.json): evidence level,
+// claim permissions derived via the router skill's Evidence Ladder, weighted
+// mode chain, stop conditions, and agent handoff notes.
+export function createRoutingPlan(request: ListeningRequest): RoutingPlan {
+  const scores = scoreRoutes(request);
+  const route = routeForScores(scores);
+  const confidence = routeConfidenceForScores(scores, request);
+  const evidenceLevel = evidenceLevelForRequest(request);
+  const recommendedCommand = request.command && request.command !== '/route'
+    ? request.command
+    : inferRecommendedCommand(scores, request);
+
+  return {
+    object_listened_to: request.objectName.trim() || request.audioInspection?.fileName || 'unnamed sonic object',
+    input_type: request.inputType,
+    route_confidence: confidence,
+    evidence_level: evidenceLevel,
+    mode_chain: modeChainForRoute(route, scores),
+    claim_permissions: permissionsForEvidence(evidenceLevel, request),
+    agent_handoff: {
+      summary: `Route the object through ${route.primary_mode} (primary) and ${route.secondary_mode} (secondary), with ${route.corrective_mode} as corrective; evidence level is ${evidenceLevel} and route confidence is ${confidence}.`,
+      required_inputs: unavailableEvidenceForInput(request),
+      forbidden_assumptions: mustNotAssume(request, route),
+      recommended_command: recommendedCommand,
+    },
+    stop_conditions: stopConditionsForPlan(request, route, confidence),
+  };
+}
+
+function routeConfidenceForScores(scores: RouteScore[], request: ListeningRequest): RouteConfidence {
+  const hasInput = Boolean(request.prompt?.trim() || request.audioInspection || request.objectName.trim());
+  if (!hasInput) return 'undetermined';
+
+  const top = scores[0]?.score ?? 0;
+  const second = scores[1]?.score ?? 0;
+
+  if (top <= 0) return 'low';
+  if (top >= 6 && top >= second + 4) return 'high';
+  if (top >= second + 2) return 'medium';
+  return 'low';
+}
+
+function evidenceLevelForRequest(request: ListeningRequest): EvidenceLevel {
+  const hasPrompt = Boolean(request.prompt?.trim());
+  const inspection = request.audioInspection;
+
+  if (inspection && hasPrompt) return 'mixed';
+  if (inspection) {
+    const features = inspection.features;
+    const hasMeasurements = Boolean(
+      features && (features.integratedLufs !== null || features.spectralCentroidHz !== null || features.rmsDbfs !== null),
+    );
+    if (hasMeasurements) return 'measured_signal';
+    return inspection.durationSeconds !== null ? 'decoded_audio_metadata' : 'metadata_only';
+  }
+  if (request.inputType === 'transcript') return 'transcript_or_caption';
+  if (request.inputType === 'field_note' || request.inputType === 'archive_note' || request.inputType === 'dataset_description') return 'contextual_note';
+  if (request.inputType === 'metadata') return 'metadata_only';
+  if (hasPrompt) return 'prompt_only';
+  return 'none';
+}
+
+// Mirrors the Evidence Ladder table in skills/akouo-router/SKILL.md.
+function permissionsForEvidence(level: EvidenceLevel, request: ListeningRequest): ClaimPermissions {
+  const speculationRequested = request.command === '/fiction'
+    || hasAny(request, ['fiction', 'myth', 'ritual', 'dream', 'worldbuilding', 'speculative', 'imaginary']);
+
+  const base: ClaimPermissions = {
+    heard_allowed: false,
+    measured_allowed: false,
+    inferred_allowed: false,
+    interpreted_allowed: false,
+    speculative_allowed: speculationRequested,
+    must_include_undetermined: true,
+  };
+
+  switch (level) {
+    case 'none':
+      return base;
+    case 'prompt_only':
+    case 'transcript_or_caption':
+    case 'contextual_note':
+      return { ...base, heard_allowed: true, inferred_allowed: true, interpreted_allowed: true };
+    case 'metadata_only':
+      return { ...base, measured_allowed: true, inferred_allowed: true, interpreted_allowed: true };
+    case 'decoded_audio_metadata':
+    case 'measured_signal':
+      return { ...base, heard_allowed: true, measured_allowed: true, inferred_allowed: true, interpreted_allowed: true };
+    case 'mixed':
+      return {
+        ...base,
+        heard_allowed: true,
+        measured_allowed: Boolean(request.audioInspection),
+        inferred_allowed: true,
+        interpreted_allowed: true,
+      };
+  }
+}
+
+function modeChainForRoute(route: RouteRole, scores: RouteScore[]): ModeChainItem[] {
+  const roles: Array<[ListeningMode, ModeChainItem['role']]> = [
+    [route.primary_mode, 'primary'],
+    [route.secondary_mode, 'secondary'],
+    [route.corrective_mode, 'corrective'],
+  ];
+
+  return roles.map(([mode, role]) => ({
+    mode,
+    role,
+    reason: scores.find((score) => score.mode === mode)?.reasons[0] ?? 'Selected as a balancing listening mode.',
+  }));
+}
+
+function stopConditionsForPlan(request: ListeningRequest, route: RouteRole, confidence: RouteConfidence): string[] {
+  const chain = [route.primary_mode, route.secondary_mode, route.corrective_mode];
+  const stops = ['Stop if the named evidence cannot be accessed; never substitute imagined evidence.'];
+
+  if (!request.audioInspection) {
+    stops.push('Stop before any measured claim until audio, metadata, or measured signal data is supplied.');
+  }
+
+  if (chain.includes('forensic-archival-listening') || hasAny(request, ['testimony', 'evidence', 'surveillance', 'protest', 'legal', 'custody'])) {
+    stops.push('Stop before identity, location, or event-sequence claims without corroborating context.');
+  }
+
+  if (chain.includes('voice-speech-listening')) {
+    stops.push('Stop before identity, emotion, or consent claims based on voice alone.');
+  }
+
+  if (confidence === 'low' || confidence === 'undetermined') {
+    stops.push(`Stop and request the object, input type, or user intent before deep analysis; route confidence is ${confidence}.`);
+  }
+
+  return stops;
 }
 
 function scoreRoutes(request: ListeningRequest): RouteScore[] {

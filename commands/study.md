@@ -20,6 +20,7 @@ Use `/study` for:
 
 ## Skills Called
 
+- `akouo-router` as an implicit planning pass that supplies the evidence inventory, risks, and forbidden assumptions the synthesis must respect
 - `acoulogical-object-listening`
 - `musical-aesthetic-listening` when music, sound design, rhythm, pitch, form, or aesthetic usefulness matters
 - `critical-political-listening`

@@ -113,7 +113,6 @@ Describe the internal sound qualities: timbre, grain, texture, density, contour,
 ### Causal
 
 Ask what may have produced the sound, but mark confidence and uncertainty. Apparent source is not the same as actual source.
-- Do not place cultural theory or affective readings in `inferred`. `inferred` is strictly for logical, forensic deduction. All theory, culture, and context belong in `interpreted`.
 
 ### Semantic
 
@@ -136,6 +135,7 @@ Ask whether the sound is produced by the listener or user. Self-produced sound h
 - Do not replace perceptual description with mood adjectives only.
 - Do not collapse sound into music genre, source object, or symbolic meaning.
 - Do not treat AI-generated or prompted sound as verified acoustic reality.
+- Do not place cultural theory or affective readings in `inferred`. `inferred` is strictly for logical, forensic deduction. All theory, culture, and context belong in `interpreted`.
 
 ## Recommended Next Modes
 

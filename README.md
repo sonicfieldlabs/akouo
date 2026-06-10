@@ -16,6 +16,7 @@ This public release contains the portable AKOÚŌ skills, router, command defini
 - `v0.2` refines the listening modes with stronger theoretical distinctions, clearer evidence boundaries, and more explicit public-repo hygiene.
 - `v0.3` adds `musical-aesthetic-listening` as a public mode for music, rhythm, pitch, harmony, texture, sound-design utility, poetic usefulness, and genre/cultural caution.
 - `v0.4` expands AKOÚŌ into a more portable listening router for agentic workflows with voice/speech, audiovisual/scene, accessibility/normativity, and material/event listening.
+- `v0.5` consolidates agentic routing: `reference-layer` becomes a portable meta-skill, routing plans carry evidence levels and claim permissions, the app gains deeper browser-side signal estimates, and `SYSTEM_GUIDE.md` documents the integration contract.
 
 ## Core Idea
 
@@ -50,6 +51,16 @@ Every output must distinguish its findings into the following epistemic categori
 
 This taxonomy is the main public contract of the system, preventing LLMs from hallucinating certainty or confusing a theoretical reading for a forensic measurement.
 
+## v0.5 Agentic Routing Consolidation
+
+The v0.5 release makes AKOÚŌ more usable as an agent handoff layer. It adds:
+
+- `reference-layer` as a portable meta-skill for concepts, methods, traditions, cautions, research routes, and adjacent modes
+- expanded routing plans (`routing_plan`) for `/route` and `/method`, including evidence level, claim permissions, mode chain, stop conditions, and agent handoff notes
+- a router Evidence Ladder that maps available evidence to allowed claim categories
+- a deeper browser-side signal adapter in the reference app: BS.1770-style loudness and loudness range, FFT band-energy and spectral statistics, onset density with a guarded BPM candidate, stereo correlation/width/balance, and clipping-ratio estimates
+- release validation for schema enum alignment, bundled reference schemas, generated artifacts, and public hygiene
+
 ## v0.4 Agentic Listening Expansion
 
 The v0.4 working set turns AKOÚŌ into a broader listening router for autonomous and cross-app agent workflows. It adds:
@@ -77,9 +88,9 @@ The v0.2 skills keep the same public schemas and mode names, but sharpen the con
 
 ## Core Architecture
 
-akoúō is organized as one meta-router and thirteen distinct listening modes. These are packaged as portable agent skills (`skills/`) that can be injected into any LLM agent supporting skill-based system prompts or custom instructions.
+akoúō is organized as one meta-router, thirteen distinct listening modes, and one conceptual reference layer. These are packaged as portable agent skills (`skills/`) that can be injected into any LLM agent supporting skill-based system prompts or custom instructions.
 
-- `akouo-router`
+- `akouo-router` (meta-skill: chooses modes before analysis)
 - `signal-inspection-listening`
 - `acoulogical-object-listening`
 - `embodied-affective-listening`
@@ -93,6 +104,7 @@ akoúō is organized as one meta-router and thirteen distinct listening modes. T
 - `voice-speech-listening`
 - `accessibility-normative-listening`
 - `material-event-listening`
+- `reference-layer` (meta-skill: maps listening to concepts, methods, traditions, and cautions)
 
 Each skill lives in its own folder with a `SKILL.md` file, following the standard skill format used by OpenCode, Claude Code, and compatible agent frameworks.
 
@@ -229,6 +241,9 @@ akouo/
     material-event-listening/
       SKILL.md
       references/
+    reference-layer/
+      SKILL.md
+      references/
   commands/
   schemas/
   examples/
@@ -252,8 +267,10 @@ Done:
 - v0.2 conceptual refresh of router and listening modes
 - v0.3 integration of `musical-aesthetic-listening`
 - v0.4 working expansion for voice, audiovisual scene, accessibility, material event, router scoring, and agent handoff commands
+- v0.5 consolidation of `reference-layer`, router Evidence Ladder, documented agentic integration contract, and expanded routing plans
+- Deeper browser-side signal adapter in the reference app: BS.1770-style loudness and loudness range, FFT band-energy and spectral statistics, onset density with a guarded BPM candidate, and stereo correlation/width/balance
 Next: 
-- Deeper signal adapters for spectral, loudness, and onset analysis
+- Sample-accurate waveform and spectrogram visualization with true-peak metering
 - Stronger interop examples for calling AKOÚŌ from other agent apps and frameworks
 
 ## License

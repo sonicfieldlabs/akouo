@@ -16,6 +16,7 @@ Use `/access` for:
 
 ## Skills Called
 
+- `akouo-router` as an implicit planning pass that supplies the evidence inventory, risks, and forbidden assumptions the synthesis must respect
 - `accessibility-normative-listening`
 - `voice-speech-listening` when speech, captions, transcript, ASR, or dialogue matter
 - `embodied-affective-listening` when volume, fatigue, alarm, pressure, masking, overload, bass, or haptics matter
