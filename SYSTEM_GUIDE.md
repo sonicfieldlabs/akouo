@@ -4,7 +4,7 @@
 
 AKOÚŌ is a portable listening system for AI agents. It does not only ask what is inside a sound. It asks how an agent should listen, what kind of evidence is available, which claims are allowed, and which claims must remain unknown.
 
-The public system contains 14 portable skills:
+The public system contains 15 portable skills:
 
 - `akouo-router`: the meta-router that chooses listening modes
 - `signal-inspection-listening`: technical signal and metadata ear
@@ -20,6 +20,7 @@ The public system contains 14 portable skills:
 - `voice-speech-listening`: voice, speech, transcript, ASR, TTS, voice-agent, identity caution, and consent ear
 - `accessibility-normative-listening`: hearing norms, captions, transcripts, haptics, sensory variation, device, fatigue, and access ear
 - `material-event-listening`: vibration, resonance, duration, flux, material support, propagation, and event ear
+- `reference-layer`: the conceptual mapping skill that turns listening into concepts, methods, traditions, research routes, cautions, and adjacent modes
 
 The private benchmark extension can add `benchmark-listening` for external-agent evaluation and database ingestion. That benchmark skill is not part of the public portable release.
 
@@ -48,6 +49,21 @@ Use this process for most sound tasks:
 6. Merge claims into the shared taxonomy.
 7. Write a synthesis that preserves differences between modes.
 8. Recommend the next mode or command.
+
+Every command begins with a router planning pass, even when its mode chain is fixed. The planning pass supplies the evidence inventory, risks, and forbidden assumptions that the command's synthesis must respect, so `akouo-router` appears in `skills_called` for every command output except `/one-sound-many-ears`, whose comparative contract runs all modes unconditionally.
+
+## Agentic Integration Contract
+
+AKOÚŌ is designed to be driven by other agents, apps, and frameworks. The consumption loop is:
+
+1. **Route.** Inject `skills/akouo-router/SKILL.md` and request a router output (`schemas/router-output.schema.json`) or, for autonomous handoff, an expanded routing plan (`schemas/routing-plan.schema.json`). The plan carries `evidence_level`, `claim_permissions`, `mode_chain`, `forbidden_assumptions`, and `stop_conditions`.
+2. **Check stop conditions.** If the plan says the needed evidence is unavailable, stop or gather evidence; do not run listening modes on imagined input.
+3. **Listen.** Inject only the `SKILL.md` files named in the mode chain, in role order (primary, secondary, corrective), each emitting `schemas/listening-output.schema.json`. Enforce the plan's `claim_permissions` on every output.
+4. **Map (optional).** Inject `skills/reference-layer/SKILL.md` when the workflow needs concepts, methods, traditions, and research routes (`schemas/reference-map.schema.json`).
+5. **Merge.** Wrap the run in `schemas/command-output.schema.json` (or `schemas/comparative-listening-output.schema.json` for `/one-sound-many-ears`), preserving each mode's claims and disagreements. Command outputs may carry the expanded plan in the optional `routing_plan` field; the reference app does this for `/route` and `/method`.
+6. **Hand off.** Pass `recommended_next_mode`, `recommended_command`, remaining `undetermined` claims, and unmet stop conditions to the next agent or turn.
+
+Each skill folder is self-contained: `SKILL.md` plus the `references/` schemas are everything an external agent needs for that step. No step requires a specific model provider, and every step can be validated against the canonical schemas in `schemas/`.
 
 ## Available Commands
 

@@ -32,6 +32,14 @@ Use this skill for:
 
 What does sound do in relation to image, text, scene, interface, and time?
 
+## Conceptual Refinements
+
+- There is no neutral soundtrack: the audiovisual contract means sound and image transform each other rather than simply co-existing.
+- Synchresis welds a sound to a visible event regardless of real causality; treat synchronization as a perceptual effect, not as proof of source.
+- Added value runs both directions: sound lends the image time, weight, and offscreen space, while image, caption, and interface lend sound location, agency, and meaning.
+- Point of audition is constructed by mixing, framing, and interface state; it is not the same as any real listener's position.
+- Captions, subtitles, and UI text are scene elements and access paths at once; they mediate the sound they describe and never replace it transparently.
+
 ## Input Assumptions
 
 This skill can work with:

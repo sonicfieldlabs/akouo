@@ -31,6 +31,14 @@ Use this skill for:
 
 What can be responsibly said about this voice or speech without collapsing sound into identity, transcript, emotion, intention, or machine output?
 
+## Conceptual Refinements
+
+- Voice is not speech, and speech is not text: vocal sound, linguistic content, and transcript are three different evidentiary objects.
+- The acousmatic voice and object-voice show that a voice can exceed or escape its visible body; disembodiment is a listening relation, not proof of identity or presence.
+- Prosody, accent, and grain are heard qualities, not windows into emotion, sincerity, health, or demographic category.
+- ASR, diarization, TTS, voice cloning, and speech-native agents are distinct systems with distinct failure modes; never attribute one system's behavior to another.
+- Voice is also data: consent, provenance, ownership, and deployment context condition every claim about recorded or synthetic voices.
+
 ## Input Assumptions
 
 This skill can work with:

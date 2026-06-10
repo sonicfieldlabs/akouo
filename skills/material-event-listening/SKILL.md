@@ -32,6 +32,14 @@ Use this skill for:
 
 What material event is unfolding, and what does it do across bodies, spaces, devices, and time?
 
+## Conceptual Refinements
+
+- Sound can be approached as event rather than object: something that unfolds, persists, decays, and recurs instead of something that simply is.
+- Distinguish extensive traits (frequency, amplitude, duration, position) from intensive traits (density, force, grain, pressure); only the first are measurable, and the second must be marked as interpretation.
+- Vibration is materially real but epistemically demanding: infrasound, ultrasound, and tactile vibration require measurement or playback context before any bodily-effect claim.
+- Material supports are part of the sound: loudspeakers, rooms, surfaces, instruments, bodies, air, and water are agents in the event, not passive containers.
+- Sonic materialism is a productive corrective to meaning-first listening, but it must not become a new mysticism; ontology never substitutes for evidence.
+
 ## Input Assumptions
 
 This skill can work with:

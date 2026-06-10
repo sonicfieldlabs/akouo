@@ -15,8 +15,8 @@ The current public MVP provides full local command integration with a deeper res
 - comparative multi-ear output for `/one-sound-many-ears`
 - visible mediations, risks, and undetermined claims
 - copy/export of structured JSON results
-- adapter layer for deeper audio analysis
-- browser-side audio metadata, amplitude, and limited spectral inspection
+- deeper browser-side signal adapter: FFT spectral survey (centroid, rolloff, flatness, band energy), BS.1770-style integrated loudness and loudness range, spectral-flux onset density with a guarded BPM candidate, stereo correlation/width/balance, and clipping-ratio estimates
+- expanded routing plans (`routing_plan`, `schemas/routing-plan.schema.json`) embedded in `/route` and `/method` outputs, with evidence level, claim permissions, mode chain, stop conditions, and agent handoff
 - local benchmark auto-save to a sibling benchmark API workspace
 - benchmark history view with filters, scores, normalized claims, model and agent metadata
 
@@ -37,7 +37,7 @@ Build the app:
 npm run build
 ```
 
-The MVP does not send audio to a remote service during local deterministic runs. It accepts files in the browser, reads basic metadata when possible, estimates amplitude and limited single-window spectral traits, and marks deeper waveform, spectrogram, standardized loudness, onset, phase, stereo image, and time-varying frequency claims as undetermined until a deeper adapter is added.
+The MVP does not send audio to a remote service during local deterministic runs. It accepts files in the browser and measures metadata, amplitude statistics, BS.1770-style loudness and loudness range, multi-window spectral traits and band energy, onset density with a guarded BPM candidate, stereo correlation and balance, and clipping indicators. Every measured claim names its method and limits in its `basis`; sample-accurate waveform review, full spectrogram rendering, true-peak metering, and certified loudness verification remain marked as deferred. Heavy passes cover at most the first 10 minutes of a file and note the truncation as a warning.
 
 ## Local Benchmark Use
 

@@ -16,6 +16,7 @@ Use `/field` for:
 
 ## Skills Called
 
+- `akouo-router` as an implicit planning pass that supplies the evidence inventory, risks, and forbidden assumptions the synthesis must respect
 - `ecological-posthuman-listening`
 - `transductive-media-listening`
 - `critical-political-listening`

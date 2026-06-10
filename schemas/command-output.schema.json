@@ -46,6 +46,9 @@
     "router_output": {
       "$ref": "router-output.schema.json"
     },
+    "routing_plan": {
+      "$ref": "routing-plan.schema.json"
+    },
     "outputs": {
       "type": "array",
       "items": {

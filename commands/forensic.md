@@ -21,6 +21,7 @@ Use `/forensic` for:
 
 ## Skills Called
 
+- `akouo-router` as an implicit planning pass that supplies the evidence inventory, risks, and forbidden assumptions the synthesis must respect
 - `signal-inspection-listening`
 - `forensic-archival-listening`
 - `critical-political-listening` as corrective

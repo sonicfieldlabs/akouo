@@ -7,7 +7,7 @@ import { ListeningOutput } from './components/ListeningOutput';
 import { ModelConfigPanel } from './components/ModelConfigPanel';
 import { BenchmarkIngestPanel } from './components/BenchmarkIngestPanel';
 import { inspectAudioFile } from './akouo/audioAdapter';
-import { createDefaultBenchmarkConfig, runDirectBenchmark, saveBenchmarkRun } from './akouo/benchmark';
+import { checkBenchmarkHealth, createDefaultBenchmarkConfig, runDirectBenchmark, saveBenchmarkRun } from './akouo/benchmark';
 import { runListeningCommand } from './akouo/listener';
 import { appContract } from './akouo/schemas';
 import type { AudioInspection, CommandName, CommandResult, InputType } from './akouo/types';
@@ -33,9 +33,8 @@ export default function App() {
   useEffect(() => {
     let mounted = true;
     const check = () => {
-      fetch(`${benchmarkConfig.apiUrl}/api/health`)
-        .then(r => r.json())
-        .then(d => { if (mounted) setServerHealth(d.ok ? 'ok' : 'error') })
+      checkBenchmarkHealth(benchmarkConfig.apiUrl)
+        .then(ok => { if (mounted) setServerHealth(ok ? 'ok' : 'error') })
         .catch(() => { if (mounted) setServerHealth('error') });
     };
     check();

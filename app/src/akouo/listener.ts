@@ -1,5 +1,5 @@
 import { commandDefinitions } from './commands';
-import { createRouteDraft } from './router';
+import { createRouteDraft, createRoutingPlan } from './router';
 import {
   createClaim,
   createEmptyClaimTaxonomy,
@@ -38,10 +38,15 @@ export function runListeningCommand(request: ListeningRequest): CommandResult {
 
 function createCommandOutput(command: Exclude<CommandName, '/one-sound-many-ears'>, request: ListeningRequest): CommandOutput {
   const routerOutput = createRouteDraft({ ...request, command });
+  const routingPlan = command === '/route' || command === '/method' ? createRoutingPlan({ ...request, command }) : undefined;
   const modeChain = modesForCommand(command, routerOutput, request);
   const outputs = modeChain.map((mode) => createModeOutput(mode, request));
   const referenceMap = command === '/reference' || command === '/study' || command === '/method' ? createReferenceMap(request, outputs) : undefined;
-  const claimSummary = outputs.length > 0 ? summarizeClaims(outputs) : createReferenceClaimSummary(request, referenceMap);
+  const claimSummary = outputs.length > 0
+    ? summarizeClaims(outputs)
+    : command === '/route'
+      ? createRouteClaimSummary(request, routerOutput)
+      : createReferenceClaimSummary(request, referenceMap);
   const risks = unique([
     ...routerOutput.risks,
     ...outputs.flatMap((output) => Object.values(output.risks).flat()),
@@ -56,6 +61,7 @@ function createCommandOutput(command: Exclude<CommandName, '/one-sound-many-ears
     skills_called: skillsForCommand(command, modeChain),
     execution_order: executionOrderFor(command, modeChain),
     router_output: routerOutput,
+    ...(routingPlan ? { routing_plan: routingPlan } : {}),
     outputs,
     synthesis: synthesize(command, outputs, request, referenceMap),
     claim_summary: claimSummary,
@@ -349,15 +355,15 @@ function fillSignalInspection(output: ListeningOutput, inspection?: AudioInspect
     }
 
     output.listening_claims.undetermined.push(
-      createClaim('Full waveform review, spectrogram inspection, standardized loudness, onset detection, phase, stereo image, and time-varying frequency distribution require a deeper signal adapter.', 'high'),
+      createClaim('Sample-accurate waveform review, full spectrogram rendering, true-peak metering, and certified loudness verification remain deferred; browser-side loudness, band-energy, onset, stereo, and clipping estimates carry the limits stated in their basis notes.', 'high'),
     );
-    output.main_reading = 'The file is accepted and basic metadata, amplitude, and limited single-window spectral estimates can be measured locally, but deep signal analysis remains deferred.';
+    output.main_reading = 'The file is accepted; metadata, amplitude, BS.1770-style loudness, band energy, onset density, and stereo estimates are measured locally within browser limits, while certified metering remains deferred.';
     output.alternative_reading = 'If the browser cannot decode the file, the app still treats it as a supplied object but refuses signal-level claims.';
     return;
   }
 
   if (prompt) {
-    output.listening_claims.measured.push(
+    output.listening_claims.undetermined.push(
       createClaim('No signal measurements are available from a text-only prompt.', 'undetermined', 'No audio file supplied'),
     );
     output.listening_claims.undetermined.push(
@@ -680,12 +686,20 @@ function ensureBaselineLimits(output: ListeningOutput, request: ListeningRequest
   }
 }
 
+// Modes share input claims (prompt, file), so the summary dedupes by
+// category + statement to keep the merged taxonomy readable.
 function summarizeClaims(outputs: ListeningOutput[]): ClaimTaxonomy {
   const summary = createEmptyClaimTaxonomy();
+  const seen = new Set<string>();
 
   for (const output of outputs) {
     for (const category of Object.keys(summary) as Array<keyof ClaimTaxonomy>) {
-      summary[category].push(...output.listening_claims[category]);
+      for (const claim of output.listening_claims[category]) {
+        const key = `${category}::${claim.statement}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        summary[category].push(claim);
+      }
     }
   }
 
@@ -706,26 +720,30 @@ function executionOrderFor(command: CommandName, modes: ListeningMode[]): string
   }
 
   const definition = commandDefinitions.find((item) => item.name === command);
-  return definition?.executionOrder ?? modes.map((mode) => `Run ${mode}`);
+  const order = definition?.executionOrder ?? modes.map((mode) => `Run ${mode}`);
+  const startsWithRouter = /\bakouo-router\b|\brouter\b/i.test(order[0] ?? '');
+  return startsWithRouter ? order : ['Run akouo-router', ...order];
 }
 
+// Every non-comparative command runs a router planning pass and embeds its
+// router_output, so akouo-router must always appear in skills_called.
 function skillsForCommand(command: CommandName, modes: ListeningMode[]): SkillId[] {
-  if (command === '/reference') {
-    return ['reference-layer'];
-  }
-
-  if (command === '/study' || command === '/method') {
-    return unique([...modes, 'reference-layer']);
-  }
-
   if (command === '/one-sound-many-ears') {
     return [...listeningModes];
+  }
+
+  if (command === '/reference' || command === '/study' || command === '/method') {
+    return unique(['akouo-router', ...modes, 'reference-layer']);
   }
 
   return unique(['akouo-router', ...modes]);
 }
 
 function synthesize(command: CommandName, outputs: ListeningOutput[], request: ListeningRequest, referenceMap?: ReferenceMap): string {
+  if (command === '/route') {
+    return 'Router-only handoff produced a mode chain, evidence inventory, claim permissions, forbidden assumptions, and stop conditions. No listening mode was executed.';
+  }
+
   if (command === '/reference') {
     return referenceSummary(referenceMap);
   }
@@ -737,6 +755,32 @@ function synthesize(command: CommandName, outputs: ListeningOutput[], request: L
   const referenceNote = referenceMap ? ` A reference map adds ${referenceMap.possible_research_routes.length} research route(s).` : '';
 
   return `${command} ran ${outputs.length} listening mode(s): ${modeList}. ${inputNote} Claims are separated by heard, measured, inferred, interpreted, speculative, and undetermined categories.${referenceNote}`;
+}
+
+function createRouteClaimSummary(request: ListeningRequest, routerOutput: RouterOutput): ClaimTaxonomy {
+  const claims = createEmptyClaimTaxonomy();
+
+  if (request.prompt?.trim()) {
+    claims.heard.push(createClaim(`Prompt supplied: ${clip(request.prompt.trim())}`, 'high', 'User-provided text'));
+  }
+
+  if (request.audioInspection) {
+    claims.heard.push(createClaim(`Audio file supplied: ${request.audioInspection.fileName}.`, 'high', 'Browser File input'));
+    claims.measured.push(...request.audioInspection.measuredClaims);
+  }
+
+  claims.inferred.push(
+    createClaim(
+      `Router selected ${routerOutput.primary_mode} as primary, ${routerOutput.secondary_mode} as secondary, and ${routerOutput.corrective_mode} as corrective.`,
+      'medium',
+      'Heuristic route scoring from supplied input type, command, and prompt terms',
+    ),
+  );
+  claims.undetermined.push(
+    createClaim('No listening-mode content claims were produced because /route only plans the workflow.', 'high', 'Router-only command'),
+  );
+
+  return claims;
 }
 
 function comparativeContradictions(request: ListeningRequest): string[] {
