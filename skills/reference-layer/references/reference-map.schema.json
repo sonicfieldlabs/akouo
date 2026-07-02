@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/reference-map.schema.json",
+  "title": "akoúō Reference Map",
+  "description": "Conceptual mapping layer for research routes, sonic methodologies, authors or traditions, cautions, and adjacent listening modes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "concepts_triggered",
+    "sonic_methodologies",
+    "authors_or_traditions",
+    "possible_research_routes",
+    "research_questions",
+    "cautions",
+    "adjacent_modes"
+  ],
+  "properties": {
+    "concepts_triggered": { "$ref": "#/$defs/text_list" },
+    "sonic_methodologies": { "$ref": "#/$defs/text_list" },
+    "authors_or_traditions": { "$ref": "#/$defs/text_list" },
+    "possible_research_routes": { "$ref": "#/$defs/text_list" },
+    "research_questions": { "$ref": "#/$defs/text_list" },
+    "cautions": { "$ref": "#/$defs/text_list" },
+    "adjacent_modes": {
+      "type": "array",
+      "items": { "$ref": "listening-output.schema.json#/$defs/listening_mode" },
+      "default": []
+    }
+  },
+  "$defs": {
+    "text_list": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": []
+    }
+  }
+}

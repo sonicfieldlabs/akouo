@@ -1,0 +1,59 @@
+{
+  "object_listened_to": "Distorted protest recording from an unknown city",
+  "input_type": "sound_prompt",
+  "route_confidence": "low",
+  "evidence_level": "prompt_only",
+  "mode_chain": [
+    {
+      "mode": "forensic-archival-listening",
+      "role": "primary",
+      "reason": "Evidence and harm terms require forensic-archival caution."
+    },
+    {
+      "mode": "voice-speech-listening",
+      "role": "secondary",
+      "reason": "Crowd voices and speech require separation of vocal sound, transcript, identity, and model mediation."
+    },
+    {
+      "mode": "critical-political-listening",
+      "role": "corrective",
+      "reason": "Protest, policing, and platform stakes require institutional and harm-context caution."
+    },
+    {
+      "mode": "signal-inspection-listening",
+      "role": "deferred",
+      "reason": "Technical inspection becomes available only if the actual audio file is supplied."
+    }
+  ],
+  "claim_permissions": {
+    "heard_allowed": true,
+    "measured_allowed": false,
+    "inferred_allowed": true,
+    "interpreted_allowed": true,
+    "speculative_allowed": false,
+    "must_include_undetermined": true
+  },
+  "agent_handoff": {
+    "summary": "Route the described protest recording through forensic-archival-listening (primary) and voice-speech-listening (secondary), with critical-political-listening as corrective; evidence level is prompt_only and route confidence is low because the description competes between evidentiary, voice, and political frames.",
+    "required_inputs": [
+      "the actual audio file or verified metadata",
+      "recording chain, custody, and upload context",
+      "corroborating context for event, location, and time"
+    ],
+    "forbidden_assumptions": [
+      "Do not identify source, intention, identity, culture, or event sequence without evidence.",
+      "Do not move theory, affect, or culture into inferred claims.",
+      "Do not move speculation outside the speculative category.",
+      "Do not claim measured audio traits from text-only input.",
+      "Do not treat transcript text as the whole voice."
+    ],
+    "recommended_command": "/forensic"
+  },
+  "stop_conditions": [
+    "Stop if the named evidence cannot be accessed; never substitute imagined evidence.",
+    "Stop before any measured claim until audio, metadata, or measured signal data is supplied.",
+    "Stop before identity, location, or event-sequence claims without corroborating context.",
+    "Stop before identity, emotion, or consent claims based on voice alone.",
+    "Stop and request the object, input type, or user intent before deep analysis; route confidence is low."
+  ]
+}

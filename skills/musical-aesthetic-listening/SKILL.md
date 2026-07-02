@@ -31,6 +31,14 @@ Use this skill for:
 
 What can be responsibly said about this sound's musical organization, aesthetic force, and creative usefulness from the evidence available?
 
+## Conceptual Refinements
+
+- Musical organization is not genre membership: rhythm, pitch, timbre, texture, and form can be described before any style, scene, or tradition is named.
+- Aesthetic force is an interpretation of grounded traits, not a property of the file; poetic language earns its place only when tied to musical detail.
+- Sound-design utility is a creative affordance claim, not evidence of intention, authorship, or production chain.
+- Tonal and rhythmic materials travel across cultures; pentatonicism, drones, or syncopation alone cannot assign geography, ethnicity, period, or sacredness.
+- Prompt text, model captions, measured signal, and heard audio support different musical claims; keep the evidence source attached to each claim.
+
 ## Input Assumptions
 
 This skill can work with:
@@ -123,6 +131,7 @@ Treat genre, tradition, geography, ethnicity, sacredness, exoticness, period, an
 - Do not let poetic description dominate musical structure.
 - Do not erase technical mediation, production chain, or model generation when they shape the sound.
 - Do not confuse sound-design usefulness with proof of intention.
+- Do not place cultural theory or affective readings in `inferred`. `inferred` is strictly for logical, forensic deduction. All theory, culture, and context belong in `interpreted`.
 
 ## Recommended Next Modes
 

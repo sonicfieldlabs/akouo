@@ -14,6 +14,7 @@ Use `/full-ear` for:
 - music fragments
 - sound design samples
 - sonic artworks
+- audiovisual scenes, voice systems, access questions, and material events
 - unknown sounds
 - early research notes where multiple listening routes are useful
 
@@ -25,6 +26,7 @@ Use `/full-ear` for:
 - `musical-aesthetic-listening` when music, rhythm, pitch, harmony, texture, production aesthetics, or sound-design utility matters
 - `embodied-affective-listening`
 - `transductive-media-listening`
+- `material-event-listening` when vibration, resonance, duration, or physical process matters
 - one router-selected contextual mode when useful
 - `critical-political-listening` as an optional corrective when stakes require it
 
@@ -36,9 +38,10 @@ Use `/full-ear` for:
 4. Run `musical-aesthetic-listening` when musical or aesthetic organization matters.
 5. Run `embodied-affective-listening`.
 6. Run `transductive-media-listening`.
-7. Run the router-selected contextual mode if it adds a dimension not already covered.
-8. Run `critical-political-listening` as corrective when the sound involves platforms, archives, voice, surveillance, labor, coloniality, policing, markets, accessibility, or cultural stakes.
-9. Synthesize the results as a multi-ear report.
+7. Run `material-event-listening` when the sound involves vibration, resonance, propagation, duration, feedback, or physical process.
+8. Run the router-selected contextual mode if it adds a dimension not already covered.
+9. Run `critical-political-listening` as corrective when the sound involves platforms, archives, voice, surveillance, labor, coloniality, policing, markets, accessibility, or cultural stakes.
+10. Synthesize the results as a multi-ear report.
 
 ## Expected Output
 
@@ -58,7 +61,7 @@ The output must show:
 ## Guardrails
 
 - Keep technical observations distinct from perceptual, affective, mediated, political, and speculative readings.
-- Do not force all nine listening modes if a compact full-ear pass is more responsible.
+- Do not force all thirteen listening modes if a compact full-ear pass is more responsible.
 - Do not turn the synthesis into a total interpretation.
 - Mark absent measurements as `undetermined` when no real audio or signal data exists.
 - Use `critical-political-listening` when the sound is socially or institutionally loaded, not as generic decoration.

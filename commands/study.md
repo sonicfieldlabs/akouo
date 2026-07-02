@@ -13,16 +13,19 @@ Use `/study` for:
 - sound studies interpretation
 - archival reflection
 - field recording analysis
+- audiovisual scene, voice, accessibility, and fieldwork method questions
 - theoretical development
 - artistic research
 - interdisciplinary sound inquiry
 
 ## Skills Called
 
+- `akouo-router` as an implicit planning pass that supplies the evidence inventory, risks, and forbidden assumptions the synthesis must respect
 - `acoulogical-object-listening`
 - `musical-aesthetic-listening` when music, sound design, rhythm, pitch, form, or aesthetic usefulness matters
 - `critical-political-listening`
-- `ecological-posthuman-listening`, `musical-aesthetic-listening`, or `symbolic-fictional-listening`, selected according to the object
+- `ecological-posthuman-listening`, `audiovisual-scenic-listening`, `voice-speech-listening`, `musical-aesthetic-listening`, or `symbolic-fictional-listening`, selected according to the object
+- `accessibility-normative-listening` when the method implies a listener, access path, caption, transcript, or sonic interface
 - `reference-layer`
 
 ## Execution Order
@@ -31,9 +34,12 @@ Use `/study` for:
 2. Run `musical-aesthetic-listening` when the object has musical structure, production aesthetics, or creative/sound-design stakes.
 3. Run `critical-political-listening` to identify mediations, exclusions, infrastructures, and risks.
 4. Run `ecological-posthuman-listening` when place, environment, habitat, nonhuman agency, field recording, or sensor mediation matters.
-5. Run `symbolic-fictional-listening` when the object invokes myth, ritual, fiction, dream, speculative worlds, or symbolic registers.
-6. Run `reference-layer` to map concepts, methods, authors, traditions, cautions, adjacent modes, and research routes.
-7. Synthesize into a research-oriented listening note.
+5. Run `audiovisual-scenic-listening` when image, screen, caption, subtitle, interface, video, game, or scene relations matter.
+6. Run `voice-speech-listening` when voice, speech, transcript, ASR, TTS, or voice-agent context matters.
+7. Run `symbolic-fictional-listening` when the object invokes myth, ritual, fiction, dream, speculative worlds, or symbolic registers.
+8. Run `accessibility-normative-listening` when the method implies hearing norms, captions, transcripts, sensory access, or interface access.
+9. Run `reference-layer` to map concepts, methods, authors, traditions, cautions, adjacent modes, and research routes.
+10. Synthesize into a research-oriented listening note.
 
 ## Expected Output
 

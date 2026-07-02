@@ -16,22 +16,24 @@ Use `/reference` for:
 - conceptual clarification
 - thesis, essay, or project development
 - connecting a listening report to adjacent methods
+- routing concepts for voice, audiovisual, accessibility, field, material, and agentic listening workflows
 - identifying cautions before deeper interpretation
 
 ## Skills Called
 
+- `akouo-router` as an implicit planning pass when the map is requested as a command output
 - `reference-layer`
 - optionally any prior listening output from another mode or command
-- optionally `akouo-router` when no prior listening output exists and a starting mode is needed
 
 ## Execution Order
 
-1. Identify the object or prior listening output.
-2. Identify triggered concepts and methodological problems.
-3. Map relevant authors, traditions, and sonic practices.
-4. Identify possible research routes.
-5. Identify cautions and overclaiming risks.
-6. Recommend adjacent listening modes.
+1. Run `akouo-router` to identify evidence, risk, and forbidden assumptions.
+2. Identify the object or prior listening output.
+3. Identify triggered concepts and methodological problems.
+4. Map relevant authors, traditions, and sonic practices.
+5. Identify possible research routes.
+6. Identify cautions and overclaiming risks.
+7. Recommend adjacent listening modes.
 
 ## Expected Output
 

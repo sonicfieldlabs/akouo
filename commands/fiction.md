@@ -18,6 +18,7 @@ Use `/fiction` for:
 
 ## Skills Called
 
+- `akouo-router` as an implicit planning pass that supplies the evidence inventory, risks, and forbidden assumptions the synthesis must respect
 - `symbolic-fictional-listening`
 - `embodied-affective-listening`
 - `ecological-posthuman-listening` when nonhuman, habitat, elemental, or cosmological relations matter

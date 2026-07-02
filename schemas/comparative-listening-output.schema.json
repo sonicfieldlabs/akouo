@@ -40,7 +40,11 @@
         "ecological_posthuman",
         "critical_political",
         "musical_aesthetic",
-        "symbolic_fictional"
+        "symbolic_fictional",
+        "audiovisual_scenic",
+        "voice_speech",
+        "accessibility_normative",
+        "material_event"
       ],
       "properties": {
         "signal_inspection": { "$ref": "listening-output.schema.json" },
@@ -51,7 +55,11 @@
         "ecological_posthuman": { "$ref": "listening-output.schema.json" },
         "critical_political": { "$ref": "listening-output.schema.json" },
         "musical_aesthetic": { "$ref": "listening-output.schema.json" },
-        "symbolic_fictional": { "$ref": "listening-output.schema.json" }
+        "symbolic_fictional": { "$ref": "listening-output.schema.json" },
+        "audiovisual_scenic": { "$ref": "listening-output.schema.json" },
+        "voice_speech": { "$ref": "listening-output.schema.json" },
+        "accessibility_normative": { "$ref": "listening-output.schema.json" },
+        "material_event": { "$ref": "listening-output.schema.json" }
       }
     },
     "shared_claim_summary": {

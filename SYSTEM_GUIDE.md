@@ -4,7 +4,7 @@
 
 AKOÚŌ is a portable listening system for AI agents. It does not only ask what is inside a sound. It asks how an agent should listen, what kind of evidence is available, which claims are allowed, and which claims must remain unknown.
 
-The public v0.3 system contains 10 portable skills:
+The public system contains 15 portable skills:
 
 - `akouo-router`: the meta-router that chooses listening modes
 - `signal-inspection-listening`: technical signal and metadata ear
@@ -16,6 +16,11 @@ The public v0.3 system contains 10 portable skills:
 - `ecological-posthuman-listening`: habitat, nonhuman, weather, field, and more-than-human ear
 - `critical-political-listening`: power, platform, labor, race, class, gender, coloniality, access, and infrastructure ear
 - `symbolic-fictional-listening`: declared fiction, myth, ritual, worldbuilding, and speculative ear
+- `audiovisual-scenic-listening`: sound-image-text-scene, synchronization, captions, UI sound, and audiovisual phrasing ear
+- `voice-speech-listening`: voice, speech, transcript, ASR, TTS, voice-agent, identity caution, and consent ear
+- `accessibility-normative-listening`: hearing norms, captions, transcripts, haptics, sensory variation, device, fatigue, and access ear
+- `material-event-listening`: vibration, resonance, duration, flux, material support, propagation, and event ear
+- `reference-layer`: the conceptual mapping skill that turns listening into concepts, methods, traditions, research routes, cautions, and adjacent modes
 
 The private benchmark extension can add `benchmark-listening` for external-agent evaluation and database ingestion. That benchmark skill is not part of the public portable release.
 
@@ -44,6 +49,21 @@ Use this process for most sound tasks:
 6. Merge claims into the shared taxonomy.
 7. Write a synthesis that preserves differences between modes.
 8. Recommend the next mode or command.
+
+Every command begins with a router planning pass, even when its mode chain is fixed. The planning pass supplies the evidence inventory, risks, and forbidden assumptions that the command's synthesis must respect, so `akouo-router` appears in `skills_called` for every command output except `/one-sound-many-ears`, whose comparative contract runs all modes unconditionally.
+
+## Agentic Integration Contract
+
+AKOÚŌ is designed to be driven by other agents, apps, and frameworks. The consumption loop is:
+
+1. **Route.** Inject `skills/akouo-router/SKILL.md` and request a router output (`schemas/router-output.schema.json`) or, for autonomous handoff, an expanded routing plan (`schemas/routing-plan.schema.json`). The plan carries `evidence_level`, `claim_permissions`, `mode_chain`, `forbidden_assumptions`, and `stop_conditions`.
+2. **Check stop conditions.** If the plan says the needed evidence is unavailable, stop or gather evidence; do not run listening modes on imagined input.
+3. **Listen.** Inject only the `SKILL.md` files named in the mode chain, in role order (primary, secondary, corrective), each emitting `schemas/listening-output.schema.json`. Enforce the plan's `claim_permissions` on every output.
+4. **Map (optional).** Inject `skills/reference-layer/SKILL.md` when the workflow needs concepts, methods, traditions, and research routes (`schemas/reference-map.schema.json`).
+5. **Merge.** Wrap the run in `schemas/command-output.schema.json` (or `schemas/comparative-listening-output.schema.json` for `/one-sound-many-ears`), preserving each mode's claims and disagreements. Command outputs may carry the expanded plan in the optional `routing_plan` field; the reference app does this for `/route` and `/method`.
+6. **Hand off.** Pass `recommended_next_mode`, `recommended_command`, remaining `undetermined` claims, and unmet stop conditions to the next agent or turn.
+
+Each skill folder is self-contained: `SKILL.md` plus the `references/` schemas are everything an external agent needs for that step. No step requires a specific model provider, and every step can be validated against the canonical schemas in `schemas/`.
 
 ## Available Commands
 
@@ -99,9 +119,45 @@ Mediation-chain mapping. Use it for sensors, sonification, microphones, codecs, 
 
 Typical chain: transductive-media, signal inspection, critical-political when stakes require it.
 
+### `/voice`
+
+Voice and speech pass. Use it for spoken audio, transcripts, captions, podcasts, ASR, TTS, voice agents, cloning, identity caution, consent, and intelligibility.
+
+Typical chain: voice-speech, transductive-media, accessibility-normative, critical-political when stakes require it.
+
+### `/audiovision`
+
+Sound-image-scene pass. Use it for video, film, games, installation, UI sound, subtitles, captions, synchronization, offscreen sound, diegesis, and audiovisual phrasing.
+
+Typical chain: audiovisual-scenic, acoulogical-object, voice-speech when speech or captions matter, critical-political when audiovisual assumptions need critique.
+
+### `/access`
+
+Accessibility and hearing-norm audit. Use it for captions, transcripts, haptics, sonic alerts, voice interfaces, assistive paths, sensory variation, fatigue, masking, and implied listener assumptions.
+
+Typical chain: accessibility-normative, voice-speech when speech matters, embodied-affective when loudness or fatigue matters, critical-political.
+
+### `/field`
+
+Field recording and situated listening route. Use it for soundscape, acoustemology, aurality, listening-with, field notes, habitat, infrastructure, sensors, and fieldwork ethics.
+
+Typical chain: ecological-posthuman, transductive-media, critical-political, material-event when resonance, vibration, or duration matter.
+
+### `/method`
+
+Sonic methodology and agent-handoff command. Use it for research design, artistic research, listening practice, workflow planning, and routing AKOÚŌ into other apps or agents.
+
+Typical chain: router, acoulogical-object, critical-political, accessibility-normative, reference-layer.
+
+### `/route`
+
+Router-only handoff plan. Use it when another app, agent, benchmark runner, or framework needs a compact mode chain, evidence inventory, risks, and forbidden assumptions before doing the work.
+
+Typical chain: akouo-router only.
+
 ### `/one-sound-many-ears`
 
-Comparative flagship command. Runs one sonic object through all nine public listening modes and compares contradictions, productive tensions, limits, and next steps.
+Comparative flagship command. Runs one sonic object through all thirteen public listening modes and compares contradictions, productive tensions, limits, and next steps.
 
 ## Choosing Modes By Intention
 
@@ -124,6 +180,14 @@ For field recordings, animals, weather, hydrophones, habitats, soundwalks, and m
 For platform power, labor, race, gender, class, coloniality, surveillance, policing, accessibility, or extraction, include `critical-political-listening`.
 
 For dreams, ritual, myths, fictional worlds, game audio, alien voices, and speculative scenes, include `symbolic-fictional-listening`.
+
+For video, film, games, captions, subtitles, screen interfaces, sound-image synchronization, offscreen sound, or audiovisual phrasing, include `audiovisual-scenic-listening`.
+
+For voice, speech, transcript, ASR, TTS, voice cloning, voice agents, prosody, intelligibility, or consent questions, include `voice-speech-listening`.
+
+For captions, transcripts, haptics, deaf or hard-of-hearing access, sensory variation, masking, fatigue, alerts, or implied listener assumptions, include `accessibility-normative-listening`.
+
+For vibration, resonance, propagation, duration, feedback, rumble, low frequencies, installation sound, materials, or processual sonic events, include `material-event-listening`.
 
 ## Typical Workflows
 
@@ -166,9 +230,17 @@ For dreams, ritual, myths, fictional worlds, game audio, alien voices, and specu
 
 1. Run `/one-sound-many-ears`.
 2. Compare what each mode reveals and hides.
-3. Look for contradictions between evidence, perception, music, affect, mediation, archive, ecology, politics, and fiction.
+3. Look for contradictions between evidence, perception, music, affect, mediation, archive, ecology, politics, audiovisual scene, voice, access, material event, and fiction.
 4. Use the most responsible reading as a map, not a final truth.
 5. Choose the next mode based on the user's actual goal.
+
+### Agent Handoff Workflow
+
+1. Run `/route` when another app or agent only needs a plan.
+2. Preserve `available_evidence`, `unavailable_evidence`, `risks`, and `must_not_assume`.
+3. Pass the primary, secondary, and corrective modes to the receiving framework.
+4. Use `/method` when the receiving system also needs research questions, access requirements, reference routes, and stop conditions.
+5. Stop rather than analyze when the needed evidence is unavailable.
 
 ## Benchmark Workflow
 

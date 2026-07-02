@@ -2,7 +2,7 @@
 
 ## What This Project Is
 
-AKOÚŌ is a multimodal listening system and portable skill library for AI agents. It gives agents accountable, switchable, operational ears for analyzing sound, audio, music, and sonic concepts across nine distinct epistemic modes.
+AKOÚŌ is a multimodal listening system and portable skill library for AI agents. It gives agents accountable, switchable, operational ears for analyzing sound, audio, music, and sonic concepts across thirteen distinct listening modes, one meta-router, and one conceptual reference layer.
 
 It is NOT a generic audio-analysis tool. It is a framework for *how* agents should listen, what each mode reveals, what it hides, and what must remain unknown.
 
@@ -29,13 +29,20 @@ It is NOT a generic audio-analysis tool. It is a framework for *how* agents shou
 ```
 akouo/
   skills/              # Portable agent skills, one per folder
-    <mode>/
+    <skill>/           # 13 listening modes + akouo-router + reference-layer
       SKILL.md         # Skill instructions with YAML frontmatter
       references/      # Bundled JSON schemas for strict output
   schemas/             # Canonical JSON schemas (shared source of truth)
   commands/            # Command definitions that chain skills
   examples/            # Example outputs and reference maps
+  app/                 # Local-first reference app (Vite + React, no model provider required)
+  scripts/
+    validate-release.sh  # Pre-release validation
+  evals/               # Evaluation checklists and notes
   README.md
+  SYSTEM_GUIDE.md      # Operational guide: commands, workflows, benchmark notes
+  SKILL_INDEX.md       # Quick-reference manifest of all skills
+  AGENTS.md
   LICENSE
   .gitignore
 ```
@@ -64,9 +71,10 @@ skill-name/
 ### Schema bundling rules
 
 - Every listening mode bundles `listening-output.schema.json` and `claim-taxonomy.schema.json` in `references/`.
-- The router bundles `router-output.schema.json`, `listening-output.schema.json`, and `claim-taxonomy.schema.json`.
+- The router bundles `router-output.schema.json`, `routing-plan.schema.json`, `listening-output.schema.json`, and `claim-taxonomy.schema.json`.
+- The reference layer bundles `reference-map.schema.json`, `listening-output.schema.json`, and `claim-taxonomy.schema.json`.
 - Do NOT modify schema contents when copying. Keep them identical to `schemas/`.
-- If you update a canonical schema in `schemas/`, you MUST re-copy it to all affected `references/` folders.
+- If you update a canonical schema in `schemas/`, you MUST re-copy it to all affected `references/` folders (`./scripts/validate-release.sh` verifies this).
 
 ## When Modifying Skills
 
@@ -83,21 +91,26 @@ skill-name/
 
 - Public release baseline: `v0.1`.
 - Conceptually refreshed release: `v0.2`.
-- Musical/aesthetic listening integration target: `v0.3`.
-- Use a release branch for v0.3 work and tag the improved commit as `v0.3` only when explicitly instructed to commit/tag/push.
+- Musical/aesthetic listening integration: `v0.3`.
+- Agentic listening expansion (voice, audiovisual, accessibility, material event, router scoring, app): `v0.4`.
+- Agentic routing consolidation (reference layer, Evidence Ladder, routing plans, deeper browser signal adapter, release validation): `v0.5`.
+- Use a release branch for each version's work and tag the improved commit only when explicitly instructed to commit/tag/push.
 - Keep the repository remote unchanged unless explicitly instructed.
-- Use the public GitHub username `emezzzzz` for release commits and tags; do not expose local Git identity or local network email.
+- Use the public GitHub username `emeisazam` for release commits and tags; do not expose local Git identity or local network email.
 - Do not commit untracked app prototypes, generated outputs, local caches, or private research material into the public portable-skills release.
 
 ## When Adding a New Listening Mode
 
 1. Create a new folder under `skills/`.
-2. Write `SKILL.md` with full frontmatter.
+2. Write `SKILL.md` with full frontmatter and the standard body sections, including "Conceptual Refinements".
 3. Add `references/listening-output.schema.json` and `references/claim-taxonomy.schema.json`.
 4. Update `akouo-router/SKILL.md` to include the new mode in its "Recommended Next Modes" list.
-5. Update the README "Core Architecture" section.
-6. Update `schemas/listening-output.schema.json` `listening_mode` enum if the mode is part of the core system.
-7. Add at least one example showing the mode in action.
+5. Update the README "Core Architecture" section, `SKILL_INDEX.md`, and `SYSTEM_GUIDE.md`.
+6. Update the canonical schemas: the `listening_mode` enum in `schemas/listening-output.schema.json`, the `callable_skill` enum in `schemas/command-output.schema.json`, and the `mode_comparison` keys in `schemas/comparative-listening-output.schema.json`; then re-copy changed schemas to all `references/` folders.
+7. Update the app contract: `listeningModes` and `comparativeModeKeys` in `app/src/akouo/types.ts`, the skill list in `app/src/akouo/skills.ts`, and the mode fill logic in `app/src/akouo/listener.ts`.
+8. Update `EXPECTED_SKILLS` in `scripts/validate-release.sh`.
+9. Add at least one schema-valid example showing the mode in action.
+10. Run `./scripts/validate-release.sh` and the app typecheck before release.
 
 ## Commands vs Skills
 
@@ -118,7 +131,7 @@ skill-name/
 ## Release Hygiene
 
 - This repo is designed for public release.
-- This public release is skill-only; do not add `app/` unless the release scope changes.
+- Since `v0.4` the release scope includes `app/` as a local-first reference app; keep it free of credentials, provider lock-in, and private endpoints, and never commit `app/dist/`, `node_modules/`, `.env` files, or `*.tsbuildinfo`.
 - All skills are framework-agnostic.
 - All schemas use standard JSON Schema Draft 2020-12.
 - The MIT license applies to all code, skills, and schemas.

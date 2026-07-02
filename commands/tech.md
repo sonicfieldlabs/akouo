@@ -19,6 +19,7 @@ Use `/tech` for:
 
 ## Skills Called
 
+- `akouo-router` as an implicit planning pass that supplies the evidence inventory, risks, and forbidden assumptions the synthesis must respect
 - `signal-inspection-listening`
 - `transductive-media-listening` when mediation, codecs, sensors, models, platforms, or conversion chains are relevant
 

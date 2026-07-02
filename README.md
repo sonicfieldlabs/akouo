@@ -10,13 +10,17 @@ Most audio AI systems ask what is inside an audio file. AKOÚŌ asks how an agen
 
 AKOÚŌ does not pretend that agents hear like humans. It gives them accountable, switchable, operational ears.
 
-This public release contains the portable AKOÚŌ skills, router, command definitions, and schemas. The local app is intentionally not included in this release.
+This public release contains the portable AKOÚŌ skills, router, command definitions, schemas, and a local-first reference app for running the listening workflows.
+
+Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current release contract: `v0.5`.
 
 ## Version Status
 
 - `v0.1` marks the first public portable-skills release.
 - `v0.2` refines the listening modes with stronger theoretical distinctions, clearer evidence boundaries, and more explicit public-repo hygiene.
 - `v0.3` adds `musical-aesthetic-listening` as a public mode for music, rhythm, pitch, harmony, texture, sound-design utility, poetic usefulness, and genre/cultural caution.
+- `v0.4` expands AKOÚŌ into a more portable listening router for agentic workflows with voice/speech, audiovisual/scene, accessibility/normativity, and material/event listening.
+- `v0.5` consolidates agentic routing: `reference-layer` becomes a portable meta-skill, routing plans carry evidence levels and claim permissions, the app gains deeper browser-side signal estimates, and `SYSTEM_GUIDE.md` documents the integration contract.
 
 ## Core Idea
 
@@ -30,6 +34,10 @@ A sound is never only a source. It can be approached as:
 - an ecological relation
 - a cultural and political mediation
 - a musical and aesthetic organization
+- a voice, speech, transcript, or voice-agent relation
+- an audiovisual scene across sound, image, text, interface, and timing
+- an accessibility problem shaped by hearing norms, captions, haptics, devices, and sensory variation
+- a material event of vibration, resonance, propagation, duration, and process
 - a symbolic, fictional, or speculative world
 
 akoúō keeps these dimensions distinct through explicit listening modes and a strictly enforced JSON claim taxonomy.
@@ -46,6 +54,26 @@ Every output must distinguish its findings into the following epistemic categori
 - `undetermined`: what cannot be responsibly claimed
 
 This taxonomy is the main public contract of the system, preventing LLMs from hallucinating certainty or confusing a theoretical reading for a forensic measurement.
+
+## v0.5 Agentic Routing Consolidation
+
+The v0.5 release makes AKOÚŌ more usable as an agent handoff layer. It adds:
+
+- `reference-layer` as a portable meta-skill for concepts, methods, traditions, cautions, research routes, and adjacent modes
+- expanded routing plans (`routing_plan`) for `/route` and `/method`, including evidence level, claim permissions, mode chain, stop conditions, and agent handoff notes
+- a router Evidence Ladder that maps available evidence to allowed claim categories
+- a deeper browser-side signal adapter in the reference app: BS.1770-style loudness and loudness range, FFT band-energy and spectral statistics, onset density with a guarded BPM candidate, stereo correlation/width/balance, and clipping-ratio estimates
+- release validation for schema enum alignment, bundled reference schemas, generated artifacts, and public hygiene
+
+## v0.4 Agentic Listening Expansion
+
+The v0.4 working set turns AKOÚŌ into a broader listening router for autonomous and cross-app agent workflows. It adds:
+
+- `voice-speech-listening` for voice, speech, transcripts, ASR, TTS, voice agents, identity caution, and consent boundaries
+- `audiovisual-scenic-listening` for video, film, games, UI sound, captions, subtitles, synchronization, and sound-image-scene relations
+- `accessibility-normative-listening` for hearing norms, captions, transcripts, haptics, assistive paths, sensory variation, fatigue, masking, and implied listener audits
+- `material-event-listening` for vibration, resonance, duration, flux, material supports, propagation, and event behavior
+- new workflow commands: `/voice`, `/audiovision`, `/access`, `/field`, `/method`, and `/route`
 
 ## v0.3 Musical/Aesthetic Integration
 
@@ -64,9 +92,9 @@ The v0.2 skills keep the same public schemas and mode names, but sharpen the con
 
 ## Core Architecture
 
-akoúō is organized as one meta-router and nine distinct listening modes. These are packaged as portable agent skills (`skills/`) that can be injected into any LLM agent supporting skill-based system prompts or custom instructions.
+akoúō is organized as one meta-router, thirteen distinct listening modes, and one conceptual reference layer. These are packaged as portable agent skills (`skills/`) that can be injected into any LLM agent supporting skill-based system prompts or custom instructions.
 
-- `akouo-router`
+- `akouo-router` (meta-skill: chooses modes before analysis)
 - `signal-inspection-listening`
 - `acoulogical-object-listening`
 - `embodied-affective-listening`
@@ -76,6 +104,11 @@ akoúō is organized as one meta-router and nine distinct listening modes. These
 - `critical-political-listening`
 - `musical-aesthetic-listening`
 - `symbolic-fictional-listening`
+- `audiovisual-scenic-listening`
+- `voice-speech-listening`
+- `accessibility-normative-listening`
+- `material-event-listening`
+- `reference-layer` (meta-skill: maps listening to concepts, methods, traditions, and cautions)
 
 Each skill lives in its own folder with a `SKILL.md` file, following the standard skill format used by OpenCode, Claude Code, and compatible agent frameworks.
 
@@ -87,6 +120,16 @@ To give an agent an "akoúō ear":
 3. Provide the sonic object (as an audio file, a text prompt, a spectrogram, or a transcript).
 
 For agent frameworks that support skill discovery, each `SKILL.md` includes YAML frontmatter with `name` and `description` fields for automatic triggering.
+
+## 60-Second Reviewer Path
+
+```sh
+cd app
+npm install
+npm run dev
+```
+
+Open the local Vite URL, drop a short WAV/AIFF/MP3/OGG file or enter a sound prompt, choose `/listen`, and run `INITIATE LOCAL LISTENING PASS`. The deterministic local path runs fully offline: no model provider, benchmark server, credentials, or network connection is required.
 
 ### Example
 
@@ -155,7 +198,7 @@ Agent loads `skills/ecological-posthuman-listening/SKILL.md` and produces struct
 }
 ```
 
-Commands (located in `commands/`) combine these skills into reusable listening chains, like `/one-sound-many-ears` or `/forensic`.
+Commands (located in `commands/`) combine these skills into reusable listening chains, like `/one-sound-many-ears`, `/forensic`, `/voice`, `/audiovision`, `/access`, `/field`, `/method`, or `/route`.
 
 ## Repository Layout
 
@@ -163,9 +206,12 @@ Commands (located in `commands/`) combine these skills into reusable listening c
 akouo/
   README.md
   AGENTS.md            # Instructions for AI agents working on this project
+  SYSTEM_GUIDE.md      # Operational guide for commands, workflows, and app contract
   SKILL_INDEX.md       # Quick-reference manifest of all skills
+  CHANGELOG.md         # Release history from v0.1 through v0.5
   LICENSE
   .gitignore
+  app/                 # Local-first reference app for running AKOÚŌ workflows
   scripts/
     validate-release.sh  # Pre-release validation script
   skills/
@@ -199,9 +245,25 @@ akouo/
     symbolic-fictional-listening/
       SKILL.md
       references/
+    audiovisual-scenic-listening/
+      SKILL.md
+      references/
+    voice-speech-listening/
+      SKILL.md
+      references/
+    accessibility-normative-listening/
+      SKILL.md
+      references/
+    material-event-listening/
+      SKILL.md
+      references/
+    reference-layer/
+      SKILL.md
+      references/
   commands/
   schemas/
   examples/
+  evals/
 ```
 
 ## Public-Repo Hygiene
@@ -217,13 +279,16 @@ For a full operational guide covering commands, workflows, benchmark ingestion, 
 ## Roadmap
 
 Done: 
-- First versions of 9 listening modes for multimodal listening
+- First versions of 13 listening modes for multimodal listening
 - First version of the router
 - v0.2 conceptual refresh of router and listening modes
 - v0.3 integration of `musical-aesthetic-listening`
+- v0.4 working expansion for voice, audiovisual scene, accessibility, material event, router scoring, and agent handoff commands
+- v0.5 consolidation of `reference-layer`, router Evidence Ladder, documented agentic integration contract, and expanded routing plans
+- Deeper browser-side signal adapter in the reference app: BS.1770-style loudness and loudness range, FFT band-energy and spectral statistics, onset density with a guarded BPM candidate, and stereo correlation/width/balance
 Next: 
-- Standalone app for quick use of the functions and chat
-- Web version of the agent so you can load and describe sounds in browser.
+- Sample-accurate waveform and spectrogram visualization with true-peak metering
+- Stronger interop examples for calling AKOÚŌ from other agent apps and frameworks
 
 ## License
 
