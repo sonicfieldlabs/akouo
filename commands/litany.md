@@ -12,6 +12,7 @@ Use `/litany` for:
 
 - audiovisual work
 - film, video, and installation analysis
+- game, interface, caption, subtitle, and scene analysis
 - media theory
 - critiques of sonic mysticism
 - claims about sound as immersion, body, presence, authenticity, or liberation
@@ -20,16 +21,19 @@ Use `/litany` for:
 
 ## Skills Called
 
+- `akouo-router` as an implicit planning pass that supplies the evidence inventory, risks, and forbidden assumptions the synthesis must respect
 - `critical-political-listening`
 - `transductive-media-listening`
+- `audiovisual-scenic-listening`
 - `acoulogical-object-listening` when needed to reground the critique in the sound object
 
 ## Execution Order
 
 1. Run `critical-political-listening` to detect universalist, romantic, or binary assumptions.
 2. Run `transductive-media-listening` to identify media, platform, apparatus, and conversion conditions.
-3. Run `acoulogical-object-listening` when the critique needs to return to the perceptual sound object.
-4. Produce an audit of litany patterns, anti-litany corrections, and remaining risks.
+3. Run `audiovisual-scenic-listening` to map sound-image-text-scene relations, synchronization, captions, and interface conditions.
+4. Run `acoulogical-object-listening` when the critique needs to return to the perceptual sound object.
+5. Produce an audit of litany patterns, anti-litany corrections, and remaining risks.
 
 ## Expected Output
 

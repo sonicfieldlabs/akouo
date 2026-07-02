@@ -16,7 +16,7 @@ Use `/one-sound-many-ears` for:
 - sound design exploration
 - sonic artwork analysis
 - prompts or recordings with several possible readings
-- identifying contradictions between technical, perceptual, musical/aesthetic, affective, archival, ecological, political, and speculative ears
+- identifying contradictions between technical, perceptual, musical/aesthetic, affective, archival, ecological, political, audiovisual, voice, access, material, and speculative ears
 
 ## Skills Called
 
@@ -29,6 +29,10 @@ Use `/one-sound-many-ears` for:
 - `critical-political-listening`
 - `musical-aesthetic-listening`
 - `symbolic-fictional-listening`
+- `audiovisual-scenic-listening`
+- `voice-speech-listening`
+- `accessibility-normative-listening`
+- `material-event-listening`
 
 ## Execution Order
 
@@ -41,8 +45,12 @@ Use `/one-sound-many-ears` for:
 7. Run `critical-political-listening`.
 8. Run `musical-aesthetic-listening`.
 9. Run `symbolic-fictional-listening`.
-10. Compare mode outputs for contradictions, productive tensions, overreach risks, and methodological value.
-11. Produce the most responsible reading and the most interesting next mode.
+10. Run `audiovisual-scenic-listening`.
+11. Run `voice-speech-listening`.
+12. Run `accessibility-normative-listening`.
+13. Run `material-event-listening`.
+14. Compare mode outputs for contradictions, productive tensions, overreach risks, and methodological value.
+15. Produce the most responsible reading and the most interesting next mode.
 
 ## Expected Output
 
@@ -72,7 +80,7 @@ The output must include:
 - Do not claim total knowledge because many modes were used.
 - Do not hide contradictions.
 - Do not let the most poetic reading dominate the responsible reading.
-- Do not let the technical reading erase embodied, mediated, ecological, political, or symbolic dimensions.
+- Do not let the technical reading erase embodied, mediated, ecological, political, audiovisual, voice, access, material, or symbolic dimensions.
 - Do not ignore `undetermined`.
 
 ## Recommended Follow-Up

@@ -1,0 +1,254 @@
+{
+  "title": "AKOÚŌ v0.4 Expanded Listening Examples",
+  "description": "Each example is a complete listening output that validates against schemas/listening-output.schema.json.",
+  "examples": [
+    {
+      "object_listened_to": "Captioned game cutscene with offscreen alarm",
+      "input_type": "video",
+      "listening_mode": "audiovisual-scenic-listening",
+      "listening_claims": {
+        "heard": [
+          {
+            "statement": "The supplied description links an offscreen alarm to a captioned game cutscene.",
+            "confidence": "high",
+            "basis": "User-provided audiovisual description"
+          }
+        ],
+        "measured": [],
+        "inferred": [
+          {
+            "statement": "The alarm may cue offscreen threat or interface state, but timing requires video/audio inspection.",
+            "confidence": "low",
+            "basis": "Scene inference from description"
+          }
+        ],
+        "interpreted": [
+          {
+            "statement": "The scene should be read through sound, image, caption, interface, and timing together rather than as audio-only evidence.",
+            "confidence": "medium",
+            "basis": "Audiovisual-scenic listening frame"
+          }
+        ],
+        "speculative": [],
+        "undetermined": [
+          {
+            "statement": "Frame timing, mix level, caption accuracy, visual content, source, and production intent remain unknown.",
+            "confidence": "high",
+            "basis": "Unavailable media evidence"
+          }
+        ]
+      },
+      "what_appears": [
+        "An offscreen sound can organize a scene it never appears in, through caption, timing, and player expectation."
+      ],
+      "what_remains_hidden": [
+        "Actual synchronization, mix decisions, caption authoring, and the player's viewing conditions remain unavailable."
+      ],
+      "mediations": {
+        "technical": ["Game engine, mix, and screen-capture chain mediate what the scene makes audible."],
+        "cultural": ["Alarm conventions in games shape how the cue is read."],
+        "spatial": ["Offscreen placement constructs a space the image does not show."],
+        "bodily": [],
+        "archival": [],
+        "computational": ["Captions are an authored text layer, not a transparent record of the sound."]
+      },
+      "risks": {
+        "hallucination": ["Do not invent visual content or alarm timing from the description alone."],
+        "over_identification": [],
+        "cultural_flattening": [],
+        "forensic_overreach": [],
+        "source_confusion": ["Synchronization implied by the description must not be treated as real-world causality."],
+        "aesthetic_overstatement": []
+      },
+      "main_reading": "The cutscene stages threat through an offscreen alarm whose meaning is co-produced by caption, timing, and interface rather than by the sound alone.",
+      "alternative_reading": "An accessibility pass could audit whether the caption carries the alarm's urgency for players who do not hear it.",
+      "recommended_next_mode": "accessibility-normative-listening"
+    },
+    {
+      "object_listened_to": "ASR transcript from a voice-agent demo",
+      "input_type": "transcript",
+      "listening_mode": "voice-speech-listening",
+      "listening_claims": {
+        "heard": [
+          {
+            "statement": "The supplied input is an ASR-style transcript from a voice-agent demo.",
+            "confidence": "high",
+            "basis": "Provided transcript"
+          }
+        ],
+        "measured": [],
+        "inferred": [
+          {
+            "statement": "The text may represent a speech-to-text stage, but it does not verify vocal quality or speaker identity.",
+            "confidence": "medium",
+            "basis": "Transcript format"
+          }
+        ],
+        "interpreted": [
+          {
+            "statement": "The voice-agent workflow should separate vocal sound, transcript, model behavior, consent, and access.",
+            "confidence": "high",
+            "basis": "Voice-speech listening frame"
+          }
+        ],
+        "speculative": [],
+        "undetermined": [
+          {
+            "statement": "Prosody, timbre, accent, speaker identity, consent, ASR accuracy, model stack, and dataset provenance remain unknown.",
+            "confidence": "high",
+            "basis": "No audio or provenance supplied"
+          }
+        ]
+      },
+      "what_appears": [
+        "A transcript can be analyzed as text evidence of a speech pipeline without pretending to be the voice itself."
+      ],
+      "what_remains_hidden": [
+        "Everything vocal: breath, pacing, overlap, tone, and the body behind the words remain unavailable."
+      ],
+      "mediations": {
+        "technical": ["ASR segmentation and formatting decisions shape what the transcript preserves."],
+        "cultural": ["Transcript conventions decide what counts as speech worth writing down."],
+        "spatial": [],
+        "bodily": ["The speaking body is absent from the text representation."],
+        "archival": [],
+        "computational": ["Speaker labels are diarization output, not verified identities."]
+      },
+      "risks": {
+        "hallucination": ["Do not reconstruct vocal qualities or emotions from the text."],
+        "over_identification": ["Speaker labels must not become identity claims."],
+        "cultural_flattening": [],
+        "forensic_overreach": ["Transcript wording must not be treated as verbatim legal evidence."],
+        "source_confusion": ["The transcript is a model representation, not the recording."],
+        "aesthetic_overstatement": []
+      },
+      "main_reading": "The transcript is a mediated trace of a speech pipeline; what it shows about the voice-agent stack matters more than what it appears to say about any speaker.",
+      "alternative_reading": "A transductive pass could map the ASR, turn-taking, and TTS stages the demo implies.",
+      "recommended_next_mode": "transductive-media-listening"
+    },
+    {
+      "object_listened_to": "Audio-only alert workflow",
+      "input_type": "sound_prompt",
+      "listening_mode": "accessibility-normative-listening",
+      "listening_claims": {
+        "heard": [
+          {
+            "statement": "The prompt describes a workflow where alerts are audio-only.",
+            "confidence": "high",
+            "basis": "User-provided design description"
+          }
+        ],
+        "measured": [],
+        "inferred": [
+          {
+            "statement": "Users with muted devices, noisy environments, hearing variation, or unavailable speakers may miss alert state changes.",
+            "confidence": "medium",
+            "basis": "Design inference from audio-only alert path"
+          }
+        ],
+        "interpreted": [
+          {
+            "statement": "The workflow implies a default hearing listener and should provide visual, textual, and possibly haptic alternatives.",
+            "confidence": "high",
+            "basis": "Accessibility-normative listening frame"
+          }
+        ],
+        "speculative": [],
+        "undetermined": [
+          {
+            "statement": "Alert urgency, volume, masking, visual state, haptic support, captioning, user testing, and assistive-technology behavior remain unknown.",
+            "confidence": "high",
+            "basis": "Missing design and testing evidence"
+          }
+        ]
+      },
+      "what_appears": [
+        "The implied listener of the design becomes visible: hearing, attentive, in a quiet room, near a speaker."
+      ],
+      "what_remains_hidden": [
+        "Real user contexts, assistive-technology behavior, and the consequences of a missed alert remain untested."
+      ],
+      "mediations": {
+        "technical": ["Device, speaker, and volume settings stand between the alert and any listener."],
+        "cultural": ["Alert design inherits assumptions about which bodies and environments are normal."],
+        "spatial": ["Room noise and distance condition whether the alert is audible at all."],
+        "bodily": ["Hearing variation, fatigue, and attention load shape access to the alert."],
+        "archival": [],
+        "computational": []
+      },
+      "risks": {
+        "hallucination": ["Do not assume alert sounds are audible, urgent, or distinct without evidence."],
+        "over_identification": [],
+        "cultural_flattening": ["Do not speak for disabled users as if their experience were known."],
+        "forensic_overreach": ["Do not claim legal compliance without standards and testing."],
+        "source_confusion": [],
+        "aesthetic_overstatement": ["Do not universalize clarity or urgency across listeners."]
+      },
+      "main_reading": "An audio-only alert path concentrates critical information in a single sensory channel and excludes every context where that channel fails.",
+      "alternative_reading": "An embodied pass could examine volume, masking, and attention capture if loudness data or user reports become available.",
+      "recommended_next_mode": "critical-political-listening"
+    },
+    {
+      "object_listened_to": "Long feedback tone in a resonant room",
+      "input_type": "sound_prompt",
+      "listening_mode": "material-event-listening",
+      "listening_claims": {
+        "heard": [
+          {
+            "statement": "The prompt describes a long feedback tone in a resonant room.",
+            "confidence": "high",
+            "basis": "User-provided sound description"
+          }
+        ],
+        "measured": [],
+        "inferred": [
+          {
+            "statement": "Sustained feedback and room resonance are possible, but frequency, amplitude, and coupling require measurement.",
+            "confidence": "low",
+            "basis": "Technical-material inference from prompt"
+          }
+        ],
+        "interpreted": [
+          {
+            "statement": "The sound can be approached as an event across loudspeaker, room, air, surfaces, and listener body.",
+            "confidence": "medium",
+            "basis": "Material-event listening frame"
+          }
+        ],
+        "speculative": [],
+        "undetermined": [
+          {
+            "statement": "Actual waveform, frequency, loudness, room dimensions, speaker position, material composition, and bodily effect remain unknown.",
+            "confidence": "high",
+            "basis": "No measured signal or room data supplied"
+          }
+        ]
+      },
+      "what_appears": [
+        "Duration and resonance foreground the sound as a process unfolding through materials rather than a static object."
+      ],
+      "what_remains_hidden": [
+        "The physical system producing the feedback, including gain structure, room modes, and surfaces, remains undescribed."
+      ],
+      "mediations": {
+        "technical": ["Microphone-speaker coupling and gain define whether feedback exists at all."],
+        "cultural": [],
+        "spatial": ["Room geometry and surfaces shape which frequencies persist."],
+        "bodily": ["Any pressure or vibration claim depends on listener position and playback level."],
+        "archival": [],
+        "computational": []
+      },
+      "risks": {
+        "hallucination": ["Do not turn described resonance into measured frequencies."],
+        "over_identification": ["Do not name the room, equipment, or materials without evidence."],
+        "cultural_flattening": [],
+        "forensic_overreach": [],
+        "source_confusion": [],
+        "aesthetic_overstatement": ["Do not mystify the vibration as universal bodily experience."]
+      },
+      "main_reading": "The description stages a material event in which speaker, air, room, and duration co-produce a tone; its reality as measurement remains entirely open.",
+      "alternative_reading": "A signal pass on an actual recording could turn the described resonance into measured spectral evidence.",
+      "recommended_next_mode": "signal-inspection-listening"
+    }
+  ]
+}

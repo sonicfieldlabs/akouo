@@ -15,6 +15,7 @@ Use `/transduce` for:
 - AI audio generation
 - synthetic voice and voice cloning
 - speech-to-text outputs
+- voice agents and model-mediated listening workflows
 - datasets
 - sample packs
 - compression and platform artifacts
@@ -23,16 +24,21 @@ Use `/transduce` for:
 
 ## Skills Called
 
+- `akouo-router` as an implicit planning pass that supplies the evidence inventory, risks, and forbidden assumptions the synthesis must respect
 - `transductive-media-listening`
 - `signal-inspection-listening`
 - `critical-political-listening` when mediation has institutional, colonial, platform, labor, surveillance, access, or market stakes
+- `voice-speech-listening` when the transduction chain centers voice, ASR, TTS, cloning, diarization, or voice agents
+- `accessibility-normative-listening` when mediation changes access, captions, transcript quality, intelligibility, or alternate sensory paths
 
 ## Execution Order
 
 1. Run `transductive-media-listening` to map source domain, target domain, capture, encoding, mapping, model, interface, or platform.
 2. Run `signal-inspection-listening` to ground artifacts, metadata, compression, noise, and measurable traits when available.
-3. Run `critical-political-listening` when the mediation chain has power, labor, dataset, archive, platform, or institutional stakes.
-4. Synthesize what was transformed, lost, invented, amplified, compressed, or hidden.
+3. Run `voice-speech-listening` when the mediation chain centers voice, ASR, TTS, cloning, diarization, or voice agents.
+4. Run `accessibility-normative-listening` when the mediation chain changes captions, transcript quality, intelligibility, haptics, or alternate access paths.
+5. Run `critical-political-listening` when the mediation chain has power, labor, dataset, archive, platform, access, or institutional stakes.
+6. Synthesize what was transformed, lost, invented, amplified, compressed, or hidden.
 
 ## Expected Output
 

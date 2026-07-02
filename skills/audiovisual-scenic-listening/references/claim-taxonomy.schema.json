@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/claim-taxonomy.schema.json",
+  "title": "akoúō Claim Taxonomy",
+  "description": "Shared claim taxonomy for separating heard, measured, inferred, interpreted, speculative, and undetermined claims.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "heard",
+    "measured",
+    "inferred",
+    "interpreted",
+    "speculative",
+    "undetermined"
+  ],
+  "properties": {
+    "heard": {
+      "$ref": "#/$defs/claim_list",
+      "description": "Claims directly present in the audio, prompt, transcript, field note, or supplied description."
+    },
+    "measured": {
+      "$ref": "#/$defs/claim_list",
+      "description": "Claims produced by file, signal, waveform, spectrogram, metadata, or other technical inspection."
+    },
+    "inferred": {
+      "$ref": "#/$defs/claim_list",
+      "description": "Plausible logical, technical, or forensic deductions that are not directly confirmed by available evidence. Do not place cultural theory, affective readings, or symbolic interpretation here."
+    },
+    "interpreted": {
+      "$ref": "#/$defs/claim_list",
+      "description": "Cultural, theoretical, affective, ecological, archival, political, or contextual readings."
+    },
+    "speculative": {
+      "$ref": "#/$defs/claim_list",
+      "description": "Declared fictional, symbolic, imaginative, mythic, or possible-world readings."
+    },
+    "undetermined": {
+      "$ref": "#/$defs/claim_list",
+      "description": "Claims that cannot be responsibly made from the available input."
+    }
+  },
+  "$defs": {
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low", "undetermined"]
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statement", "confidence"],
+      "properties": {
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "basis": {
+          "type": "string",
+          "description": "Short note describing what supports or limits the claim."
+        }
+      }
+    },
+    "claim_list": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/claim"
+      },
+      "default": []
+    }
+  }
+}
