@@ -6,6 +6,7 @@ import {
   createListeningOutputDraft,
 } from './outputFactory';
 import { createReferenceClaimSummary, createReferenceMap, referenceSummary } from './referenceLayer';
+import { hasAnyRequestTerm } from './textMatch';
 import { commandNames, comparativeModeKeys, listeningModes } from './types';
 import type {
   AudioInspection,
@@ -833,8 +834,7 @@ function isMusicalRequest(request: ListeningRequest): boolean {
 }
 
 function hasAny(request: ListeningRequest, terms: string[]): boolean {
-  const text = `${request.prompt ?? ''} ${request.objectName}`.toLowerCase();
-  return terms.some((term) => text.includes(term));
+  return hasAnyRequestTerm(request, terms);
 }
 
 function objectNameForRequest(request: ListeningRequest): string {

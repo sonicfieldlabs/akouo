@@ -10,6 +10,8 @@ AKOÚŌ does not pretend that agents hear like humans. It gives them accountable
 
 This public release contains the portable AKOÚŌ skills, router, command definitions, schemas, and a local-first reference app for running the listening workflows.
 
+Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current release contract: `v0.5`.
+
 ## Version Status
 
 - `v0.1` marks the first public portable-skills release.
@@ -117,6 +119,16 @@ To give an agent an "akoúō ear":
 
 For agent frameworks that support skill discovery, each `SKILL.md` includes YAML frontmatter with `name` and `description` fields for automatic triggering.
 
+## 60-Second Reviewer Path
+
+```sh
+cd app
+npm install
+npm run dev
+```
+
+Open the local Vite URL, drop a short WAV/AIFF/MP3/OGG file or enter a sound prompt, choose `/listen`, and run `INITIATE LOCAL LISTENING PASS`. The deterministic local path runs fully offline: no model provider, benchmark server, credentials, or network connection is required.
+
 ### Example
 
 User prompt: *"Analyze this field recording from a rainforest at night."*
@@ -192,7 +204,9 @@ Commands (located in `commands/`) combine these skills into reusable listening c
 akouo/
   README.md
   AGENTS.md            # Instructions for AI agents working on this project
+  SYSTEM_GUIDE.md      # Operational guide for commands, workflows, and app contract
   SKILL_INDEX.md       # Quick-reference manifest of all skills
+  CHANGELOG.md         # Release history from v0.1 through v0.5
   LICENSE
   .gitignore
   app/                 # Local-first reference app for running AKOÚŌ workflows
@@ -247,6 +261,7 @@ akouo/
   commands/
   schemas/
   examples/
+  evals/
 ```
 
 ## Public-Repo Hygiene

@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import {
   benchmarkHeaders,
-  ingestBenchmarkRun,
+  benchmarkRequestUrl,
   type BenchmarkConfig,
 } from '../akouo/benchmark';
 import { BracketWrap, BlinkingStatus } from './FuiDecorations';
@@ -59,6 +59,9 @@ export function BenchmarkIngestPanel({ apiUrl, benchmarkConfig, onIngested }: Be
 
     const newPreviews: (IngestPreview & { fileName: string })[] = [];
     let validCount = 0;
+    let firstModel = '';
+    let firstProvider = '';
+    let firstAgent = '';
 
     for (const file of files) {
       try {
@@ -67,15 +70,18 @@ export function BenchmarkIngestPanel({ apiUrl, benchmarkConfig, onIngested }: Be
         newPreviews.push({ ...parsed, fileName: file.name });
         if (parsed.valid) validCount++;
 
-        if (!overrideModel && parsed.modelId) setOverrideModel(parsed.modelId);
-        if (!overrideProvider && parsed.provider) setOverrideProvider(parsed.provider);
-        if (!overrideAgent && parsed.agentId) setOverrideAgent(parsed.agentId);
+        if (!firstModel && parsed.modelId) firstModel = parsed.modelId;
+        if (!firstProvider && parsed.provider) firstProvider = parsed.provider;
+        if (!firstAgent && parsed.agentId) firstAgent = parsed.agentId;
       } catch (error) {
         setStatus(`FAILED ON ${file.name}`);
       }
     }
 
     setPreviews(prev => [...prev, ...newPreviews]);
+    if (!overrideModel && firstModel) setOverrideModel(firstModel);
+    if (!overrideProvider && firstProvider) setOverrideProvider(firstProvider);
+    if (!overrideAgent && firstAgent) setOverrideAgent(firstAgent);
     setStatus(`${validCount} VALID REPORTS LOADED`);
     setIsLoading(false);
   }
@@ -105,9 +111,9 @@ export function BenchmarkIngestPanel({ apiUrl, benchmarkConfig, onIngested }: Be
         return payload;
       });
 
-      const res = await fetch(`${apiUrl}/api/runs/ingest/batch`, {
+      const res = await fetch(benchmarkRequestUrl(apiUrl, '/api/runs/ingest/batch'), {
         method: 'POST',
-        headers: benchmarkHeaders({ 'Content-Type': 'application/json' }),
+        headers: benchmarkHeaders({ 'Content-Type': 'application/json' }, apiUrl),
         body: JSON.stringify(payloads),
       });
 

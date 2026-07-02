@@ -12,24 +12,34 @@ export function AudioVisualizer({ file }: AudioVisualizerProps) {
     let cancelled = false;
 
     async function visualize() {
-      const audioCtx = new AudioContext();
-      const arrayBuffer = await file.arrayBuffer();
-      const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioContextClass) return;
 
-      if (cancelled) {
-        await audioCtx.close();
-        return;
+      const audioCtx = new AudioContextClass();
+
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+        const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+
+        if (cancelled) return;
+
+        if (waveformRef.current) {
+          drawWaveform(audioBuffer, waveformRef.current);
+        }
+
+        if (!cancelled && spectrumRef.current) {
+          await drawSpectrum(audioBuffer, spectrumRef.current, () => cancelled);
+        }
+      } catch {
+        if (!cancelled) {
+          clearCanvas(waveformRef.current);
+          clearCanvas(spectrumRef.current);
+        }
+      } finally {
+        if (audioCtx.state !== 'closed') {
+          await audioCtx.close().catch(() => undefined);
+        }
       }
-
-      if (waveformRef.current) {
-        drawWaveform(audioBuffer, waveformRef.current);
-      }
-
-      if (spectrumRef.current) {
-        await drawSpectrum(audioBuffer, spectrumRef.current);
-      }
-
-      await audioCtx.close();
     }
 
     void visualize();
@@ -48,6 +58,12 @@ export function AudioVisualizer({ file }: AudioVisualizerProps) {
       </div>
     </div>
   );
+}
+
+function clearCanvas(canvas: HTMLCanvasElement | null) {
+  const ctx = canvas?.getContext('2d');
+  if (!canvas || !ctx) return;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function drawWaveform(audioBuffer: AudioBuffer, canvas: HTMLCanvasElement) {
@@ -98,11 +114,14 @@ function drawWaveform(audioBuffer: AudioBuffer, canvas: HTMLCanvasElement) {
   ctx.stroke();
 }
 
-async function drawSpectrum(audioBuffer: AudioBuffer, canvas: HTMLCanvasElement) {
+async function drawSpectrum(audioBuffer: AudioBuffer, canvas: HTMLCanvasElement, isCancelled: () => boolean) {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  const audioCtx = new AudioContext();
+  const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+  if (!AudioContextClass) return;
+
+  const audioCtx = new AudioContextClass();
   const analyser = audioCtx.createAnalyser();
   analyser.fftSize = 512;
   analyser.smoothingTimeConstant = 0.8;
@@ -115,21 +134,27 @@ async function drawSpectrum(audioBuffer: AudioBuffer, canvas: HTMLCanvasElement)
   const dataArray = new Uint8Array(binCount);
   const frames: number[][] = [];
 
-  source.start();
+  try {
+    source.start();
 
-  const sampleInterval = 50; // ms
-  const maxDuration = Math.min(audioBuffer.duration * 1000, 10000);
-  const samples = Math.floor(maxDuration / sampleInterval);
+    const sampleInterval = 50; // ms
+    const maxDuration = Math.min(audioBuffer.duration * 1000, 10000);
+    const samples = Math.floor(maxDuration / sampleInterval);
 
-  for (let i = 0; i < samples; i++) {
-    await new Promise((resolve) => setTimeout(resolve, sampleInterval));
-    analyser.getByteFrequencyData(dataArray);
-    frames.push([...dataArray]);
+    for (let i = 0; i < samples; i++) {
+      if (isCancelled()) return;
+      await new Promise((resolve) => setTimeout(resolve, sampleInterval));
+      if (isCancelled()) return;
+      analyser.getByteFrequencyData(dataArray);
+      frames.push([...dataArray]);
+    }
+  } finally {
+    if (audioCtx.state !== 'closed') {
+      await audioCtx.close().catch(() => undefined);
+    }
   }
 
-  await audioCtx.close();
-
-  if (frames.length === 0) return;
+  if (isCancelled() || frames.length === 0) return;
 
   const avg = new Float32Array(binCount);
   for (const frame of frames) {

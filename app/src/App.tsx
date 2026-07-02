@@ -10,10 +10,13 @@ import { inspectAudioFile } from './akouo/audioAdapter';
 import { checkBenchmarkHealth, createDefaultBenchmarkConfig, runDirectBenchmark, saveBenchmarkRun } from './akouo/benchmark';
 import { runListeningCommand } from './akouo/listener';
 import { appContract } from './akouo/schemas';
+import { hasAnyTerm } from './akouo/textMatch';
 import type { AudioInspection, CommandName, CommandResult, InputType } from './akouo/types';
 import { BracketWrap, Radar, BlinkingStatus } from './components/FuiDecorations';
 
 type ActiveSection = 'listen' | 'benchmark' | 'ingest';
+
+const DIRECT_AUDIO_MAX_BYTES = 25 * 1024 * 1024;
 
 export default function App() {
   const [prompt, setPrompt] = useState('');
@@ -80,11 +83,11 @@ export default function App() {
     setBenchmarkSaveStatus('');
 
     const startedAt = performance.now();
+    const inputType = inferInputType(prompt, audioInspection);
 
     let nextResult: CommandResult;
 
     try {
-      const inputType = inferInputType(prompt, audioInspection);
       nextResult = runListeningCommand({
         objectName: audioInspection?.fileName ?? (prompt.trim() ? 'sound prompt' : 'unnamed sonic object'),
         inputType,
@@ -114,9 +117,11 @@ export default function App() {
       const savedRun = await saveBenchmarkRun({
         result: nextResult,
         input: {
+          objectName: objectNameForResult(nextResult),
+          inputType,
           prompt,
           audioInspection,
-          tags: inferBenchmarkTags(prompt, selectedCommand, inferInputType(prompt, audioInspection)),
+          tags: inferBenchmarkTags(prompt, selectedCommand, inputType),
         },
         model: benchmarkConfig.model,
         agent: benchmarkConfig.agent,
@@ -187,8 +192,8 @@ export default function App() {
           </div>
           <div className="contract-card" style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', borderRight: '1px solid rgba(0,255,255,0.2)', paddingRight: '15px' }}>
-              <span>DB STATUS: {serverHealth === 'ok' ? 'ONLINE' : serverHealth === 'pending' ? 'CONNECTING...' : 'OFFLINE'}</span>
-              <span style={{ color: serverHealth === 'ok' ? 'var(--fui-green)' : 'var(--fui-red)' }}>
+              <span>BENCHMARK API: {benchmarkStatusLabel(serverHealth, benchmarkConfig.autoSave)}</span>
+              <span style={{ color: serverHealth === 'ok' ? 'var(--fui-green)' : 'var(--fui-white-dim)' }}>
                 {benchmarkConfig.apiUrl}
               </span>
             </div>
@@ -271,6 +276,10 @@ export default function App() {
 }
 
 async function createDirectAudioPayload(file: File) {
+  if (file.size > DIRECT_AUDIO_MAX_BYTES) {
+    throw new Error(`Direct model audio is capped at ${formatMegabytes(DIRECT_AUDIO_MAX_BYTES)} MB; use a shorter file or run the local deterministic pass.`);
+  }
+
   const arrayBuffer = await file.arrayBuffer();
   const bytes = new Uint8Array(arrayBuffer);
   let binary = '';
@@ -326,7 +335,6 @@ function inferInputType(prompt: string, audioInspection: AudioInspection | null)
 }
 
 function inferBenchmarkTags(prompt: string, command: CommandName, inputType: InputType): string[] {
-  const text = prompt.toLowerCase();
   const tags = new Set<string>([command, inputType]);
 
   const termMap: Array<[string, string[]]> = [
@@ -342,7 +350,7 @@ function inferBenchmarkTags(prompt: string, command: CommandName, inputType: Inp
   ];
 
   for (const [tag, terms] of termMap) {
-    if (terms.some((term) => text.includes(term))) {
+    if (hasAnyTerm(prompt, terms)) {
       tags.add(tag);
     }
   }
@@ -350,6 +358,16 @@ function inferBenchmarkTags(prompt: string, command: CommandName, inputType: Inp
   return Array.from(tags);
 }
 
-function hasAnyTerm(text: string, terms: string[]): boolean {
-  return terms.some((term) => text.includes(term));
+function benchmarkStatusLabel(serverHealth: 'pending' | 'ok' | 'error', autoSave: boolean): string {
+  if (serverHealth === 'ok') return 'ONLINE';
+  if (serverHealth === 'pending') return 'CHECKING';
+  return autoSave ? 'UNAVAILABLE' : 'LOCAL ONLY';
+}
+
+function objectNameForResult(result: CommandResult): string {
+  return 'object_listened_to' in result ? result.object_listened_to : result.sound_object;
+}
+
+function formatMegabytes(bytes: number): string {
+  return (bytes / 1024 / 1024).toFixed(0);
 }
