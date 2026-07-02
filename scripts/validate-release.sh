@@ -15,7 +15,7 @@ echo "Repository: $REPO_ROOT"
 echo
 
 # 1. Check skill folder structure
-echo "[1/8] Checking skill folder structure..."
+echo "[1/9] Checking skill folder structure..."
 LISTENING_MODES=(
   "signal-inspection-listening"
   "acoulogical-object-listening"
@@ -81,7 +81,7 @@ done
 
 # 2. Check no old flat .md files remain in skills/
 echo
-echo "[2/8] Checking for old flat skill files..."
+echo "[2/9] Checking for old flat skill files..."
 FLAT_MD=$(find "$SKILLS_DIR" -maxdepth 1 -name '*.md' -type f 2>/dev/null || true)
 if [ -n "$FLAT_MD" ]; then
   echo "  ERROR: Old flat .md files found in skills/:"
@@ -93,7 +93,7 @@ fi
 
 # 3. Check bundled schemas match canonical schemas
 echo
-echo "[3/8] Checking bundled schema consistency..."
+echo "[3/9] Checking bundled schema consistency..."
 SCHEMA_OK=1
 for skill in "${EXPECTED_SKILLS[@]}"; do
   ref_dir="$SKILLS_DIR/$skill/references"
@@ -144,7 +144,7 @@ fi
 
 # 4. Check schema references in SKILL.md point to existing files
 echo
-echo "[4/8] Checking schema references in SKILL.md files..."
+echo "[4/9] Checking schema references in SKILL.md files..."
 REFS_OK=1
 for skill in "${EXPECTED_SKILLS[@]}"; do
   skill_md="$SKILLS_DIR/$skill/SKILL.md"
@@ -164,7 +164,7 @@ fi
 
 # 5. Check schema enums stay aligned with skill folders and command files
 echo
-echo "[5/8] Checking schema enums against skills/ and commands/..."
+echo "[5/9] Checking schema enums against skills/ and commands/..."
 ENUMS_OK=1
 
 for mode in "${LISTENING_MODES[@]}"; do
@@ -205,9 +205,18 @@ if [ "$ENUMS_OK" -eq 1 ]; then
   echo "  OK: Schema enums match skill folders and command files"
 fi
 
-# 6. Check for personal data patterns
+# 6. Check examples against canonical schema structure
 echo
-echo "[6/8] Checking for personal data and secrets..."
+echo "[6/9] Checking examples against canonical schema structure..."
+if node "$REPO_ROOT/scripts/validate-examples.mjs" "$REPO_ROOT"; then
+  echo "  OK: Examples match canonical schema structure"
+else
+  ERRORS=$((ERRORS + 1))
+fi
+
+# 7. Check for personal data patterns
+echo
+echo "[7/9] Checking for personal data and secrets..."
 PATTERNS=(
   'password\s*=\s*['\''"]'
   'secret\s*=\s*['\''"]'
@@ -241,9 +250,9 @@ if [ "$FOUND" -eq 0 ]; then
   echo "  OK: No obvious secrets or personal data found"
 fi
 
-# 7. Check .gitignore covers sensitive files
+# 8. Check .gitignore covers sensitive files
 echo
-echo "[7/8] Checking .gitignore coverage..."
+echo "[8/9] Checking .gitignore coverage..."
 REQUIRED_IGNORES=('node_modules/' '.env' '*.pem' '*.key' '*.wav' '*.mp3')
 MISSING=0
 for item in "${REQUIRED_IGNORES[@]}"; do
@@ -256,9 +265,9 @@ if [ "$MISSING" -eq 0 ]; then
   echo "  OK: .gitignore covers standard exclusions"
 fi
 
-# 8. Check generated build outputs are absent
+# 9. Check generated build outputs are absent
 echo
-echo "[8/8] Checking generated build outputs are absent..."
+echo "[9/9] Checking generated build outputs are absent..."
 GENERATED_FOUND=0
 if [ -d "$REPO_ROOT/app/dist" ]; then
   echo "  ERROR: Generated build directory exists: app/dist"

@@ -1,4 +1,5 @@
 import { listeningModes } from './types';
+import { hasAnyRequestTerm } from './textMatch';
 import type {
   ClaimPermissions,
   CommandName,
@@ -426,6 +427,5 @@ function inferRecommendedCommand(scores: RouteScore[], request: ListeningRequest
 }
 
 function hasAny(request: ListeningRequest, terms: string[]): boolean {
-  const text = `${request.prompt ?? ''} ${request.objectName} ${request.inputType} ${request.command ?? ''}`.toLowerCase();
-  return terms.some((term) => text.includes(term));
+  return hasAnyRequestTerm(request, terms, true);
 }

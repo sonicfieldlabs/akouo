@@ -32,13 +32,10 @@ export const commandDefinitions: CommandDefinition[] = [
     skillsCalled: [
       'akouo-router',
       'acoulogical-object-listening',
-      'musical-aesthetic-listening',
       'critical-political-listening',
-      'ecological-posthuman-listening',
-      'symbolic-fictional-listening',
       'reference-layer',
     ],
-    executionOrder: ['Ground perceptually', 'Map musical/aesthetic organization if relevant', 'Critique mediations', 'Choose ecological or fictional route', 'Map references'],
+    executionOrder: ['Ground perceptually', 'Run one context mode chosen by the router', 'Critique mediations', 'Map references'],
     outputSchema: 'schemas/command-output.schema.json',
   },
   {

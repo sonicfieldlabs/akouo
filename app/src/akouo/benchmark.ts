@@ -326,13 +326,14 @@ export interface BenchmarkComparison {
   model_averages: BenchmarkComparisonModelAverage[];
 }
 
-const DEFAULT_BENCHMARK_API = import.meta.env.VITE_AKOUO_BENCHMARK_API ?? 'http://localhost:8787';
+const DEFAULT_BENCHMARK_API = normalizeApiUrl(import.meta.env.VITE_AKOUO_BENCHMARK_API ?? 'http://localhost:8787');
 const DEFAULT_BENCHMARK_API_KEY = import.meta.env.VITE_AKOUO_BENCHMARK_API_KEY ?? '';
+const DEFAULT_BENCHMARK_TRUSTED_ORIGINS = parseTrustedOrigins(import.meta.env.VITE_AKOUO_BENCHMARK_TRUSTED_ORIGINS ?? '');
 
 export function createDefaultBenchmarkConfig(): BenchmarkConfig {
   return {
     apiUrl: DEFAULT_BENCHMARK_API,
-    autoSave: true,
+    autoSave: false,
     model: {
       id: 'akouo-local-deterministic',
       provider: 'local',
@@ -426,7 +427,11 @@ export async function updateBenchmarkReview(runId: string, review: BenchmarkRevi
 }
 
 export function benchmarkExportUrl(apiUrl: string, exportName: string): string {
-  return new URL(`${apiUrl}/api/export/${exportName}`).toString();
+  return endpointUrl(apiUrl, `/api/export/${exportName}`);
+}
+
+export function benchmarkRequestUrl(apiUrl: string, path: string): string {
+  return endpointUrl(apiUrl, path);
 }
 
 export async function fetchBenchmarkComparison(
@@ -460,16 +465,16 @@ export async function checkBenchmarkHealth(apiUrl = DEFAULT_BENCHMARK_API): Prom
   }
 }
 
-export function benchmarkHeaders(extra?: HeadersInit): Headers {
+export function benchmarkHeaders(extra?: HeadersInit, apiUrl = DEFAULT_BENCHMARK_API): Headers {
   const headers = new Headers(extra);
-  if (DEFAULT_BENCHMARK_API_KEY && !headers.has('Authorization') && !headers.has('X-Bench-API-Key')) {
+  if (shouldAttachBenchmarkKey(apiUrl) && !headers.has('Authorization') && !headers.has('X-Bench-API-Key')) {
     headers.set('X-Bench-API-Key', DEFAULT_BENCHMARK_API_KEY);
   }
   return headers;
 }
 
 async function requestJson<T>(apiUrl: string, path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${apiUrl}${path}`, { ...init, headers: benchmarkHeaders(init?.headers) });
+  const response = await fetch(endpointUrl(apiUrl, path), { ...init, headers: benchmarkHeaders(init?.headers, apiUrl) });
   const data = await response.json().catch(() => null) as unknown;
 
   if (!response.ok) {
@@ -478,4 +483,39 @@ async function requestJson<T>(apiUrl: string, path: string, init?: RequestInit):
   }
 
   return data as T;
+}
+
+function normalizeApiUrl(apiUrl: string): string {
+  return apiUrl.trim().replace(/\/+$/, '');
+}
+
+function endpointUrl(apiUrl: string, path: string): string {
+  const normalizedApiUrl = normalizeApiUrl(apiUrl);
+  if (!normalizedApiUrl) return path;
+  return `${normalizedApiUrl}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+function parseTrustedOrigins(value: string): string[] {
+  return value
+    .split(',')
+    .map((origin) => origin.trim().replace(/\/+$/, ''))
+    .filter(Boolean);
+}
+
+function shouldAttachBenchmarkKey(apiUrl: string): boolean {
+  if (!DEFAULT_BENCHMARK_API_KEY || DEFAULT_BENCHMARK_TRUSTED_ORIGINS.length === 0) return false;
+
+  const origin = originForApiUrl(apiUrl);
+  return origin !== null && DEFAULT_BENCHMARK_TRUSTED_ORIGINS.includes(origin);
+}
+
+function originForApiUrl(apiUrl: string): string | null {
+  const normalizedApiUrl = normalizeApiUrl(apiUrl);
+  const base = globalThis.location?.origin ?? 'http://localhost';
+
+  try {
+    return new URL(normalizedApiUrl || '/', base).origin;
+  } catch {
+    return null;
+  }
 }

@@ -63,7 +63,7 @@ Expanded routing plans carry `route_confidence`. Set it honestly:
 
 - `high`: input type, user intent, and conceptual frame all point to the same primary mode.
 - `medium`: the primary mode is clear but the secondary or corrective choice depends on missing context.
-- `low`: intent is ambiguous, evidence is thin, or two frames compete; choose the more conservative primary mode, name the competing route in `route_reasoning`, and add a stop condition requesting the missing context.
+- `low`: intent is ambiguous, evidence is thin, or two frames compete; choose the more conservative primary mode, name the competing route in `route_reasoning` for router output or in `mode_chain[].reason` / `agent_handoff.summary` for expanded routing plans, and add a stop condition requesting the missing context.
 - `undetermined`: the input cannot be routed responsibly; recommend `/route` with stop conditions or ask for the object, input type, or intent before any listening mode runs.
 
 Low confidence is information, not failure. A conservative route with explicit stop conditions is worth more to a receiving agent than a confident route built on guesses.
@@ -76,7 +76,7 @@ When judgment alone does not settle a route, apply this transparent additive sco
 
 | Input type | Mode hints (weight) |
 |---|---|
-| `audio_file`, `spectrogram`, `waveform`, `metadata` | signal-inspection (5); plus acoulogical-object (3) for `audio_file` |
+| `audio_file`, `spectrogram`, `waveform`, `metadata` | signal-inspection (5); plus acoulogical-object (3) for `audio_file`; metadata also adds transductive-media (4) |
 | `video` | audiovisual-scenic (6) |
 | `transcript` | voice-speech (5), forensic-archival (5) |
 | `field_note` | ecological-posthuman (5) |

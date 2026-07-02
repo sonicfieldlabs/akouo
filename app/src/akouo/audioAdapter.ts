@@ -29,9 +29,10 @@ export async function inspectAudioFile(file: File): Promise<AudioInspection> {
     warnings: [],
   };
 
-  if (!file.type.startsWith('audio/')) {
-    inspection.warnings.push('Selected file is not identified as an audio MIME type.');
-    return inspection;
+  if (file.type && !file.type.startsWith('audio/') && file.type !== 'video/ogg') {
+    inspection.warnings.push('Selected file is not identified as an audio MIME type; attempting browser decode anyway.');
+  } else if (!file.type) {
+    inspection.warnings.push('Selected file has no MIME type; attempting browser decode from file content.');
   }
 
   if (!window.AudioContext && !(window as any).webkitAudioContext) {
