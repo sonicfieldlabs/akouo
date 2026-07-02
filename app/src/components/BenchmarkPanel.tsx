@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {
   benchmarkExportUrl,
   benchmarkHeaders,
+  benchmarkRequestUrl,
   fetchBenchmarkComparison,
   fetchBenchmarkRun,
   fetchBenchmarkRuns,
@@ -522,7 +523,7 @@ function BenchmarkSuites({
 
 function BenchmarkExportActions({ apiUrl }: { apiUrl: string }) {
   async function openExport(exportName: 'runs.csv' | 'claims.csv' | 'scores.csv' | 'flags.csv' | 'runs.json' | 'report.html' | 'report.md') {
-    const response = await fetch(benchmarkExportUrl(apiUrl, exportName), { headers: benchmarkHeaders() });
+    const response = await fetch(benchmarkExportUrl(apiUrl, exportName), { headers: benchmarkHeaders(undefined, apiUrl) });
     if (!response.ok) return;
 
     const blob = await response.blob();
@@ -676,7 +677,7 @@ function BenchmarkRunInspector({ run, apiUrl, schema, onRunUpdate }: { run: Benc
   async function deleteRun() {
     if (!confirm('Are you sure you want to delete this run? This cannot be undone.')) return;
     try {
-      const res = await fetch(`${apiUrl}/api/runs/${encodeURIComponent(run.id)}`, { method: 'DELETE', headers: benchmarkHeaders() });
+      const res = await fetch(benchmarkRequestUrl(apiUrl, `/api/runs/${encodeURIComponent(run.id)}`), { method: 'DELETE', headers: benchmarkHeaders(undefined, apiUrl) });
       if (!res.ok) throw new Error('Delete failed');
       onRunUpdate(null);
     } catch (error) {

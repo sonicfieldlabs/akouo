@@ -198,6 +198,8 @@ Agent loads `skills/ecological-posthuman-listening/SKILL.md` and produces struct
 
 Commands (located in `commands/`) combine these skills into reusable listening chains, like `/one-sound-many-ears`, `/forensic`, `/voice`, `/audiovision`, `/access`, `/field`, `/method`, or `/route`.
 
+For the agent-to-agent handoff format, see `examples/routing-plan-example.json`: an expanded routing plan (per `schemas/routing-plan.schema.json`) carrying `route_confidence`, `evidence_level`, `claim_permissions`, a `mode_chain`, `stop_conditions`, and an `agent_handoff` summary that a receiving agent can act on without re-listening.
+
 ## Repository Layout
 
 ```text
