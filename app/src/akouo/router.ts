@@ -50,6 +50,7 @@ const routeRules: RouteRule[] = [
   { mode: 'voice-speech-listening', weight: 5, reason: 'Voice and speech terms require separation of vocal sound, transcript, identity, and model mediation.', terms: ['voice', 'speech', 'speaker', 'accent', 'transcript', 'asr', 'tts', 'prosody', 'diarization', 'spoken', 'vocal', 'podcast', 'radio', 'voice agent', 'dubbing'] },
   { mode: 'accessibility-normative-listening', weight: 5, reason: 'Accessibility, caption, haptic, disability, or hearing-norm terms require access audit.', terms: ['accessibility', 'caption', 'subtitle', 'transcript', 'deaf', 'hard of hearing', 'haptic', 'hearing', 'assistive', 'audism', 'sensory', 'universal design', 'intelligibility'] },
   { mode: 'material-event-listening', weight: 4, reason: 'Material, vibrational, resonant, or processual terms require material-event listening.', terms: ['material', 'event', 'flux', 'vibration', 'resonance', 'feedback', 'drone', 'hum', 'rumble', 'infrasound', 'ultrasound', 'unsound', 'microsound', 'duration', 'speaker', 'loudspeaker', 'installation'] },
+  { mode: 'memory-lineage-listening', weight: 5, reason: 'Memory, lineage, recurrence, or archive-of-ours terms require listening with stored records.', terms: ['memory', 'remember', 'recall', 'lineage', 'recurrence', 'heard before', 'earlier recording', 'akousma', 'akousmata', 'our archive', 'previous version', 'series over time'] },
   { mode: 'signal-inspection-listening', weight: 8, reason: 'The /tech command privileges technical signal inspection.', commands: ['/tech'] },
   { mode: 'transductive-media-listening', weight: 6, reason: 'The /tech command also maps media-chain limits.', commands: ['/tech'] },
   { mode: 'forensic-archival-listening', weight: 8, reason: 'The /forensic command privileges evidentiary restraint.', commands: ['/forensic'] },
@@ -68,6 +69,8 @@ const routeRules: RouteRule[] = [
   { mode: 'accessibility-normative-listening', weight: 4, reason: 'The /method command audits implied listener and access path.', commands: ['/method'] },
   { mode: 'critical-political-listening', weight: 6, reason: 'The /litany command audits sound-versus-vision assumptions.', commands: ['/litany'] },
   { mode: 'audiovisual-scenic-listening', weight: 5, reason: 'The /litany command often concerns audiovisual claims.', commands: ['/litany'] },
+  { mode: 'memory-lineage-listening', weight: 8, reason: 'The /remember command privileges memory and lineage listening.', commands: ['/remember'] },
+  { mode: 'acoulogical-object-listening', weight: 4, reason: 'The /remember command grounds memory comparison in a fresh perceptual pass.', commands: ['/remember'] },
 ];
 
 const correctiveModes: ListeningMode[] = [
@@ -230,6 +233,10 @@ function stopConditionsForPlan(request: ListeningRequest, route: RouteRole, conf
     stops.push('Stop before identity, emotion, or consent claims based on voice alone.');
   }
 
+  if (chain.includes('memory-lineage-listening')) {
+    stops.push('Stop before memory or lineage claims until a sound-memory store and its query scope are supplied.');
+  }
+
   if (confidence === 'low' || confidence === 'undetermined') {
     stops.push(`Stop and request the object, input type, or user intent before deep analysis; route confidence is ${confidence}.`);
   }
@@ -304,6 +311,7 @@ function fallbackSecondary(primary: ListeningMode): ListeningMode {
   if (primary === 'forensic-archival-listening') return 'signal-inspection-listening';
   if (primary === 'symbolic-fictional-listening') return 'embodied-affective-listening';
   if (primary === 'musical-aesthetic-listening') return 'acoulogical-object-listening';
+  if (primary === 'memory-lineage-listening') return 'acoulogical-object-listening';
   return 'signal-inspection-listening';
 }
 
@@ -418,6 +426,7 @@ function inferRecommendedCommand(scores: RouteScore[], request: ListeningRequest
   if (top === 'transductive-media-listening') return '/transduce';
   if (top === 'signal-inspection-listening') return '/tech';
   if (top === 'symbolic-fictional-listening') return '/fiction';
+  if (top === 'memory-lineage-listening') return '/remember';
 
   if (hasAny(request, ['research', 'method', 'methodology', 'essay', 'study', 'thesis'])) {
     return '/method';

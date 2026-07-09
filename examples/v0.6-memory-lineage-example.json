@@ -1,0 +1,136 @@
+{
+  "description": "AKOÚŌ v0.6 example: a memory-lineage listening output with the new instrumentation fields (apparatus, listener, memory, per-claim source and time_range), plus a /remember routing plan carrying budget and preset_id.",
+  "listening_output": {
+    "object_listened_to": "Harbor field recording, fourth in a two-year series",
+    "input_type": "audio_file",
+    "listening_mode": "memory-lineage-listening",
+    "akouo_version": "0.6",
+    "apparatus": {
+      "substrate": "hybrid_agent_stack",
+      "perception_sources": ["host audio caption pass", "deterministic DSP features", "stored akousmata query (3 records)"],
+      "model_ids": ["example-audio-captioner-v1"],
+      "sample_rate_hz": 16000,
+      "channels": 1,
+      "bandwidth_limit_hz": 8000,
+      "known_blind_spots": [
+        "Mono 16 kHz input: no stereo-image claims and no content claims above roughly 8 kHz.",
+        "No absolute playback or capture level is known."
+      ],
+      "capture_notes": ["Recorder model unknown for two of the consulted records."]
+    },
+    "listener": {
+      "type": "agent",
+      "process": "agent_automated"
+    },
+    "memory": {
+      "akousma_id": "akousma-2026-0712-harbor-04",
+      "akousmata_refs": ["akousma-2024-0301-harbor-01", "akousma-2025-0218-harbor-02", "akousma-2025-0911-harbor-03"],
+      "lineage_note": "Fourth listening in the harbor series; recurrence of machinery keynote, thinning bird activity across records."
+    },
+    "listening_claims": {
+      "heard": [
+        {
+          "statement": "A low continuous machinery tone with intermittent high calls is present in the current recording.",
+          "confidence": "medium",
+          "basis": "Host caption pass over the supplied audio",
+          "source": "model",
+          "time_range": { "start_s": 0, "end_s": 120 }
+        }
+      ],
+      "measured": [
+        {
+          "statement": "The current file is 120.0 seconds, mono, 16 kHz, with energy concentration below 500 Hz.",
+          "confidence": "high",
+          "basis": "Deterministic DSP feature block",
+          "source": "dsp"
+        }
+      ],
+      "inferred": [
+        {
+          "statement": "The three consulted records and the current listening plausibly form one series of the same harbor position.",
+          "confidence": "low",
+          "basis": "Matching store tags and recurring machinery-tone claims across consulted records",
+          "source": "memory"
+        }
+      ],
+      "interpreted": [
+        {
+          "statement": "Across the series, bird-activity claims thin while machinery claims persist, reading as increasing mechanical dominance at this site.",
+          "confidence": "low",
+          "basis": "Comparison of stored claims over two years; apparatus varied between records",
+          "source": "memory"
+        }
+      ],
+      "speculative": [],
+      "undetermined": [
+        {
+          "statement": "Whether apparent change reflects the site, season, recorder position, or apparatus differences remains undetermined; one consulted record lacks capture notes.",
+          "confidence": "high",
+          "basis": "Missing provenance in consulted records"
+        }
+      ]
+    },
+    "what_appears": [
+      "The current listening can be situated against three stored records without letting memory overwrite present description.",
+      "A lineage note and record identifier are ready for registration into the store."
+    ],
+    "what_remains_hidden": [
+      "Species identity, exact machinery source, and any change in microphone position across the series remain unavailable.",
+      "The store's coverage outside the queried tags is unknown."
+    ],
+    "mediations": {
+      "technical": ["Mono 16 kHz capture bounds what the model pass can hear."],
+      "cultural": [],
+      "spatial": ["Recorder distance and position shape which harbor layers become audible."],
+      "bodily": [],
+      "archival": ["The store's curation and query scope decide which past listenings are available for comparison."],
+      "computational": ["Model caption and DSP features are distinct evidence streams and are marked per claim."]
+    },
+    "risks": {
+      "hallucination": ["Do not invent stored records or lineage links beyond the three consulted identifiers."],
+      "over_identification": ["Similarity between records must not become identity of source or place."],
+      "cultural_flattening": [],
+      "forensic_overreach": ["The series comparison is curatorial, not evidentiary."],
+      "source_confusion": ["Memory-derived claims are marked source: memory and never enter heard or measured for the present sound."],
+      "aesthetic_overstatement": []
+    },
+    "main_reading": "The recording reads as a recurrence within a known series: stable machinery keynote, thinning bird activity, with apparatus variation as an unresolved confound.",
+    "alternative_reading": "A signal-inspection pass over all four recordings under matched settings could test whether the apparent thinning is a capture artifact.",
+    "recommended_next_mode": "signal-inspection-listening"
+  },
+  "routing_plan": {
+    "object_listened_to": "Harbor field recording, fourth in a two-year series",
+    "input_type": "audio_file",
+    "route_confidence": "high",
+    "evidence_level": "mixed",
+    "budget": "standard",
+    "preset_id": "remember",
+    "mode_chain": [
+      { "mode": "memory-lineage-listening", "role": "primary", "reason": "The task is recurrence and registration against a stored series." },
+      { "mode": "acoulogical-object-listening", "role": "secondary", "reason": "Fresh perceptual description must precede memory comparison." },
+      { "mode": "signal-inspection-listening", "role": "corrective", "reason": "Apparent change across records could be apparatus change and needs measurement." }
+    ],
+    "claim_permissions": {
+      "heard_allowed": true,
+      "measured_allowed": true,
+      "inferred_allowed": true,
+      "interpreted_allowed": true,
+      "speculative_allowed": false,
+      "must_include_undetermined": true
+    },
+    "agent_handoff": {
+      "summary": "Run the remember preset: memory-lineage primary over three consulted records, acoulogical grounding first, signal corrective for apparatus confounds; register the listening with the prepared lineage note.",
+      "required_inputs": ["current audio file", "store query results with provenance", "record identifier from the host store"],
+      "forbidden_assumptions": [
+        "Do not treat store similarity as source identity.",
+        "Do not treat absence from the store as novelty in the world.",
+        "Do not read apparatus-driven change as site change."
+      ],
+      "recommended_command": "/remember"
+    },
+    "stop_conditions": [
+      "Stop before memory or lineage claims if the store or its query scope becomes unavailable.",
+      "Stop before registration if the host does not assign a record identifier."
+    ]
+  }
+}

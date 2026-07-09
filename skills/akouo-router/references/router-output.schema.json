@@ -81,7 +81,8 @@
         "/access",
         "/field",
         "/method",
-        "/route"
+        "/route",
+        "/remember"
       ]
     },
     "text_list": {

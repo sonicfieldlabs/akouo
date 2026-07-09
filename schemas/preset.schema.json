@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/preset.schema.json",
+  "title": "akoúō Listening Preset",
+  "description": "A named, reusable listening configuration for a recurring use-case: which command it runs, which modes it chains, how much perception work it authorizes, and whether it may read or write a sound-memory store. Presets are how host apps (players, daemons, benchmarks, studios) expose AKOÚŌ without re-deriving routes every time.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "description",
+    "command",
+    "mode_chain",
+    "cost_tier",
+    "memory_policy",
+    "enabled_by_default"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "command": {
+      "$ref": "router-output.schema.json#/$defs/command",
+      "description": "The AKOÚŌ command this preset runs. The command's guardrails always apply on top of the preset."
+    },
+    "mode_chain": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["mode", "role"],
+        "properties": {
+          "mode": {
+            "$ref": "listening-output.schema.json#/$defs/listening_mode"
+          },
+          "role": {
+            "type": "string",
+            "enum": ["primary", "secondary", "corrective", "optional", "deferred"]
+          }
+        }
+      }
+    },
+    "cost_tier": {
+      "type": "string",
+      "enum": ["light", "standard", "deep"],
+      "description": "How much perception work the preset authorizes. light: shortest viable chain and cheapest passes; standard: the command's typical chain; deep: every relevant pass."
+    },
+    "memory_policy": {
+      "type": "string",
+      "enum": ["none", "read", "write", "read_write"],
+      "description": "Whether runs under this preset may consult (read) or record into (write) a sound-memory store such as an earworm akousmata store."
+    },
+    "perception_passes": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "default": [],
+      "description": "Host-defined perception passes this preset requests (e.g. 'caption', 'events', 'transcribe', 'dsp'). Free strings: each host maps them to its own backends. An empty list means measurement-only listening."
+    },
+    "enabled_by_default": {
+      "type": "boolean"
+    }
+  }
+}

@@ -43,6 +43,9 @@ What is the perceptual shape of this sound, and how does that shape change when 
 - Describe morphology before source: mass, harmonic timbre, grain, dynamic envelope, allure, melodic profile, mass profile, density, contour, and spatial image.
 - Separate four intentions: causal listening asks what made the sound; semantic listening asks what it signifies; figurative listening asks what it represents; reduced listening asks what traits appear as sound.
 - Include ergo-audition when the listener or user produces the sound themself, such as voice, footsteps, instrument playing, typing, or gesture.
+- When a typological sketch helps, use the classic axes — mass/facture (tonic, complex, iterative), duration/variation (fixed or varying), balance/originality (stable or eccentric) — as descriptive scaffolding, never as a claim about the sound's production.
+- Grade causal claims by situation: cause seen and identified; cause unseen but identified by context; cause unseen and unidentified, where the sound is the only information and identification confidence must stay low. Causal vagueness between these situations is a legitimate finding with its own descriptive value, not a failure to resolve by guessing.
+- Recognizability is cultural: the repertoire of "immediately recognizable" sounds varies by community and media exposure, so a recognizability claim names its assumed listener.
 
 ## Input Assumptions
 
@@ -102,7 +105,9 @@ Return the shared listening output:
 - `alternative_reading`
 - `recommended_next_mode`
 
-> **Note to LLMs/Agents:** You MUST strictly follow the JSON schema provided in `references/listening-output.schema.json`. Ensure that the `listening_claims` object separates claims exactly as defined above. Each item inside `listening_claims.*` must be a claim object with `statement`, `confidence`, and optional `basis`, as defined in `references/claim-taxonomy.schema.json`; do not output bare strings in claim lists.
+Since v0.6 the shared schema also accepts optional instrumentation fields: `akouo_version`, `apparatus` (substrate, perception sources, known blind spots), `listener` (human, agent, or hybrid), `memory` (links to stored sound-memory records), and per-claim `source` and `time_range`. Declare the apparatus whenever it is known — a listening that hides its own technical conditions repeats the phantasmagoria it should expose — and give claims a `source` whenever different evidence streams could blur.
+
+> **Note to LLMs/Agents:** You MUST strictly follow the JSON schema provided in `references/listening-output.schema.json`. Ensure that the `listening_claims` object separates claims exactly as defined above. Each item inside `listening_claims.*` must be a claim object with `statement`, `confidence`, and optional `basis`, `source`, and `time_range`, as defined in `references/claim-taxonomy.schema.json`; do not output bare strings in claim lists.
 
 ## Internal Submodes
 

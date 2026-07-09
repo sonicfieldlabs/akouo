@@ -133,6 +133,8 @@ function modesForCommand(command: Exclude<CommandName, '/one-sound-many-ears'>, 
       return methodModes(request);
     case '/route':
       return [];
+    case '/remember':
+      return ['memory-lineage-listening', 'acoulogical-object-listening', 'signal-inspection-listening'];
   }
 }
 
@@ -314,6 +316,9 @@ function createModeOutput(mode: ListeningMode, request: ListeningRequest): Liste
       break;
     case 'material-event-listening':
       fillMaterialEvent(output, request);
+      break;
+    case 'memory-lineage-listening':
+      fillMemoryLineage(output, request);
       break;
   }
 
@@ -669,6 +674,29 @@ function fillMaterialEvent(output: ListeningOutput, request: ListeningRequest) {
   );
   output.main_reading = 'The material-event ear shifts from static sound object to vibration, duration, propagation, resonance, pressure, and process while keeping measurement limits visible.';
   output.alternative_reading = 'A signal pass can test extensive traits; an embodied pass can test bodily force only when playback and listener context are known.';
+}
+
+function fillMemoryLineage(output: ListeningOutput, request: ListeningRequest) {
+  const prompt = request.prompt?.trim();
+  output.mediations.archival.push('Stored records reflect the store’s curation, apparatus, and query scope, not the world.');
+  output.mediations.computational.push('The reference app has no sound-memory store attached; memory claims stay empty here.');
+  output.risks.hallucination.push('Never invent stored records, identifiers, counts, or lineage links.');
+  output.risks.source_confusion.push('Similarity between records is not identity of source, place, or author.');
+  output.recommended_next_mode = 'acoulogical-object-listening';
+
+  if (prompt) {
+    output.what_appears.push('The prompt can name the lineage question: recurrence, kinship, series, or registration into a store.');
+    output.listening_claims.interpreted.push(
+      createClaim('The sound can be situated in a lineage only after a store is consulted; until then lineage remains a question, not a finding.', 'high', 'Memory-lineage listening frame'),
+    );
+  }
+
+  output.listening_claims.undetermined.push(
+    createClaim('No sound-memory store is connected in this app, so recurrence, kinship, lineage, and change-over-time remain undetermined.', 'high', 'Store unavailable in the local reference app'),
+  );
+  output.what_remains_hidden.push('Which records a host store would return for this object, and what their provenance would permit, remains unknown here.');
+  output.main_reading = 'Memory-lineage listening compares present listening with stored records; without a store it can only define what the comparison would require.';
+  output.alternative_reading = 'A host app with an akousma-style store (see the v0.6 memory block) could return consulted records, lineage notes, and a registered record id.';
 }
 
 function ensureBaselineLimits(output: ListeningOutput, request: ListeningRequest) {

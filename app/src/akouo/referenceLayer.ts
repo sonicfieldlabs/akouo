@@ -301,6 +301,8 @@ function researchRouteForMode(mode: ListeningMode): string {
       return 'accessibility and hearing-norm audit across captions, transcripts, haptics, devices, bodies, and environments';
     case 'material-event-listening':
       return 'sound as material event across vibration, resonance, propagation, duration, and process';
+    case 'memory-lineage-listening':
+      return 'listening with stored sound-memories: recurrence, kinship, lineage, and change over time without treating memory as evidence';
   }
 }
 

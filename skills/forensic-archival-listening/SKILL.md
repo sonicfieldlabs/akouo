@@ -44,6 +44,9 @@ What can this sound testify, and where does testimony break down?
 - Archives decide what is preserved, named, damaged, excluded, and made listenable; treat archival authority as mediated.
 - Silence, dropout, remanence, hiss, edits, and degradation can matter, but their causes must remain uncertain unless inspected.
 - Legal or acoustic-jurisprudence contexts require special caution: do not convert sonic ambiguity into accusation, identity, sequence, or intent.
+- Under the `/forensic` command, claim permissions are overridden after the Evidence Ladder: `interpreted` and `speculative` are suppressed, and paralinguistic guesses (emotion, age, gender, identity) demote to `undetermined`.
+- Anchor evidentiary claims in time: since v0.6 each claim may carry a `time_range`; a claim without a time anchor is a claim about the whole recording and should say so. Invented temporal order is a named failure mode of model listeners.
+- Declare the apparatus and chain: capture device, codec history, edits, and the inspection toolchain belong in the v0.6 `apparatus` block; custody gaps belong in `what_remains_hidden`, not in silence.
 
 ## Input Assumptions
 
@@ -106,7 +109,9 @@ Return the shared listening output:
 - `alternative_reading`
 - `recommended_next_mode`
 
-> **Note to LLMs/Agents:** You MUST strictly follow the JSON schema provided in `references/listening-output.schema.json`. Ensure that the `listening_claims` object separates claims exactly as defined above. Each item inside `listening_claims.*` must be a claim object with `statement`, `confidence`, and optional `basis`, as defined in `references/claim-taxonomy.schema.json`; do not output bare strings in claim lists.
+Since v0.6 the shared schema also accepts optional instrumentation fields: `akouo_version`, `apparatus` (substrate, perception sources, known blind spots), `listener` (human, agent, or hybrid), `memory` (links to stored sound-memory records), and per-claim `source` and `time_range`. Declare the apparatus whenever it is known — a listening that hides its own technical conditions repeats the phantasmagoria it should expose — and give claims a `source` whenever different evidence streams could blur.
+
+> **Note to LLMs/Agents:** You MUST strictly follow the JSON schema provided in `references/listening-output.schema.json`. Ensure that the `listening_claims` object separates claims exactly as defined above. Each item inside `listening_claims.*` must be a claim object with `statement`, `confidence`, and optional `basis`, `source`, and `time_range`, as defined in `references/claim-taxonomy.schema.json`; do not output bare strings in claim lists.
 
 ## Evidence Discipline
 

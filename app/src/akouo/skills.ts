@@ -107,6 +107,13 @@ export const skillDefinitions: SkillDefinition[] = [
     guardrail: 'Do not replace measurement with ontology or treat vibration as universally shared.',
   },
   {
+    id: 'memory-lineage-listening',
+    label: 'Memory lineage',
+    mode: 'memory-lineage-listening',
+    purpose: 'Listens with stored sound-memories: recurrence, kinship, lineage, and change over time.',
+    guardrail: 'Memory is its own evidence stream; absence from the store is not novelty in the world.',
+  },
+  {
     id: 'reference-layer',
     label: 'Reference layer',
     purpose: 'Maps concepts, methods, traditions, authors, cautions, and adjacent listening routes.',

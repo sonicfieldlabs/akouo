@@ -1,0 +1,483 @@
+{
+  "akouo_version": "0.6",
+  "contract": "akouo/v0.6",
+  "description": "Machine-readable contract for AKOÚŌ v0.6. Host apps should load this manifest (and presets/presets.json) instead of hand-copying mode lists, command chains, or the evidence ladder from prose. Sentinel skill ids: 'router-selected' marks slots the router fills at run time; 'all-listening-modes' marks the comparative command's full sweep.",
+  "skills": [
+    {
+      "id": "akouo-router",
+      "kind": "router",
+      "label": "Router",
+      "summary": "Analyzes the listening situation and assigns primary, secondary, and corrective modes with evidence limits and claim permissions.",
+      "facets": ["routing"],
+      "cost_tier": "light",
+      "memory_policy": "none",
+      "corrective": false
+    },
+    {
+      "id": "signal-inspection-listening",
+      "kind": "mode",
+      "label": "Signal inspection",
+      "summary": "Technical ear for file, waveform, spectrogram, metadata, dynamics, frequency, stereo, artifacts, and measurable signal behavior.",
+      "facets": ["signal", "evidence"],
+      "cost_tier": "light",
+      "memory_policy": "none",
+      "corrective": true
+    },
+    {
+      "id": "acoulogical-object-listening",
+      "kind": "mode",
+      "label": "Acoulogical object",
+      "summary": "Perceptual ear for the auditum: texture, morphology, movement, and shape before source or meaning claims.",
+      "facets": ["perceptual"],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "corrective": true
+    },
+    {
+      "id": "embodied-affective-listening",
+      "kind": "mode",
+      "label": "Embodied affective",
+      "summary": "Body and affect ear for pressure, vibration, fatigue, pleasure, dread, propulsion, and bodily force.",
+      "facets": ["affect"],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "corrective": false
+    },
+    {
+      "id": "transductive-media-listening",
+      "kind": "mode",
+      "label": "Transductive media",
+      "summary": "Mediation ear for sensors, microphones, codecs, datasets, platforms, models, and conversion chains.",
+      "facets": ["media", "evidence"],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "corrective": true
+    },
+    {
+      "id": "forensic-archival-listening",
+      "kind": "mode",
+      "label": "Forensic archival",
+      "summary": "Evidentiary ear for testimony, archives, damage, custody, and recordings with legal or harm stakes.",
+      "facets": ["evidence"],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "corrective": true
+    },
+    {
+      "id": "ecological-posthuman-listening",
+      "kind": "mode",
+      "label": "Ecological posthuman",
+      "summary": "More-than-human ear for habitat, weather, field recording, infrastructure, and ecological relations.",
+      "facets": ["ecology"],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "corrective": false
+    },
+    {
+      "id": "critical-political-listening",
+      "kind": "mode",
+      "label": "Critical political",
+      "summary": "Power ear for platforms, labor, race, class, gender, coloniality, surveillance, access, and infrastructure stakes.",
+      "facets": ["politics"],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "corrective": true
+    },
+    {
+      "id": "musical-aesthetic-listening",
+      "kind": "mode",
+      "label": "Musical aesthetic",
+      "summary": "Musical ear for rhythm, pitch, harmony, timbre, texture, form, production aesthetics, and creative usefulness with genre caution.",
+      "facets": ["music", "perceptual"],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "corrective": false
+    },
+    {
+      "id": "symbolic-fictional-listening",
+      "kind": "mode",
+      "label": "Symbolic fictional",
+      "summary": "Declared speculative ear for sonic fiction, myth, ritual, worldbuilding, and possible worlds.",
+      "facets": ["fiction"],
+      "cost_tier": "light",
+      "memory_policy": "none",
+      "corrective": false
+    },
+    {
+      "id": "audiovisual-scenic-listening",
+      "kind": "mode",
+      "label": "Audiovisual scenic",
+      "summary": "Sound-image-text-scene ear for video, film, games, UI sound, captions, synchronization, and audiovisual phrasing.",
+      "facets": ["scene"],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "corrective": false
+    },
+    {
+      "id": "voice-speech-listening",
+      "kind": "mode",
+      "label": "Voice speech",
+      "summary": "Voice and transcript ear for speech, ASR, TTS, voice agents, prosody, intelligibility, identity caution, and consent.",
+      "facets": ["speech"],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "corrective": false
+    },
+    {
+      "id": "accessibility-normative-listening",
+      "kind": "mode",
+      "label": "Accessibility normative",
+      "summary": "Access ear for captions, transcripts, haptics, sensory variation, fatigue, masking, and implied listener assumptions.",
+      "facets": ["access"],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "corrective": true
+    },
+    {
+      "id": "material-event-listening",
+      "kind": "mode",
+      "label": "Material event",
+      "summary": "Material ear for vibration, resonance, duration, flux, propagation, loudspeakers, rooms, and sonic process.",
+      "facets": ["material"],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "corrective": false
+    },
+    {
+      "id": "memory-lineage-listening",
+      "kind": "mode",
+      "label": "Memory lineage",
+      "summary": "Memory ear that listens with stored sound-memories: recurrence, kinship, lineage, and change over time, without treating memory as evidence.",
+      "facets": ["memory", "perceptual"],
+      "cost_tier": "standard",
+      "memory_policy": "read",
+      "corrective": false
+    },
+    {
+      "id": "reference-layer",
+      "kind": "reference",
+      "label": "Reference layer",
+      "summary": "Maps listening results to concepts, methods, traditions, research routes, cautions, and adjacent modes.",
+      "facets": ["reference"],
+      "cost_tier": "light",
+      "memory_policy": "none",
+      "corrective": false
+    }
+  ],
+  "commands": [
+    {
+      "name": "/listen",
+      "label": "Listen",
+      "summary": "Default routed pass through router-selected primary, secondary, and corrective ears.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "router-selected", "role": "primary" },
+        { "skill": "router-selected", "role": "secondary" },
+        { "skill": "router-selected", "role": "corrective" }
+      ],
+      "recommended_next_mode": "undetermined"
+    },
+    {
+      "name": "/full-ear",
+      "label": "Full ear",
+      "summary": "Broad multimodal scan across signal, object, music, body, mediation, and material event.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "signal-inspection-listening", "role": "primary" },
+        { "skill": "acoulogical-object-listening", "role": "secondary" },
+        { "skill": "musical-aesthetic-listening", "role": "optional" },
+        { "skill": "embodied-affective-listening", "role": "optional" },
+        { "skill": "transductive-media-listening", "role": "optional" },
+        { "skill": "material-event-listening", "role": "optional" },
+        { "skill": "critical-political-listening", "role": "corrective" }
+      ],
+      "recommended_next_mode": "critical-political-listening"
+    },
+    {
+      "name": "/study",
+      "label": "Study",
+      "summary": "Research-oriented route for sonic methods, critique, context, and references.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "acoulogical-object-listening", "role": "primary" },
+        { "skill": "router-selected", "role": "secondary" },
+        { "skill": "critical-political-listening", "role": "corrective" },
+        { "skill": "reference-layer", "role": "reference" }
+      ],
+      "recommended_next_mode": "critical-political-listening"
+    },
+    {
+      "name": "/tech",
+      "label": "Tech",
+      "summary": "Technical inspection of file, waveform, spectrogram, metadata, and media chain.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "signal-inspection-listening", "role": "primary" },
+        { "skill": "transductive-media-listening", "role": "secondary" }
+      ],
+      "recommended_next_mode": "transductive-media-listening"
+    },
+    {
+      "name": "/reference",
+      "label": "Reference",
+      "summary": "Conceptual map of methods, authors, traditions, cautions, and adjacent modes.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "reference-layer", "role": "reference" }
+      ],
+      "recommended_next_mode": "none"
+    },
+    {
+      "name": "/litany",
+      "label": "Litany",
+      "summary": "Audits simplistic sound-versus-vision claims through grounded listening.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "critical-political-listening", "role": "primary" },
+        { "skill": "transductive-media-listening", "role": "secondary" },
+        { "skill": "audiovisual-scenic-listening", "role": "optional" },
+        { "skill": "acoulogical-object-listening", "role": "corrective" }
+      ],
+      "recommended_next_mode": "critical-political-listening"
+    },
+    {
+      "name": "/fiction",
+      "label": "Fiction",
+      "summary": "Declared speculative sonic worldbuilding with affective and critical corrections.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "symbolic-fictional-listening", "role": "primary" },
+        { "skill": "embodied-affective-listening", "role": "secondary" },
+        { "skill": "ecological-posthuman-listening", "role": "optional" },
+        { "skill": "critical-political-listening", "role": "corrective" }
+      ],
+      "recommended_next_mode": "embodied-affective-listening"
+    },
+    {
+      "name": "/forensic",
+      "label": "Forensic",
+      "summary": "Strict evidentiary pass for testimony, archives, damage, and harm contexts.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "forensic-archival-listening", "role": "primary" },
+        { "skill": "signal-inspection-listening", "role": "secondary" },
+        { "skill": "critical-political-listening", "role": "corrective" }
+      ],
+      "recommended_next_mode": "critical-political-listening"
+    },
+    {
+      "name": "/transduce",
+      "label": "Transduce",
+      "summary": "Mediation-chain mapping for sensors, codecs, models, sonification, and platforms.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "transductive-media-listening", "role": "primary" },
+        { "skill": "signal-inspection-listening", "role": "secondary" },
+        { "skill": "voice-speech-listening", "role": "optional" },
+        { "skill": "accessibility-normative-listening", "role": "optional" },
+        { "skill": "critical-political-listening", "role": "corrective" }
+      ],
+      "recommended_next_mode": "signal-inspection-listening"
+    },
+    {
+      "name": "/voice",
+      "label": "Voice",
+      "summary": "Voice and speech pass with identity, consent, and access cautions.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "voice-speech-listening", "role": "primary" },
+        { "skill": "transductive-media-listening", "role": "secondary" },
+        { "skill": "accessibility-normative-listening", "role": "corrective" },
+        { "skill": "critical-political-listening", "role": "optional" }
+      ],
+      "recommended_next_mode": "accessibility-normative-listening"
+    },
+    {
+      "name": "/audiovision",
+      "label": "Audiovision",
+      "summary": "Sound-image-scene pass for video, film, games, captions, and synchronization.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "audiovisual-scenic-listening", "role": "primary" },
+        { "skill": "acoulogical-object-listening", "role": "secondary" },
+        { "skill": "voice-speech-listening", "role": "optional" },
+        { "skill": "critical-political-listening", "role": "corrective" }
+      ],
+      "recommended_next_mode": "acoulogical-object-listening"
+    },
+    {
+      "name": "/access",
+      "label": "Access",
+      "summary": "Accessibility and hearing-norm audit for captions, haptics, alerts, and implied listeners.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "accessibility-normative-listening", "role": "primary" },
+        { "skill": "voice-speech-listening", "role": "optional" },
+        { "skill": "embodied-affective-listening", "role": "optional" },
+        { "skill": "critical-political-listening", "role": "corrective" }
+      ],
+      "recommended_next_mode": "critical-political-listening"
+    },
+    {
+      "name": "/field",
+      "label": "Field",
+      "summary": "Field-recording and situated-listening route with mediation and ethics cautions.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "ecological-posthuman-listening", "role": "primary" },
+        { "skill": "transductive-media-listening", "role": "secondary" },
+        { "skill": "critical-political-listening", "role": "corrective" },
+        { "skill": "material-event-listening", "role": "optional" }
+      ],
+      "recommended_next_mode": "material-event-listening"
+    },
+    {
+      "name": "/method",
+      "label": "Method",
+      "summary": "Sonic methodology and agent-handoff route for research design and workflow planning.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "acoulogical-object-listening", "role": "primary" },
+        { "skill": "critical-political-listening", "role": "secondary" },
+        { "skill": "accessibility-normative-listening", "role": "corrective" },
+        { "skill": "reference-layer", "role": "reference" }
+      ],
+      "recommended_next_mode": "none"
+    },
+    {
+      "name": "/route",
+      "label": "Route",
+      "summary": "Router-only handoff plan: mode chain, evidence limits, risks, and forbidden assumptions.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" }
+      ],
+      "recommended_next_mode": "none"
+    },
+    {
+      "name": "/remember",
+      "label": "Remember",
+      "summary": "Memory route: situates the sound in its lineage against stored records and registers the listening into the store.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "memory-lineage-listening", "role": "primary" },
+        { "skill": "acoulogical-object-listening", "role": "secondary" },
+        { "skill": "signal-inspection-listening", "role": "corrective" }
+      ],
+      "recommended_next_mode": "none"
+    },
+    {
+      "name": "/one-sound-many-ears",
+      "label": "One sound many ears",
+      "summary": "Comparative flagship: one sonic object through every public listening mode.",
+      "chain": [
+        { "skill": "all-listening-modes", "role": "all-modes" }
+      ],
+      "recommended_next_mode": "undetermined"
+    }
+  ],
+  "evidence_ladder": [
+    {
+      "level": "none",
+      "heard_allowed": false,
+      "measured_allowed": false,
+      "inferred_allowed": false,
+      "interpreted_allowed": false,
+      "speculative_allowed": false,
+      "must_include_undetermined": true,
+      "notes": "No usable input: stop and request the object, input type, or intent."
+    },
+    {
+      "level": "prompt_only",
+      "heard_allowed": true,
+      "measured_allowed": false,
+      "inferred_allowed": true,
+      "interpreted_allowed": true,
+      "speculative_allowed": false,
+      "must_include_undetermined": true,
+      "notes": "heard covers prompt content only; inferences from prompt logic only; interpretation must be marked as a reading of a description."
+    },
+    {
+      "level": "metadata_only",
+      "heard_allowed": false,
+      "measured_allowed": true,
+      "inferred_allowed": true,
+      "interpreted_allowed": true,
+      "speculative_allowed": false,
+      "must_include_undetermined": true,
+      "notes": "measured covers metadata facts only; interpret cautiously."
+    },
+    {
+      "level": "decoded_audio_metadata",
+      "heard_allowed": true,
+      "measured_allowed": true,
+      "inferred_allowed": true,
+      "interpreted_allowed": true,
+      "speculative_allowed": false,
+      "must_include_undetermined": true,
+      "notes": "heard only if audio was actually decoded and described; measured covers duration, sample rate, channels, and basic amplitude only."
+    },
+    {
+      "level": "measured_signal",
+      "heard_allowed": true,
+      "measured_allowed": true,
+      "inferred_allowed": true,
+      "interpreted_allowed": true,
+      "speculative_allowed": false,
+      "must_include_undetermined": true,
+      "notes": "measured within the limits of the tool used; declare the apparatus."
+    },
+    {
+      "level": "transcript_or_caption",
+      "heard_allowed": true,
+      "measured_allowed": false,
+      "inferred_allowed": true,
+      "interpreted_allowed": true,
+      "speculative_allowed": false,
+      "must_include_undetermined": true,
+      "notes": "heard covers text content only, never vocal sound; inferences limited to segmentation and format; interpretation marked as text-based."
+    },
+    {
+      "level": "contextual_note",
+      "heard_allowed": true,
+      "measured_allowed": false,
+      "inferred_allowed": true,
+      "interpreted_allowed": true,
+      "speculative_allowed": false,
+      "must_include_undetermined": true,
+      "notes": "heard covers described content only; inferences from stated context."
+    },
+    {
+      "level": "mixed",
+      "heard_allowed": true,
+      "measured_allowed": true,
+      "inferred_allowed": true,
+      "interpreted_allowed": true,
+      "speculative_allowed": false,
+      "must_include_undetermined": true,
+      "notes": "Apply the weakest applicable permission to each individual claim per component; measured requires an actually-measured component."
+    }
+  ],
+  "command_permission_overrides": {
+    "/forensic": {
+      "interpreted_allowed": false,
+      "speculative_allowed": false,
+      "note": "Strict evidentiary route: paralinguistic and interpretive speculation is suppressed; emotion, age, gender, and identity guesses demote to undetermined."
+    },
+    "/fiction": {
+      "speculative_allowed": true,
+      "note": "Declared fiction grants speculative permission by user intent; evidence categories keep their ladder limits."
+    }
+  },
+  "presets_file": "presets/presets.json",
+  "schemas": {
+    "listening_output": "schemas/listening-output.schema.json",
+    "claim_taxonomy": "schemas/claim-taxonomy.schema.json",
+    "router_output": "schemas/router-output.schema.json",
+    "routing_plan": "schemas/routing-plan.schema.json",
+    "command_output": "schemas/command-output.schema.json",
+    "comparative_listening_output": "schemas/comparative-listening-output.schema.json",
+    "reference_map": "schemas/reference-map.schema.json",
+    "preset": "schemas/preset.schema.json",
+    "manifest": "schemas/manifest.schema.json"
+  }
+}

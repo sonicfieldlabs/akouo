@@ -4,7 +4,7 @@ A quick-reference manifest of all portable listening skills in this repository.
 
 ## Version Notes
 
-`v0.5` consolidates the agentic routing layer with `reference-layer`, expanded routing plans, evidence-level claim permissions, and deeper browser-side signal estimates in the app. `v0.4` expanded the system with `voice-speech-listening`, `audiovisual-scenic-listening`, `accessibility-normative-listening`, and `material-event-listening`; `v0.3` added `musical-aesthetic-listening`; `v0.2` preserved the original mode set while refining evidence discipline, mediation awareness, and public conceptual boundaries.
+`v0.6` instruments the system for host apps: the machine-readable contract `akouo.manifest.json`, portable presets in `presets/`, the new `memory-lineage-listening` mode with the `/remember` command, apparatus/listener/memory declarations, per-claim `source` and `time_range`, and budget-aware routing plans. `v0.5` consolidated the agentic routing layer with `reference-layer`, expanded routing plans, evidence-level claim permissions, and deeper browser-side signal estimates in the app. `v0.4` expanded the system with `voice-speech-listening`, `audiovisual-scenic-listening`, `accessibility-normative-listening`, and `material-event-listening`; `v0.3` added `musical-aesthetic-listening`; `v0.2` preserved the original mode set while refining evidence discipline, mediation awareness, and public conceptual boundaries.
 
 ## Meta-Skills
 
@@ -30,6 +30,7 @@ A quick-reference manifest of all portable listening skills in this repository.
 | [`voice-speech-listening`](skills/voice-speech-listening/SKILL.md) | Voice, speech, and transcript ear. | Spoken audio, transcripts, ASR, TTS, voice agents, voice cloning, podcasts, radio, diarization, intelligibility, consent, and identity caution. |
 | [`accessibility-normative-listening`](skills/accessibility-normative-listening/SKILL.md) | Accessibility and hearing-norm ear. | Captions, transcripts, haptics, deaf and hard-of-hearing access, sensory variation, fatigue, masking, alerts, assistive technology, and implied listener audits. |
 | [`material-event-listening`](skills/material-event-listening/SKILL.md) | Material, vibration, and event ear. | Resonance, vibration, duration, flux, feedback, low frequencies, installation sound, propagation, loudspeakers, room coupling, and sonic process. |
+| [`memory-lineage-listening`](skills/memory-lineage-listening/SKILL.md) | Sound-memory and lineage ear. | Stored listening records, akousma/akousmata stores, recurrence, kinship, lineage, series over time, archive comparison, and registering listenings into a store. |
 
 ## Schema Bundles
 

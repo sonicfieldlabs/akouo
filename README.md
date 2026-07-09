@@ -12,7 +12,7 @@ AKOÚŌ does not pretend that agents hear like humans. It gives them accountable
 
 This public release contains the portable AKOÚŌ skills, router, command definitions, schemas, and a local-first reference app for running the listening workflows.
 
-Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current release contract: `v0.5`.
+Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current release contract: `v0.6`.
 
 ## Version Status
 
@@ -21,6 +21,7 @@ Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current r
 - `v0.3` adds `musical-aesthetic-listening` as a public mode for music, rhythm, pitch, harmony, texture, sound-design utility, poetic usefulness, and genre/cultural caution.
 - `v0.4` expands AKOÚŌ into a more portable listening router for agentic workflows with voice/speech, audiovisual/scene, accessibility/normativity, and material/event listening.
 - `v0.5` consolidates agentic routing: `reference-layer` becomes a portable meta-skill, routing plans carry evidence levels and claim permissions, the app gains deeper browser-side signal estimates, and `SYSTEM_GUIDE.md` documents the integration contract.
+- `v0.6` instruments the system for host apps: a machine-readable contract (`akouo.manifest.json`), portable listening presets (`presets/`), the new `memory-lineage-listening` mode and `/remember` command for sound-memory stores, apparatus/listener/memory declarations on outputs, per-claim `source` and `time_range`, budget-aware routing plans, and command-level claim-permission overrides.
 
 ## Core Idea
 
@@ -54,6 +55,20 @@ Every output must distinguish its findings into the following epistemic categori
 - `undetermined`: what cannot be responsibly claimed
 
 This taxonomy is the main public contract of the system, preventing LLMs from hallucinating certainty or confusing a theoretical reading for a forensic measurement.
+
+## v0.6 Instrumented Listening
+
+The v0.6 release makes AKOÚŌ consumable as data, not just prose, and connects it to sound-memory stores. It adds:
+
+- `akouo.manifest.json`: the machine-readable contract — skills with structured metadata (facets, cost tier, memory policy, corrective eligibility), command chains as data, the Evidence Ladder as data, and command permission overrides. Host apps load this instead of hand-copying tables that drift.
+- `presets/presets.json`: portable listening presets for recurring use-cases (basic, signal, field, music, voice, recall, remember, deep, forensic, access, fiction, generative, extended-spectrum), each with a mode chain, cost tier, memory policy, and perception passes.
+- `memory-lineage-listening`: the fourteenth mode. It listens WITH stored sound-memories (earworm-style akousma records): recurrence, kinship, lineage, and change over time — while keeping memory as its own evidence stream, never proof about the present sound.
+- `/remember`: the memory command — situate a sound in its lineage and register the listening into a store.
+- Apparatus declarations: outputs can declare their listening substrate (ASR cascade, audio-token model, speech-native model, DSP toolchain, human ear, hybrid stack), perception sources, and known blind spots, so claim limits derive from the declared apparatus instead of surfacing after the fact.
+- `listener` (human/agent/hybrid) and `memory` (akousma links) blocks on outputs, plus `akouo_version` for contract pinning.
+- Per-claim `source` (audio, dsp, metadata, model, transcript, context, memory, human) and `time_range`, so evidence streams never blur and temporal claims stay anchored.
+- Budget-aware routing: plans may carry `budget` (light/standard/deep) and `preset_id`; risk always overrides budget.
+- Command permission overrides as data: `/forensic` suppresses interpreted/speculative claims; `/fiction` grants declared speculation.
 
 ## v0.5 Agentic Routing Consolidation
 
@@ -92,7 +107,7 @@ The v0.2 skills keep the same public schemas and mode names, but sharpen the con
 
 ## Core Architecture
 
-akoúō is organized as one meta-router, thirteen distinct listening modes, and one conceptual reference layer. These are packaged as portable agent skills (`skills/`) that can be injected into any LLM agent supporting skill-based system prompts or custom instructions.
+akoúō is organized as one meta-router, fourteen distinct listening modes, and one conceptual reference layer. These are packaged as portable agent skills (`skills/`) that can be injected into any LLM agent supporting skill-based system prompts or custom instructions.
 
 - `akouo-router` (meta-skill: chooses modes before analysis)
 - `signal-inspection-listening`
@@ -108,6 +123,7 @@ akoúō is organized as one meta-router, thirteen distinct listening modes, and 
 - `voice-speech-listening`
 - `accessibility-normative-listening`
 - `material-event-listening`
+- `memory-lineage-listening`
 - `reference-layer` (meta-skill: maps listening to concepts, methods, traditions, and cautions)
 
 Each skill lives in its own folder with a `SKILL.md` file, following the standard skill format used by OpenCode, Claude Code, and compatible agent frameworks.
@@ -210,10 +226,13 @@ akouo/
   AGENTS.md            # Instructions for AI agents working on this project
   SYSTEM_GUIDE.md      # Operational guide for commands, workflows, and app contract
   SKILL_INDEX.md       # Quick-reference manifest of all skills
-  CHANGELOG.md         # Release history from v0.1 through v0.5
+  CHANGELOG.md         # Release history from v0.1 through v0.6
+  akouo.manifest.json  # Machine-readable system contract (skills, commands, ladder, overrides)
   LICENSE
   .gitignore
   app/                 # Local-first reference app for running AKOÚŌ workflows
+  presets/
+    presets.json         # Portable listening presets (validated by schemas/preset.schema.json)
   scripts/
     validate-release.sh  # Pre-release validation script
   skills/
@@ -259,6 +278,9 @@ akouo/
     material-event-listening/
       SKILL.md
       references/
+    memory-lineage-listening/
+      SKILL.md
+      references/
     reference-layer/
       SKILL.md
       references/
@@ -288,8 +310,10 @@ Done:
 - v0.4 working expansion for voice, audiovisual scene, accessibility, material event, router scoring, and agent handoff commands
 - v0.5 consolidation of `reference-layer`, router Evidence Ladder, documented agentic integration contract, and expanded routing plans
 - Deeper browser-side signal adapter in the reference app: BS.1770-style loudness and loudness range, FFT band-energy and spectral statistics, onset density with a guarded BPM candidate, and stereo correlation/width/balance
+- v0.6 machine-readable contract (`akouo.manifest.json`), portable presets, `memory-lineage-listening` + `/remember` for sound-memory stores, apparatus/listener/memory declarations, per-claim `source`/`time_range`, and budget-aware routing
 Next: 
 - Sample-accurate waveform and spectrogram visualization with true-peak metering
+- A store-connected reference flow demonstrating `/remember` against a real akousmata store
 - Stronger interop examples for calling AKOÚŌ from other agent apps and frameworks
 
 ## License

@@ -162,4 +162,12 @@ export const commandDefinitions: CommandDefinition[] = [
     executionOrder: ['Identify evidence', 'Score listening frames', 'Return mode chain and forbidden assumptions'],
     outputSchema: 'schemas/command-output.schema.json',
   },
+  {
+    name: '/remember',
+    label: 'Remember',
+    description: 'Memory route: situates the sound in its lineage against stored records and registers the listening.',
+    skillsCalled: ['akouo-router', 'memory-lineage-listening', 'acoulogical-object-listening', 'signal-inspection-listening'],
+    executionOrder: ['Route with store availability', 'Describe the auditum freshly', 'Compare against stored records', 'Correct apparatus-driven change readings'],
+    outputSchema: 'schemas/command-output.schema.json',
+  },
 ];

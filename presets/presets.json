@@ -1,0 +1,207 @@
+{
+  "akouo_version": "0.6",
+  "description": "Portable listening presets: named configurations for recurring use-cases. Each preset validates against schemas/preset.schema.json. Hosts map perception_passes to their own backends; 'dsp' means deterministic signal measurement, the others are model perception passes. The router may still add or strengthen a corrective mode when the object's risk demands it — presets configure listening, they never waive guardrails.",
+  "presets": [
+    {
+      "id": "basic",
+      "name": "Basic",
+      "description": "Fast first pass: one perceptual description plus measured signal facts under full claim discipline.",
+      "command": "/listen",
+      "mode_chain": [
+        { "mode": "acoulogical-object-listening", "role": "primary" },
+        { "mode": "signal-inspection-listening", "role": "secondary" },
+        { "mode": "transductive-media-listening", "role": "corrective" }
+      ],
+      "cost_tier": "light",
+      "memory_policy": "none",
+      "perception_passes": ["caption", "dsp"],
+      "enabled_by_default": true
+    },
+    {
+      "id": "signal",
+      "name": "Signal",
+      "description": "Technical diagnostics with measured facts only; no model perception passes.",
+      "command": "/tech",
+      "mode_chain": [
+        { "mode": "signal-inspection-listening", "role": "primary" },
+        { "mode": "transductive-media-listening", "role": "secondary" }
+      ],
+      "cost_tier": "light",
+      "memory_policy": "none",
+      "perception_passes": ["dsp"],
+      "enabled_by_default": true
+    },
+    {
+      "id": "field",
+      "name": "Field",
+      "description": "Soundscape and ecology listening for field recordings, rooms, infrastructure, and ambience.",
+      "command": "/field",
+      "mode_chain": [
+        { "mode": "ecological-posthuman-listening", "role": "primary" },
+        { "mode": "transductive-media-listening", "role": "secondary" },
+        { "mode": "critical-political-listening", "role": "corrective" },
+        { "mode": "material-event-listening", "role": "optional" }
+      ],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "perception_passes": ["caption", "events", "dsp"],
+      "enabled_by_default": true
+    },
+    {
+      "id": "music",
+      "name": "Music",
+      "description": "Musical and production-oriented listening with genre and cultural caution.",
+      "command": "/listen",
+      "mode_chain": [
+        { "mode": "musical-aesthetic-listening", "role": "primary" },
+        { "mode": "signal-inspection-listening", "role": "secondary" },
+        { "mode": "critical-political-listening", "role": "corrective" }
+      ],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "perception_passes": ["music", "caption", "dsp"],
+      "enabled_by_default": true
+    },
+    {
+      "id": "voice",
+      "name": "Voice",
+      "description": "Speech and transcript route with identity, consent, and access caution.",
+      "command": "/voice",
+      "mode_chain": [
+        { "mode": "voice-speech-listening", "role": "primary" },
+        { "mode": "transductive-media-listening", "role": "secondary" },
+        { "mode": "accessibility-normative-listening", "role": "corrective" }
+      ],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "perception_passes": ["transcribe", "speech", "dsp"],
+      "enabled_by_default": true
+    },
+    {
+      "id": "recall",
+      "name": "Recall",
+      "description": "Listening with memory: compares the current sound against stored sound-memory records without writing anything.",
+      "command": "/listen",
+      "mode_chain": [
+        { "mode": "memory-lineage-listening", "role": "primary" },
+        { "mode": "acoulogical-object-listening", "role": "secondary" },
+        { "mode": "transductive-media-listening", "role": "corrective" }
+      ],
+      "cost_tier": "standard",
+      "memory_policy": "read",
+      "perception_passes": ["caption", "dsp"],
+      "enabled_by_default": true
+    },
+    {
+      "id": "remember",
+      "name": "Remember",
+      "description": "Registers the current listening into the sound-memory store and situates it in its lineage.",
+      "command": "/remember",
+      "mode_chain": [
+        { "mode": "memory-lineage-listening", "role": "primary" },
+        { "mode": "acoulogical-object-listening", "role": "secondary" },
+        { "mode": "signal-inspection-listening", "role": "corrective" }
+      ],
+      "cost_tier": "standard",
+      "memory_policy": "read_write",
+      "perception_passes": ["caption", "dsp"],
+      "enabled_by_default": true
+    },
+    {
+      "id": "deep",
+      "name": "Deep",
+      "description": "Full survey: every relevant perception pass and a broad mode chain, with memory comparison available.",
+      "command": "/full-ear",
+      "mode_chain": [
+        { "mode": "signal-inspection-listening", "role": "primary" },
+        { "mode": "acoulogical-object-listening", "role": "secondary" },
+        { "mode": "musical-aesthetic-listening", "role": "optional" },
+        { "mode": "embodied-affective-listening", "role": "optional" },
+        { "mode": "transductive-media-listening", "role": "optional" },
+        { "mode": "material-event-listening", "role": "optional" },
+        { "mode": "memory-lineage-listening", "role": "optional" },
+        { "mode": "critical-political-listening", "role": "corrective" }
+      ],
+      "cost_tier": "deep",
+      "memory_policy": "read",
+      "perception_passes": ["transcribe", "events", "caption", "speech", "music", "dsp"],
+      "enabled_by_default": true
+    },
+    {
+      "id": "forensic",
+      "name": "Forensic",
+      "description": "Strict evidentiary route: measured grounding, archival restraint, suppressed interpretation.",
+      "command": "/forensic",
+      "mode_chain": [
+        { "mode": "forensic-archival-listening", "role": "primary" },
+        { "mode": "signal-inspection-listening", "role": "secondary" },
+        { "mode": "critical-political-listening", "role": "corrective" }
+      ],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "perception_passes": ["dsp", "events", "transcribe"],
+      "enabled_by_default": true
+    },
+    {
+      "id": "access",
+      "name": "Access",
+      "description": "Accessibility and hearing-norm audit for captions, transcripts, haptics, alerts, and implied listeners.",
+      "command": "/access",
+      "mode_chain": [
+        { "mode": "accessibility-normative-listening", "role": "primary" },
+        { "mode": "voice-speech-listening", "role": "optional" },
+        { "mode": "embodied-affective-listening", "role": "optional" },
+        { "mode": "critical-political-listening", "role": "corrective" }
+      ],
+      "cost_tier": "standard",
+      "memory_policy": "none",
+      "perception_passes": ["transcribe", "caption"],
+      "enabled_by_default": true
+    },
+    {
+      "id": "fiction",
+      "name": "Fiction",
+      "description": "Declared speculative worldbuilding with affective force mapping and a critical corrective.",
+      "command": "/fiction",
+      "mode_chain": [
+        { "mode": "symbolic-fictional-listening", "role": "primary" },
+        { "mode": "embodied-affective-listening", "role": "secondary" },
+        { "mode": "critical-political-listening", "role": "corrective" }
+      ],
+      "cost_tier": "light",
+      "memory_policy": "none",
+      "perception_passes": ["caption"],
+      "enabled_by_default": true
+    },
+    {
+      "id": "generative",
+      "name": "Generative",
+      "description": "Grounded listening-to-generation bridge: turns observations into transformation or synthesis briefs without generating audio.",
+      "command": "/listen",
+      "mode_chain": [
+        { "mode": "acoulogical-object-listening", "role": "primary" },
+        { "mode": "material-event-listening", "role": "secondary" },
+        { "mode": "transductive-media-listening", "role": "corrective" }
+      ],
+      "cost_tier": "standard",
+      "memory_policy": "read",
+      "perception_passes": ["caption", "events", "dsp"],
+      "enabled_by_default": false
+    },
+    {
+      "id": "extended-spectrum",
+      "name": "Extended Spectrum",
+      "description": "Measurement-first route that states sample-rate and capture-chain limits before any ultrasonic or infrasonic interpretation.",
+      "command": "/tech",
+      "mode_chain": [
+        { "mode": "signal-inspection-listening", "role": "primary" },
+        { "mode": "material-event-listening", "role": "secondary" },
+        { "mode": "transductive-media-listening", "role": "corrective" }
+      ],
+      "cost_tier": "light",
+      "memory_policy": "none",
+      "perception_passes": ["dsp"],
+      "enabled_by_default": false
+    }
+  ]
+}

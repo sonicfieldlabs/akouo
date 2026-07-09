@@ -78,6 +78,16 @@
         { "$ref": "listening-output.schema.json#/$defs/listening_mode" },
         { "type": "string", "enum": ["none", "undetermined"] }
       ]
+    },
+    "akouo_version": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional AKOÚŌ contract version that produced this command output (e.g. \"0.6\")."
+    },
+    "preset_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional identifier of the preset (presets/presets.json) that configured this run."
     }
   },
   "$defs": {
@@ -98,6 +108,7 @@
         "voice-speech-listening",
         "accessibility-normative-listening",
         "material-event-listening",
+        "memory-lineage-listening",
         "reference-layer"
       ]
     },

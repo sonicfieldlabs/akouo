@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/manifest.schema.json",
+  "title": "akoúō System Manifest",
+  "description": "Machine-readable contract for the whole AKOÚŌ release: skills with structured metadata, command chains, the evidence ladder, command permission overrides, and pointers to presets and schemas. Host apps should load this file instead of hand-copying tables from prose, so integrations stop drifting from the source of truth.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "akouo_version",
+    "contract",
+    "description",
+    "skills",
+    "commands",
+    "evidence_ladder",
+    "command_permission_overrides",
+    "presets_file",
+    "schemas"
+  ],
+  "properties": {
+    "akouo_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "contract": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Pinnable contract identifier, e.g. 'akouo/v0.6'."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "skills": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "label", "summary", "facets", "cost_tier", "memory_policy", "corrective"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+          "kind": { "type": "string", "enum": ["router", "mode", "reference"] },
+          "label": { "type": "string", "minLength": 1 },
+          "summary": { "type": "string", "minLength": 1 },
+          "facets": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "routing",
+                "signal",
+                "perceptual",
+                "music",
+                "affect",
+                "media",
+                "evidence",
+                "ecology",
+                "politics",
+                "fiction",
+                "scene",
+                "speech",
+                "access",
+                "material",
+                "memory",
+                "reference"
+              ]
+            },
+            "minItems": 1,
+            "description": "Practical facets for host-side grouping and preset design; the theoretical mode identity stays in the skill id."
+          },
+          "cost_tier": { "type": "string", "enum": ["light", "standard", "deep"] },
+          "memory_policy": { "type": "string", "enum": ["none", "read", "write", "read_write"] },
+          "corrective": {
+            "type": "boolean",
+            "description": "Whether the router may assign this skill as a corrective mode."
+          }
+        }
+      }
+    },
+    "commands": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "label", "summary", "chain", "recommended_next_mode"],
+        "properties": {
+          "name": { "$ref": "router-output.schema.json#/$defs/command" },
+          "label": { "type": "string", "minLength": 1 },
+          "summary": { "type": "string", "minLength": 1 },
+          "chain": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["skill", "role"],
+              "properties": {
+                "skill": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+                "role": { "type": "string", "enum": ["router", "primary", "secondary", "corrective", "optional", "deferred", "reference", "all-modes"] }
+              }
+            },
+            "minItems": 1,
+            "description": "The command's typical chain as data. 'router-selected' slots use the role with the skill id 'akouo-router'; /one-sound-many-ears uses a single 'all-modes' entry."
+          },
+          "recommended_next_mode": {
+            "oneOf": [
+              { "$ref": "listening-output.schema.json#/$defs/listening_mode" },
+              { "type": "string", "enum": ["none", "undetermined"] }
+            ]
+          }
+        }
+      }
+    },
+    "evidence_ladder": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["level", "heard_allowed", "measured_allowed", "inferred_allowed", "interpreted_allowed", "speculative_allowed", "must_include_undetermined", "notes"],
+        "properties": {
+          "level": { "$ref": "routing-plan.schema.json#/properties/evidence_level" },
+          "heard_allowed": { "type": "boolean" },
+          "measured_allowed": { "type": "boolean" },
+          "inferred_allowed": { "type": "boolean" },
+          "interpreted_allowed": { "type": "boolean" },
+          "speculative_allowed": { "type": "boolean", "description": "Always false in the ladder: speculation is granted by declared user intent or a command override, never by evidence." },
+          "must_include_undetermined": { "type": "boolean" },
+          "notes": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "command_permission_overrides": {
+      "type": "object",
+      "description": "Per-command claim-permission modifiers applied AFTER the evidence ladder. Keys are command names.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "heard_allowed": { "type": "boolean" },
+          "measured_allowed": { "type": "boolean" },
+          "inferred_allowed": { "type": "boolean" },
+          "interpreted_allowed": { "type": "boolean" },
+          "speculative_allowed": { "type": "boolean" },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "presets_file": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Repo-relative path to the presets file; each entry validates against preset.schema.json."
+    },
+    "schemas": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "minLength": 1 },
+      "description": "Map of schema names to repo-relative paths."
+    }
+  }
+}

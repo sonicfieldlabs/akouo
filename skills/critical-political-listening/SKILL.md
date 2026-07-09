@@ -110,7 +110,9 @@ Return the shared listening output:
 - `alternative_reading`
 - `recommended_next_mode`
 
-> **Note to LLMs/Agents:** You MUST strictly follow the JSON schema provided in `references/listening-output.schema.json`. Ensure that the `listening_claims` object separates claims exactly as defined above. Each item inside `listening_claims.*` must be a claim object with `statement`, `confidence`, and optional `basis`, as defined in `references/claim-taxonomy.schema.json`; do not output bare strings in claim lists.
+Since v0.6 the shared schema also accepts optional instrumentation fields: `akouo_version`, `apparatus` (substrate, perception sources, known blind spots), `listener` (human, agent, or hybrid), `memory` (links to stored sound-memory records), and per-claim `source` and `time_range`. Declare the apparatus whenever it is known — a listening that hides its own technical conditions repeats the phantasmagoria it should expose — and give claims a `source` whenever different evidence streams could blur.
+
+> **Note to LLMs/Agents:** You MUST strictly follow the JSON schema provided in `references/listening-output.schema.json`. Ensure that the `listening_claims` object separates claims exactly as defined above. Each item inside `listening_claims.*` must be a claim object with `statement`, `confidence`, and optional `basis`, `source`, and `time_range`, as defined in `references/claim-taxonomy.schema.json`; do not output bare strings in claim lists.
 
 ## Attention Fields
 

@@ -55,6 +55,23 @@
         { "$ref": "#/$defs/listening_mode" },
         { "type": "string", "enum": ["none", "undetermined"] }
       ]
+    },
+    "akouo_version": {
+      "type": "string",
+      "description": "Optional AKOÚŌ contract version that produced this output (e.g. \"0.6\"), so stores and benchmarks can pin records to a contract.",
+      "minLength": 1
+    },
+    "apparatus": {
+      "$ref": "#/$defs/apparatus",
+      "description": "Optional v0.6 declaration of the listening apparatus. Reduced or machine listening that hides its own technical conditions repeats the phantasmagoria it should expose; declare the substrate instead."
+    },
+    "listener": {
+      "$ref": "#/$defs/listener",
+      "description": "Optional v0.6 declaration of who or what listened: human, agent, or hybrid, and under which process."
+    },
+    "memory": {
+      "$ref": "#/$defs/memory_links",
+      "description": "Optional v0.6 link block connecting this output to stored sound-memories (earworm-style akousma records): the record this listening belongs to, the records it consulted, and a lineage note."
     }
   },
   "$defs": {
@@ -92,7 +109,8 @@
         "audiovisual-scenic-listening",
         "voice-speech-listening",
         "accessibility-normative-listening",
-        "material-event-listening"
+        "material-event-listening",
+        "memory-lineage-listening"
       ]
     },
     "text_list": {
@@ -141,6 +159,89 @@
         "forensic_overreach": { "$ref": "#/$defs/text_list" },
         "source_confusion": { "$ref": "#/$defs/text_list" },
         "aesthetic_overstatement": { "$ref": "#/$defs/text_list" }
+      }
+    },
+    "apparatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["substrate", "known_blind_spots"],
+      "properties": {
+        "substrate": {
+          "type": "string",
+          "enum": [
+            "human_ear",
+            "asr_cascade",
+            "audio_token_model",
+            "speech_native_model",
+            "dsp_toolchain",
+            "hybrid_agent_stack",
+            "text_only_agent",
+            "unknown",
+            "other"
+          ],
+          "description": "The listening architecture family. Each substrate carries its own epistemic stance: an ASR cascade reduces listening to transcription, a codec-token model to token prediction, a DSP toolchain to measurement."
+        },
+        "perception_sources": {
+          "$ref": "#/$defs/text_list",
+          "description": "Named perception streams that fed this output (e.g. 'moss-audio caption pass', 'browser FFT features', 'human field notes')."
+        },
+        "model_ids": {
+          "$ref": "#/$defs/text_list",
+          "description": "Model identifiers involved, when models were used."
+        },
+        "sample_rate_hz": {
+          "type": ["number", "null"],
+          "description": "Sample rate the listening substrate actually received, when known."
+        },
+        "channels": {
+          "type": ["number", "null"],
+          "description": "Channel count the listening substrate actually received, when known."
+        },
+        "bandwidth_limit_hz": {
+          "type": ["number", "null"],
+          "description": "Upper frequency bound the substrate can register, when known. Claims above this bound belong in undetermined."
+        },
+        "known_blind_spots": {
+          "$ref": "#/$defs/text_list",
+          "description": "What this apparatus structurally cannot hear or verify (e.g. 'mono input: no stereo image claims', 'no absolute playback level')."
+        },
+        "capture_notes": {
+          "$ref": "#/$defs/text_list",
+          "description": "Known facts about the capture chain: microphone, recorder, room, codec history."
+        }
+      }
+    },
+    "listener": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["human", "agent", "hybrid"]
+        },
+        "process": {
+          "type": "string",
+          "description": "How the listening was produced (e.g. 'agent_automated', 'agent_interactive', 'human_blind', 'human_informed', 'hybrid')."
+        }
+      }
+    },
+    "memory_links": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "akousma_id": {
+          "type": ["string", "null"],
+          "description": "Identifier of the stored sound-memory record this listening belongs to or updates, when a store is in use."
+        },
+        "akousmata_refs": {
+          "$ref": "#/$defs/text_list",
+          "description": "Identifiers of stored records consulted or compared during this listening."
+        },
+        "lineage_note": {
+          "type": ["string", "null"],
+          "description": "Short note on how this sound relates to its lineage (derived from, variant of, response to, recurrence of)."
+        }
       }
     }
   }

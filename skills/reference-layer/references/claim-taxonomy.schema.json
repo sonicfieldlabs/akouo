@@ -59,7 +59,38 @@
         "basis": {
           "type": "string",
           "description": "Short note describing what supports or limits the claim."
+        },
+        "source": {
+          "$ref": "#/$defs/claim_source",
+          "description": "Optional v0.6 field naming which apparatus or evidence stream produced this claim, so DSP facts, model perception, transcripts, memory comparisons, and human notes never blur."
+        },
+        "time_range": {
+          "$ref": "#/$defs/time_range",
+          "description": "Optional v0.6 field anchoring the claim to a time window in the supplied audio. Use it to resist invented temporal order: a claim without a time anchor is a claim about the whole object."
         }
+      }
+    },
+    "claim_source": {
+      "type": "string",
+      "enum": [
+        "audio",
+        "dsp",
+        "metadata",
+        "model",
+        "transcript",
+        "context",
+        "memory",
+        "human",
+        "other"
+      ]
+    },
+    "time_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start_s", "end_s"],
+      "properties": {
+        "start_s": { "type": "number", "minimum": 0 },
+        "end_s": { "type": "number", "minimum": 0 }
       }
     },
     "claim_list": {

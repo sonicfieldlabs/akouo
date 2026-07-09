@@ -104,6 +104,16 @@
     },
     "stop_conditions": {
       "$ref": "#/$defs/text_list"
+    },
+    "budget": {
+      "type": "string",
+      "enum": ["light", "standard", "deep"],
+      "description": "Optional v0.6 listening budget: light favors short chains and cheap passes, standard follows the command's typical chain, deep authorizes every relevant pass. Risk always overrides budget: a forensic or consent-sensitive object keeps its corrective mode even under a light budget."
+    },
+    "preset_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional v0.6 identifier of the preset (presets/presets.json) this plan was derived from, so receiving agents can reproduce the configuration."
     }
   },
   "$defs": {

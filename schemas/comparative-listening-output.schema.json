@@ -44,22 +44,52 @@
         "audiovisual_scenic",
         "voice_speech",
         "accessibility_normative",
-        "material_event"
+        "material_event",
+        "memory_lineage"
       ],
       "properties": {
-        "signal_inspection": { "$ref": "listening-output.schema.json" },
-        "acoulogical_object": { "$ref": "listening-output.schema.json" },
-        "embodied_affective": { "$ref": "listening-output.schema.json" },
-        "transductive_media": { "$ref": "listening-output.schema.json" },
-        "forensic_archival": { "$ref": "listening-output.schema.json" },
-        "ecological_posthuman": { "$ref": "listening-output.schema.json" },
-        "critical_political": { "$ref": "listening-output.schema.json" },
-        "musical_aesthetic": { "$ref": "listening-output.schema.json" },
-        "symbolic_fictional": { "$ref": "listening-output.schema.json" },
-        "audiovisual_scenic": { "$ref": "listening-output.schema.json" },
-        "voice_speech": { "$ref": "listening-output.schema.json" },
-        "accessibility_normative": { "$ref": "listening-output.schema.json" },
-        "material_event": { "$ref": "listening-output.schema.json" }
+        "signal_inspection": {
+          "$ref": "listening-output.schema.json"
+        },
+        "acoulogical_object": {
+          "$ref": "listening-output.schema.json"
+        },
+        "embodied_affective": {
+          "$ref": "listening-output.schema.json"
+        },
+        "transductive_media": {
+          "$ref": "listening-output.schema.json"
+        },
+        "forensic_archival": {
+          "$ref": "listening-output.schema.json"
+        },
+        "ecological_posthuman": {
+          "$ref": "listening-output.schema.json"
+        },
+        "critical_political": {
+          "$ref": "listening-output.schema.json"
+        },
+        "musical_aesthetic": {
+          "$ref": "listening-output.schema.json"
+        },
+        "symbolic_fictional": {
+          "$ref": "listening-output.schema.json"
+        },
+        "audiovisual_scenic": {
+          "$ref": "listening-output.schema.json"
+        },
+        "voice_speech": {
+          "$ref": "listening-output.schema.json"
+        },
+        "accessibility_normative": {
+          "$ref": "listening-output.schema.json"
+        },
+        "material_event": {
+          "$ref": "listening-output.schema.json"
+        },
+        "memory_lineage": {
+          "$ref": "listening-output.schema.json"
+        }
       }
     },
     "shared_claim_summary": {
@@ -76,8 +106,16 @@
     },
     "most_interesting_next_mode": {
       "oneOf": [
-        { "$ref": "listening-output.schema.json#/$defs/listening_mode" },
-        { "type": "string", "enum": ["none", "undetermined"] }
+        {
+          "$ref": "listening-output.schema.json#/$defs/listening_mode"
+        },
+        {
+          "type": "string",
+          "enum": [
+            "none",
+            "undetermined"
+          ]
+        }
       ]
     }
   },

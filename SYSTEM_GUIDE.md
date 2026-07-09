@@ -4,7 +4,7 @@
 
 AKOÚŌ is a portable listening system for AI agents. It does not only ask what is inside a sound. It asks how an agent should listen, what kind of evidence is available, which claims are allowed, and which claims must remain unknown.
 
-The public system contains 15 portable skills:
+The public system contains 16 portable skills:
 
 - `akouo-router`: the meta-router that chooses listening modes
 - `signal-inspection-listening`: technical signal and metadata ear
@@ -20,6 +20,7 @@ The public system contains 15 portable skills:
 - `voice-speech-listening`: voice, speech, transcript, ASR, TTS, voice-agent, identity caution, and consent ear
 - `accessibility-normative-listening`: hearing norms, captions, transcripts, haptics, sensory variation, device, fatigue, and access ear
 - `material-event-listening`: vibration, resonance, duration, flux, material support, propagation, and event ear
+- `memory-lineage-listening`: sound-memory ear for stored records, recurrence, kinship, lineage, and change over time
 - `reference-layer`: the conceptual mapping skill that turns listening into concepts, methods, traditions, research routes, cautions, and adjacent modes
 
 The private benchmark extension can add `benchmark-listening` for external-agent evaluation and database ingestion. That benchmark skill is not part of the public portable release.
@@ -51,6 +52,16 @@ Use this process for most sound tasks:
 8. Recommend the next mode or command.
 
 Every command begins with a router planning pass, even when its mode chain is fixed. The planning pass supplies the evidence inventory, risks, and forbidden assumptions that the command's synthesis must respect, so `akouo-router` appears in `skills_called` for every command output except `/one-sound-many-ears`, whose comparative contract runs all modes unconditionally.
+
+## Machine-Readable Contract (v0.6)
+
+Host apps should consume AKOÚŌ as data:
+
+- `akouo.manifest.json` carries the skill list with structured metadata (facets, cost tier, memory policy, corrective eligibility), the command chains, the Evidence Ladder, and command permission overrides. Validate with `schemas/manifest.schema.json`.
+- `presets/presets.json` carries named listening configurations for recurring use-cases; validate each entry with `schemas/preset.schema.json`. A preset names its command, mode chain, cost tier (`light`/`standard`/`deep`), memory policy, and perception passes; hosts map passes to their own backends.
+- Outputs may pin their contract with `akouo_version`, declare their `apparatus` (substrate and blind spots), declare the `listener` (human/agent/hybrid), link stored records through `memory`, and mark each claim's `source` and `time_range`.
+
+Loading these files replaces hand-copied route tables, which drift. Prose in this guide explains the contract; the manifest is the source of truth.
 
 ## Agentic Integration Contract
 
@@ -155,9 +166,15 @@ Router-only handoff plan. Use it when another app, agent, benchmark runner, or f
 
 Typical chain: akouo-router only.
 
+### `/remember`
+
+Memory route. Use it to situate a sound in its lineage against a sound-memory store (akousma/akousmata-style records) and register the listening into the store.
+
+Typical chain: router, memory-lineage, acoulogical grounding, signal-inspection corrective. Stop rather than write when no store is available; use the read-only `recall` preset for comparison without registration.
+
 ### `/one-sound-many-ears`
 
-Comparative flagship command. Runs one sonic object through all thirteen public listening modes and compares contradictions, productive tensions, limits, and next steps.
+Comparative flagship command. Runs one sonic object through all fourteen public listening modes and compares contradictions, productive tensions, limits, and next steps.
 
 ## Choosing Modes By Intention
 
@@ -188,6 +205,8 @@ For voice, speech, transcript, ASR, TTS, voice cloning, voice agents, prosody, i
 For captions, transcripts, haptics, deaf or hard-of-hearing access, sensory variation, masking, fatigue, alerts, or implied listener assumptions, include `accessibility-normative-listening`.
 
 For vibration, resonance, propagation, duration, feedback, rumble, low frequencies, installation sound, materials, or processual sonic events, include `material-event-listening`.
+
+For stored sound-memories, recurrence, lineage, series over time, archive comparison, or registering a listening into a store, include `memory-lineage-listening` and `/remember`.
 
 ## Typical Workflows
 
@@ -268,6 +287,15 @@ Benchmark data usually separates:
 
 The benchmark should preserve the canonical JSON. Markdown is the human-readable wrapper; the JSON block is the ingestion source of truth.
 
+### Memory Workflow
+
+1. Run `/remember` (or the `recall` preset for read-only comparison).
+2. Confirm store availability in the routing plan's evidence inventory; stop rather than invent records.
+3. Keep the fresh perceptual pass before memory comparison.
+4. Mark memory-derived claims with `source: "memory"`; they never enter `heard` or `measured` for the present sound.
+5. Populate the `memory` block (`akousma_id`, `akousmata_refs`, `lineage_note`) on outputs the host will store.
+6. Treat disagreement between memory and present listening as a finding.
+
 ## Practical Guardrails
 
 - Never claim that an agent heard binary audio if only text was supplied.
@@ -276,3 +304,5 @@ The benchmark should preserve the canonical JSON. Markdown is the human-readable
 - Never let poetic or symbolic interpretation escape `interpreted` or `speculative`.
 - Always include meaningful `undetermined` claims when evidence is missing.
 - Always keep mode outputs distinct before synthesis.
+- Declare the apparatus when known; derive forbidden claims from the declared substrate (mono input forbids stereo claims, model-only perception forbids `measured`).
+- Never invent stored records, identifiers, or lineage; absence from a store is not novelty in the world.

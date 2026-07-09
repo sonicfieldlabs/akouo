@@ -11,10 +11,28 @@ export type ClaimCategory = (typeof claimCategories)[number];
 
 export type Confidence = 'high' | 'medium' | 'low' | 'undetermined';
 
+export type ClaimSource =
+  | 'audio'
+  | 'dsp'
+  | 'metadata'
+  | 'model'
+  | 'transcript'
+  | 'context'
+  | 'memory'
+  | 'human'
+  | 'other';
+
+export interface ClaimTimeRange {
+  start_s: number;
+  end_s: number;
+}
+
 export interface Claim {
   statement: string;
   confidence: Confidence;
   basis?: string;
+  source?: ClaimSource;
+  time_range?: ClaimTimeRange;
 }
 
 export type ClaimTaxonomy = Record<ClaimCategory, Claim[]>;
@@ -52,6 +70,7 @@ export const listeningModes = [
   'voice-speech-listening',
   'accessibility-normative-listening',
   'material-event-listening',
+  'memory-lineage-listening',
 ] as const;
 
 export type ListeningMode = (typeof listeningModes)[number];
@@ -70,6 +89,7 @@ export const comparativeModeKeys = {
   'voice-speech-listening': 'voice_speech',
   'accessibility-normative-listening': 'accessibility_normative',
   'material-event-listening': 'material_event',
+  'memory-lineage-listening': 'memory_lineage',
 } as const;
 
 export type ComparativeModeKey = (typeof comparativeModeKeys)[ListeningMode];
@@ -97,6 +117,7 @@ export const commandNames = [
   '/field',
   '/method',
   '/route',
+  '/remember',
 ] as const;
 
 export type CommandName = (typeof commandNames)[number];
@@ -119,6 +140,39 @@ export interface Risks {
   aesthetic_overstatement: string[];
 }
 
+export type ApparatusSubstrate =
+  | 'human_ear'
+  | 'asr_cascade'
+  | 'audio_token_model'
+  | 'speech_native_model'
+  | 'dsp_toolchain'
+  | 'hybrid_agent_stack'
+  | 'text_only_agent'
+  | 'unknown'
+  | 'other';
+
+export interface Apparatus {
+  substrate: ApparatusSubstrate;
+  perception_sources?: string[];
+  model_ids?: string[];
+  sample_rate_hz?: number | null;
+  channels?: number | null;
+  bandwidth_limit_hz?: number | null;
+  known_blind_spots: string[];
+  capture_notes?: string[];
+}
+
+export interface ListenerDeclaration {
+  type: 'human' | 'agent' | 'hybrid';
+  process?: string;
+}
+
+export interface MemoryLinks {
+  akousma_id?: string | null;
+  akousmata_refs?: string[];
+  lineage_note?: string | null;
+}
+
 export interface ListeningOutput {
   object_listened_to: string;
   input_type: InputType;
@@ -131,6 +185,10 @@ export interface ListeningOutput {
   main_reading: string;
   alternative_reading: string;
   recommended_next_mode: ListeningMode | 'none' | 'undetermined';
+  akouo_version?: string;
+  apparatus?: Apparatus;
+  listener?: ListenerDeclaration;
+  memory?: MemoryLinks;
 }
 
 export interface RouterOutput {
@@ -188,6 +246,8 @@ export interface AgentHandoff {
   recommended_command: CommandName;
 }
 
+export type ListeningBudget = 'light' | 'standard' | 'deep';
+
 export interface RoutingPlan {
   object_listened_to: string;
   input_type: InputType;
@@ -197,6 +257,8 @@ export interface RoutingPlan {
   claim_permissions: ClaimPermissions;
   agent_handoff: AgentHandoff;
   stop_conditions: string[];
+  budget?: ListeningBudget;
+  preset_id?: string;
 }
 
 export interface CommandDefinition {
@@ -222,6 +284,8 @@ export interface CommandOutput {
   reference_map?: ReferenceMap;
   risks: string[];
   recommended_next_mode: ListeningMode | 'none' | 'undetermined';
+  akouo_version?: string;
+  preset_id?: string;
 }
 
 export interface ReferenceMap {
