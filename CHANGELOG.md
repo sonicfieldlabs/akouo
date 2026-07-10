@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.6.1 — The Akousmata Navigator
+
+- Documented the akousmata listening navigator
+  (`github.com/sonicfieldlabs/akousmata`) as the reference store
+  implementation for `memory-lineage-listening` and `/remember`.
+- Documented manual human listening events: entries written by the navigator
+  carry `listener.type: "human"` and the `akousmata/v0.1` contract pin —
+  human and agent listenings share one library and one output discipline.
+
 ## v0.6 — Instrumented Listening
 
 - Added `akouo.manifest.json`, the machine-readable system contract: skills with structured metadata (facets, cost tier, memory policy, corrective eligibility), command chains as data, the Evidence Ladder as data, and command permission overrides — validated by the new `schemas/manifest.schema.json`.

@@ -289,6 +289,15 @@ The benchmark should preserve the canonical JSON. Markdown is the human-readable
 
 ### Memory Workflow
 
+The reference store implementation is the **akousmata listening navigator**
+(`github.com/sonicfieldlabs/akousmata`): a local-first library app over the
+shared store (earworm protocol) with filtering, tagging, manual human
+memories, graph navigation, a wiki layer, and research sessions. Hosts that
+implement `/remember` against an akousmata store should keep their record
+cards compatible with it. Human listening events written there carry
+`listener.type: "human"` — the same output contract this guide defines, with
+a person at the apparatus.
+
 1. Run `/remember` (or the `recall` preset for read-only comparison).
 2. Confirm store availability in the routing plan's evidence inventory; stop rather than invent records.
 3. Keep the fresh perceptual pass before memory comparison.

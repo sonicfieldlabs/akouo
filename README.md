@@ -313,8 +313,13 @@ Done:
 - v0.6 machine-readable contract (`akouo.manifest.json`), portable presets, `memory-lineage-listening` + `/remember` for sound-memory stores, apparatus/listener/memory declarations, per-claim `source`/`time_range`, and budget-aware routing
 Next: 
 - Sample-accurate waveform and spectrogram visualization with true-peak metering
-- A store-connected reference flow demonstrating `/remember` against a real akousmata store
 - Stronger interop examples for calling AKOÚŌ from other agent apps and frameworks
+
+The store-connected flow now exists as its own app: the **akousmata listening
+navigator** (`github.com/sonicfieldlabs/akousmata`) is the reference library
+over the shared store — memory-lineage listening and `/remember` run against
+it, and manual human listening events enter the same library as agent
+listenings (listener `human`, contract `akousmata/v0.1`).
 
 ## License
 
