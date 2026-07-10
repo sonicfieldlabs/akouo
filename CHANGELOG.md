@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.6.2 — Installed Host Contract
+
+- Packaged the canonical skills, commands, presets, schemas, and manifest as
+  `akouo-contract`, so Oída and other hosts can install AKOÚŌ as a dependency
+  without copying the skill library or requiring a sibling checkout.
+- Kept the public data contract pinned to `akouo/v0.6`; this is a distribution
+  and host-integration release, not a claim-taxonomy break.
+- Documented Oída as the reference unified gateway for Oída-owned perception
+  and audio-capable host perception.
+
 ## v0.6.1 — The Akousmata Navigator
 
 - Documented the akousmata listening navigator

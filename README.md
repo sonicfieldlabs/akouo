@@ -14,6 +14,11 @@ This public release contains the portable AKOÚŌ skills, router, command defini
 
 Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current release contract: `v0.6`.
 
+The `akouo-contract` Python distribution packages this repository's canonical
+skills, commands, presets, schemas, and manifest for Oída and other local
+agent hosts. Package release `0.6.2` still implements the `akouo/v0.6` data
+contract; no skill fork is created inside a host application.
+
 ## Version Status
 
 - `v0.1` marks the first public portable-skills release.
@@ -226,7 +231,7 @@ akouo/
   AGENTS.md            # Instructions for AI agents working on this project
   SYSTEM_GUIDE.md      # Operational guide for commands, workflows, and app contract
   SKILL_INDEX.md       # Quick-reference manifest of all skills
-  CHANGELOG.md         # Release history from v0.1 through v0.6
+  CHANGELOG.md         # Release history from v0.1 through v0.6.2
   akouo.manifest.json  # Machine-readable system contract (skills, commands, ladder, overrides)
   LICENSE
   .gitignore
@@ -303,7 +308,7 @@ For a full operational guide covering commands, workflows, benchmark ingestion, 
 ## Roadmap
 
 Done: 
-- First versions of 13 listening modes for multimodal listening
+- First versions of the listening modes for multimodal listening (nine at v0.1, fourteen today)
 - First version of the router
 - v0.2 conceptual refresh of router and listening modes
 - v0.3 integration of `musical-aesthetic-listening`

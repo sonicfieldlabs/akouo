@@ -52,3 +52,4 @@ temp/
 # Generated exports
 exports/
 reports/
+__pycache__/
