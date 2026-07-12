@@ -99,6 +99,8 @@ Return the shared listening output:
 
 Since v0.6 the shared schema also carries optional fields this mode should use whenever the host supports them: `memory` (`akousma_id`, `akousmata_refs`, `lineage_note`), `apparatus`, `listener`, `akouo_version`, and per-claim `source` and `time_range`. Give every memory-derived claim `source: "memory"`.
 
+Host stores speaking akousma spec v1.2 may attach two more record blocks this mode can consult: `location` (where a sound was heard — lat/lon, accuracy, human label) and `capture` (how the listening was triggered: direction `past`/`future`/`live` and window seconds). Treat both as **host metadata evidence, never model perception**: a claim like "recurring at the same place" derives from stored coordinates, so it takes `source: "metadata"` (or `"context"` for free-text place labels) and can never be `measured`. Location is consent-scoped — repeat it into outputs only when the host's task requires it, and never infer a person's whereabouts beyond what the record already states. A `capture.direction` of `past` means the recording began before the trigger: the listener chose the sound after hearing it, which is itself lineage information worth noting.
+
 > **Note to LLMs/Agents:** You MUST strictly follow the JSON schema provided in `references/listening-output.schema.json`. Ensure that the `listening_claims` object separates claims exactly as defined above. Each item inside `listening_claims.*` must be a claim object with `statement`, `confidence`, and optional `basis`, `source`, and `time_range`, as defined in `references/claim-taxonomy.schema.json`; do not output bare strings in claim lists.
 
 ## Guardrails

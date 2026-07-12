@@ -1,4 +1,8 @@
-"""Installed access to the canonical AKOÚŌ contract and skill library."""
+"""Installed access to the canonical AKOÚŌ contract and skill library.
+
+v0.6.3 documents akousma spec v1.2 awareness (host-store ``location`` and
+``capture`` blocks as metadata evidence) without changing the ``akouo/v0.6``
+data contract."""
 from __future__ import annotations
 
 import json
@@ -6,7 +10,7 @@ from importlib.resources import files
 from pathlib import Path
 from typing import Any
 
-__version__ = "0.6.2"
+__version__ = "0.6.3"
 CONTRACT_VERSION = "0.6"
 CONTRACT = f"akouo/v{CONTRACT_VERSION}"
 

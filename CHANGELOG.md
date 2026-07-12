@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.6.3 — Located, Directed Memory
+
+- Documented akousma spec v1.2 awareness in `memory-lineage-listening` and
+  `/remember`: host stores may now carry `location` (where a sound was
+  heard) and `capture` (past/future direction + window seconds) on records.
+  Both are host metadata evidence — claims that lean on them take
+  `source: "metadata"`, never `measured`; location is consent-scoped and is
+  repeated into outputs only when the task requires it.
+- A `capture.direction` of `past` (the ring buffer heard the sound before
+  the trigger) is named as lineage information: the listener chose the
+  sound after hearing it.
+- Data contract unchanged: still `akouo/v0.6`; no schema or manifest edits.
+  This is a documentation/distribution release aligned with Earworm v0.3,
+  Oída 0.3.0 (remote ear, future/past capture), and akousmata 0.3.0 (the
+  listening map).
+
 ## v0.6.2 — Installed Host Contract
 
 - Packaged the canonical skills, commands, presets, schemas, and manifest as

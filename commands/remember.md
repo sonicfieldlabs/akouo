@@ -32,6 +32,7 @@ For memory comparison WITHOUT writing, run the same chain under a read-only pres
 3. Run `memory-lineage-listening` against the consulted records.
 4. Run `signal-inspection-listening` as corrective when apparent recurrence or change could be apparatus difference.
 5. Synthesize; populate the `memory` block (`akousma_id`, `akousmata_refs`, `lineage_note`) on outputs the host will store.
+6. When the host store speaks akousma spec v1.2, pass through its `location` (where heard) and `capture` (past/future direction + window seconds) blocks untouched — they are the host's record, not listening claims. Claims that lean on them take `source: "metadata"`; location is consent-scoped and never travels further than the store the host names.
 
 ## Expected Output
 

@@ -16,7 +16,7 @@ Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current r
 
 The `akouo-contract` Python distribution packages this repository's canonical
 skills, commands, presets, schemas, and manifest for Oída and other local
-agent hosts. Package release `0.6.2` still implements the `akouo/v0.6` data
+agent hosts. Package release `0.6.3` still implements the `akouo/v0.6` data
 contract; no skill fork is created inside a host application.
 
 ## Version Status
@@ -231,7 +231,7 @@ akouo/
   AGENTS.md            # Instructions for AI agents working on this project
   SYSTEM_GUIDE.md      # Operational guide for commands, workflows, and app contract
   SKILL_INDEX.md       # Quick-reference manifest of all skills
-  CHANGELOG.md         # Release history from v0.1 through v0.6.2
+  CHANGELOG.md         # Release history from v0.1 through v0.6.3
   akouo.manifest.json  # Machine-readable system contract (skills, commands, ladder, overrides)
   LICENSE
   .gitignore
