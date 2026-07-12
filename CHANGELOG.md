@@ -1,5 +1,36 @@
 # Changelog
 
+## v0.7 — Sovereign Listening
+
+- Added `sovereign-listening`, the fifteenth mode: listening under an explicit
+  **listening covenant** — a small, human-written declaration of sonic
+  sovereignty (what this ear will not listen to, will release after hearing,
+  will not reveal, will not retain, will blur, or will refuse at certain
+  hours, and why). The covenant is a bridge language, not a guarantee of
+  obedience: rules a host can execute are enforced at its gates; every line
+  it cannot execute is carried verbatim as a commitment and reported with
+  the hearing. Lineage is declared (`extends`, e.g. the Algophonya
+  manifesto): the mode is the manifesto's Rights of the Audible — silence,
+  opacity, community protocols — made operational.
+- Added `/covenant`, the eighteenth command: verify and apply a covenant,
+  listen to what it admits, report enforcement, withholding, and
+  commitments.
+- Added `schemas/covenant.schema.json`: the parsed covenant (id, `extends`
+  lineage, executable `rules` over a small verb vocabulary — do_not_listen,
+  ignore, do_not_reveal, do_not_retain, coarsen, quiet_hours, max_window,
+  require_consent — and carried `commitments`).
+- Listening outputs gain an optional `covenant` block (identity + withheld
+  list + commitments count), so every hearing can answer *under which ethics
+  was this listened?* Withholding is honest, attributed absence: counted and
+  named by rule and category, never described, never conflated with
+  `undetermined`.
+- Contract bumped to `akouo/v0.7` (manifest, package `akouo-contract`
+  0.7.0). Defaults unchanged everywhere: no covenant is loaded unless the
+  operator adopts one, and a covenant governs the listener that adopted it —
+  it protects the listened-to and is not an instrument for silencing others.
+- Aligned with Earworm v0.4 (akousma spec v1.3 `covenant` block on records)
+  and oída 0.4 (the covenant engine: input/content/output/retention gates).
+
 ## v0.6.3 — Located, Directed Memory
 
 - Documented akousma spec v1.2 awareness in `memory-lineage-listening` and

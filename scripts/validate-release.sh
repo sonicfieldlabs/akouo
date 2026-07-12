@@ -31,6 +31,7 @@ LISTENING_MODES=(
   "accessibility-normative-listening"
   "material-event-listening"
   "memory-lineage-listening"
+  "sovereign-listening"
 )
 EXPECTED_SKILLS=(
   "akouo-router"

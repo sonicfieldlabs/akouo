@@ -12,12 +12,12 @@ AKOÚŌ does not pretend that agents hear like humans. It gives them accountable
 
 This public release contains the portable AKOÚŌ skills, router, command definitions, schemas, and a local-first reference app for running the listening workflows.
 
-Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current release contract: `v0.6`.
+Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current release contract: `v0.7`.
 
 The `akouo-contract` Python distribution packages this repository's canonical
 skills, commands, presets, schemas, and manifest for Oída and other local
-agent hosts. Package release `0.6.3` still implements the `akouo/v0.6` data
-contract; no skill fork is created inside a host application.
+agent hosts. Package release `0.7.0` implements the `akouo/v0.7` data
+contract (the sovereignty layer); no skill fork is created inside a host application.
 
 ## Version Status
 
@@ -60,6 +60,16 @@ Every output must distinguish its findings into the following epistemic categori
 - `undetermined`: what cannot be responsibly claimed
 
 This taxonomy is the main public contract of the system, preventing LLMs from hallucinating certainty or confusing a theoretical reading for a forensic measurement.
+
+## v0.7 Sovereign Listening
+
+The v0.7 release adds the sovereignty layer — the Rights of the Audible made operational. It adds:
+
+- `sovereign-listening`: the fifteenth mode. It listens under an explicit **listening covenant** — a small, human-written declaration of what this ear will not listen to, will release after hearing, will not reveal, will not retain, will blur, or will refuse at certain hours, and why. The covenant does not guarantee obedience: rules a host can execute are enforced at its gates; every line it cannot execute is carried verbatim as a commitment and reported with the hearing. Withholding is honest, attributed absence — counted and named by rule and category, never described — and it is never confused with `undetermined`.
+- `/covenant`: the sovereignty command — verify and apply a covenant, listen to what it admits, report enforcement, withholding, and commitments.
+- `schemas/covenant.schema.json`: the parsed covenant (id, lineage via `extends` — e.g. the Algophonya manifesto —, executable `rules` with a small verb vocabulary: do_not_listen, ignore, do_not_reveal, do_not_retain, coarsen, quiet_hours, max_window, require_consent — and carried `commitments`).
+- An optional `covenant` block on listening outputs: the covenant's identity plus what was withheld under its rules, so every hearing can answer *under which ethics was this listened?* Sound-memory stores speaking akousma spec v1.3 keep the same block on records.
+- The default everywhere is **no covenant**: sovereignty is opted into by the operator, never imposed by the tool — and a covenant governs the listener that adopted it, protecting the listened-to; it is not an instrument for silencing others.
 
 ## v0.6 Instrumented Listening
 
@@ -112,7 +122,7 @@ The v0.2 skills keep the same public schemas and mode names, but sharpen the con
 
 ## Core Architecture
 
-akoúō is organized as one meta-router, fourteen distinct listening modes, and one conceptual reference layer. These are packaged as portable agent skills (`skills/`) that can be injected into any LLM agent supporting skill-based system prompts or custom instructions.
+akoúō is organized as one meta-router, fifteen distinct listening modes, and one conceptual reference layer. These are packaged as portable agent skills (`skills/`) that can be injected into any LLM agent supporting skill-based system prompts or custom instructions.
 
 - `akouo-router` (meta-skill: chooses modes before analysis)
 - `signal-inspection-listening`
@@ -231,7 +241,7 @@ akouo/
   AGENTS.md            # Instructions for AI agents working on this project
   SYSTEM_GUIDE.md      # Operational guide for commands, workflows, and app contract
   SKILL_INDEX.md       # Quick-reference manifest of all skills
-  CHANGELOG.md         # Release history from v0.1 through v0.6.3
+  CHANGELOG.md         # Release history from v0.1 through v0.7.0
   akouo.manifest.json  # Machine-readable system contract (skills, commands, ladder, overrides)
   LICENSE
   .gitignore

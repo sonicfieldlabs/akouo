@@ -72,6 +72,10 @@
     "memory": {
       "$ref": "#/$defs/memory_links",
       "description": "Optional v0.6 link block connecting this output to stored sound-memories (earworm-style akousma records): the record this listening belongs to, the records it consulted, and a lineage note."
+    },
+    "covenant": {
+      "$ref": "#/$defs/covenant_ref",
+      "description": "Optional v0.7 declaration of the listening covenant this output was produced under: the covenant's identity plus honest absence — what was withheld under its rules, counted and attributed, never described."
     }
   },
   "$defs": {
@@ -110,7 +114,8 @@
         "voice-speech-listening",
         "accessibility-normative-listening",
         "material-event-listening",
-        "memory-lineage-listening"
+        "memory-lineage-listening",
+        "sovereign-listening"
       ]
     },
     "text_list": {
@@ -241,6 +246,55 @@
         "lineage_note": {
           "type": ["string", "null"],
           "description": "Short note on how this sound relates to its lineage (derived from, variant of, response to, recurrence of)."
+        }
+      }
+    },
+    "covenant_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The covenant's stable slug, optionally versioned: 'river-covenant/2'."
+        },
+        "name": {
+          "type": ["string", "null"],
+          "description": "The covenant's human name."
+        },
+        "version": {
+          "type": ["string", "null"]
+        },
+        "sha256": {
+          "type": ["string", "null"],
+          "description": "SHA-256 of the covenant's source text: identity without content."
+        },
+        "withheld": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "rule": {
+                "type": "string",
+                "description": "The covenant rule (verb or original line) under which material was withheld."
+              },
+              "subject": {
+                "type": ["string", "null"],
+                "description": "What was withheld, named at category level only (transcript, speech, location, …) — never described in content."
+              },
+              "count": {
+                "type": ["integer", "null"],
+                "minimum": 0
+              }
+            }
+          },
+          "description": "Honest absence: what this hearing declined to analyze, reveal, or retain, attributed to the rule that asked for it. Withheld material is counted and categorized, never characterized."
+        },
+        "commitments": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "How many non-executable commitments the covenant carries; their text stays with the covenant, not with every output."
         }
       }
     }

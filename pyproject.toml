@@ -1,6 +1,6 @@
 [project]
 name = "akouo-contract"
-version = "0.6.3"
+version = "0.7.0"
 description = "Packaged AKOÚŌ listening skills, routes, presets, and JSON contracts."
 readme = "README.md"
 requires-python = ">=3.10"

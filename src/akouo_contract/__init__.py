@@ -1,8 +1,9 @@
 """Installed access to the canonical AKOÚŌ contract and skill library.
 
-v0.6.3 documents akousma spec v1.2 awareness (host-store ``location`` and
-``capture`` blocks as metadata evidence) without changing the ``akouo/v0.6``
-data contract."""
+v0.7.0 adds the sovereignty layer: the ``sovereign-listening`` mode, the
+``/covenant`` command, and the listening-covenant schema — a bridge language
+in which a human-written declaration of sonic sovereignty is parsed into
+enforceable rules and carried commitments. Contract: ``akouo/v0.7``."""
 from __future__ import annotations
 
 import json
@@ -10,8 +11,8 @@ from importlib.resources import files
 from pathlib import Path
 from typing import Any
 
-__version__ = "0.6.3"
-CONTRACT_VERSION = "0.6"
+__version__ = "0.7.0"
+CONTRACT_VERSION = "0.7"
 CONTRACT = f"akouo/v{CONTRACT_VERSION}"
 
 

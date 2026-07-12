@@ -1,7 +1,7 @@
 {
-  "akouo_version": "0.6",
-  "contract": "akouo/v0.6",
-  "description": "Machine-readable contract for AKOÚŌ v0.6. Host apps should load this manifest (and presets/presets.json) instead of hand-copying mode lists, command chains, or the evidence ladder from prose. Sentinel skill ids: 'router-selected' marks slots the router fills at run time; 'all-listening-modes' marks the comparative command's full sweep.",
+  "akouo_version": "0.7",
+  "contract": "akouo/v0.7",
+  "description": "Machine-readable contract for AKOÚŌ v0.7. Host apps should load this manifest (and presets/presets.json) instead of hand-copying mode lists, command chains, or the evidence ladder from prose. Sentinel skill ids: 'router-selected' marks slots the router fills at run time; 'all-listening-modes' marks the comparative command's full sweep.",
   "skills": [
     {
       "id": "akouo-router",
@@ -151,6 +151,16 @@
       "facets": ["memory", "perceptual"],
       "cost_tier": "standard",
       "memory_policy": "read",
+      "corrective": false
+    },
+    {
+      "id": "sovereign-listening",
+      "kind": "mode",
+      "label": "Sovereign",
+      "summary": "Sovereignty ear that listens under an explicit covenant: enforces its executable rules (refuse, ignore, withhold, coarsen, retain nothing), carries its non-executable commitments verbatim, and reports withholding as honest, attributed absence.",
+      "facets": ["sovereignty", "care"],
+      "cost_tier": "light",
+      "memory_policy": "none",
       "corrective": false
     },
     {
@@ -366,6 +376,18 @@
       "recommended_next_mode": "none"
     },
     {
+      "name": "/covenant",
+      "label": "Covenant",
+      "summary": "Sovereignty route: verifies and applies a listening covenant, listens to what it admits, and reports enforcement, withholding, and commitments honestly.",
+      "chain": [
+        { "skill": "akouo-router", "role": "router" },
+        { "skill": "sovereign-listening", "role": "primary" },
+        { "skill": "acoulogical-object-listening", "role": "secondary" },
+        { "skill": "signal-inspection-listening", "role": "corrective" }
+      ],
+      "recommended_next_mode": "none"
+    },
+    {
       "name": "/one-sound-many-ears",
       "label": "One sound many ears",
       "summary": "Comparative flagship: one sonic object through every public listening mode.",
@@ -478,6 +500,7 @@
     "comparative_listening_output": "schemas/comparative-listening-output.schema.json",
     "reference_map": "schemas/reference-map.schema.json",
     "preset": "schemas/preset.schema.json",
+    "covenant": "schemas/covenant.schema.json",
     "manifest": "schemas/manifest.schema.json"
   }
 }

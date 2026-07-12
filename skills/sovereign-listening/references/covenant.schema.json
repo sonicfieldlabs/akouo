@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sonicfield.org/schemas/akouo/covenant.schema.json",
+  "title": "Listening Covenant",
+  "description": "The parsed form of a listening covenant (akouo/v0.7): a small, human-written declaration of sonic sovereignty that a listening system carries with it. Rules the engine can execute are enforced; every line it cannot execute is kept verbatim as a commitment — the covenant is a bridge language between a community's protocol and a machine's behavior, not a guarantee of obedience. Covenants declare their lineage (e.g. the Algophonya manifesto) through `extends`.",
+  "type": "object",
+  "required": ["id", "rules", "commitments"],
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Stable slug for this covenant, optionally with a version: 'river-covenant' or 'river-covenant/2'."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human name, usually the document's first heading."
+    },
+    "version": {
+      "type": "string"
+    },
+    "contract": {
+      "type": "string",
+      "description": "The akouo contract this covenant was parsed under, e.g. 'akouo/v0.7'."
+    },
+    "extends": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Lineage: manifestos, community protocols, or parent covenants this one stands on (e.g. 'algophonya/v7')."
+    },
+    "rules": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/rule" },
+      "description": "The executable subset: rules a conforming engine enforces at its input, content, output, and retention gates."
+    },
+    "commitments": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Lines the engine cannot (or does not yet) execute, carried verbatim and reported alongside every hearing made under the covenant. Commitments are addressed to humans and to future machines; dropping them is a conformance violation even though executing them is not required."
+    },
+    "because": {
+      "type": "string",
+      "description": "The covenant's reasons, verbatim — the manifesto layer of the document."
+    },
+    "source_sha256": {
+      "type": "string",
+      "description": "SHA-256 of the covenant's source text, so records can carry the covenant's identity without carrying its content."
+    },
+    "source_text": {
+      "type": "string",
+      "description": "The original document. Optional: hosts may keep the text local and share only identity + hash."
+    }
+  },
+  "$defs": {
+    "rule": {
+      "type": "object",
+      "required": ["verb", "text"],
+      "additionalProperties": true,
+      "properties": {
+        "verb": {
+          "type": "string",
+          "enum": [
+            "do_not_listen",
+            "ignore",
+            "do_not_reveal",
+            "do_not_retain",
+            "coarsen",
+            "quiet_hours",
+            "max_window",
+            "require_consent"
+          ],
+          "description": "do_not_listen: refuse a source before capture. ignore: release a content class after triage — heard, then let go, not analyzed, not stored. do_not_reveal: withhold an aspect from every output (transcript, speaker-identity, affect, location, song-identity, events, spectral-detail, or a claim category). do_not_retain: forbid retention (raw-audio, memory, location). coarsen: degrade precision instead of withholding (location to N km, time to N minutes). quiet_hours: a daily window in which the ear refuses to open. max_window: cap the seconds any single capture may hold. require_consent: refuse an operation unless the host presents an explicit consent marker."
+        },
+        "subject": {
+          "type": "string",
+          "description": "What the verb governs: a source (microphone, system-output, file, remote), a content class (speech, music), an aspect (transcript, speaker-identity, affect, location, song-identity, events, spectral-detail), or a retention target (raw-audio, memory, location)."
+        },
+        "args": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Verb-specific parameters: {km} for coarsen location, {start, end} for quiet_hours, {seconds} for max_window."
+        },
+        "text": {
+          "type": "string",
+          "description": "The covenant line exactly as its author wrote it."
+        }
+      }
+    }
+  }
+}

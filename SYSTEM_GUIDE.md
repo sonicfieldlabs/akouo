@@ -172,9 +172,15 @@ Memory route. Use it to situate a sound in its lineage against a sound-memory st
 
 Typical chain: router, memory-lineage, acoulogical grounding, signal-inspection corrective. Stop rather than write when no store is available; use the read-only `recall` preset for comparison without registration.
 
+### `/covenant`
+
+Sovereignty route (v0.7). Use it to listen under an explicit listening covenant: verify the covenant's identity and lineage, apply what the host's gates can enforce (refuse sources, ignore classes, withhold aspects, coarsen precision, retain nothing, honor quiet hours), carry every non-executable line as a commitment, and report withholding as honest, attributed absence — counted and named by rule, never described, and never confused with `undetermined`.
+
+Typical chain: router, sovereign-listening, acoulogical grounding on what the covenant admits, signal-inspection corrective. With no covenant available, report exactly that and stop: sovereignty is opted into, never imposed.
+
 ### `/one-sound-many-ears`
 
-Comparative flagship command. Runs one sonic object through all fourteen public listening modes and compares contradictions, productive tensions, limits, and next steps.
+Comparative flagship command. Runs one sonic object through all fifteen public listening modes and compares contradictions, productive tensions, limits, and next steps.
 
 ## Choosing Modes By Intention
 
