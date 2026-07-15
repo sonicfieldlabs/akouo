@@ -21,12 +21,26 @@ contract (the sovereignty layer); no skill fork is created inside a host applica
 
 ## Version Status
 
+- `v0.7` adds `sovereign-listening`, the `/covenant` command, and an enforceable listening-covenant schema for consent, withholding, retention, precision, and quiet-hour rules.
 - `v0.1` marks the first public portable-skills release.
 - `v0.2` refines the listening modes with stronger theoretical distinctions, clearer evidence boundaries, and more explicit public-repo hygiene.
 - `v0.3` adds `musical-aesthetic-listening` as a public mode for music, rhythm, pitch, harmony, texture, sound-design utility, poetic usefulness, and genre/cultural caution.
 - `v0.4` expands AKOÚŌ into a more portable listening router for agentic workflows with voice/speech, audiovisual/scene, accessibility/normativity, and material/event listening.
 - `v0.5` consolidates agentic routing: `reference-layer` becomes a portable meta-skill, routing plans carry evidence levels and claim permissions, the app gains deeper browser-side signal estimates, and `SYSTEM_GUIDE.md` documents the integration contract.
 - `v0.6` instruments the system for host apps: a machine-readable contract (`akouo.manifest.json`), portable listening presets (`presets/`), the new `memory-lineage-listening` mode and `/remember` command for sound-memory stores, apparatus/listener/memory declarations on outputs, per-claim `source` and `time_range`, budget-aware routing plans, and command-level claim-permission overrides.
+
+## Sonic Field Labs Stack
+
+AKOÚŌ is the shared listening contract across the stack. The current release contains 15 listening modes, 17 skills, and 18 commands.
+
+| Project | Current integration |
+| --- | --- |
+| [OÍDA](https://github.com/sonicfieldlabs/oida) `0.6.0` | Loads the `akouo/v0.7` contract, routes listening commands, and exposes local gateway surfaces. |
+| [Earworm](https://github.com/sonicfieldlabs/earworm) `0.4.0` | Persists listening events as `akousma/v1.3` records with AKOÚŌ contract and covenant metadata. |
+| [Akousmata](https://github.com/sonicfieldlabs/akousmata) `0.4.0` | Validates and navigates Earworm-compatible sound memories for recall and lineage listening. |
+| [Algophony](https://github.com/sonicfieldlabs/algophony) `0.5.0` | Uses the listening contract for generation supervision, evaluation, and research workflows. |
+| [GERM](https://github.com/sonicfieldlabs/germ) `0.2.0` | Connects cultivation sessions to OÍDA and Akousmata for listening and lineage-aware workflows. |
+| [ORAM](https://github.com/sonicfieldlabs/oram) `0.4.0` | ORAM audio can be passed to any AKOÚŌ host; ORAM does not embed the contract directly. |
 
 ## Core Idea
 
@@ -238,7 +252,6 @@ For the agent-to-agent handoff format, see `examples/routing-plan-example.json`:
 ```text
 akouo/
   README.md
-  AGENTS.md            # Instructions for AI agents working on this project
   SYSTEM_GUIDE.md      # Operational guide for commands, workflows, and app contract
   SKILL_INDEX.md       # Quick-reference manifest of all skills
   CHANGELOG.md         # Release history from v0.1 through v0.7.0
@@ -296,13 +309,15 @@ akouo/
     memory-lineage-listening/
       SKILL.md
       references/
+    sovereign-listening/
+      SKILL.md
+      references/
     reference-layer/
       SKILL.md
       references/
   commands/
   schemas/
   examples/
-  evals/
 ```
 
 ## Public-Repo Hygiene
@@ -314,21 +329,6 @@ Conceptual refinements should be incorporated as public-facing skill language on
 Run `./scripts/validate-release.sh` before publishing to verify skill structure, schema consistency, hygiene, and absence of generated build artifacts.
 
 For a full operational guide covering commands, workflows, benchmark ingestion, and data structure, see [`SYSTEM_GUIDE.md`](SYSTEM_GUIDE.md).
-
-## Roadmap
-
-Done: 
-- First versions of the listening modes for multimodal listening (nine at v0.1, fourteen today)
-- First version of the router
-- v0.2 conceptual refresh of router and listening modes
-- v0.3 integration of `musical-aesthetic-listening`
-- v0.4 working expansion for voice, audiovisual scene, accessibility, material event, router scoring, and agent handoff commands
-- v0.5 consolidation of `reference-layer`, router Evidence Ladder, documented agentic integration contract, and expanded routing plans
-- Deeper browser-side signal adapter in the reference app: BS.1770-style loudness and loudness range, FFT band-energy and spectral statistics, onset density with a guarded BPM candidate, and stereo correlation/width/balance
-- v0.6 machine-readable contract (`akouo.manifest.json`), portable presets, `memory-lineage-listening` + `/remember` for sound-memory stores, apparatus/listener/memory declarations, per-claim `source`/`time_range`, and budget-aware routing
-Next: 
-- Sample-accurate waveform and spectrogram visualization with true-peak metering
-- Stronger interop examples for calling AKOÚŌ from other agent apps and frameworks
 
 The store-connected flow now exists as its own app: the **akousmata listening
 navigator** (`github.com/sonicfieldlabs/akousmata`) is the reference library

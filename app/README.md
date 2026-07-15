@@ -37,7 +37,7 @@ Build the app:
 npm run build
 ```
 
-The Vite dev and preview servers bind to `localhost` by default. For LAN or private-network-style testing, set `AKOUO_EXPOSE_DEV_SERVER=true` and list explicit hostnames in `AKOUO_ALLOWED_HOSTS`; do not use an allow-all host policy for public release work.
+The Vite dev and preview servers bind to `localhost` by default. For explicit private-network testing, set `AKOUO_EXPOSE_DEV_SERVER=true` and list approved hostnames in `AKOUO_ALLOWED_HOSTS`; do not use an allow-all host policy for public release work.
 
 The MVP does not send audio to a remote service during local deterministic runs. It accepts files in the browser and measures metadata, amplitude statistics, BS.1770-style loudness and loudness range, multi-window spectral traits and band energy, onset density with a guarded BPM candidate, stereo correlation and balance, and clipping indicators. Every measured claim names its method and limits in its `basis`; sample-accurate waveform review, full spectrogram rendering, true-peak metering, and certified loudness verification remain marked as deferred. Heavy passes cover at most the first 10 minutes of a file and note the truncation as a warning.
 

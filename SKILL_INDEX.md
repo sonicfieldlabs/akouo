@@ -56,4 +56,4 @@ Compatible with any LLM agent framework that supports skill injection (OpenCode,
 
 - **Humans**: Browse the table above and click through to individual `SKILL.md` files.
 - **Agents**: Load `SKILL.md` from any skill folder as a system prompt. Schemas are in `references/`.
-- **Developers**: See [`AGENTS.md`](AGENTS.md) for conventions on adding or modifying skills.
+- **Developers**: Preserve the manifest and bundled-schema conventions, then run `./scripts/validate-release.sh` after adding or modifying a skill.
