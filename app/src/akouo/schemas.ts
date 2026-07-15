@@ -1,6 +1,6 @@
 import { claimCategories, commandNames, inputTypes, listeningModes } from './types';
 
-export const schemaFiles = [
+const schemaFiles = [
   'schemas/claim-taxonomy.schema.json',
   'schemas/listening-output.schema.json',
   'schemas/router-output.schema.json',

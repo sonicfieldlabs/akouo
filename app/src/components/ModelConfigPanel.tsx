@@ -1,11 +1,11 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import {
   fetchBenchmarkRunners,
   type BenchmarkConfig,
   type BenchmarkRunners,
   type BenchmarkRunnerInfo,
 } from '../akouo/benchmark';
-import { BracketWrap, BlinkingStatus } from './FuiDecorations';
+import { BracketWrap } from './FuiDecorations';
 
 interface ModelConfigPanelProps {
   config: BenchmarkConfig;

@@ -9,9 +9,9 @@ export const claimCategories = [
 
 export type ClaimCategory = (typeof claimCategories)[number];
 
-export type Confidence = 'high' | 'medium' | 'low' | 'undetermined';
+type Confidence = 'high' | 'medium' | 'low' | 'undetermined';
 
-export type ClaimSource =
+type ClaimSource =
   | 'audio'
   | 'dsp'
   | 'metadata'
@@ -22,7 +22,7 @@ export type ClaimSource =
   | 'human'
   | 'other';
 
-export interface ClaimTimeRange {
+interface ClaimTimeRange {
   start_s: number;
   end_s: number;
 }
@@ -92,11 +92,11 @@ export const comparativeModeKeys = {
   'memory-lineage-listening': 'memory_lineage',
 } as const;
 
-export type ComparativeModeKey = (typeof comparativeModeKeys)[ListeningMode];
+type ComparativeModeKey = (typeof comparativeModeKeys)[ListeningMode];
 
-export type ComparativeModeComparison = Record<ComparativeModeKey, ListeningOutput>;
+type ComparativeModeComparison = Record<ComparativeModeKey, ListeningOutput>;
 
-export const skillIds = ['akouo-router', ...listeningModes, 'reference-layer'] as const;
+const skillIds = ['akouo-router', ...listeningModes, 'reference-layer'] as const;
 
 export type SkillId = (typeof skillIds)[number];
 
@@ -140,7 +140,7 @@ export interface Risks {
   aesthetic_overstatement: string[];
 }
 
-export type ApparatusSubstrate =
+type ApparatusSubstrate =
   | 'human_ear'
   | 'asr_cascade'
   | 'audio_token_model'
@@ -151,7 +151,7 @@ export type ApparatusSubstrate =
   | 'unknown'
   | 'other';
 
-export interface Apparatus {
+interface Apparatus {
   substrate: ApparatusSubstrate;
   perception_sources?: string[];
   model_ids?: string[];
@@ -162,12 +162,12 @@ export interface Apparatus {
   capture_notes?: string[];
 }
 
-export interface ListenerDeclaration {
+interface ListenerDeclaration {
   type: 'human' | 'agent' | 'hybrid';
   process?: string;
 }
 
-export interface MemoryLinks {
+interface MemoryLinks {
   akousma_id?: string | null;
   akousmata_refs?: string[];
   lineage_note?: string | null;
@@ -207,7 +207,7 @@ export interface RouterOutput {
   recommended_next_mode: ListeningMode;
 }
 
-export const evidenceLevels = [
+const evidenceLevels = [
   'none',
   'prompt_only',
   'metadata_only',
@@ -222,7 +222,7 @@ export type EvidenceLevel = (typeof evidenceLevels)[number];
 
 export type RouteConfidence = 'high' | 'medium' | 'low' | 'undetermined';
 
-export type ModeChainRole = 'primary' | 'secondary' | 'corrective' | 'optional' | 'deferred';
+type ModeChainRole = 'primary' | 'secondary' | 'corrective' | 'optional' | 'deferred';
 
 export interface ModeChainItem {
   mode: ListeningMode;
@@ -239,14 +239,14 @@ export interface ClaimPermissions {
   must_include_undetermined: boolean;
 }
 
-export interface AgentHandoff {
+interface AgentHandoff {
   summary: string;
   required_inputs: string[];
   forbidden_assumptions: string[];
   recommended_command: CommandName;
 }
 
-export type ListeningBudget = 'light' | 'standard' | 'deep';
+type ListeningBudget = 'light' | 'standard' | 'deep';
 
 export interface RoutingPlan {
   object_listened_to: string;

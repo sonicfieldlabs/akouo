@@ -16,7 +16,7 @@ export function createEmptyClaimTaxonomy(): ClaimTaxonomy {
   }, {} as ClaimTaxonomy);
 }
 
-export function createEmptyMediations(): Mediations {
+function createEmptyMediations(): Mediations {
   return {
     technical: [],
     cultural: [],
@@ -27,7 +27,7 @@ export function createEmptyMediations(): Mediations {
   };
 }
 
-export function createEmptyRisks(): Risks {
+function createEmptyRisks(): Risks {
   return {
     hallucination: [],
     over_identification: [],

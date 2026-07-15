@@ -2,13 +2,11 @@ import { useCallback, useState } from 'react';
 import {
   benchmarkHeaders,
   benchmarkRequestUrl,
-  type BenchmarkConfig,
 } from '../akouo/benchmark';
 import { BracketWrap, BlinkingStatus } from './FuiDecorations';
 
 interface BenchmarkIngestPanelProps {
   apiUrl: string;
-  benchmarkConfig: BenchmarkConfig;
   onIngested: (runId: string, status: string) => void;
 }
 
@@ -29,7 +27,7 @@ interface IngestPreview {
   isRawJson: boolean;
 }
 
-export function BenchmarkIngestPanel({ apiUrl, benchmarkConfig, onIngested }: BenchmarkIngestPanelProps) {
+export function BenchmarkIngestPanel({ apiUrl, onIngested }: BenchmarkIngestPanelProps) {
   const [status, setStatus] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [previews, setPreviews] = useState<(IngestPreview & { fileName: string })[]>([]);

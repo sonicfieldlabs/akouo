@@ -345,7 +345,7 @@ interface SpectralSurvey {
   bandEnergy: BandEnergy | null;
 }
 
-export function analyzeSpectralSurvey(audioBuffer: AudioBuffer, analyzedLength: number): SpectralSurvey {
+function analyzeSpectralSurvey(audioBuffer: AudioBuffer, analyzedLength: number): SpectralSurvey {
   const empty: SpectralSurvey = {
     centroidMeanHz: null,
     centroidStdHz: null,
@@ -477,7 +477,7 @@ interface LoudnessResult {
 // biquads re-derived for the actual sample rate), 100 ms energy chunks,
 // 400 ms momentary blocks with -70 LUFS absolute and -10 LU relative gating,
 // and an EBU-style loudness range from gated 3 s short-term blocks.
-export function analyzeLoudness(audioBuffer: AudioBuffer, analyzedLength: number): LoudnessResult {
+function analyzeLoudness(audioBuffer: AudioBuffer, analyzedLength: number): LoudnessResult {
   const sampleRate = audioBuffer.sampleRate;
   const chunkSamples = Math.round(sampleRate / 10);
   const chunkCount = Math.floor(analyzedLength / chunkSamples);
@@ -564,7 +564,7 @@ export function analyzeLoudness(audioBuffer: AudioBuffer, analyzedLength: number
 
 // Coefficient derivation follows the commonly used re-parameterization of the
 // ITU-R BS.1770 48 kHz filters (as in pyloudnorm/ffmpeg) so any sample rate works.
-export function kWeightingShelfCoefficients(sampleRate: number) {
+function kWeightingShelfCoefficients(sampleRate: number) {
   const f0 = 1681.974450955533;
   const gainDb = 3.999843853973347;
   const q = 0.7071752369554196;
@@ -583,7 +583,7 @@ export function kWeightingShelfCoefficients(sampleRate: number) {
   };
 }
 
-export function kWeightingHighpassCoefficients(sampleRate: number) {
+function kWeightingHighpassCoefficients(sampleRate: number) {
   const f0 = 38.13547087602444;
   const q = 0.5003270373238773;
 
@@ -605,7 +605,7 @@ interface OnsetResult {
   bpmCandidate: number | null;
 }
 
-export function analyzeOnsets(audioBuffer: AudioBuffer): OnsetResult {
+function analyzeOnsets(audioBuffer: AudioBuffer): OnsetResult {
   const empty: OnsetResult = { onsetCount: null, onsetDensityPerSec: null, bpmCandidate: null };
 
   if (audioBuffer.numberOfChannels === 0) {
@@ -767,7 +767,7 @@ function analyzeStereo(audioBuffer: AudioBuffer, analyzedLength: number): Stereo
 }
 
 // Iterative radix-2 Cooley-Tukey FFT; lengths are always powers of two here.
-export function fftInPlace(real: Float32Array, imag: Float32Array) {
+function fftInPlace(real: Float32Array, imag: Float32Array) {
   const n = real.length;
 
   for (let i = 1, j = 0; i < n; i++) {

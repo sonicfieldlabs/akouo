@@ -1,6 +1,6 @@
 import type { AudioInspection, CommandResult } from './types';
 
-export interface BenchmarkModelConfig {
+interface BenchmarkModelConfig {
   id: string;
   provider: string;
   modality: string;
@@ -12,7 +12,7 @@ export interface BenchmarkModelConfig {
   responseFormat?: 'json_object' | 'none';
 }
 
-export interface ModelProviderState {
+interface ModelProviderState {
   provider: string;
   modelId: string;
   temperature: number;
@@ -30,7 +30,7 @@ export interface BenchmarkSchema {
   flags: string[];
 }
 
-export interface BenchmarkAgentConfig {
+interface BenchmarkAgentConfig {
   id: string;
   type: string;
   notes?: string;
@@ -84,14 +84,14 @@ export interface DirectBenchmarkRunPayload {
   };
 }
 
-export interface DirectBenchmarkAudioPayload {
+interface DirectBenchmarkAudioPayload {
   fileName: string;
   fileType: string;
   format: string;
   dataBase64: string;
 }
 
-export interface BenchmarkAudioAsset {
+interface BenchmarkAudioAsset {
   path: string;
   file_name?: string;
   file_type: string;
@@ -117,7 +117,7 @@ export interface BenchmarkRunFilters {
   limit?: number;
 }
 
-export interface BenchmarkFlag {
+interface BenchmarkFlag {
   id: string;
   flag: string;
   value: boolean;
@@ -153,7 +153,7 @@ export interface BenchmarkRunSummary {
   created_at: string;
 }
 
-export interface BenchmarkClaim {
+interface BenchmarkClaim {
   id: string;
   category: string;
   statement: string;
@@ -164,7 +164,7 @@ export interface BenchmarkClaim {
   created_at: string;
 }
 
-export interface BenchmarkScore {
+interface BenchmarkScore {
   id: string;
   axis: string;
   score: number;
@@ -280,13 +280,13 @@ export interface BenchmarkStats {
   recent_runs: BenchmarkRunSummary[];
 }
 
-export interface BenchmarkGroupStat {
+interface BenchmarkGroupStat {
   key: string;
   count: number;
   avg_score: number | null;
 }
 
-export interface BenchmarkComparisonRun {
+interface BenchmarkComparisonRun {
   run_id: string;
   model_id: string;
   agent_id: string;
@@ -303,14 +303,14 @@ export interface BenchmarkComparisonRun {
   created_at: string;
 }
 
-export interface BenchmarkComparisonCase {
+interface BenchmarkComparisonCase {
   case_id: string;
   case_title: string;
   runs: BenchmarkComparisonRun[];
   model_ranking: Array<{ model_id: string; avg_score: number }>;
 }
 
-export interface BenchmarkComparisonModelAverage {
+interface BenchmarkComparisonModelAverage {
   model_id: string;
   avg_overall_score: number | null;
   avg_latency_ms: number | null;
@@ -446,14 +446,6 @@ export async function fetchBenchmarkComparison(
   if (modelId) params.set('model_id', modelId);
   const query = params.toString();
   return requestJson<BenchmarkComparison>(apiUrl, `/api/compare${query ? `?${query}` : ''}`);
-}
-
-export async function ingestBenchmarkRun(payload: Record<string, unknown>, apiUrl = DEFAULT_BENCHMARK_API): Promise<BenchmarkRunDetail> {
-  return requestJson<BenchmarkRunDetail>(apiUrl, '/api/runs/ingest', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  });
 }
 
 export async function checkBenchmarkHealth(apiUrl = DEFAULT_BENCHMARK_API): Promise<boolean> {

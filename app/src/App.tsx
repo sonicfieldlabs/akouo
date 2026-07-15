@@ -262,7 +262,6 @@ export default function App() {
         {activeSection === 'ingest' && (
           <BenchmarkIngestPanel
             apiUrl={benchmarkConfig.apiUrl}
-            benchmarkConfig={benchmarkConfig}
             onIngested={(runId, status) => {
               setLastSavedRunId(runId);
               setBenchmarkSaveStatus(status);

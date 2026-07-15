@@ -1,4 +1,4 @@
-export function Crosshairs() {
+function Crosshairs() {
   return (
     <>
       <div className="fui-crosshair top-left" />
