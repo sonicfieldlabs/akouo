@@ -7,7 +7,8 @@ enforceable rules and carried commitments. Contract: ``akouo/v0.7``."""
 from __future__ import annotations
 
 import json
-from importlib.resources import files
+# Semgrep's Python 3.7 compatibility rule is inapplicable; this package requires 3.10+.
+from importlib.resources import files  # nosemgrep
 from pathlib import Path
 from typing import Any
 
@@ -58,4 +59,3 @@ __all__ = [
     "schema_path",
     "skill_path",
 ]
-
