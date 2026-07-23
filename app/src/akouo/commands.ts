@@ -170,4 +170,12 @@ export const commandDefinitions: CommandDefinition[] = [
     executionOrder: ['Route with store availability', 'Describe the auditum freshly', 'Compare against stored records', 'Correct apparatus-driven change readings'],
     outputSchema: 'schemas/command-output.schema.json',
   },
+  {
+    name: '/covenant',
+    label: 'Covenant',
+    description: 'Sovereignty route for explicit capture, analysis, revelation, precision, action, and retention limits with attributed absence.',
+    skillsCalled: ['akouo-router', 'sovereign-listening'],
+    executionOrder: ['Identify the covenant', 'Separate executable rules from carried commitments', 'Apply host-owned gates', 'Report attributed absence and authority limits'],
+    outputSchema: 'schemas/command-output.schema.json',
+  },
 ];

@@ -1,7 +1,7 @@
 {
-  "akouo_version": "0.7",
-  "contract": "akouo/v0.7",
-  "description": "Machine-readable contract for AKOÚŌ v0.7. Host apps should load this manifest (and presets/presets.json) instead of hand-copying mode lists, command chains, or the evidence ladder from prose. Sentinel skill ids: 'router-selected' marks slots the router fills at run time; 'all-listening-modes' marks the comparative command's full sweep.",
+  "akouo_version": "0.8",
+  "contract": "akouo/v0.8",
+  "description": "Machine-readable contract for AKOÚŌ v0.8. Host apps should load this manifest (and presets/presets.json) instead of hand-copying mode lists, command chains, evidence permissions, or accountable-listening fields from prose. Sentinel skill ids: 'router-selected' marks slots the router fills at run time; 'all-listening-modes' marks the comparative command's non-covenant sweep.",
   "skills": [
     {
       "id": "akouo-router",
@@ -493,6 +493,7 @@
   "presets_file": "presets/presets.json",
   "schemas": {
     "listening_output": "schemas/listening-output.schema.json",
+    "listening_context": "schemas/listening-context.schema.json",
     "claim_taxonomy": "schemas/claim-taxonomy.schema.json",
     "router_output": "schemas/router-output.schema.json",
     "routing_plan": "schemas/routing-plan.schema.json",

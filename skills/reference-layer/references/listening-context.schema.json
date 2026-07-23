@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/listening-context.schema.json",
+  "title": "AKOÚŌ Accountable Listening Context",
+  "description": "The situated context around a listening report. It keeps position, apertures, auditory scale, source of listening, participants, action authority, and attributed absence explicit without collapsing them into apparatus or claims. A v0.8 producer SHOULD emit this block; older listening outputs remain valid without it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "position",
+    "apertures",
+    "auditory_scales",
+    "sources_of_listening",
+    "participants",
+    "action_authority",
+    "honest_absences"
+  ],
+  "properties": {
+    "contract": {
+      "type": "string",
+      "const": "akouo/listening-context/v1"
+    },
+    "position": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relation_to_object", "limitations"],
+      "properties": {
+        "relation_to_object": {
+          "type": "string",
+          "minLength": 1,
+          "description": "How this listener is situated in relation to the object: live witness, remote file analysis, browser-side inspection, archive reader, host report, or another declared relation."
+        },
+        "situation": {
+          "type": ["string", "null"],
+          "description": "Optional non-sensitive situational note. Precise location belongs in a consent-scoped host record, not here by default."
+        },
+        "listening_identity_ref": {
+          "type": ["string", "null"],
+          "description": "Content-free reference or digest for an active listening identity, when one oriented the process."
+        },
+        "limitations": {
+          "$ref": "#/$defs/text_list"
+        }
+      }
+    },
+    "apertures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "status"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "direct_audio",
+              "signal_measurement",
+              "metadata",
+              "transcript",
+              "contextual_note",
+              "human_report",
+              "model_observation",
+              "memory",
+              "audiovisual",
+              "haptic",
+              "other"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["available", "unavailable", "withheld", "degraded"]
+          },
+          "description": { "type": "string" },
+          "limits": { "$ref": "#/$defs/text_list" }
+        }
+      },
+      "description": "Declared openings through which this listening could receive evidence. An unavailable or withheld aperture remains visible instead of becoming anonymous silence."
+    },
+    "auditory_scales": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "sample",
+          "frame",
+          "gesture",
+          "event",
+          "scene",
+          "session",
+          "archive",
+          "lineage",
+          "infrastructural",
+          "planetary",
+          "unknown"
+        ]
+      },
+      "minItems": 1
+    },
+    "sources_of_listening": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "audio",
+          "dsp",
+          "metadata",
+          "transcript",
+          "context",
+          "human",
+          "model",
+          "memory",
+          "audiovisual",
+          "haptic",
+          "none",
+          "other"
+        ]
+      },
+      "minItems": 1,
+      "description": "The evidence streams from which this report actually listened, not every capability the apparatus might possess."
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "type", "role"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "type": { "type": "string", "enum": ["human", "agent", "hybrid"] },
+          "role": { "type": "string", "minLength": 1 },
+          "report_ref": { "type": ["string", "null"] }
+        }
+      },
+      "minItems": 1,
+      "description": "Attributed listeners in this report. Plural listening keeps participants distinct; a host must not manufacture consensus by merging them."
+    },
+    "action_authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "scopes", "requires_confirmation"],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["observe_only", "recommend", "request", "execute_scoped"]
+        },
+        "scopes": { "$ref": "#/$defs/text_list" },
+        "granted_by": { "type": ["string", "null"] },
+        "expires_at": { "type": ["string", "null"] },
+        "requires_confirmation": { "type": "boolean" },
+        "reversible": { "type": ["boolean", "null"] }
+      },
+      "description": "Operational audition boundary. Perceptual capability never implies permission to retain, reveal, or act."
+    },
+    "honest_absences": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/honest_absence"
+      },
+      "description": "Attributed absences that are distinct from unsupported claims. Covenant withholding is also carried in the sibling covenant block."
+    },
+    "revision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "revises": { "type": ["string", "null"] },
+        "reason": { "type": ["string", "null"] },
+        "created_at": { "type": ["string", "null"] }
+      },
+      "description": "A re-listening creates an attributable revision; it does not silently overwrite the earlier hearing."
+    }
+  },
+  "$defs": {
+    "text_list": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "default": []
+    },
+    "honest_absence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "subject", "attributed_to"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["unavailable", "withheld", "refused", "not_retained", "forgotten", "undetermined"]
+        },
+        "subject": { "type": "string", "minLength": 1 },
+        "attributed_to": { "type": "string", "minLength": 1 },
+        "count": { "type": ["integer", "null"], "minimum": 0 },
+        "note": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

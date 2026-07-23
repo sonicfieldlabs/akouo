@@ -46,6 +46,8 @@ What kind of listening does this situation require?
 
 Since v0.6 the routing layer is also published as data. Host apps should load `akouo.manifest.json` (validated by `schemas/manifest.schema.json`) for the skill list, command chains, evidence ladder, and command permission overrides, and `presets/presets.json` (validated by `schemas/preset.schema.json`) for named listening configurations. Hand-copied route tables drift; the manifest is the source of truth this skill's prose explains.
 
+Since v0.8, current producers should also emit `listening_context` from `references/listening-context.schema.json`. Keep four things structurally distinct: **covenant** (what is permitted), **position** (where and in what relation this listener listens), **apparatus** (what can be sensed), and **claims** (what the evidence supports). The context also declares apertures, auditory scales, actual sources of listening, attributed participants, action authority, honest absences, and revision lineage. Capabilities never grant action authority. Multiple participants remain separately attributable; disagreement is retained by the host or memory layer instead of synthesized into fictional consensus.
+
 ## Presets And Budget
 
 A caller may name a preset (from `presets/presets.json`) or a budget (`light`, `standard`, `deep`) in the request; expanded routing plans carry them back as `preset_id` and `budget`.

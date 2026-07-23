@@ -12,15 +12,16 @@ AKOÚŌ does not pretend that agents hear like humans. It gives them accountable
 
 This public release contains the portable AKOÚŌ skills, router, command definitions, schemas, and a local-first reference app for running the listening workflows.
 
-Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current release contract: `v0.7`.
+Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current release contract: `v0.8`.
 
 The `akouo-contract` Python distribution packages this repository's canonical
 skills, commands, presets, schemas, and manifest for Oída and other local
-agent hosts. Package release `0.7.0` implements the `akouo/v0.7` data
-contract (the sovereignty layer); no skill fork is created inside a host application.
+agent hosts. Package release `0.8.0` implements the `akouo/v0.8` data
+contract (the accountable-listening layer); no skill fork is created inside a host application.
 
 ## Version Status
 
+- `v0.8` adds an accountable listening context: position, apertures, auditory scale, sources of listening, participants, action authority, revision, and honest absence are now first-class data rather than prose conventions.
 - `v0.7` adds `sovereign-listening`, the `/covenant` command, and an enforceable listening-covenant schema for consent, withholding, retention, precision, and quiet-hour rules.
 - `v0.1` marks the first public portable-skills release.
 - `v0.2` refines the listening modes with stronger theoretical distinctions, clearer evidence boundaries, and more explicit public-repo hygiene.
@@ -35,9 +36,9 @@ AKOÚŌ is the shared listening contract across the stack. The current release c
 
 | Project | Current integration |
 | --- | --- |
-| [OÍDA](https://github.com/sonicfieldlabs/oida) `0.6.0` | Loads the `akouo/v0.7` contract, routes listening commands, and exposes local gateway surfaces. |
-| [Earworm](https://github.com/sonicfieldlabs/earworm) `0.4.0` | Persists listening events as `akousma/v1.3` records with AKOÚŌ contract and covenant metadata. |
-| [Akousmata](https://github.com/sonicfieldlabs/akousmata) `0.4.0` | Validates and navigates Earworm-compatible sound memories for recall and lineage listening. |
+| [OÍDA](https://github.com/sonicfieldlabs/oida) `0.8.0` | Loads the `akouo/v0.8` contract, declares its actual apparatus and authority, and exposes accountable local gateway surfaces. |
+| [Earworm](https://github.com/sonicfieldlabs/earworm) `0.5.0` | Persists addressable auditums as `akousma/v1.4` records while preserving listening routes, disagreement, absence, authority, and revision. |
+| [Akousmata](https://github.com/sonicfieldlabs/akousmata) `0.5.0` | Validates, audits, and navigates Earworm-compatible sound memories without collapsing distinct listeners into consensus. |
 | [Algophony](https://github.com/sonicfieldlabs/algophony) `0.5.0` | Uses the listening contract for generation supervision, evaluation, and research workflows. |
 | [GERM](https://github.com/sonicfieldlabs/germ) `0.2.0` | Connects cultivation sessions to OÍDA and Akousmata for listening and lineage-aware workflows. |
 | [ORAM](https://github.com/sonicfieldlabs/oram) `0.4.0` | ORAM audio can be passed to any AKOÚŌ host; ORAM does not embed the contract directly. |
@@ -74,6 +75,32 @@ Every output must distinguish its findings into the following epistemic categori
 - `undetermined`: what cannot be responsibly claimed
 
 This taxonomy is the main public contract of the system, preventing LLMs from hallucinating certainty or confusing a theoretical reading for a forensic measurement.
+
+## v0.8 Accountable Listening
+
+The v0.8 contract makes the conditions of a hearing inspectable. A current
+producer emits `listening_context` beside its six claim categories:
+
+- `position` states the listener's relation, situation, identity reference,
+  and limitations without pretending to be a view from nowhere.
+- `apertures` inventory the channels that were available, degraded,
+  unavailable, or withheld. A model observation is never silently promoted
+  to a signal measurement.
+- `auditory_scales` and `sources_of_listening` state the temporal or
+  infrastructural scale and evidence streams actually used.
+- `participants` keeps human, agent, and hybrid listenings attributable.
+- `action_authority` separates what a system can technically do from what it
+  is authorized to do. Reference listeners default to `observe_only`.
+- `honest_absences` name unavailable, withheld, refused, unretained,
+  forgotten, and undetermined material without filling the gap.
+- `revision` makes re-listening additive and traceable instead of overwriting
+  a prior account.
+
+The four objects remain distinct: a covenant says what the listener may do;
+position says where and in what relation it listens; apparatus says what it
+can sense; and claims say what the available evidence supports. See
+[`ACCOUNTABLE_LISTENING.md`](ACCOUNTABLE_LISTENING.md) for the producer and
+integration rules.
 
 ## v0.7 Sovereign Listening
 
@@ -254,7 +281,7 @@ akouo/
   README.md
   SYSTEM_GUIDE.md      # Operational guide for commands, workflows, and app contract
   SKILL_INDEX.md       # Quick-reference manifest of all skills
-  CHANGELOG.md         # Release history from v0.1 through v0.7.0
+  CHANGELOG.md         # Release history from v0.1 through v0.8.0
   akouo.manifest.json  # Machine-readable system contract (skills, commands, ladder, overrides)
   LICENSE
   .gitignore

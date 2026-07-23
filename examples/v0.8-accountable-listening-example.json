@@ -1,0 +1,133 @@
+{
+  "description": "An accountable listening output keeps covenant, position, apparatus, and claim evidence distinct. The example also exercises attributed absence and observe-only action authority.",
+  "listening_output": {
+    "object_listened_to": "short local field recording",
+    "input_type": "audio_file",
+    "listening_mode": "acoulogical-object-listening",
+    "listening_claims": {
+      "heard": [
+        {
+          "statement": "A repeating granular sound appears against a quieter continuous layer.",
+          "confidence": "medium",
+          "basis": "Audio-native model observation, not source identification",
+          "source": "model",
+          "time_range": { "start_s": 0.8, "end_s": 4.2 }
+        }
+      ],
+      "measured": [
+        {
+          "statement": "The supplied file has two channels at 48000 Hz.",
+          "confidence": "high",
+          "basis": "Decoded file metadata",
+          "source": "metadata"
+        }
+      ],
+      "inferred": [],
+      "interpreted": [],
+      "speculative": [],
+      "undetermined": [
+        {
+          "statement": "The producing source and capture location are not established by this listening.",
+          "confidence": "high",
+          "basis": "No corroborating source or location evidence",
+          "source": "context"
+        }
+      ]
+    },
+    "what_appears": ["A layered, repeating auditum."],
+    "what_remains_hidden": ["Producing source, listener embodiment, and the complete capture chain."],
+    "mediations": {
+      "technical": ["The file was decoded and resampled by a local host."],
+      "cultural": [],
+      "spatial": ["Playback space and capture space are not known to be the same."],
+      "bodily": ["No listener-specific bodily response was collected."],
+      "archival": [],
+      "computational": ["DSP and an audio model supplied different evidence streams."]
+    },
+    "risks": {
+      "hallucination": ["Do not complete the scene from resemblance."],
+      "over_identification": ["Do not identify a source from the granular quality alone."],
+      "cultural_flattening": [],
+      "forensic_overreach": [],
+      "source_confusion": ["Model observation is not measurement."],
+      "aesthetic_overstatement": []
+    },
+    "main_reading": "The recording presents a repeating granular layer and a continuous background, with cause held open.",
+    "alternative_reading": "The apparent layers may partly result from capture, encoding, or model segmentation.",
+    "recommended_next_mode": "transductive-media-listening",
+    "akouo_version": "0.8",
+    "apparatus": {
+      "substrate": "hybrid_agent_stack",
+      "perception_sources": ["local DSP", "audio-native model"],
+      "model_ids": ["example-audio-model"],
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "bandwidth_limit_hz": 24000,
+      "known_blind_spots": ["No calibrated SPL", "Unknown microphone and room"]
+    },
+    "listener": {
+      "type": "agent",
+      "process": "agent_automated"
+    },
+    "covenant": {
+      "id": "field-listening/1",
+      "version": "1",
+      "sha256": "6b1e2f0e9a58a2c0b3784d7f46f944633ca133b491157eab3b6a96f4f0d11375",
+      "withheld": [
+        { "rule": "do_not_reveal", "subject": "location", "count": 1 }
+      ],
+      "commitments": 2
+    },
+    "listening_context": {
+      "contract": "akouo/listening-context/v1",
+      "position": {
+        "relation_to_object": "remote analysis of a local file",
+        "situation": "local-first host",
+        "listening_identity_ref": null,
+        "limitations": ["The agent did not witness the recording event."]
+      },
+      "apertures": [
+        {
+          "id": "audio-model",
+          "kind": "model_observation",
+          "status": "available",
+          "description": "Audio-native observation pass",
+          "limits": ["Uncalibrated model preprocessing"]
+        },
+        {
+          "id": "location",
+          "kind": "metadata",
+          "status": "withheld",
+          "description": "Location is excluded by covenant."
+        }
+      ],
+      "auditory_scales": ["frame", "event", "scene"],
+      "sources_of_listening": ["audio", "dsp", "model", "metadata"],
+      "participants": [
+        {
+          "id": "oida-local",
+          "type": "agent",
+          "role": "primary listener",
+          "report_ref": "#/listening_output"
+        }
+      ],
+      "action_authority": {
+        "mode": "observe_only",
+        "scopes": ["describe", "recommend_next_listening"],
+        "granted_by": "current user request",
+        "expires_at": null,
+        "requires_confirmation": true,
+        "reversible": true
+      },
+      "honest_absences": [
+        {
+          "kind": "withheld",
+          "subject": "location",
+          "attributed_to": "field-listening/1",
+          "count": 1,
+          "note": "The content is not reconstructed or guessed."
+        }
+      ]
+    }
+  }
+}

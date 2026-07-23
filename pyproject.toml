@@ -1,6 +1,6 @@
 [project]
 name = "akouo-contract"
-version = "0.7.0"
+version = "0.8.0"
 description = "Packaged AKOÚŌ listening skills, routes, presets, and JSON contracts."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -21,4 +21,3 @@ packages = ["src/akouo_contract"]
 "skills" = "akouo_contract/data/skills"
 "commands" = "akouo_contract/data/commands"
 "SYSTEM_GUIDE.md" = "akouo_contract/data/SYSTEM_GUIDE.md"
-

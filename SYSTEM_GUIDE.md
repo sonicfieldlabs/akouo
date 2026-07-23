@@ -4,7 +4,7 @@
 
 AKOÚŌ is a portable listening system for AI agents. It does not only ask what is inside a sound. It asks how an agent should listen, what kind of evidence is available, which claims are allowed, and which claims must remain unknown.
 
-The public system contains 16 portable skills:
+The public system contains 17 portable skills:
 
 - `akouo-router`: the meta-router that chooses listening modes
 - `signal-inspection-listening`: technical signal and metadata ear
@@ -21,6 +21,7 @@ The public system contains 16 portable skills:
 - `accessibility-normative-listening`: hearing norms, captions, transcripts, haptics, sensory variation, device, fatigue, and access ear
 - `material-event-listening`: vibration, resonance, duration, flux, material support, propagation, and event ear
 - `memory-lineage-listening`: sound-memory ear for stored records, recurrence, kinship, lineage, and change over time
+- `sovereign-listening`: covenant-aware ear for consent, withholding, opacity, retention, precision, and refusal
 - `reference-layer`: the conceptual mapping skill that turns listening into concepts, methods, traditions, research routes, cautions, and adjacent modes
 
 The private benchmark extension can add `benchmark-listening` for external-agent evaluation and database ingestion. That benchmark skill is not part of the public portable release.
@@ -38,6 +39,12 @@ Every listening output must separate claims into six categories:
 
 This taxonomy is the main safety system. It prevents agents from turning a prompt into audio evidence, a metaphor into a fact, or a cultural reading into a measurement.
 
+Current producers also emit `listening_context`. It keeps four questions
+separate: what the covenant permits, where the listener is positioned, what
+the apparatus can sense, and what the evidence supports. Its apertures,
+scales, sources, participants, authority, revision, and honest-absence fields
+make those conditions machine-checkable. See `ACCOUNTABLE_LISTENING.md`.
+
 ## Standard Process
 
 Use this process for most sound tasks:
@@ -53,13 +60,14 @@ Use this process for most sound tasks:
 
 Every command begins with a router planning pass, even when its mode chain is fixed. The planning pass supplies the evidence inventory, risks, and forbidden assumptions that the command's synthesis must respect, so `akouo-router` appears in `skills_called` for every command output except `/one-sound-many-ears`, whose comparative contract runs all modes unconditionally.
 
-## Machine-Readable Contract (v0.6)
+## Machine-Readable Contract (v0.8)
 
 Host apps should consume AKOÚŌ as data:
 
 - `akouo.manifest.json` carries the skill list with structured metadata (facets, cost tier, memory policy, corrective eligibility), the command chains, the Evidence Ladder, and command permission overrides. Validate with `schemas/manifest.schema.json`.
 - `presets/presets.json` carries named listening configurations for recurring use-cases; validate each entry with `schemas/preset.schema.json`. A preset names its command, mode chain, cost tier (`light`/`standard`/`deep`), memory policy, and perception passes; hosts map passes to their own backends.
-- Outputs may pin their contract with `akouo_version`, declare their `apparatus` (substrate and blind spots), declare the `listener` (human/agent/hybrid), link stored records through `memory`, and mark each claim's `source` and `time_range`.
+- Outputs pin their contract with `akouo_version`, declare their `apparatus` (substrate and blind spots), declare the `listener` (human/agent/hybrid), link stored records through `memory`, and mark each claim's `source` and `time_range`.
+- Current outputs add `listening_context`: position, apertures, auditory scales, sources of listening, participants, action authority, revision, and honest absences. Older records may omit it.
 
 Loading these files replaces hand-copied route tables, which drift. Prose in this guide explains the contract; the manifest is the source of truth.
 
@@ -174,7 +182,7 @@ Typical chain: router, memory-lineage, acoulogical grounding, signal-inspection 
 
 ### `/covenant`
 
-Sovereignty route (v0.7). Use it to listen under an explicit listening covenant: verify the covenant's identity and lineage, apply what the host's gates can enforce (refuse sources, ignore classes, withhold aspects, coarsen precision, retain nothing, honor quiet hours), carry every non-executable line as a commitment, and report withholding as honest, attributed absence — counted and named by rule, never described, and never confused with `undetermined`.
+Sovereignty route (introduced in v0.7). Use it to listen under an explicit listening covenant: verify the covenant's identity and lineage, apply what the host's gates can enforce (refuse sources, ignore classes, withhold aspects, coarsen precision, retain nothing, honor quiet hours), carry every non-executable line as a commitment, and report withholding as honest, attributed absence — counted and named by rule, never described, and never confused with `undetermined`.
 
 Typical chain: router, sovereign-listening, acoulogical grounding on what the covenant admits, signal-inspection corrective. With no covenant available, report exactly that and stop: sovereignty is opted into, never imposed.
 

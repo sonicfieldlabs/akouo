@@ -97,7 +97,9 @@ Return the shared listening output:
 - `alternative_reading`
 - `recommended_next_mode`
 
-Since v0.6 the shared schema also carries optional fields this mode should use whenever the host supports them: `memory` (`akousma_id`, `akousmata_refs`, `lineage_note`), `apparatus`, `listener`, `akouo_version`, and per-claim `source` and `time_range`. Give every memory-derived claim `source: "memory"`.
+The shared schema carries optional fields this mode should use whenever the host supports them: `memory` (`akousma_id`, `akousmata_refs`, `lineage_note`), `apparatus`, `listener`, `akouo_version`, and per-claim `source` and `time_range`. Give every memory-derived claim `source: "memory"`.
+
+Since v0.8, current producers should emit `listening_context` from `references/listening-context.schema.json`. A re-listening gets a new `revision.id` and points `revises` at the earlier report; it never overwrites the earlier hearing. Keep the participants in an ear swarm separately attributed, preserve disagreement, and treat a missing or forgotten record as an attributed absence rather than a cue to reconstruct it. Action authority defaults to `observe_only`; a memory match never authorizes an action.
 
 Host stores speaking akousma spec v1.2 may attach two more record blocks this mode can consult: `location` (where a sound was heard — lat/lon, accuracy, human label) and `capture` (how the listening was triggered: direction `past`/`future`/`live` and window seconds). Treat both as **host metadata evidence, never model perception**: a claim like "recurring at the same place" derives from stored coordinates, so it takes `source: "metadata"` (or `"context"` for free-text place labels) and can never be `measured`. Location is consent-scoped — repeat it into outputs only when the host's task requires it, and never infer a person's whereabouts beyond what the record already states. A `capture.direction` of `past` means the recording began before the trigger: the listener chose the sound after hearing it, which is itself lineage information worth noting.
 

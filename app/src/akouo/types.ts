@@ -71,9 +71,16 @@ export const listeningModes = [
   'accessibility-normative-listening',
   'material-event-listening',
   'memory-lineage-listening',
+  'sovereign-listening',
 ] as const;
 
 export type ListeningMode = (typeof listeningModes)[number];
+
+export const comparativeListeningModes = listeningModes.filter(
+  (mode): mode is Exclude<ListeningMode, 'sovereign-listening'> => mode !== 'sovereign-listening',
+);
+
+export type ComparativeListeningMode = (typeof comparativeListeningModes)[number];
 
 export const comparativeModeKeys = {
   'signal-inspection-listening': 'signal_inspection',
@@ -90,9 +97,9 @@ export const comparativeModeKeys = {
   'accessibility-normative-listening': 'accessibility_normative',
   'material-event-listening': 'material_event',
   'memory-lineage-listening': 'memory_lineage',
-} as const;
+} as const satisfies Record<ComparativeListeningMode, string>;
 
-type ComparativeModeKey = (typeof comparativeModeKeys)[ListeningMode];
+type ComparativeModeKey = (typeof comparativeModeKeys)[ComparativeListeningMode];
 
 type ComparativeModeComparison = Record<ComparativeModeKey, ListeningOutput>;
 
@@ -118,6 +125,7 @@ export const commandNames = [
   '/method',
   '/route',
   '/remember',
+  '/covenant',
 ] as const;
 
 export type CommandName = (typeof commandNames)[number];
@@ -173,6 +181,92 @@ interface MemoryLinks {
   lineage_note?: string | null;
 }
 
+export type ApertureKind =
+  | 'direct_audio'
+  | 'signal_measurement'
+  | 'metadata'
+  | 'transcript'
+  | 'contextual_note'
+  | 'human_report'
+  | 'model_observation'
+  | 'memory'
+  | 'audiovisual'
+  | 'haptic'
+  | 'other';
+
+export interface ListeningAperture {
+  id: string;
+  kind: ApertureKind;
+  status: 'available' | 'unavailable' | 'withheld' | 'degraded';
+  description?: string;
+  limits?: string[];
+}
+
+export interface ListeningContext {
+  contract: 'akouo/listening-context/v1';
+  position: {
+    relation_to_object: string;
+    situation?: string | null;
+    listening_identity_ref?: string | null;
+    limitations: string[];
+  };
+  apertures: ListeningAperture[];
+  auditory_scales: Array<
+    | 'sample'
+    | 'frame'
+    | 'gesture'
+    | 'event'
+    | 'scene'
+    | 'session'
+    | 'archive'
+    | 'lineage'
+    | 'infrastructural'
+    | 'planetary'
+    | 'unknown'
+  >;
+  sources_of_listening: Array<
+    | 'audio'
+    | 'dsp'
+    | 'metadata'
+    | 'transcript'
+    | 'context'
+    | 'human'
+    | 'model'
+    | 'memory'
+    | 'audiovisual'
+    | 'haptic'
+    | 'none'
+    | 'other'
+  >;
+  participants: Array<{
+    id: string;
+    type: 'human' | 'agent' | 'hybrid';
+    role: string;
+    report_ref?: string | null;
+  }>;
+  action_authority: {
+    mode: 'observe_only' | 'recommend' | 'request' | 'execute_scoped';
+    scopes: string[];
+    granted_by?: string | null;
+    expires_at?: string | null;
+    requires_confirmation: boolean;
+    reversible?: boolean | null;
+  };
+  honest_absences: Array<{
+    kind: 'unavailable' | 'withheld' | 'refused' | 'not_retained' | 'forgotten' | 'undetermined';
+    subject: string;
+    attributed_to: string;
+    count?: number | null;
+    note?: string | null;
+  }>;
+  revision?: {
+    id: string;
+    revises?: string | null;
+    reason?: string | null;
+    created_at?: string | null;
+  };
+}
+
 export interface ListeningOutput {
   object_listened_to: string;
   input_type: InputType;
@@ -189,6 +283,7 @@ export interface ListeningOutput {
   apparatus?: Apparatus;
   listener?: ListenerDeclaration;
   memory?: MemoryLinks;
+  listening_context?: ListeningContext;
 }
 
 export interface RouterOutput {

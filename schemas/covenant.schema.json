@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://sonicfield.org/schemas/akouo/covenant.schema.json",
   "title": "Listening Covenant",
-  "description": "The parsed form of a listening covenant (akouo/v0.7): a small, human-written declaration of sonic sovereignty that a listening system carries with it. Rules the engine can execute are enforced; every line it cannot execute is kept verbatim as a commitment — the covenant is a bridge language between a community's protocol and a machine's behavior, not a guarantee of obedience. Covenants declare their lineage (e.g. the Algophonya manifesto) through `extends`.",
+  "description": "The parsed form of a listening covenant: a small, human-written declaration of sonic sovereignty that a listening system carries with it. Rules the engine can execute are enforced; every line it cannot execute is kept verbatim as a commitment — the covenant is a bridge language between a community's protocol and a machine's behavior, not a guarantee of obedience. Covenants declare their lineage through `extends`.",
   "type": "object",
   "required": ["id", "rules", "commitments"],
   "additionalProperties": true,
@@ -20,7 +20,7 @@
     },
     "contract": {
       "type": "string",
-      "description": "The akouo contract this covenant was parsed under, e.g. 'akouo/v0.7'."
+      "description": "The AKOÚŌ contract this covenant was parsed under, e.g. 'akouo/v0.8'."
     },
     "extends": {
       "type": "array",

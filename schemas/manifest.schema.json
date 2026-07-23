@@ -24,7 +24,7 @@
     "contract": {
       "type": "string",
       "minLength": 1,
-      "description": "Pinnable contract identifier, e.g. 'akouo/v0.6'."
+      "description": "Pinnable contract identifier, e.g. 'akouo/v0.8'."
     },
     "description": {
       "type": "string",

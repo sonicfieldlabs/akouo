@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.8 — Accountable Listening
+
+- Added `schemas/listening-context.schema.json`, the shared declaration of a
+  hearing's position, apertures, auditory scales, evidence sources,
+  participants, action authority, revision, and honest absences.
+- Added the optional `listening_context` block to the listening-output
+  contract. Current producers emit it; v0.7 records remain valid.
+- Closed reference-app drift: sovereign listening and `/covenant` now appear
+  in the executable mode and command registries, and browser reports declare
+  the apparatus and evidence channels they actually used.
+- Fixed the example validator so the already-valid `covenant` output block is
+  accepted and added validation for the accountable context.
+- Strengthened every operational ear: model observations are not
+  measurements, action capability is not authority, disagreement remains
+  attributable, and re-listening creates revisions instead of silent
+  replacement.
+- Added `ACCOUNTABLE_LISTENING.md` as the concise producer/consumer contract
+  for the wider listening stack.
+- Bumped `akouo-contract` and the reference app to `0.8.0`
+  (`akouo/v0.8`).
+
 ## v0.7 — Sovereign Listening
 
 - Added `sovereign-listening`, the fifteenth mode: listening under an explicit
