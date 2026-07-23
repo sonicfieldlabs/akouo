@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { claimCategories, comparativeModeKeys, listeningModes } from '../akouo/types';
+import { claimCategories, comparativeListeningModes, comparativeModeKeys } from '../akouo/types';
 import type {
   Claim,
   ClaimCategory,
@@ -134,7 +134,7 @@ function emptyModeOutputLabel(result: CommandOutput): string {
 }
 
 function ComparativeReport({ result }: { result: ComparativeListeningOutput }) {
-  const outputs = listeningModes.map((mode) => result.mode_comparison[comparativeModeKeys[mode]]);
+  const outputs = comparativeListeningModes.map((mode) => result.mode_comparison[comparativeModeKeys[mode]]);
 
   return (
     <div className="main-content-stack">

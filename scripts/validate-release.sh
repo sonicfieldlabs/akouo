@@ -106,7 +106,11 @@ for skill in "${EXPECTED_SKILLS[@]}"; do
     continue
   fi
 
-  required_refs=("claim-taxonomy.schema.json" "listening-output.schema.json")
+  required_refs=(
+    "claim-taxonomy.schema.json"
+    "listening-context.schema.json"
+    "listening-output.schema.json"
+  )
   if [ "$skill" = "akouo-router" ]; then
     required_refs+=("router-output.schema.json" "routing-plan.schema.json")
   fi

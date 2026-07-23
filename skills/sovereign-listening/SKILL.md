@@ -74,6 +74,8 @@ What has this ear agreed not to do — and is this hearing keeping that agreemen
 
 Use `references/listening-output.schema.json`. This mode's outputs must include the optional `covenant` block (id, name, version, sha256, withheld[], commitments). Claims about withheld material are forbidden at every rung of the evidence ladder — there is no evidence level that licenses describing what the covenant withheld. Claims ABOUT the covenant (what was applied, what was withheld, what is committed) take `source: "context"`.
 
+Current v0.8 producers should also emit `listening_context` from `references/listening-context.schema.json`. Mark covenant-closed apertures `withheld`, copy only category-level attributed absence into `honest_absences`, and keep `action_authority` distinct from the covenant: a covenant can narrow authority but cannot silently expand it. Withheld, unavailable, refused, not retained, forgotten, and undetermined remain different states.
+
 > **Note to LLMs/Agents:** You MUST strictly follow the JSON schema provided in `references/listening-output.schema.json`. Ensure `listening_claims` separates claims exactly as defined; each item must be a claim object with `statement`, `confidence`, and optional `basis`, `source`, and `time_range`. Do not output bare strings in claim lists. Never describe withheld material; name its category and its rule.
 
 ## Guardrails

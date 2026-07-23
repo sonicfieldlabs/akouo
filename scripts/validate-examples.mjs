@@ -8,6 +8,7 @@ const schemasDir = join(repoRoot, 'schemas');
 const examplesDir = join(repoRoot, 'examples');
 
 const listeningSchema = readJson(join(schemasDir, 'listening-output.schema.json'));
+const listeningContextSchema = readJson(join(schemasDir, 'listening-context.schema.json'));
 const claimSchema = readJson(join(schemasDir, 'claim-taxonomy.schema.json'));
 const routerSchema = readJson(join(schemasDir, 'router-output.schema.json'));
 const routingPlanSchema = readJson(join(schemasDir, 'routing-plan.schema.json'));
@@ -24,6 +25,12 @@ const modeRoles = new Set(routingPlanSchema.properties.mode_chain.items.properti
 const budgetValues = new Set(routingPlanSchema.properties.budget.enum);
 const substrateValues = new Set(listeningSchema.$defs.apparatus.properties.substrate.enum);
 const listenerTypes = new Set(listeningSchema.$defs.listener.properties.type.enum);
+const apertureKinds = new Set(listeningContextSchema.properties.apertures.items.properties.kind.enum);
+const apertureStatuses = new Set(listeningContextSchema.properties.apertures.items.properties.status.enum);
+const auditoryScales = new Set(listeningContextSchema.properties.auditory_scales.items.enum);
+const listeningSources = new Set(listeningContextSchema.properties.sources_of_listening.items.enum);
+const authorityModes = new Set(listeningContextSchema.properties.action_authority.properties.mode.enum);
+const absenceKinds = new Set(listeningContextSchema.$defs.honest_absence.properties.kind.enum);
 const skillFacets = new Set(manifestSchema.properties.skills.items.properties.facets.items.enum);
 const costTiers = new Set(['light', 'standard', 'deep']);
 const memoryPolicies = new Set(['none', 'read', 'write', 'read_write']);
@@ -46,6 +53,9 @@ if (!Array.isArray(listeningExamples.examples) || listeningExamples.examples.len
 const memoryExample = readJson(join(examplesDir, 'v0.6-memory-lineage-example.json'));
 validateListeningOutput(memoryExample.listening_output, 'examples/v0.6-memory-lineage-example.json#/listening_output');
 validateRoutingPlan(memoryExample.routing_plan, 'examples/v0.6-memory-lineage-example.json#/routing_plan');
+
+const accountableExample = readJson(join(examplesDir, 'v0.8-accountable-listening-example.json'));
+validateListeningOutput(accountableExample.listening_output, 'examples/v0.8-accountable-listening-example.json#/listening_output');
 
 validatePresets(readJson(join(repoRoot, 'presets', 'presets.json')), 'presets/presets.json');
 validateManifest(readJson(join(repoRoot, 'akouo.manifest.json')), 'akouo.manifest.json');
@@ -101,11 +111,13 @@ function validateRoutingPlan(value, path) {
 }
 
 function validateListeningOutput(value, path) {
-  expectRequiredAndOptionalKeys(value, ['object_listened_to', 'input_type', 'listening_mode', 'listening_claims', 'what_appears', 'what_remains_hidden', 'mediations', 'risks', 'main_reading', 'alternative_reading', 'recommended_next_mode'], ['akouo_version', 'apparatus', 'listener', 'memory'], path);
+  expectRequiredAndOptionalKeys(value, ['object_listened_to', 'input_type', 'listening_mode', 'listening_claims', 'what_appears', 'what_remains_hidden', 'mediations', 'risks', 'main_reading', 'alternative_reading', 'recommended_next_mode'], ['akouo_version', 'apparatus', 'listener', 'memory', 'covenant', 'listening_context'], path);
   if ('akouo_version' in (value ?? {})) expectNonEmptyString(value.akouo_version, `${path}.akouo_version`);
   if ('apparatus' in (value ?? {})) validateApparatus(value.apparatus, `${path}.apparatus`);
   if ('listener' in (value ?? {})) validateListener(value.listener, `${path}.listener`);
   if ('memory' in (value ?? {})) validateMemoryLinks(value.memory, `${path}.memory`);
+  if ('covenant' in (value ?? {})) validateCovenantRef(value.covenant, `${path}.covenant`);
+  if ('listening_context' in (value ?? {})) validateListeningContext(value.listening_context, `${path}.listening_context`);
   expectNonEmptyString(value.object_listened_to, `${path}.object_listened_to`);
   expectEnum(value.input_type, inputTypes, `${path}.input_type`);
   expectEnum(value.listening_mode, listeningModes, `${path}.listening_mode`);
@@ -171,6 +183,89 @@ function validateMemoryLinks(value, path) {
   if ('akousma_id' in (value ?? {}) && value.akousma_id !== null) expectNonEmptyString(value.akousma_id, `${path}.akousma_id`);
   if ('akousmata_refs' in (value ?? {})) expectTextArray(value.akousmata_refs, `${path}.akousmata_refs`);
   if ('lineage_note' in (value ?? {}) && value.lineage_note !== null) expectNonEmptyString(value.lineage_note, `${path}.lineage_note`);
+}
+
+function validateCovenantRef(value, path) {
+  expectRequiredAndOptionalKeys(value, ['id'], ['name', 'version', 'sha256', 'withheld', 'commitments'], path);
+  expectNonEmptyString(value?.id, `${path}.id`);
+  for (const key of ['name', 'version', 'sha256']) {
+    if (key in (value ?? {}) && value[key] !== null) expectNonEmptyString(value[key], `${path}.${key}`);
+  }
+  if ('commitments' in (value ?? {}) && value.commitments !== null && (!Number.isInteger(value.commitments) || value.commitments < 0)) {
+    errors.push(`${path}.commitments: expected non-negative integer or null`);
+  }
+  if ('withheld' in (value ?? {})) {
+    expectArray(value.withheld, `${path}.withheld`);
+    value.withheld?.forEach((item, index) => {
+      const itemPath = `${path}.withheld[${index}]`;
+      expectRequiredAndOptionalKeys(item, [], ['rule', 'subject', 'count'], itemPath);
+      for (const key of ['rule', 'subject']) {
+        if (key in (item ?? {}) && item[key] !== null) expectNonEmptyString(item[key], `${itemPath}.${key}`);
+      }
+      if ('count' in (item ?? {}) && item.count !== null && (!Number.isInteger(item.count) || item.count < 0)) {
+        errors.push(`${itemPath}.count: expected non-negative integer or null`);
+      }
+    });
+  }
+}
+
+function validateListeningContext(value, path) {
+  expectRequiredAndOptionalKeys(
+    value,
+    ['contract', 'position', 'apertures', 'auditory_scales', 'sources_of_listening', 'participants', 'action_authority', 'honest_absences'],
+    ['revision'],
+    path,
+  );
+  if (value?.contract !== 'akouo/listening-context/v1') errors.push(`${path}.contract: unexpected value ${JSON.stringify(value?.contract)}`);
+
+  expectRequiredAndOptionalKeys(value?.position, ['relation_to_object', 'limitations'], ['situation', 'listening_identity_ref'], `${path}.position`);
+  expectNonEmptyString(value?.position?.relation_to_object, `${path}.position.relation_to_object`);
+  expectTextArray(value?.position?.limitations, `${path}.position.limitations`);
+
+  expectArray(value?.apertures, `${path}.apertures`);
+  value?.apertures?.forEach((item, index) => {
+    const itemPath = `${path}.apertures[${index}]`;
+    expectRequiredAndOptionalKeys(item, ['id', 'kind', 'status'], ['description', 'limits'], itemPath);
+    expectNonEmptyString(item?.id, `${itemPath}.id`);
+    expectEnum(item?.kind, apertureKinds, `${itemPath}.kind`);
+    expectEnum(item?.status, apertureStatuses, `${itemPath}.status`);
+    if ('description' in (item ?? {})) expectString(item.description, `${itemPath}.description`);
+    if ('limits' in (item ?? {})) expectTextArray(item.limits, `${itemPath}.limits`);
+  });
+
+  expectArray(value?.auditory_scales, `${path}.auditory_scales`, 1);
+  value?.auditory_scales?.forEach((item, index) => expectEnum(item, auditoryScales, `${path}.auditory_scales[${index}]`));
+  expectArray(value?.sources_of_listening, `${path}.sources_of_listening`, 1);
+  value?.sources_of_listening?.forEach((item, index) => expectEnum(item, listeningSources, `${path}.sources_of_listening[${index}]`));
+
+  expectArray(value?.participants, `${path}.participants`, 1);
+  value?.participants?.forEach((item, index) => {
+    const itemPath = `${path}.participants[${index}]`;
+    expectRequiredAndOptionalKeys(item, ['id', 'type', 'role'], ['report_ref'], itemPath);
+    expectNonEmptyString(item?.id, `${itemPath}.id`);
+    expectEnum(item?.type, listenerTypes, `${itemPath}.type`);
+    expectNonEmptyString(item?.role, `${itemPath}.role`);
+  });
+
+  const authorityPath = `${path}.action_authority`;
+  expectRequiredAndOptionalKeys(value?.action_authority, ['mode', 'scopes', 'requires_confirmation'], ['granted_by', 'expires_at', 'reversible'], authorityPath);
+  expectEnum(value?.action_authority?.mode, authorityModes, `${authorityPath}.mode`);
+  expectTextArray(value?.action_authority?.scopes, `${authorityPath}.scopes`);
+  if (typeof value?.action_authority?.requires_confirmation !== 'boolean') errors.push(`${authorityPath}.requires_confirmation: expected boolean`);
+
+  expectArray(value?.honest_absences, `${path}.honest_absences`);
+  value?.honest_absences?.forEach((item, index) => {
+    const itemPath = `${path}.honest_absences[${index}]`;
+    expectRequiredAndOptionalKeys(item, ['kind', 'subject', 'attributed_to'], ['count', 'note'], itemPath);
+    expectEnum(item?.kind, absenceKinds, `${itemPath}.kind`);
+    expectNonEmptyString(item?.subject, `${itemPath}.subject`);
+    expectNonEmptyString(item?.attributed_to, `${itemPath}.attributed_to`);
+  });
+
+  if ('revision' in (value ?? {})) {
+    expectRequiredAndOptionalKeys(value.revision, ['id'], ['revises', 'reason', 'created_at'], `${path}.revision`);
+    expectNonEmptyString(value.revision?.id, `${path}.revision.id`);
+  }
 }
 
 function validatePresets(value, path) {

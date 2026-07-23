@@ -3,6 +3,7 @@ import { claimCategories, commandNames, inputTypes, listeningModes } from './typ
 const schemaFiles = [
   'schemas/claim-taxonomy.schema.json',
   'schemas/listening-output.schema.json',
+  'schemas/listening-context.schema.json',
   'schemas/router-output.schema.json',
   'schemas/routing-plan.schema.json',
   'schemas/command-output.schema.json',

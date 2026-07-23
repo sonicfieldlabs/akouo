@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://akouo.dev/schemas/listening-output.schema.json",
   "title": "akoúō Standard Listening Output",
-  "description": "Common output structure for every akoúō listening mode.",
+  "description": "Common output structure for every AKOÚŌ listening mode. In v0.8 the optional listening_context block makes position, apertures, scale, participants, action authority, and attributed absence machine-readable while keeping apparatus, covenant, and claims separate.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -76,6 +76,10 @@
     "covenant": {
       "$ref": "#/$defs/covenant_ref",
       "description": "Optional v0.7 declaration of the listening covenant this output was produced under: the covenant's identity plus honest absence — what was withheld under its rules, counted and attributed, never described."
+    },
+    "listening_context": {
+      "$ref": "listening-context.schema.json",
+      "description": "Optional v0.8 accountable listening context. Current producers SHOULD emit it; omission remains valid for v0.7 and older records."
     }
   },
   "$defs": {

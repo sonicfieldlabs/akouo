@@ -1,5 +1,5 @@
 {
-  "akouo_version": "0.6",
+  "akouo_version": "0.8",
   "description": "Portable listening presets: named configurations for recurring use-cases. Each preset validates against schemas/preset.schema.json. Hosts map perception_passes to their own backends; 'dsp' means deterministic signal measurement, the others are model perception passes. The router may still add or strengthen a corrective mode when the object's risk demands it — presets configure listening, they never waive guardrails.",
   "presets": [
     {
@@ -201,6 +201,19 @@
       "cost_tier": "light",
       "memory_policy": "none",
       "perception_passes": ["dsp"],
+      "enabled_by_default": false
+    },
+    {
+      "id": "sovereign",
+      "name": "Sovereign",
+      "description": "Covenant-first route that declares listening authority, applies host-owned limits, and keeps withholding attributable without reconstructing it.",
+      "command": "/covenant",
+      "mode_chain": [
+        { "mode": "sovereign-listening", "role": "primary" },
+        { "mode": "critical-political-listening", "role": "corrective" }
+      ],
+      "cost_tier": "light",
+      "memory_policy": "none",
       "enabled_by_default": false
     }
   ]

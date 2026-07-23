@@ -4,10 +4,11 @@ import {
   createClaim,
   createEmptyClaimTaxonomy,
   createListeningOutputDraft,
+  createReferenceListeningContext,
 } from './outputFactory';
 import { createReferenceClaimSummary, createReferenceMap, referenceSummary } from './referenceLayer';
 import { hasAnyRequestTerm } from './textMatch';
-import { commandNames, comparativeModeKeys, listeningModes } from './types';
+import { commandNames, comparativeListeningModes, comparativeModeKeys, listeningModes } from './types';
 import type {
   AudioInspection,
   ClaimTaxonomy,
@@ -73,9 +74,9 @@ function createCommandOutput(command: Exclude<CommandName, '/one-sound-many-ears
 }
 
 function createComparativeOutput(request: ListeningRequest): ComparativeListeningOutput {
-  const outputs = listeningModes.map((mode) => createModeOutput(mode, request));
-  const modeComparison = outputs.reduce<ComparativeListeningOutput['mode_comparison']>((comparison, output) => {
-    comparison[comparativeModeKeys[output.listening_mode]] = output;
+  const outputs = comparativeListeningModes.map((mode) => createModeOutput(mode, request));
+  const modeComparison = comparativeListeningModes.reduce<ComparativeListeningOutput['mode_comparison']>((comparison, mode, index) => {
+    comparison[comparativeModeKeys[mode]] = outputs[index];
     return comparison;
   }, {} as ComparativeListeningOutput['mode_comparison']);
 
@@ -135,6 +136,8 @@ function modesForCommand(command: Exclude<CommandName, '/one-sound-many-ears'>, 
       return [];
     case '/remember':
       return ['memory-lineage-listening', 'acoulogical-object-listening', 'signal-inspection-listening'];
+    case '/covenant':
+      return ['sovereign-listening'];
   }
 }
 
@@ -320,8 +323,32 @@ function createModeOutput(mode: ListeningMode, request: ListeningRequest): Liste
     case 'memory-lineage-listening':
       fillMemoryLineage(output, request);
       break;
+    case 'sovereign-listening':
+      fillSovereign(output, request);
+      break;
   }
 
+  output.akouo_version = '0.8';
+  output.apparatus = request.audioInspection
+    ? {
+        substrate: 'dsp_toolchain',
+        perception_sources: ['browser Web Audio decode', 'local bounded DSP', ...(request.prompt?.trim() ? ['user-supplied text'] : [])],
+        sample_rate_hz: request.audioInspection.sampleRate,
+        channels: request.audioInspection.channelCount,
+        bandwidth_limit_hz: request.audioInspection.sampleRate ? request.audioInspection.sampleRate / 2 : null,
+        known_blind_spots: [
+          'No calibrated playback level.',
+          'No verified microphone, recorder, room, or codec lineage beyond supplied metadata.',
+          'No audio-native semantic model is used by this reference app.',
+        ],
+      }
+    : {
+        substrate: 'text_only_agent',
+        perception_sources: request.prompt?.trim() ? ['user-supplied text'] : [],
+        known_blind_spots: ['No audio signal was supplied.', 'Text cannot verify timbre, space, dynamics, timing, or source identity.'],
+      };
+  output.listener = { type: 'agent', process: 'akouo_browser_reference' };
+  output.listening_context = createReferenceListeningContext(request);
   ensureBaselineLimits(output, request);
   return output;
 }
@@ -697,6 +724,29 @@ function fillMemoryLineage(output: ListeningOutput, request: ListeningRequest) {
   output.what_remains_hidden.push('Which records a host store would return for this object, and what their provenance would permit, remains unknown here.');
   output.main_reading = 'Memory-lineage listening compares present listening with stored records; without a store it can only define what the comparison would require.';
   output.alternative_reading = 'A host app with an akousma-style store (see the v0.6 memory block) could return consulted records, lineage notes, and a registered record id.';
+}
+
+function fillSovereign(output: ListeningOutput, request: ListeningRequest) {
+  const prompt = request.prompt?.trim();
+  output.mediations.cultural.push('A listening covenant belongs to the people or listener who authored and adopted it; the reference app cannot infer consent or authority from prose alone.');
+  output.mediations.computational.push('This browser route can inspect a covenant request, but enforcement belongs at host input, content, output, and retention gates.');
+  output.risks.forensic_overreach.push('Do not claim a covenant was enforced unless the host returns its identity, applied rules, and attributed withholding.');
+  output.risks.source_confusion.push('Withheld is not undetermined: withholding is an attributed decision, while undetermined names an evidentiary limit.');
+  output.recommended_next_mode = 'none';
+
+  if (prompt) {
+    output.what_appears.push('A user-supplied covenant or sovereignty request is present for review.');
+    output.listening_claims.interpreted.push(
+      createClaim('The request calls for listening under explicit limits on capture, analysis, revelation, precision, action, or retention.', 'medium', 'Text-side covenant review'),
+    );
+  }
+
+  output.listening_claims.undetermined.push(
+    createClaim('No executable host covenant and no enforcement receipts are attached to this browser report.', 'high', 'The reference app does not own capture, output, or retention gates'),
+  );
+  output.what_remains_hidden.push('Whether a host refused, withheld, coarsened, or forgot material under an adopted covenant remains unknown until that host reports it.');
+  output.main_reading = 'Sovereign listening begins by declaring what this ear may receive, reveal, retain, and do; capability alone grants no authority.';
+  output.alternative_reading = 'If no covenant was adopted, ordinary routed listening may proceed with the default observe-only authority and explicit evidence limits.';
 }
 
 function ensureBaselineLimits(output: ListeningOutput, request: ListeningRequest) {

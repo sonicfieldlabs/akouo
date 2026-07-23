@@ -303,6 +303,8 @@ function researchRouteForMode(mode: ListeningMode): string {
       return 'sound as material event across vibration, resonance, propagation, duration, and process';
     case 'memory-lineage-listening':
       return 'listening with stored sound-memories: recurrence, kinship, lineage, and change over time without treating memory as evidence';
+    case 'sovereign-listening':
+      return 'covenant-aware listening that keeps consent, withholding, opacity, retention, precision, and refusal inspectable';
   }
 }
 
