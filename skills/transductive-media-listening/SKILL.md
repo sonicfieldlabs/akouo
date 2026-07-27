@@ -112,6 +112,8 @@ The shared schema accepts instrumentation fields: `akouo_version`, `apparatus` (
 
 Since v0.8, current producers should also emit `listening_context` using `references/listening-context.schema.json`: keep position, apertures, auditory scale, actual sources of listening, attributed participants, action authority, and honest absence explicit. Covenant, position, apparatus, and claims are different objects. Default action authority to `observe_only`; never infer permission to retain, reveal, or act from perceptual capability. In plural listening, keep each participant and disagreement attributable instead of synthesizing consensus.
 
+For v0.9, treat every threshold, filter, resample, channel reduction, event label, routing rule, and output selection as a possible cut. Record consequential cuts in `listening_provenance.cuts` with stage, actor, basis, effect, and reversibility. This ledger names the signal/noise decision without reconstructing material withheld upstream. Use `corpus-listening` when the mediation question concerns training or fine-tuning inheritance rather than the current conversion chain.
+
 > **Note to LLMs/Agents:** You MUST strictly follow the JSON schema provided in `references/listening-output.schema.json`. Ensure that the `listening_claims` object separates claims exactly as defined above. Each item inside `listening_claims.*` must be a claim object with `statement`, `confidence`, and optional `basis`, `source`, and `time_range`, as defined in `references/claim-taxonomy.schema.json`; do not output bare strings in claim lists.
 
 ## Distinctions To Preserve

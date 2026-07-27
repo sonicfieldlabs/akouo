@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://akouo.dev/schemas/listening-context.schema.json",
   "title": "AKOÚŌ Accountable Listening Context",
-  "description": "The situated context around a listening report. It keeps position, apertures, auditory scale, source of listening, participants, action authority, and attributed absence explicit without collapsing them into apparatus or claims. A v0.8 producer SHOULD emit this block; older listening outputs remain valid without it.",
+  "description": "The v2 situated context around a listening report. It keeps position, apertures, auditory scale, sources, participants, temporal passes, route decisions, action authority, and attributed absence explicit without collapsing them into apparatus or claims.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -13,12 +13,14 @@
     "sources_of_listening",
     "participants",
     "action_authority",
-    "honest_absences"
+    "honest_absences",
+    "listening_passes",
+    "route_decisions"
   ],
   "properties": {
     "contract": {
       "type": "string",
-      "const": "akouo/listening-context/v1"
+      "const": "akouo/listening-context/v2"
     },
     "position": {
       "type": "object",
@@ -60,6 +62,7 @@
               "transcript",
               "contextual_note",
               "human_report",
+              "sensor_observation",
               "model_observation",
               "memory",
               "audiovisual",
@@ -129,8 +132,16 @@
         "required": ["id", "type", "role"],
         "properties": {
           "id": { "type": "string", "minLength": 1 },
-          "type": { "type": "string", "enum": ["human", "agent", "hybrid"] },
+          "type": {
+            "type": "string",
+            "enum": ["human", "agent", "hybrid", "community", "institution", "sensor", "habitat", "other_animal", "ensemble", "other"]
+          },
           "role": { "type": "string", "minLength": 1 },
+          "standing": {
+            "type": ["string", "null"],
+            "enum": ["listener", "listened_subject", "steward", "operator", "witness", "affected_party", "infrastructure", "represented_party", "other", null]
+          },
+          "jurisdiction": { "type": ["string", "null"] },
           "report_ref": { "type": ["string", "null"] }
         }
       },
@@ -159,7 +170,21 @@
       "items": {
         "$ref": "#/$defs/honest_absence"
       },
-      "description": "Attributed absences that are distinct from unsupported claims. Covenant withholding is also carried in the sibling covenant block."
+      "description": "Attributed unavailable, withheld, refused, unretained, or forgotten material. Epistemic uncertainty belongs in an undetermined claim, never in this list."
+    },
+    "listening_passes": {
+      "type": "array",
+      "items": { "$ref": "listening-pass.schema.json" },
+      "description": "Attributable listenings at attributable moments. An empty list is valid when a route was refused before listening."
+    },
+    "route_decisions": {
+      "type": "array",
+      "items": { "$ref": "route-decision.schema.json" },
+      "description": "Gate outcomes, including coded silence, that must not disappear into a missing response."
+    },
+    "ensemble_ref": {
+      "type": ["string", "null"],
+      "description": "Reference to an explicit plural-listening or ear-swarm declaration. Listener count alone never supplies this value."
     },
     "revision": {
       "type": "object",
@@ -187,7 +212,7 @@
       "properties": {
         "kind": {
           "type": "string",
-          "enum": ["unavailable", "withheld", "refused", "not_retained", "forgotten", "undetermined"]
+          "enum": ["unavailable", "withheld", "refused", "not_retained", "forgotten"]
         },
         "subject": { "type": "string", "minLength": 1 },
         "attributed_to": { "type": "string", "minLength": 1 },

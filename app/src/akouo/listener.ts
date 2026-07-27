@@ -5,6 +5,7 @@ import {
   createEmptyClaimTaxonomy,
   createListeningOutputDraft,
   createReferenceListeningContext,
+  createReferenceListeningProvenance,
 } from './outputFactory';
 import { createReferenceClaimSummary, createReferenceMap, referenceSummary } from './referenceLayer';
 import { hasAnyRequestTerm } from './textMatch';
@@ -138,6 +139,8 @@ function modesForCommand(command: Exclude<CommandName, '/one-sound-many-ears'>, 
       return ['memory-lineage-listening', 'acoulogical-object-listening', 'signal-inspection-listening'];
     case '/covenant':
       return ['sovereign-listening'];
+    case '/corpus':
+      return ['corpus-listening', 'critical-political-listening', 'transductive-media-listening'];
   }
 }
 
@@ -326,9 +329,12 @@ function createModeOutput(mode: ListeningMode, request: ListeningRequest): Liste
     case 'sovereign-listening':
       fillSovereign(output, request);
       break;
+    case 'corpus-listening':
+      fillCorpus(output, request);
+      break;
   }
 
-  output.akouo_version = '0.8';
+  output.akouo_version = '0.9';
   output.apparatus = request.audioInspection
     ? {
         substrate: 'dsp_toolchain',
@@ -348,21 +354,25 @@ function createModeOutput(mode: ListeningMode, request: ListeningRequest): Liste
         known_blind_spots: ['No audio signal was supplied.', 'Text cannot verify timbre, space, dynamics, timing, or source identity.'],
       };
   output.listener = { type: 'agent', process: 'akouo_browser_reference' };
-  output.listening_context = createReferenceListeningContext(request);
+  output.listening_context = createReferenceListeningContext(request, mode);
+  output.listening_provenance = createReferenceListeningProvenance(request, mode);
+  output.listening_passes = output.listening_context.listening_passes;
+  output.route_decisions = output.listening_context.route_decisions;
   ensureBaselineLimits(output, request);
   return output;
 }
 
 function addSharedInputClaims(output: ListeningOutput, request: ListeningRequest) {
   if (request.prompt?.trim()) {
-    output.listening_claims.heard.push(
-      createClaim(`Prompt supplied: ${clip(request.prompt.trim())}`, 'high', 'User-provided text'),
+    output.listening_claims.inferred.push(
+      createClaim(`Supplied text states: ${clip(request.prompt.trim())}`, 'high', 'Attributed user-provided text; not direct acoustic evidence', 'prompt'),
     );
+    output.what_appears.push('Attributed text is available as context; it is not counted as heard sound.');
   }
 
   if (request.audioInspection) {
-    output.listening_claims.heard.push(
-      createClaim(`Audio file supplied: ${request.audioInspection.fileName}.`, 'high', 'Browser File input'),
+    output.listening_claims.measured.push(
+      createClaim(`Audio file supplied: ${request.audioInspection.fileName}.`, 'high', 'Browser File input metadata', 'metadata'),
     );
     output.what_appears.push('An audio file is available for basic browser-side inspection.');
   }
@@ -644,8 +654,8 @@ function fillVoiceSpeech(output: ListeningOutput, request: ListeningRequest) {
   }
 
   if (request.inputType === 'transcript') {
-    output.listening_claims.heard.push(
-      createClaim('A transcript is available as text evidence, not as complete vocal evidence.', 'high', 'Transcript input type'),
+    output.listening_claims.inferred.push(
+      createClaim('A transcript is available as attributed text evidence, not as a hearing of the represented voice.', 'high', 'Transcript input type', 'transcript'),
     );
   }
 
@@ -749,6 +759,28 @@ function fillSovereign(output: ListeningOutput, request: ListeningRequest) {
   output.alternative_reading = 'If no covenant was adopted, ordinary routed listening may proceed with the default observe-only authority and explicit evidence limits.';
 }
 
+function fillCorpus(output: ListeningOutput, request: ListeningRequest) {
+  const prompt = request.prompt?.trim();
+  output.mediations.archival.push('Training, fine-tuning, retrieval, annotation, filtering, and licensing histories condition what a model can return.');
+  output.mediations.computational.push('A provider or model name is not a corpus disclosure; undocumented lineage stays unknown.');
+  output.risks.source_confusion.push('Do not reconstruct, guess, or imply protected corpus membership from model behavior.');
+  output.risks.cultural_flattening.push('Dataset categories can erase communities, jurisdictions, labor, consent, and local naming practices.');
+  output.recommended_next_mode = 'critical-political-listening';
+
+  if (prompt) {
+    output.what_appears.push('The supplied text can be audited for corpus, provider, fine-tuning, retrieval, licensing, and disclosure claims.');
+    output.listening_claims.interpreted.push(
+      createClaim('Corpus conditions should be treated as part of the listening apparatus, while unknown lineage remains explicitly unknown.', 'high', 'Corpus-listening frame', 'corpus'),
+    );
+  }
+
+  output.listening_claims.undetermined.push(
+    createClaim('Training examples, fine-tuning data, annotation labor, licensing, jurisdiction, opt-out status, and retained provider data remain unknown unless directly disclosed.', 'high', 'No verified corpus ledger is attached', 'corpus'),
+  );
+  output.main_reading = 'Corpus listening asks what inherited collection, selection, labor, permission, and exclusion made this computational ear possible without pretending that unavailable lineage can be recovered.';
+  output.alternative_reading = 'A verified model card, dataset statement, provider receipt, or local registry could replace some unknowns with attributable lineage records.';
+}
+
 function ensureBaselineLimits(output: ListeningOutput, request: ListeningRequest) {
   output.what_remains_hidden.push('Exact source, intention, listener experience, and full recording context remain limited unless supplied.');
 
@@ -840,11 +872,11 @@ function createRouteClaimSummary(request: ListeningRequest, routerOutput: Router
   const claims = createEmptyClaimTaxonomy();
 
   if (request.prompt?.trim()) {
-    claims.heard.push(createClaim(`Prompt supplied: ${clip(request.prompt.trim())}`, 'high', 'User-provided text'));
+    claims.inferred.push(createClaim(`Supplied text states: ${clip(request.prompt.trim())}`, 'high', 'Attributed user-provided text; not direct acoustic evidence', 'prompt'));
   }
 
   if (request.audioInspection) {
-    claims.heard.push(createClaim(`Audio file supplied: ${request.audioInspection.fileName}.`, 'high', 'Browser File input'));
+    claims.measured.push(createClaim(`Audio file supplied: ${request.audioInspection.fileName}.`, 'high', 'Browser File input metadata', 'metadata'));
     claims.measured.push(...request.audioInspection.measuredClaims);
   }
 

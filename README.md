@@ -12,16 +12,17 @@ AKOÚŌ does not pretend that agents hear like humans. It gives them accountable
 
 This public release contains the portable AKOÚŌ skills, router, command definitions, schemas, and a local-first reference app for running the listening workflows.
 
-Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current release contract: `v0.8`.
+Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current release contract: `v0.9`.
 
 The `akouo-contract` Python distribution packages this repository's canonical
 skills, commands, presets, schemas, and manifest for Oída and other local
-agent hosts. Package release `0.8.0` implements the `akouo/v0.8` data
-contract (the accountable-listening layer); no skill fork is created inside a host application.
+agent hosts. Package release `0.9.0` implements the `akouo/v0.9` data
+contract; no skill fork is created inside a host application.
 
 ## Version Status
 
-- `v0.8` adds an accountable listening context: position, apertures, auditory scale, sources of listening, participants, action authority, revision, and honest absence are now first-class data rather than prose conventions.
+- `v0.9` distinguishes listening provenance from source provenance, represents several attributable listenings across time, makes route decisions and coded silence addressable, defines plural listening versus an ear swarm, and adds `corpus-listening` with `/corpus`.
+- `v0.8` adds an accountable listening context: position, apertures, auditory scale, sources of listening, participants, action authority, revision, and honest absence are first-class data rather than prose conventions.
 - `v0.7` adds `sovereign-listening`, the `/covenant` command, and an enforceable listening-covenant schema for consent, withholding, retention, precision, and quiet-hour rules.
 - `v0.1` marks the first public portable-skills release.
 - `v0.2` refines the listening modes with stronger theoretical distinctions, clearer evidence boundaries, and more explicit public-repo hygiene.
@@ -32,13 +33,13 @@ contract (the accountable-listening layer); no skill fork is created inside a ho
 
 ## Sonic Field Labs Stack
 
-AKOÚŌ is the shared listening contract across the stack. The current release contains 15 listening modes, 17 skills, and 18 commands.
+AKOÚŌ is the shared listening contract across the stack. The current release contains 16 listening modes, 18 skills, and 19 commands.
 
 | Project | Current integration |
 | --- | --- |
-| [OÍDA](https://github.com/sonicfieldlabs/oida) `0.8.0` | Loads the `akouo/v0.8` contract, declares its actual apparatus and authority, and exposes accountable local gateway surfaces. |
-| [Earworm](https://github.com/sonicfieldlabs/earworm) `0.5.0` | Persists addressable auditums as `akousma/v1.4` records while preserving listening routes, disagreement, absence, authority, and revision. |
-| [Akousmata](https://github.com/sonicfieldlabs/akousmata) `0.5.0` | Validates, audits, and navigates Earworm-compatible sound memories without collapsing distinct listeners into consensus. |
+| [OÍDA](https://github.com/sonicfieldlabs/oida) `0.9.0` | Loads the `akouo/v0.9` contract and returns addressable route decisions, passes, provenance, and optional local capabilities. |
+| [Earworm](https://github.com/sonicfieldlabs/earworm) `0.6.0` | Persists addressable auditums and pre-capture decisions as `akousma/v1.5` records, including revision and forgetting receipts. |
+| [Akousmata](https://github.com/sonicfieldlabs/akousmata) `0.6.0` | Validates and navigates those records while keeping plural listeners distinct and requiring influence before declaring an ear swarm. |
 | [Algophony](https://github.com/sonicfieldlabs/algophony) `0.5.0` | Uses the listening contract for generation supervision, evaluation, and research workflows. |
 | [GERM](https://github.com/sonicfieldlabs/germ) `0.2.0` | Connects cultivation sessions to OÍDA and Akousmata for listening and lineage-aware workflows. |
 | [ORAM](https://github.com/sonicfieldlabs/oram) `0.4.0` | ORAM audio can be passed to any AKOÚŌ host; ORAM does not embed the contract directly. |
@@ -59,6 +60,7 @@ A sound is never only a source. It can be approached as:
 - an audiovisual scene across sound, image, text, interface, and timing
 - an accessibility problem shaped by hearing norms, captions, haptics, devices, and sensory variation
 - a material event of vibration, resonance, propagation, duration, and process
+- a computational inheritance shaped by corpora, selection, annotation, labor, permission, and undisclosed lineage
 - a symbolic, fictional, or speculative world
 
 akoúō keeps these dimensions distinct through explicit listening modes and a strictly enforced JSON claim taxonomy.
@@ -67,7 +69,7 @@ akoúō keeps these dimensions distinct through explicit listening modes and a s
 
 Every output must distinguish its findings into the following epistemic categories:
 
-- `heard`: directly present in the audio, prompt, transcript, or provided description
+- `heard`: directly present to an auditory or explicitly declared perceptual aperture; prompt, transcript, field note, and description text are attributable inputs, not hearings of the represented sound
 - `measured`: produced by file, signal, waveform, spectrogram, or metadata inspection
 - `inferred`: plausible logical deductions (not theory or culture)
 - `interpreted`: cultural, theoretical, affective, or contextual reading
@@ -75,6 +77,32 @@ Every output must distinguish its findings into the following epistemic categori
 - `undetermined`: what cannot be responsibly claimed
 
 This taxonomy is the main public contract of the system, preventing LLMs from hallucinating certainty or confusing a theoretical reading for a forensic measurement.
+
+## v0.9 Listening Provenance, Several Times, and Coded Silence
+
+The v0.9 contract lets a report answer not only what an ear concluded, but
+which listening happened, when, through which sources and cuts, under which
+route decision, and whether another listening actually changed it.
+
+- `listening-pass.schema.json` keeps each listening attributable across live,
+  captured, archival, seasonal, prospective, and re-listening moments.
+- `listening-provenance.schema.json` records sources of listening, technical
+  and classificatory cuts, corpus lineage, and optional source-of-voice
+  disclosure. Unknown lineage stays unknown.
+- `route-decision.schema.json` makes proceed, pause, defer, abstain, refusal,
+  withholding, forgetting, and non-action addressable outcomes. Coded silence
+  is therefore a decision, not a missing response.
+- `ensemble.schema.json` distinguishes plural listening from an ear swarm.
+  Listener count or parallel execution is insufficient: a swarm requires
+  attributable influence, preserved permission, preserved disagreement, and
+  a dissolution rule.
+- `corpus-listening` and `/corpus` audit training, fine-tuning, retrieval,
+  annotation, filtering, licensing, labor, provider disclosure, and
+  jurisdiction without guessing protected corpus membership.
+
+The claim model also carries stable claim ids, evidence and aperture
+references, pass attribution, auditory scale, alternatives, and actionability.
+A claim still never grants its own authority.
 
 ## v0.8 Accountable Listening
 
@@ -88,11 +116,13 @@ producer emits `listening_context` beside its six claim categories:
   to a signal measurement.
 - `auditory_scales` and `sources_of_listening` state the temporal or
   infrastructural scale and evidence streams actually used.
-- `participants` keeps human, agent, and hybrid listenings attributable.
+- `participants` keeps human, agent, hybrid, community, institutional,
+  sensor, habitat, other-animal, ensemble, and other listenings attributable.
 - `action_authority` separates what a system can technically do from what it
   is authorized to do. Reference listeners default to `observe_only`.
-- `honest_absences` name unavailable, withheld, refused, unretained,
-  forgotten, and undetermined material without filling the gap.
+- `honest_absences` name unavailable, withheld, refused, unretained, and
+  forgotten material without filling the gap. Epistemic uncertainty remains
+  an `undetermined` claim.
 - `revision` makes re-listening additive and traceable instead of overwriting
   a prior account.
 
@@ -163,7 +193,7 @@ The v0.2 skills keep the same public schemas and mode names, but sharpen the con
 
 ## Core Architecture
 
-akoúō is organized as one meta-router, fifteen distinct listening modes, and one conceptual reference layer. These are packaged as portable agent skills (`skills/`) that can be injected into any LLM agent supporting skill-based system prompts or custom instructions.
+akoúō is organized as one meta-router, sixteen distinct listening modes, and one conceptual reference layer. These are packaged as portable agent skills (`skills/`) that can be injected into any LLM agent supporting skill-based system prompts or custom instructions.
 
 - `akouo-router` (meta-skill: chooses modes before analysis)
 - `signal-inspection-listening`
@@ -180,6 +210,8 @@ akoúō is organized as one meta-router, fifteen distinct listening modes, and o
 - `accessibility-normative-listening`
 - `material-event-listening`
 - `memory-lineage-listening`
+- `sovereign-listening`
+- `corpus-listening`
 - `reference-layer` (meta-skill: maps listening to concepts, methods, traditions, and cautions)
 
 Each skill lives in its own folder with a `SKILL.md` file, following the standard skill format used by OpenCode, Claude Code, and compatible agent frameworks.
@@ -270,7 +302,7 @@ Agent loads `skills/ecological-posthuman-listening/SKILL.md` and produces struct
 }
 ```
 
-Commands (located in `commands/`) combine these skills into reusable listening chains, like `/one-sound-many-ears`, `/forensic`, `/voice`, `/audiovision`, `/access`, `/field`, `/method`, or `/route`.
+Commands (located in `commands/`) combine these skills into reusable listening chains, like `/one-sound-many-ears`, `/forensic`, `/voice`, `/audiovision`, `/access`, `/field`, `/corpus`, `/method`, or `/route`.
 
 For the agent-to-agent handoff format, see `examples/routing-plan-example.json`: an expanded routing plan (per `schemas/routing-plan.schema.json`) carrying `route_confidence`, `evidence_level`, `claim_permissions`, a `mode_chain`, `stop_conditions`, and an `agent_handoff` summary that a receiving agent can act on without re-listening.
 
@@ -281,7 +313,7 @@ akouo/
   README.md
   SYSTEM_GUIDE.md      # Operational guide for commands, workflows, and app contract
   SKILL_INDEX.md       # Quick-reference manifest of all skills
-  CHANGELOG.md         # Release history from v0.1 through v0.8.0
+  CHANGELOG.md         # Release history from v0.1 through v0.9.0
   akouo.manifest.json  # Machine-readable system contract (skills, commands, ladder, overrides)
   LICENSE
   .gitignore

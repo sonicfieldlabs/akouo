@@ -1,0 +1,250 @@
+{
+  "description": "AKOÚŌ v0.9 example: corpus-aware, attributable listening with a coded disclosure decision and no fabricated lineage.",
+  "listening_output": {
+    "object_listened_to": "an undocumented model-generated sonic description",
+    "input_type": "model_output",
+    "listening_mode": "corpus-listening",
+    "listening_claims": {
+      "heard": [],
+      "measured": [],
+      "inferred": [
+        {
+          "claim_id": "claim-input-1",
+          "statement": "A provider-labelled model output was supplied as text.",
+          "confidence": "high",
+          "basis": "Attributed input metadata; no acoustic signal was supplied.",
+          "source": "provider",
+          "evidence_refs": ["source-provider-output"],
+          "aperture_refs": ["supplied-text"],
+          "listening_pass_id": "pass-corpus-1",
+          "auditory_scale": "unknown",
+          "alternatives": [],
+          "actionability": "informational"
+        }
+      ],
+      "interpreted": [
+        {
+          "claim_id": "claim-corpus-1",
+          "statement": "Provider identity does not disclose training, fine-tuning, retrieval, or annotation lineage.",
+          "confidence": "high",
+          "basis": "Corpus-listening distinction between apparatus identity and corpus provenance.",
+          "source": "corpus",
+          "listening_pass_id": "pass-corpus-1",
+          "auditory_scale": "lineage",
+          "alternatives": [],
+          "actionability": "recommendation_only"
+        }
+      ],
+      "speculative": [],
+      "undetermined": [
+        {
+          "claim_id": "claim-unknown-lineage-1",
+          "statement": "Training examples, annotation labor, licensing, consent, jurisdiction, and opt-out status are unknown.",
+          "confidence": "high",
+          "basis": "No verified corpus ledger or dataset statement was supplied.",
+          "source": "corpus",
+          "listening_pass_id": "pass-corpus-1",
+          "auditory_scale": "lineage",
+          "alternatives": [],
+          "actionability": "requires_authority"
+        }
+      ]
+    },
+    "what_appears": [
+      "A model output and provider label are available as attributed context."
+    ],
+    "what_remains_hidden": [
+      "The undisclosed corpus is not reconstructed from the output."
+    ],
+    "mediations": {
+      "technical": ["The output is mediated by an unspecified model and provider interface."],
+      "cultural": ["Dataset categories and curation can erase local naming, labor, and jurisdiction."],
+      "spatial": [],
+      "bodily": [],
+      "archival": ["Corpus selection and retention history are not disclosed."],
+      "computational": ["Training, fine-tuning, retrieval, and filtering remain distinct possible inheritances."]
+    },
+    "risks": {
+      "hallucination": ["Do not guess corpus membership from model behavior."],
+      "over_identification": [],
+      "cultural_flattening": ["Do not treat provider categories as neutral or exhaustive."],
+      "forensic_overreach": [],
+      "source_confusion": ["Provider identity is not corpus provenance."],
+      "aesthetic_overstatement": []
+    },
+    "main_reading": "The responsible report preserves unknown computational lineage as unknown while naming the disclosure that is actually available.",
+    "alternative_reading": "A verified dataset statement or provider receipt could replace selected unknowns with attributable lineage records.",
+    "recommended_next_mode": "critical-political-listening",
+    "akouo_version": "0.9",
+    "apparatus": {
+      "substrate": "text_only_agent",
+      "perception_sources": ["provider-labelled text"],
+      "known_blind_spots": ["No audio signal and no verified model or corpus ledger were supplied."]
+    },
+    "listener": {
+      "type": "agent",
+      "process": "agent_interactive"
+    },
+    "listening_context": {
+      "contract": "akouo/listening-context/v2",
+      "position": {
+        "relation_to_object": "remote reading of an attributed model output",
+        "limitations": ["The listener did not receive the represented audio or the model corpus."]
+      },
+      "apertures": [
+        {
+          "id": "supplied-text",
+          "kind": "model_observation",
+          "status": "available",
+          "description": "Provider-labelled text supplied by the user.",
+          "limits": ["It does not expose acoustic evidence or corpus membership."]
+        }
+      ],
+      "auditory_scales": ["lineage"],
+      "sources_of_listening": ["model", "context"],
+      "participants": [
+        {
+          "id": "listener-1",
+          "type": "agent",
+          "role": "corpus-lineage auditor",
+          "standing": "listener",
+          "jurisdiction": null,
+          "report_ref": "#/listening_output"
+        }
+      ],
+      "action_authority": {
+        "mode": "observe_only",
+        "scopes": ["audit_disclosure", "recommend_next_listening"],
+        "granted_by": "current user request",
+        "expires_at": null,
+        "requires_confirmation": true,
+        "reversible": true
+      },
+      "honest_absences": [
+        {
+          "kind": "withheld",
+          "subject": "undisclosed provider corpus details",
+          "attributed_to": "provider disclosure boundary",
+          "count": null,
+          "note": "Withholding is recorded without reconstructing the material."
+        }
+      ],
+      "listening_passes": [
+        {
+          "id": "pass-corpus-1",
+          "listener_id": "listener-1",
+          "route": ["corpus-listening"],
+          "started_at": "2026-07-27T00:00:00Z",
+          "completed_at": "2026-07-27T00:00:01Z",
+          "moment": {
+            "relation": "archive",
+            "scales": ["lineage"],
+            "time_range": null
+          },
+          "source_refs": ["source-provider-output"],
+          "claim_refs": ["claim-input-1", "claim-corpus-1", "claim-unknown-lineage-1"],
+          "decision_refs": ["decision-corpus-1"],
+          "influenced_by": [],
+          "revision_of": null,
+          "reorientation": null
+        }
+      ],
+      "route_decisions": [
+        {
+          "id": "decision-corpus-1",
+          "gate": "disclosure",
+          "outcome": "withhold",
+          "subject": "undisclosed corpus details",
+          "reason": "No direct disclosure or authority to reconstruct corpus membership was supplied.",
+          "decided_at": "2026-07-27T00:00:01Z",
+          "authority": {
+            "mode": "observe_only",
+            "actor": "listener-1",
+            "covenant_ref": null,
+            "granted_by": "current user request",
+            "requires_confirmation": true,
+            "reversible": true
+          },
+          "receipt_ref": null,
+          "count": null,
+          "note": "Coded silence remains visible as a decision."
+        }
+      ],
+      "ensemble_ref": null
+    },
+    "listening_provenance": {
+      "listening_sources": [
+        {
+          "id": "source-provider-output",
+          "kind": "model",
+          "label": "provider-labelled model output",
+          "provider": "undisclosed-provider",
+          "model_id": null,
+          "revision": null,
+          "jurisdiction": null,
+          "disclosure_status": "partial",
+          "limitations": ["The model and corpus identities are not verified."]
+        }
+      ],
+      "cuts": [
+        {
+          "id": "cut-routing-1",
+          "stage": "routing",
+          "operation": "select corpus-listening",
+          "actor": "listener-1",
+          "basis": "The request concerns training and provider lineage.",
+          "effect": "Keeps corpus inheritance distinct from provider identity.",
+          "reversible": true,
+          "source_ref": "source-provider-output"
+        }
+      ],
+      "corpus_lineage": [
+        {
+          "source_ref": "source-provider-output",
+          "disclosure_status": "unknown",
+          "corpus_refs": [],
+          "fine_tune_refs": [],
+          "limitations": ["No verified training, fine-tuning, retrieval, or annotation sources were supplied."]
+        }
+      ],
+      "source_of_voice": null
+    },
+    "listening_passes": [
+      {
+        "id": "pass-corpus-1",
+        "listener_id": "listener-1",
+        "route": ["corpus-listening"],
+        "started_at": "2026-07-27T00:00:00Z",
+        "completed_at": "2026-07-27T00:00:01Z",
+        "moment": {"relation": "archive", "scales": ["lineage"], "time_range": null},
+        "source_refs": ["source-provider-output"],
+        "claim_refs": ["claim-input-1", "claim-corpus-1", "claim-unknown-lineage-1"],
+        "decision_refs": ["decision-corpus-1"],
+        "influenced_by": [],
+        "revision_of": null,
+        "reorientation": null
+      }
+    ],
+    "route_decisions": [
+      {
+        "id": "decision-corpus-1",
+        "gate": "disclosure",
+        "outcome": "withhold",
+        "subject": "undisclosed corpus details",
+        "reason": "No direct disclosure or authority to reconstruct corpus membership was supplied.",
+        "decided_at": "2026-07-27T00:00:01Z",
+        "authority": {
+          "mode": "observe_only",
+          "actor": "listener-1",
+          "covenant_ref": null,
+          "granted_by": "current user request",
+          "requires_confirmation": true,
+          "reversible": true
+        },
+        "receipt_ref": null,
+        "count": null,
+        "note": "Coded silence remains visible as a decision."
+      }
+    ]
+  }
+}

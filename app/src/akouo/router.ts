@@ -52,6 +52,8 @@ const routeRules: RouteRule[] = [
   { mode: 'material-event-listening', weight: 4, reason: 'Material, vibrational, resonant, or processual terms require material-event listening.', terms: ['material', 'event', 'flux', 'vibration', 'resonance', 'feedback', 'drone', 'hum', 'rumble', 'infrasound', 'ultrasound', 'unsound', 'microsound', 'duration', 'speaker', 'loudspeaker', 'installation'] },
   { mode: 'memory-lineage-listening', weight: 5, reason: 'Memory, lineage, recurrence, or archive-of-ours terms require listening with stored records.', terms: ['memory', 'remember', 'recall', 'lineage', 'recurrence', 'heard before', 'earlier recording', 'akousma', 'akousmata', 'our archive', 'previous version', 'series over time'] },
   { mode: 'sovereign-listening', weight: 7, reason: 'Covenant, withholding, refusal, retention, or sonic-sovereignty terms require an explicit authority boundary.', terms: ['covenant', 'sovereignty', 'withhold', 'do not listen', 'do not reveal', 'do not retain', 'forget', 'refuse', 'quiet hours', 'require consent'] },
+  { mode: 'corpus-listening', weight: 7, reason: 'Corpus, training, fine-tuning, annotation, provider, or licensing terms require a lineage and permission audit.', inputTypes: ['dataset_description', 'model_output'] },
+  { mode: 'corpus-listening', weight: 6, reason: 'Computational inheritance must be distinguished from provider identity and model behavior.', terms: ['corpus', 'training data', 'fine-tune', 'finetune', 'annotation', 'model card', 'provider', 'licensing', 'opt out', 'retrieval corpus', 'dataset lineage'] },
   { mode: 'signal-inspection-listening', weight: 8, reason: 'The /tech command privileges technical signal inspection.', commands: ['/tech'] },
   { mode: 'transductive-media-listening', weight: 6, reason: 'The /tech command also maps media-chain limits.', commands: ['/tech'] },
   { mode: 'forensic-archival-listening', weight: 8, reason: 'The /forensic command privileges evidentiary restraint.', commands: ['/forensic'] },
@@ -73,6 +75,9 @@ const routeRules: RouteRule[] = [
   { mode: 'memory-lineage-listening', weight: 8, reason: 'The /remember command privileges memory and lineage listening.', commands: ['/remember'] },
   { mode: 'acoulogical-object-listening', weight: 4, reason: 'The /remember command grounds memory comparison in a fresh perceptual pass.', commands: ['/remember'] },
   { mode: 'sovereign-listening', weight: 10, reason: 'The /covenant command privileges explicit listening authority and attributed absence.', commands: ['/covenant'] },
+  { mode: 'corpus-listening', weight: 10, reason: 'The /corpus command privileges disclosed and unknown computational lineage.', commands: ['/corpus'] },
+  { mode: 'critical-political-listening', weight: 5, reason: 'The /corpus command audits labor, permission, extraction, and jurisdiction.', commands: ['/corpus'] },
+  { mode: 'transductive-media-listening', weight: 4, reason: 'The /corpus command maps the model and provider mediation chain.', commands: ['/corpus'] },
 ];
 
 const correctiveModes: ListeningMode[] = [
@@ -188,7 +193,7 @@ function permissionsForEvidence(level: EvidenceLevel, request: ListeningRequest)
     case 'prompt_only':
     case 'transcript_or_caption':
     case 'contextual_note':
-      return { ...base, heard_allowed: true, inferred_allowed: true, interpreted_allowed: true };
+      return { ...base, inferred_allowed: true, interpreted_allowed: true };
     case 'metadata_only':
       return { ...base, measured_allowed: true, inferred_allowed: true, interpreted_allowed: true };
     case 'decoded_audio_metadata':
@@ -241,6 +246,10 @@ function stopConditionsForPlan(request: ListeningRequest, route: RouteRole, conf
 
   if (chain.includes('sovereign-listening')) {
     stops.push('Stop before capture, revelation, retention, or action until the adopted covenant and the host-owned enforcement gates are identified.');
+  }
+
+  if (chain.includes('corpus-listening')) {
+    stops.push('Stop before naming training, fine-tuning, retrieval, or annotation sources that are not directly disclosed.');
   }
 
   if (confidence === 'low' || confidence === 'undetermined') {
@@ -319,6 +328,7 @@ function fallbackSecondary(primary: ListeningMode): ListeningMode {
   if (primary === 'musical-aesthetic-listening') return 'acoulogical-object-listening';
   if (primary === 'memory-lineage-listening') return 'acoulogical-object-listening';
   if (primary === 'sovereign-listening') return 'critical-political-listening';
+  if (primary === 'corpus-listening') return 'critical-political-listening';
   return 'signal-inspection-listening';
 }
 
@@ -418,6 +428,10 @@ function mustNotAssume(request: ListeningRequest, route: RouteRole): string[] {
     assumptions.push('Do not invent missing visual or audio content.');
   }
 
+  if ([route.primary_mode, route.secondary_mode, route.corrective_mode].includes('corpus-listening')) {
+    assumptions.push('Do not infer training-set membership, licensing, consent, or jurisdiction from provider identity or model behavior.');
+  }
+
   return assumptions;
 }
 
@@ -435,6 +449,7 @@ function inferRecommendedCommand(scores: RouteScore[], request: ListeningRequest
   if (top === 'symbolic-fictional-listening') return '/fiction';
   if (top === 'memory-lineage-listening') return '/remember';
   if (top === 'sovereign-listening') return '/covenant';
+  if (top === 'corpus-listening') return '/corpus';
 
   if (hasAny(request, ['research', 'method', 'methodology', 'essay', 'study', 'thesis'])) {
     return '/method';

@@ -30,7 +30,7 @@ The private benchmark extension can add `benchmark-listening` for external-agent
 
 Every listening output must separate claims into six categories:
 
-- `heard`: directly present in the supplied audio, prompt, transcript, field note, or description
+- `heard`: directly present to an auditory or explicitly declared perceptual aperture; supplied text is attributed input, not a hearing of the represented sound
 - `measured`: produced by technical inspection, metadata, waveform, spectrogram, or file analysis
 - `inferred`: plausible logical or technical deductions only
 - `interpreted`: cultural, theoretical, affective, aesthetic, ecological, archival, political, or contextual readings
@@ -60,14 +60,15 @@ Use this process for most sound tasks:
 
 Every command begins with a router planning pass, even when its mode chain is fixed. The planning pass supplies the evidence inventory, risks, and forbidden assumptions that the command's synthesis must respect, so `akouo-router` appears in `skills_called` for every command output except `/one-sound-many-ears`, whose comparative contract runs all modes unconditionally.
 
-## Machine-Readable Contract (v0.8)
+## Machine-Readable Contract (v0.9)
 
 Host apps should consume AKOÚŌ as data:
 
 - `akouo.manifest.json` carries the skill list with structured metadata (facets, cost tier, memory policy, corrective eligibility), the command chains, the Evidence Ladder, and command permission overrides. Validate with `schemas/manifest.schema.json`.
 - `presets/presets.json` carries named listening configurations for recurring use-cases; validate each entry with `schemas/preset.schema.json`. A preset names its command, mode chain, cost tier (`light`/`standard`/`deep`), memory policy, and perception passes; hosts map passes to their own backends.
-- Outputs pin their contract with `akouo_version`, declare their `apparatus` (substrate and blind spots), declare the `listener` (human/agent/hybrid), link stored records through `memory`, and mark each claim's `source` and `time_range`.
-- Current outputs add `listening_context`: position, apertures, auditory scales, sources of listening, participants, action authority, revision, and honest absences. Older records may omit it.
+- Outputs pin their contract with `akouo_version`, declare their `apparatus`, declare the listener, link stored records through `memory`, and attribute claims to evidence, apertures, listening passes, temporal scales, alternatives, and actionability.
+- Current outputs add context v2 plus `listening_provenance`, `listening_passes`, and `route_decisions`. `ensemble` is emitted only for an explicit plural-listening or ear-swarm declaration. Readers retain an explicit compatibility path for context v1.
+- Textual prompts, transcripts, field notes, and descriptions are input evidence, but are never placed in `heard` merely because they describe sound.
 
 Loading these files replaces hand-copied route tables, which drift. Prose in this guide explains the contract; the manifest is the source of truth.
 
@@ -186,9 +187,19 @@ Sovereignty route (introduced in v0.7). Use it to listen under an explicit liste
 
 Typical chain: router, sovereign-listening, acoulogical grounding on what the covenant admits, signal-inspection corrective. With no covenant available, report exactly that and stop: sovereignty is opted into, never imposed.
 
+### `/corpus`
+
+Corpus-lineage route. Use it for training, fine-tuning, retrieval, annotation,
+filtering, provider disclosure, licensing, labor, consent, jurisdiction, and
+opt-out questions. Provider identity and model behavior never substitute for
+a verified corpus ledger; unknown inheritance stays unknown.
+
+Typical chain: router, corpus-listening, critical-political corrective, and
+transductive-media mapping.
+
 ### `/one-sound-many-ears`
 
-Comparative flagship command. Runs one sonic object through all fifteen public listening modes and compares contradictions, productive tensions, limits, and next steps.
+Comparative flagship command. Runs one sonic object through all fifteen public non-sovereign listening modes and compares contradictions, productive tensions, limits, and next steps. Parallel outputs remain plural listening; they are not an ear swarm unless later passes declare attributable influence.
 
 ## Choosing Modes By Intention
 
@@ -203,6 +214,10 @@ For texture, source ambiguity, sound objects, Foley, acousmatic sound, or morpho
 For bass, pressure, fatigue, pleasure, dread, alarm, dance, immersion, ASMR, or bodily force, include `embodied-affective-listening`.
 
 For microphones, datasets, ASR, voice cloning, neural codecs, sonification, compression, and platforms, include `transductive-media-listening`.
+
+For training data, fine-tuning, retrieval corpora, annotation, provider
+disclosure, licensing, or unknown model inheritance, include
+`corpus-listening` and `/corpus`.
 
 For evidence, archives, testimony, damage, event reconstruction, or harm contexts, include `forensic-archival-listening`.
 

@@ -48,6 +48,8 @@ Since v0.6 the routing layer is also published as data. Host apps should load `a
 
 Since v0.8, current producers should also emit `listening_context` from `references/listening-context.schema.json`. Keep four things structurally distinct: **covenant** (what is permitted), **position** (where and in what relation this listener listens), **apparatus** (what can be sensed), and **claims** (what the evidence supports). The context also declares apertures, auditory scales, actual sources of listening, attributed participants, action authority, honest absences, and revision lineage. Capabilities never grant action authority. Multiple participants remain separately attributable; disagreement is retained by the host or memory layer instead of synthesized into fictional consensus.
 
+Since v0.9, emit context v2 plus attributable `listening_passes`, `route_decisions`, and `listening_provenance`. Route decisions are first-class outputs: refusal before capture, withholding before disclosure, forgetting at retention, or declining action are complete results rather than absent responses. Several parallel mode outputs are plural listening, not an ear swarm; only an explicit ensemble with influence edges, preserved permissions and disagreements, and a dissolution rule may use that name. Route corpus, training, fine-tuning, retrieval, annotation, provider-disclosure, and licensing questions to `corpus-listening`.
+
 ## Presets And Budget
 
 A caller may name a preset (from `presets/presets.json`) or a budget (`light`, `standard`, `deep`) in the request; expanded routing plans carry them back as `preset_id` and `budget`.
@@ -89,12 +91,12 @@ When producing an expanded routing plan (`references/routing-plan.schema.json`),
 | `evidence_level` | `heard` | `measured` | `inferred` | `interpreted` | `speculative` |
 |---|---|---|---|---|---|
 | `none` | no | no | no | no | only if requested |
-| `prompt_only` | prompt content only | no | from prompt logic only | yes, marked as reading of a description | only if requested |
+| `prompt_only` | no | no | from attributed prompt logic only | yes, marked as reading of a description | only if requested |
 | `metadata_only` | no | metadata facts only | from metadata only | cautiously | only if requested |
 | `decoded_audio_metadata` | yes, if audio was actually decoded and described | duration, sample rate, channels, basic amplitude only | yes | yes | only if requested |
 | `measured_signal` | yes | yes, within the limits of the tool used | yes | yes | only if requested |
-| `transcript_or_caption` | text content only, never vocal sound | no | segmentation and format inferences only | yes, marked as text-based | only if requested |
-| `contextual_note` | described content only | no | yes, from stated context | yes | only if requested |
+| `transcript_or_caption` | no | no | text, segmentation, and format inferences only | yes, marked as text-based | only if requested |
+| `contextual_note` | no | no | yes, from attributed context | yes | only if requested |
 | `mixed` | per component | per component | per component | yes | only if requested |
 
 `must_include_undetermined` is `true` at every level. Speculative permission is granted by user intent (declared fiction, worldbuilding, `/fiction`), never by evidence level. When components conflict in `mixed` input, apply the weakest applicable permission to each individual claim, not the strongest.
@@ -256,6 +258,7 @@ Choose from:
 - `accessibility-normative-listening` for captions, transcripts, haptics, deaf or hard-of-hearing access, assistive technology, sensory variation, fatigue, masking, alerts, or implied listener assumptions
 - `material-event-listening` for vibration, resonance, feedback, duration, flux, rumble, low frequencies, installation sound, propagation, loudspeakers, room coupling, or sonic process
 - `memory-lineage-listening` for stored sound-memories, akousma/akousmata records, recurrence, lineage, series over time, archive comparison, or registering a listening into a store
+- `corpus-listening` for training, fine-tuning, retrieval, annotation, dataset labor, provider disclosure, licensing, opt-out, jurisdiction, or unknown computational inheritance
 
 ## Examples
 

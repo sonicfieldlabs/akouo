@@ -11,7 +11,7 @@ export type ClaimCategory = (typeof claimCategories)[number];
 
 type Confidence = 'high' | 'medium' | 'low' | 'undetermined';
 
-type ClaimSource =
+export type ClaimSource =
   | 'audio'
   | 'dsp'
   | 'metadata'
@@ -20,6 +20,12 @@ type ClaimSource =
   | 'context'
   | 'memory'
   | 'human'
+  | 'prompt'
+  | 'description'
+  | 'field_note'
+  | 'sensor'
+  | 'provider'
+  | 'corpus'
   | 'other';
 
 interface ClaimTimeRange {
@@ -28,10 +34,17 @@ interface ClaimTimeRange {
 }
 
 export interface Claim {
+  claim_id?: string;
   statement: string;
   confidence: Confidence;
   basis?: string;
   source?: ClaimSource;
+  evidence_refs?: string[];
+  aperture_refs?: string[];
+  listening_pass_id?: string | null;
+  auditory_scale?: AuditoryScale | null;
+  alternatives?: string[];
+  actionability?: 'none' | 'informational' | 'recommendation_only' | 'requires_authority' | 'contested';
   time_range?: ClaimTimeRange;
 }
 
@@ -72,6 +85,7 @@ export const listeningModes = [
   'material-event-listening',
   'memory-lineage-listening',
   'sovereign-listening',
+  'corpus-listening',
 ] as const;
 
 export type ListeningMode = (typeof listeningModes)[number];
@@ -97,6 +111,7 @@ export const comparativeModeKeys = {
   'accessibility-normative-listening': 'accessibility_normative',
   'material-event-listening': 'material_event',
   'memory-lineage-listening': 'memory_lineage',
+  'corpus-listening': 'corpus_listening',
 } as const satisfies Record<ComparativeListeningMode, string>;
 
 type ComparativeModeKey = (typeof comparativeModeKeys)[ComparativeListeningMode];
@@ -126,6 +141,7 @@ export const commandNames = [
   '/route',
   '/remember',
   '/covenant',
+  '/corpus',
 ] as const;
 
 export type CommandName = (typeof commandNames)[number];
@@ -171,7 +187,7 @@ interface Apparatus {
 }
 
 interface ListenerDeclaration {
-  type: 'human' | 'agent' | 'hybrid';
+  type: 'human' | 'agent' | 'hybrid' | 'community' | 'institution' | 'sensor' | 'habitat' | 'other_animal' | 'ensemble' | 'other';
   process?: string;
 }
 
@@ -188,11 +204,102 @@ export type ApertureKind =
   | 'transcript'
   | 'contextual_note'
   | 'human_report'
+  | 'sensor_observation'
   | 'model_observation'
   | 'memory'
   | 'audiovisual'
   | 'haptic'
   | 'other';
+
+export type AuditoryScale =
+  | 'sample'
+  | 'frame'
+  | 'gesture'
+  | 'event'
+  | 'scene'
+  | 'session'
+  | 'archive'
+  | 'lineage'
+  | 'infrastructural'
+  | 'planetary'
+  | 'unknown';
+
+export interface RouteDecision {
+  id: string;
+  gate: 'input' | 'capture' | 'inference' | 'memory' | 'output' | 'disclosure' | 'retention' | 'action';
+  outcome: 'proceed' | 'pause' | 'defer' | 'abstain' | 'refuse' | 'withhold' | 'forget' | 'do_not_act';
+  subject: string;
+  reason: string;
+  decided_at: string;
+  authority: {
+    mode: 'observe_only' | 'recommend' | 'request' | 'execute_scoped';
+    actor: string;
+    covenant_ref?: string | null;
+    granted_by?: string | null;
+    requires_confirmation: boolean;
+    reversible: boolean;
+  };
+  receipt_ref?: string | null;
+  count?: number | null;
+  note?: string | null;
+}
+
+export interface ListeningPass {
+  id: string;
+  listener_id: string;
+  route: string[];
+  started_at: string;
+  completed_at?: string | null;
+  moment: { relation: 'live' | 'past_capture' | 'relisten' | 'archive' | 'seasonal' | 'prospective' | 'unknown'; scales: AuditoryScale[]; time_range?: ClaimTimeRange | null };
+  source_refs: string[];
+  claim_refs: string[];
+  decision_refs: string[];
+  influenced_by: Array<{ pass_id: string; effect: string }>;
+  revision_of?: string | null;
+  reorientation?: string | null;
+}
+
+export interface ListeningProvenance {
+  listening_sources: Array<{
+    id: string;
+    kind: 'audio' | 'sensor' | 'dsp' | 'metadata' | 'transcript' | 'context' | 'human_report' | 'model' | 'memory' | 'audiovisual' | 'haptic' | 'none' | 'other';
+    label: string;
+    provider?: string | null;
+    model_id?: string | null;
+    revision?: string | null;
+    jurisdiction?: string | null;
+    disclosure_status: 'known' | 'partial' | 'unknown' | 'not_applicable';
+    limitations?: string[];
+  }>;
+  cuts: Array<{
+    id: string;
+    stage: 'capture' | 'selection' | 'preprocessing' | 'classification' | 'routing' | 'output';
+    operation: string;
+    actor: string;
+    basis: string;
+    effect: string;
+    reversible: boolean;
+    source_ref?: string | null;
+  }>;
+  corpus_lineage: Array<{
+    source_ref: string;
+    disclosure_status: 'known' | 'partial' | 'unknown' | 'not_applicable';
+    corpus_refs: string[];
+    fine_tune_refs?: string[];
+    limitations: string[];
+  }>;
+}
+
+export interface ListeningEnsemble {
+  id: string;
+  kind: 'plural_listening' | 'ear_swarm';
+  participant_ids: string[];
+  listening_pass_ids: string[];
+  influence_edges: Array<{ from_pass_id: string; to_pass_id: string; effect: string }>;
+  permissions_preserved: boolean;
+  disagreements_preserved: boolean;
+  dissolution_rule: string;
+}
 
 export interface ListeningAperture {
   id: string;
@@ -203,7 +310,7 @@ export interface ListeningAperture {
 }
 
 export interface ListeningContext {
-  contract: 'akouo/listening-context/v1';
+  contract: 'akouo/listening-context/v2';
   position: {
     relation_to_object: string;
     situation?: string | null;
@@ -211,19 +318,7 @@ export interface ListeningContext {
     limitations: string[];
   };
   apertures: ListeningAperture[];
-  auditory_scales: Array<
-    | 'sample'
-    | 'frame'
-    | 'gesture'
-    | 'event'
-    | 'scene'
-    | 'session'
-    | 'archive'
-    | 'lineage'
-    | 'infrastructural'
-    | 'planetary'
-    | 'unknown'
-  >;
+  auditory_scales: AuditoryScale[];
   sources_of_listening: Array<
     | 'audio'
     | 'dsp'
@@ -240,8 +335,10 @@ export interface ListeningContext {
   >;
   participants: Array<{
     id: string;
-    type: 'human' | 'agent' | 'hybrid';
+    type: 'human' | 'agent' | 'hybrid' | 'community' | 'institution' | 'sensor' | 'habitat' | 'other_animal' | 'ensemble' | 'other';
     role: string;
+    standing?: 'listener' | 'listened_subject' | 'steward' | 'operator' | 'witness' | 'affected_party' | 'infrastructure' | 'represented_party' | 'other' | null;
+    jurisdiction?: string | null;
     report_ref?: string | null;
   }>;
   action_authority: {
@@ -253,12 +350,15 @@ export interface ListeningContext {
     reversible?: boolean | null;
   };
   honest_absences: Array<{
-    kind: 'unavailable' | 'withheld' | 'refused' | 'not_retained' | 'forgotten' | 'undetermined';
+    kind: 'unavailable' | 'withheld' | 'refused' | 'not_retained' | 'forgotten';
     subject: string;
     attributed_to: string;
     count?: number | null;
     note?: string | null;
   }>;
+  listening_passes: ListeningPass[];
+  route_decisions: RouteDecision[];
+  ensemble_ref?: string | null;
   revision?: {
     id: string;
     revises?: string | null;
@@ -284,6 +384,10 @@ export interface ListeningOutput {
   listener?: ListenerDeclaration;
   memory?: MemoryLinks;
   listening_context?: ListeningContext;
+  listening_provenance?: ListeningProvenance;
+  listening_passes?: ListeningPass[];
+  route_decisions?: RouteDecision[];
+  ensemble?: ListeningEnsemble;
 }
 
 export interface RouterOutput {

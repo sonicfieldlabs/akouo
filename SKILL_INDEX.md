@@ -4,7 +4,7 @@ A quick-reference manifest of all portable listening skills in this repository.
 
 ## Version Notes
 
-`v0.8` adds accountable listening context: position, apertures, auditory scales, sources, participants, authority, revision, and honest absence become validated data on every current hearing. `v0.7` adds the sovereignty layer: the `sovereign-listening` mode, the `/covenant` command, and the listening-covenant schema (`schemas/covenant.schema.json`) — a human-written declaration of sonic sovereignty parsed into enforceable rules and carried commitments, with withholding reported as honest, attributed absence. `v0.6` instruments the system for host apps: the machine-readable contract `akouo.manifest.json`, portable presets in `presets/`, the new `memory-lineage-listening` mode with the `/remember` command, apparatus/listener/memory declarations, per-claim `source` and `time_range`, and budget-aware routing plans. `v0.5` consolidated the agentic routing layer with `reference-layer`, expanded routing plans, evidence-level claim permissions, and deeper browser-side signal estimates in the app. `v0.4` expanded the system with `voice-speech-listening`, `audiovisual-scenic-listening`, `accessibility-normative-listening`, and `material-event-listening`; `v0.3` added `musical-aesthetic-listening`; `v0.2` preserved the original mode set while refining evidence discipline, mediation awareness, and public conceptual boundaries.
+`v0.9` adds attributable listening passes, listening provenance and corpus lineage, addressable route decisions and coded silence, explicit plural-listening versus ear-swarm declarations, plus `corpus-listening` and `/corpus`; it also makes clear that supplied text is not heard sound. `v0.8` adds accountable listening context: position, apertures, auditory scales, sources, participants, authority, revision, and honest absence become validated data on every current hearing. `v0.7` adds the sovereignty layer: the `sovereign-listening` mode, the `/covenant` command, and the listening-covenant schema (`schemas/covenant.schema.json`). `v0.6` instruments the system for host apps with the manifest, presets, memory-lineage listening, apparatus/listener/memory declarations, and budget-aware routing plans.
 
 ## Meta-Skills
 
@@ -32,6 +32,7 @@ A quick-reference manifest of all portable listening skills in this repository.
 | [`material-event-listening`](skills/material-event-listening/SKILL.md) | Material, vibration, and event ear. | Resonance, vibration, duration, flux, feedback, low frequencies, installation sound, propagation, loudspeakers, room coupling, and sonic process. |
 | [`memory-lineage-listening`](skills/memory-lineage-listening/SKILL.md) | Sound-memory and lineage ear. | Stored listening records, akousma/akousmata stores, recurrence, kinship, lineage, series over time, archive comparison, and registering listenings into a store. |
 | [`sovereign-listening`](skills/sovereign-listening/SKILL.md) | Sovereignty ear that listens under a covenant. | Community protocols, consent-bound recording, the right to silence and opacity, retention rules, habitat protocols, listening without identification, and auditing hearings against a declared covenant. |
+| [`corpus-listening`](skills/corpus-listening/SKILL.md) | Computational-inheritance and corpus-provenance ear. | Training, fine-tuning, retrieval, annotation, provider disclosure, licensing, labor, consent, jurisdiction, opt-out, and unknown lineage. |
 
 ## Schema Bundles
 
@@ -40,6 +41,10 @@ Each skill folder includes a `references/` directory containing the JSON schemas
 - `listening-output.schema.json` — shared output structure for all listening modes
 - `listening-context.schema.json` — accountable declaration of position, apertures, scale, sources, participants, authority, revision, and honest absence
 - `claim-taxonomy.schema.json` — epistemic claim categories (heard, measured, inferred, interpreted, speculative, undetermined)
+- `listening-pass.schema.json` — one attributable listening at one moment
+- `listening-provenance.schema.json` — evidence sources, cuts, corpora, and optional source-of-voice disclosure
+- `route-decision.schema.json` — accountable gate outcomes, including coded silence
+- `ensemble.schema.json` — explicit plural-listening or ear-swarm declaration
 - `router-output.schema.json` — router-specific output structure (bundled with `akouo-router` only)
 - `routing-plan.schema.json` — expanded agent handoff route structure (bundled with `akouo-router` only)
 - `reference-map.schema.json` — conceptual mapping output structure (bundled with `reference-layer` only)

@@ -20,7 +20,7 @@
     },
     "contract": {
       "type": "string",
-      "description": "The AKOÚŌ contract this covenant was parsed under, e.g. 'akouo/v0.8'."
+      "description": "The AKOÚŌ contract this covenant was parsed under, e.g. 'akouo/v0.9'."
     },
     "extends": {
       "type": "array",

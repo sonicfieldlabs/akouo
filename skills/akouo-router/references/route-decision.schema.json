@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/route-decision.schema.json",
+  "title": "AKOÚŌ Route Decision",
+  "description": "An accountable decision at a listening gate. Coded silence is represented as an explicit outcome rather than a missing output, while the decision remains distinct from both an honest absence and an epistemically undetermined claim.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "gate", "outcome", "subject", "reason", "decided_at", "authority"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "gate": {
+      "type": "string",
+      "enum": ["input", "capture", "inference", "memory", "output", "disclosure", "retention", "action"]
+    },
+    "outcome": {
+      "type": "string",
+      "enum": ["proceed", "pause", "defer", "abstain", "refuse", "withhold", "forget", "do_not_act"]
+    },
+    "subject": { "type": "string", "minLength": 1 },
+    "reason": { "type": "string", "minLength": 1 },
+    "decided_at": { "type": "string", "minLength": 1 },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "actor", "requires_confirmation", "reversible"],
+      "properties": {
+        "mode": { "type": "string", "enum": ["observe_only", "recommend", "request", "execute_scoped"] },
+        "actor": { "type": "string", "minLength": 1 },
+        "covenant_ref": { "type": ["string", "null"] },
+        "granted_by": { "type": ["string", "null"] },
+        "requires_confirmation": { "type": "boolean" },
+        "reversible": { "type": "boolean" }
+      }
+    },
+    "receipt_ref": { "type": ["string", "null"] },
+    "count": { "type": ["integer", "null"], "minimum": 0 },
+    "note": { "type": ["string", "null"] }
+  }
+}

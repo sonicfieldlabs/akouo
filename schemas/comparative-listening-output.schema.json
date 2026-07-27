@@ -45,7 +45,8 @@
         "voice_speech",
         "accessibility_normative",
         "material_event",
-        "memory_lineage"
+        "memory_lineage",
+        "corpus_listening"
       ],
       "properties": {
         "signal_inspection": {
@@ -88,6 +89,9 @@
           "$ref": "listening-output.schema.json"
         },
         "memory_lineage": {
+          "$ref": "listening-output.schema.json"
+        },
+        "corpus_listening": {
           "$ref": "listening-output.schema.json"
         }
       }

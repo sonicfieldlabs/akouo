@@ -1,13 +1,13 @@
 {
   "name": "akouo-app",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc -b --pretty"
+    "typecheck": "tsc --noEmit --pretty"
   },
   "dependencies": {
     "react": "^19.2.5",

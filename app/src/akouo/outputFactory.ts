@@ -1,10 +1,12 @@
 import type {
   Claim,
+  ClaimSource,
   ClaimTaxonomy,
   InputType,
   ListeningMode,
   ListeningContext,
   ListeningOutput,
+  ListeningProvenance,
   ListeningRequest,
   Mediations,
   Risks,
@@ -40,8 +42,8 @@ function createEmptyRisks(): Risks {
   };
 }
 
-export function createClaim(statement: string, confidence: Claim['confidence'], basis?: string): Claim {
-  return { statement, confidence, ...(basis ? { basis } : {}) };
+export function createClaim(statement: string, confidence: Claim['confidence'], basis?: string, source?: ClaimSource): Claim {
+  return { statement, confidence, ...(basis ? { basis } : {}), ...(source ? { source } : {}) };
 }
 
 export function createListeningOutputDraft(params: {
@@ -64,9 +66,12 @@ export function createListeningOutputDraft(params: {
   };
 }
 
-export function createReferenceListeningContext(request: ListeningRequest): ListeningContext {
+export function createReferenceListeningContext(request: ListeningRequest, mode: ListeningMode): ListeningContext {
   const hasAudio = Boolean(request.audioInspection);
   const hasText = Boolean(request.prompt?.trim());
+  const recordedAt = new Date().toISOString();
+  const routeDecisionId = `route-${mode}`;
+  const listeningPassId = `pass-${mode}`;
   const sources: ListeningContext['sources_of_listening'] = [];
 
   if (hasAudio) sources.push('audio', 'dsp', 'metadata');
@@ -84,7 +89,7 @@ export function createReferenceListeningContext(request: ListeningRequest): List
         : ['unknown'];
 
   return {
-    contract: 'akouo/listening-context/v1',
+    contract: 'akouo/listening-context/v2',
     position: {
       relation_to_object: hasAudio
         ? 'local browser-side signal inspection and routed interpretation'
@@ -130,6 +135,7 @@ export function createReferenceListeningContext(request: ListeningRequest): List
         id: 'akouo-browser-reference',
         type: 'agent',
         role: 'routed reference listener',
+        standing: 'listener',
       },
     ],
     action_authority: {
@@ -154,5 +160,93 @@ export function createReferenceListeningContext(request: ListeningRequest): List
             count: 1,
           }]),
     ],
+    listening_passes: [{
+      id: listeningPassId,
+      listener_id: 'akouo-browser-reference',
+      route: [mode],
+      started_at: recordedAt,
+      completed_at: recordedAt,
+      moment: {
+        relation: hasAudio ? 'past_capture' : request.inputType === 'archive_note' || request.inputType === 'dataset_description' ? 'archive' : 'unknown',
+        scales,
+      },
+      source_refs: hasAudio ? ['browser-audio'] : hasText ? ['supplied-text'] : ['no-source'],
+      claim_refs: [],
+      decision_refs: [routeDecisionId],
+      influenced_by: [],
+    }],
+    route_decisions: [{
+      id: routeDecisionId,
+      gate: 'inference',
+      outcome: 'proceed',
+      subject: mode,
+      reason: 'The user requested a local, observe-only reference pass with explicit evidence limits.',
+      decided_at: recordedAt,
+      authority: {
+        mode: 'observe_only',
+        actor: 'akouo-browser-reference',
+        granted_by: 'current user request',
+        requires_confirmation: true,
+        reversible: true,
+      },
+    }],
+  };
+}
+
+export function createReferenceListeningProvenance(request: ListeningRequest, mode: ListeningMode): ListeningProvenance {
+  const hasAudio = Boolean(request.audioInspection);
+  const hasText = Boolean(request.prompt?.trim());
+  const listeningSources: ListeningProvenance['listening_sources'] = [];
+
+  if (hasAudio) {
+    listeningSources.push({
+      id: 'browser-audio',
+      kind: 'audio',
+      label: request.audioInspection?.fileName ?? 'locally supplied audio',
+      provider: 'local browser file input',
+      disclosure_status: 'partial',
+      limitations: ['Capture chain and prior transformations are not verified.'],
+    });
+  }
+
+  if (hasText) {
+    listeningSources.push({
+      id: 'supplied-text',
+      kind: request.inputType === 'transcript' ? 'transcript' : 'context',
+      label: 'user-supplied text',
+      provider: 'current user request',
+      disclosure_status: 'known',
+      limitations: ['Text attributes a description or statement; it does not verify the represented sound.'],
+    });
+  }
+
+  if (listeningSources.length === 0) {
+    listeningSources.push({
+      id: 'no-source',
+      kind: 'none',
+      label: 'no evidence source supplied',
+      disclosure_status: 'not_applicable',
+      limitations: ['No acoustic, textual, or measured evidence is available.'],
+    });
+  }
+
+  return {
+    listening_sources: listeningSources,
+    cuts: [{
+      id: `routing-cut-${mode}`,
+      stage: 'routing',
+      operation: `select ${mode}`,
+      actor: 'akouo-browser-reference',
+      basis: 'AKOÚŌ routing rules and the current command',
+      effect: 'Frames the available evidence through one declared listening mode.',
+      reversible: true,
+      source_ref: listeningSources[0]?.id ?? null,
+    }],
+    corpus_lineage: listeningSources.map((source) => ({
+      source_ref: source.id,
+      disclosure_status: source.kind === 'model' ? 'unknown' : 'not_applicable',
+      corpus_refs: [],
+      limitations: source.kind === 'model' ? ['No training or fine-tuning corpus disclosure was supplied.'] : ['This source does not declare a model corpus lineage.'],
+    })),
   };
 }

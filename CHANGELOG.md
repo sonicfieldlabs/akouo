@@ -1,5 +1,30 @@
 # Changelog
 
+## v0.9 — Listening Provenance and Several Times
+
+- Added canonical schemas for attributable listening passes, listening
+  provenance and corpus lineage, route decisions, and explicit listening
+  ensembles.
+- Added `corpus-listening` and `/corpus` for training, fine-tuning, retrieval,
+  annotation, provider disclosure, licensing, labor, consent, jurisdiction,
+  and unknown computational inheritance.
+- Corrected the Evidence Ladder and reference app so prompt, transcript,
+  field-note, and description text remains attributed input rather than a
+  `heard` claim about the represented sound.
+- Expanded claim attribution with ids, evidence and aperture references,
+  listening-pass ids, auditory scale, alternatives, and actionability.
+- Added context v2 with temporal passes and addressable gate outcomes. Coded
+  silence is recorded as pause, defer, abstention, refusal, withholding,
+  forgetting, or non-action rather than disappearing as a missing result.
+- Distinguished plural listening from an ear swarm: parallelism or listener
+  count is insufficient without influence, preserved permissions and
+  disagreements, and a dissolution rule.
+- Expanded participant and listener types to communities, institutions,
+  sensors, habitats, other animals, ensembles, and other declared actors.
+- Added a v0.9 example, synchronized all standalone skill schema bundles, and
+  bumped `akouo-contract` and the reference app to `0.9.0`
+  (`akouo/v0.9`).
+
 ## v0.8 — Accountable Listening
 
 - Added `schemas/listening-context.schema.json`, the shared declaration of a

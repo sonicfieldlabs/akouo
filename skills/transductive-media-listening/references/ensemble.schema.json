@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/ensemble.schema.json",
+  "title": "AKOÚŌ Listening Ensemble",
+  "description": "A declaration of plural listening. Multiple listeners or routes are not an ear swarm unless they remain attributable and demonstrably redirect one another.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "kind", "participant_ids", "listening_pass_ids", "influence_edges", "permissions_preserved", "disagreements_preserved", "dissolution_rule"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "kind": { "type": "string", "enum": ["plural_listening", "ear_swarm"] },
+    "participant_ids": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 2, "uniqueItems": true },
+    "listening_pass_ids": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 2, "uniqueItems": true },
+    "influence_edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from_pass_id", "to_pass_id", "effect"],
+        "properties": {
+          "from_pass_id": { "type": "string", "minLength": 1 },
+          "to_pass_id": { "type": "string", "minLength": 1 },
+          "effect": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "permissions_preserved": { "type": "boolean" },
+    "disagreements_preserved": { "type": "boolean" },
+    "dissolution_rule": { "type": "string", "minLength": 1 }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "kind": { "const": "ear_swarm" } }, "required": ["kind"] },
+      "then": {
+        "properties": {
+          "influence_edges": { "minItems": 1 },
+          "permissions_preserved": { "const": true },
+          "disagreements_preserved": { "const": true }
+        }
+      }
+    }
+  ]
+}
