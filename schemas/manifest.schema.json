@@ -24,7 +24,7 @@
     "contract": {
       "type": "string",
       "minLength": 1,
-      "description": "Pinnable contract identifier, e.g. 'akouo/v0.6'."
+      "description": "Pinnable contract identifier, e.g. 'akouo/v0.9'."
     },
     "description": {
       "type": "string",
@@ -64,7 +64,11 @@
                 "memory",
                 "sovereignty",
                 "care",
-                "reference"
+                "reference",
+                "corpus",
+                "voice",
+                "temporality",
+                "plurality"
               ]
             },
             "minItems": 1,

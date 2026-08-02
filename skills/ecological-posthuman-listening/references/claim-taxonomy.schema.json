@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://akouo.dev/schemas/claim-taxonomy.schema.json",
   "title": "akoúō Claim Taxonomy",
-  "description": "Shared claim taxonomy for separating heard, measured, inferred, interpreted, speculative, and undetermined claims.",
+  "description": "Shared v0.9 claim taxonomy for separating heard, measured, inferred, interpreted, speculative, and undetermined claims. Each claim can remain attributable to the listening pass, aperture, evidence, time, and scale that support it.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -16,7 +16,7 @@
   "properties": {
     "heard": {
       "$ref": "#/$defs/claim_list",
-      "description": "Claims directly present in the audio, prompt, transcript, field note, or supplied description."
+      "description": "Claims directly present to an auditory or explicitly declared perceptual aperture. Text in a prompt, transcript, field note, or supplied description is attributable input, but it is not itself a hearing of the represented sound."
     },
     "measured": {
       "$ref": "#/$defs/claim_list",
@@ -49,6 +49,11 @@
       "additionalProperties": false,
       "required": ["statement", "confidence"],
       "properties": {
+        "claim_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable local identifier for evidence, disagreement, action, and revision references. Current v0.9 producers SHOULD emit it."
+        },
         "statement": {
           "type": "string",
           "minLength": 1
@@ -63,6 +68,31 @@
         "source": {
           "$ref": "#/$defs/claim_source",
           "description": "Optional v0.6 field naming which apparatus or evidence stream produced this claim, so DSP facts, model perception, transcripts, memory comparisons, and human notes never blur."
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/ref_list",
+          "description": "References to concrete evidence objects or producer reports supporting this claim."
+        },
+        "aperture_refs": {
+          "$ref": "#/$defs/ref_list",
+          "description": "Listening-context aperture ids through which the supporting evidence entered."
+        },
+        "listening_pass_id": {
+          "type": ["string", "null"],
+          "description": "The attributable listening pass that made the claim."
+        },
+        "auditory_scale": {
+          "type": ["string", "null"],
+          "enum": ["sample", "frame", "gesture", "event", "scene", "session", "archive", "lineage", "infrastructural", "planetary", "unknown", null]
+        },
+        "alternatives": {
+          "$ref": "#/$defs/ref_list",
+          "description": "Compatible or competing readings that remain open rather than being collapsed into one answer."
+        },
+        "actionability": {
+          "type": "string",
+          "enum": ["none", "informational", "recommendation_only", "requires_authority", "contested"],
+          "description": "A claim never grants its own action authority."
         },
         "time_range": {
           "$ref": "#/$defs/time_range",
@@ -81,6 +111,12 @@
         "context",
         "memory",
         "human",
+        "prompt",
+        "description",
+        "field_note",
+        "sensor",
+        "provider",
+        "corpus",
         "other"
       ]
     },
@@ -92,6 +128,12 @@
         "start_s": { "type": "number", "minimum": 0 },
         "end_s": { "type": "number", "minimum": 0 }
       }
+    },
+    "ref_list": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true,
+      "default": []
     },
     "claim_list": {
       "type": "array",

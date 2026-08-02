@@ -32,6 +32,7 @@ LISTENING_MODES=(
   "material-event-listening"
   "memory-lineage-listening"
   "sovereign-listening"
+  "corpus-listening"
 )
 EXPECTED_SKILLS=(
   "akouo-router"
@@ -106,7 +107,15 @@ for skill in "${EXPECTED_SKILLS[@]}"; do
     continue
   fi
 
-  required_refs=("claim-taxonomy.schema.json" "listening-output.schema.json")
+  required_refs=(
+    "claim-taxonomy.schema.json"
+    "listening-context.schema.json"
+    "listening-output.schema.json"
+    "listening-pass.schema.json"
+    "listening-provenance.schema.json"
+    "route-decision.schema.json"
+    "ensemble.schema.json"
+  )
   if [ "$skill" = "akouo-router" ]; then
     required_refs+=("router-output.schema.json" "routing-plan.schema.json")
   fi

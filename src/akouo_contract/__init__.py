@@ -1,9 +1,9 @@
 """Installed access to the canonical AKOÚŌ contract and skill library.
 
-v0.7.0 adds the sovereignty layer: the ``sovereign-listening`` mode, the
-``/covenant`` command, and the listening-covenant schema — a bridge language
-in which a human-written declaration of sonic sovereignty is parsed into
-enforceable rules and carried commitments. Contract: ``akouo/v0.7``."""
+v0.9.0 adds accountable temporal passes, provenance and corpus lineage,
+route decisions, explicit listening ensembles, and a corpus-listening ear.
+Textual descriptions remain attributed input rather than heard sound.
+Contract: ``akouo/v0.9``."""
 from __future__ import annotations
 
 import json
@@ -12,8 +12,8 @@ from importlib.resources import files  # nosemgrep
 from pathlib import Path
 from typing import Any
 
-__version__ = "0.7.0"
-CONTRACT_VERSION = "0.7"
+__version__ = "0.9.0"
+CONTRACT_VERSION = "0.9"
 CONTRACT = f"akouo/v{CONTRACT_VERSION}"
 
 

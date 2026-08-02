@@ -37,6 +37,8 @@ Which concepts, methods, traditions, questions, and cautions does this listening
 - Traditions are situated: sound studies categories travel with histories and exclusions; do not universalize Western or Northern framings as default method.
 - Cautions are part of the map: each conceptual route carries its own overreach risks, and the map must name them alongside the affinities.
 - The reference layer inherits the claim discipline: concepts and traditions belong to `interpreted` reasoning; they never upgrade a claim's evidence category.
+- References should distinguish a source of sound from a source of listening: apparatus, corpus, platform, archive, field relation, and inherited terminology can all condition the ear.
+- Several temporal passes are not one timeless object. When a route spans seasons, archives, revisions, or model generations, name those times and the cuts between them.
 
 ## Input Assumptions
 
@@ -85,6 +87,7 @@ Return a reference map:
 - Do not universalize Western or Northern sound studies categories as default method.
 - Do not erase nonhuman, embodied, technical, archival, political, or speculative dimensions when selecting routes.
 - Do not let theory override the claim taxonomy of prior listening outputs.
+- Do not infer corpus membership, source-of-voice, or an ear swarm from suggestive language, provider identity, or listener count.
 - State clearly when the available input is too thin for confident mapping.
 
 ## Recommended Next Modes

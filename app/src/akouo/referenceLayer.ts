@@ -66,6 +66,17 @@ const referenceEntries: ReferenceEntry[] = [
     adjacentModes: ['signal-inspection-listening', 'critical-political-listening', 'ecological-posthuman-listening'],
   },
   {
+    concept: 'corpus lineage and computational inheritance',
+    triggers: ['corpus', 'training data', 'fine-tune', 'finetune', 'dataset', 'annotation', 'model card', 'provider', 'licensing', 'opt out', 'retrieval'],
+    modes: ['corpus-listening'],
+    methodologies: ['corpus lineage ledger', 'selection and annotation audit', 'unknown-lineage preservation'],
+    authorsOrTraditions: ['critical dataset studies', 'AI audio critique', 'archival and provenance practice'],
+    researchRoutes: ['separate provider identity from corpus disclosure', 'track training, fine-tuning, retrieval, annotation, and filtering as distinct inheritances', 'preserve unknown lineage without reconstructing protected material'],
+    researchQuestions: ['Which collections, permissions, labor, and exclusions condition this computational ear?', 'What lineage is directly disclosed, partial, unknown, or not applicable?'],
+    cautions: ['Never infer corpus membership from model behavior.', 'Do not turn absent disclosure into a fabricated provenance narrative.'],
+    adjacentModes: ['critical-political-listening', 'transductive-media-listening', 'forensic-archival-listening'],
+  },
+  {
     concept: 'forensic testimony and archival silence',
     triggers: ['archive', 'testimony', 'evidence', 'violence', 'surveillance', 'protest', 'damaged tape', 'oral history', 'witness'],
     modes: ['forensic-archival-listening'],
@@ -230,11 +241,11 @@ export function createReferenceClaimSummary(request: ListeningRequest, reference
   const claims = createEmptyClaimTaxonomy();
 
   if (request.prompt?.trim()) {
-    claims.heard.push(createClaim(`Prompt supplied: ${clip(request.prompt.trim())}`, 'high', 'User-provided text'));
+    claims.inferred.push(createClaim(`Supplied text states: ${clip(request.prompt.trim())}`, 'high', 'Attributed user-provided text; not direct acoustic evidence', 'prompt'));
   }
 
   if (request.audioInspection) {
-    claims.heard.push(createClaim(`Audio file supplied: ${request.audioInspection.fileName}.`, 'high', 'Browser File input'));
+    claims.measured.push(createClaim(`Audio file supplied: ${request.audioInspection.fileName}.`, 'high', 'Browser File input metadata', 'metadata'));
     claims.measured.push(...request.audioInspection.measuredClaims);
   }
 
@@ -303,6 +314,10 @@ function researchRouteForMode(mode: ListeningMode): string {
       return 'sound as material event across vibration, resonance, propagation, duration, and process';
     case 'memory-lineage-listening':
       return 'listening with stored sound-memories: recurrence, kinship, lineage, and change over time without treating memory as evidence';
+    case 'sovereign-listening':
+      return 'covenant-aware listening that keeps consent, withholding, opacity, retention, precision, and refusal inspectable';
+    case 'corpus-listening':
+      return 'corpus listening that traces disclosed computational inheritance while preserving unknown lineage as unknown';
   }
 }
 
