@@ -41,7 +41,7 @@ AKOÚŌ is the shared listening contract across the stack. The current release c
 | [Earworm](https://github.com/sonicfieldlabs/earworm) `0.6.0` | Persists addressable auditums and pre-capture decisions as `akousma/v1.5` records, including revision and forgetting receipts. |
 | [Akousmata](https://github.com/sonicfieldlabs/akousmata) `0.6.0` | Validates and navigates those records while keeping plural listeners distinct and requiring influence before declaring an ear swarm. |
 | [Algophony](https://github.com/sonicfieldlabs/algophony) `0.5.1` | Uses the listening contract for generation supervision, evaluation, and research workflows. |
-| [GERM](https://github.com/sonicfieldlabs/germ) `0.3.1` | Connects cultivation sessions to OÍDA and Akousmata for listening and lineage-aware workflows. |
+| [GERM](https://github.com/sonicfieldlabs/germ) `0.3.2` | Connects cultivation sessions to OÍDA and Akousmata for listening and lineage-aware workflows. |
 | [ORAM](https://github.com/sonicfieldlabs/oram) `0.4.1` | ORAM audio can be passed to any AKOÚŌ host; ORAM does not embed the contract directly. |
 
 ## Core Idea
