@@ -198,11 +198,10 @@ function permissionsForEvidence(level: EvidenceLevel, request: ListeningRequest)
       return { ...base, measured_allowed: true, inferred_allowed: true, interpreted_allowed: true };
     case 'decoded_audio_metadata':
     case 'measured_signal':
-      return { ...base, heard_allowed: true, measured_allowed: true, inferred_allowed: true, interpreted_allowed: true };
+      return { ...base, measured_allowed: true, inferred_allowed: true, interpreted_allowed: true };
     case 'mixed':
       return {
         ...base,
-        heard_allowed: true,
         measured_allowed: Boolean(request.audioInspection),
         inferred_allowed: true,
         interpreted_allowed: true,

@@ -26,7 +26,7 @@
     }
   ],
   "claim_permissions": {
-    "heard_allowed": true,
+    "heard_allowed": false,
     "measured_allowed": false,
     "inferred_allowed": true,
     "interpreted_allowed": true,

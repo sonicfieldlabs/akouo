@@ -74,7 +74,7 @@ Routing plans and mode outputs should declare the listening apparatus (`apparatu
 
 - mono input: no stereo-image, panning, or spatial-width claims
 - known sample rate: no claims about content above the Nyquist bound; low bandwidth models cannot verify high-frequency content
-- model perception only (captions, events, transcripts): `measured` stays empty; model output is machine-heard evidence, not measurement
+- model perception only (captions, events, transcripts): `heard` and `measured` stay empty; model output is an attributable inference, not an embodied hearing or a measurement
 - text-only agent: no `heard` claims about audio it never received
 - unknown capture chain: transduction caution before source claims
 
@@ -93,11 +93,11 @@ When producing an expanded routing plan (`references/routing-plan.schema.json`),
 | `none` | no | no | no | no | only if requested |
 | `prompt_only` | no | no | from attributed prompt logic only | yes, marked as reading of a description | only if requested |
 | `metadata_only` | no | metadata facts only | from metadata only | cautiously | only if requested |
-| `decoded_audio_metadata` | yes, if audio was actually decoded and described | duration, sample rate, channels, basic amplitude only | yes | yes | only if requested |
-| `measured_signal` | yes | yes, within the limits of the tool used | yes | yes | only if requested |
+| `decoded_audio_metadata` | no for machine output; separately attributed embodied reports only | duration, sample rate, channels, basic amplitude only | yes | yes | only if requested |
+| `measured_signal` | no for machine output; separately attributed embodied reports only | yes, within the limits of the tool used | yes | yes | only if requested |
 | `transcript_or_caption` | no | no | text, segmentation, and format inferences only | yes, marked as text-based | only if requested |
 | `contextual_note` | no | no | yes, from attributed context | yes | only if requested |
-| `mixed` | per component | per component | per component | yes | only if requested |
+| `mixed` | embodied reports only, separately attributed | per component | per component | yes | only if requested |
 
 `must_include_undetermined` is `true` at every level. Speculative permission is granted by user intent (declared fiction, worldbuilding, `/fiction`), never by evidence level. When components conflict in `mixed` input, apply the weakest applicable permission to each individual claim, not the strongest.
 

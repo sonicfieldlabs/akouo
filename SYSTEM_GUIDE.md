@@ -30,7 +30,7 @@ The private benchmark extension can add `benchmark-listening` for external-agent
 
 Every listening output must separate claims into six categories:
 
-- `heard`: directly present to an auditory or explicitly declared perceptual aperture; supplied text is attributed input, not a hearing of the represented sound
+- `heard`: an embodied listener's attributable report of what was directly present to a declared perceptual aperture; machine outputs and supplied text are not hearings of the represented sound
 - `measured`: produced by technical inspection, metadata, waveform, spectrogram, or file analysis
 - `inferred`: plausible logical or technical deductions only
 - `interpreted`: cultural, theoretical, affective, aesthetic, ecological, archival, political, or contextual readings
@@ -68,7 +68,7 @@ Host apps should consume AKOÚŌ as data:
 - `presets/presets.json` carries named listening configurations for recurring use-cases; validate each entry with `schemas/preset.schema.json`. A preset names its command, mode chain, cost tier (`light`/`standard`/`deep`), memory policy, and perception passes; hosts map passes to their own backends.
 - Outputs pin their contract with `akouo_version`, declare their `apparatus`, declare the listener, link stored records through `memory`, and attribute claims to evidence, apertures, listening passes, temporal scales, alternatives, and actionability.
 - Current outputs add context v2 plus `listening_provenance`, `listening_passes`, and `route_decisions`. `ensemble` is emitted only for an explicit plural-listening or ear-swarm declaration. Readers retain an explicit compatibility path for context v1.
-- Textual prompts, transcripts, field notes, and descriptions are input evidence, but are never placed in `heard` merely because they describe sound.
+- Machine outputs, textual prompts, transcripts, field notes, and descriptions are attributable evidence, but are never placed in `heard`; use measured, inferred, interpreted, or undetermined according to their actual basis.
 
 Loading these files replaces hand-copied route tables, which drift. Prose in this guide explains the contract; the manifest is the source of truth.
 

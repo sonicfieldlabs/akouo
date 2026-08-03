@@ -16,7 +16,7 @@ Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current r
 
 The `akouo-contract` Python distribution packages this repository's canonical
 skills, commands, presets, schemas, and manifest for Oída and other local
-agent hosts. Package release `0.9.0` implements the `akouo/v0.9` data
+agent hosts. Package release `0.9.1` implements the `akouo/v0.9` data
 contract; no skill fork is created inside a host application.
 
 ## Version Status
@@ -69,7 +69,7 @@ akoúō keeps these dimensions distinct through explicit listening modes and a s
 
 Every output must distinguish its findings into the following epistemic categories:
 
-- `heard`: directly present to an auditory or explicitly declared perceptual aperture; prompt, transcript, field note, and description text are attributable inputs, not hearings of the represented sound
+- `heard`: an embodied listener's attributable report of what was directly present to a declared perceptual aperture; machine output, prompt, transcript, field-note, and description text belong to other categories according to their actual basis
 - `measured`: produced by file, signal, waveform, spectrogram, or metadata inspection
 - `inferred`: plausible logical deductions (not theory or culture)
 - `interpreted`: cultural, theoretical, affective, or contextual reading
@@ -247,15 +247,14 @@ Agent loads `skills/ecological-posthuman-listening/SKILL.md` and produces struct
   "input_type": "audio_file",
   "listening_mode": "ecological-posthuman-listening",
   "listening_claims": {
-    "heard": [
-      {
-        "statement": "Layered insect-like textures, distant water movement, and occasional leaf rustle are present in the supplied recording.",
-        "confidence": "medium",
-        "basis": "Audible content or user-provided description"
-      }
-    ],
+    "heard": [],
     "measured": [],
     "inferred": [
+      {
+        "statement": "An audio model reports layered insect-like textures, distant water movement, and occasional leaf rustle in the supplied recording.",
+        "confidence": "medium",
+        "basis": "Attributable model observation"
+      },
       {
         "statement": "The recording may contain mixed biophony and geophony layers.",
         "confidence": "low",
@@ -313,7 +312,7 @@ akouo/
   README.md
   SYSTEM_GUIDE.md      # Operational guide for commands, workflows, and app contract
   SKILL_INDEX.md       # Quick-reference manifest of all skills
-  CHANGELOG.md         # Release history from v0.1 through v0.9.0
+  CHANGELOG.md         # Release history from v0.1 through v0.9.1
   akouo.manifest.json  # Machine-readable system contract (skills, commands, ladder, overrides)
   LICENSE
   .gitignore

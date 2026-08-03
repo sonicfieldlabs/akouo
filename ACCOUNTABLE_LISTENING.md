@@ -65,9 +65,10 @@ it is provenance rather than evidence.
    forgotten content.
 6. Treat recommendations as proposals. Execution requires separately scoped
    authority and a host-side receipt.
-7. Treat prompt, transcript, description, and field-note text as attributed
-   input. Do not put it in `heard` unless an auditory or explicitly declared
-   perceptual aperture actually heard the represented sound.
+7. Reserve `heard` for an attributable embodied listener reporting what was
+   directly present to a declared perceptual aperture. Treat model, sensor,
+   prompt, transcript, description, and field-note output as measured,
+   inferred, interpreted, or undetermined according to its actual basis.
 8. Do not infer a corpus from a model output or provider label. Carry training,
    fine-tuning, retrieval, annotation, licensing, and jurisdiction as known,
    partial, unknown, or not applicable.

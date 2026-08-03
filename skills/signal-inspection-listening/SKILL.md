@@ -138,9 +138,9 @@ Since v0.8, current producers should also emit `listening_context` using `refere
 
 Input: an uploaded file with clipping and low-frequency hum.
 
-- Heard: `[{"statement":"A persistent low hum and abrupt impacts are audible if present in the supplied file.","confidence":"medium","basis":"Audible content, not source identification"}]`
+- Heard: `[]`
 - Measured: `[{"statement":"Energy concentration below 100 Hz and peak clipping may be reported only if verified by signal inspection.","confidence":"high","basis":"Waveform, meter, or spectrogram evidence"}]`
-- Inferred: `[{"statement":"Electrical hum, dynamic compression, or an overloaded recording chain are possible but unconfirmed causes.","confidence":"low","basis":"Technical pattern consistent with multiple causes"}]`
+- Inferred: `[{"statement":"A model pass describes a persistent low hum and abrupt impacts.","confidence":"medium","basis":"Attributable model perception, not source identification"},{"statement":"Electrical hum, dynamic compression, or an overloaded recording chain are possible but unconfirmed causes.","confidence":"low","basis":"Technical pattern consistent with multiple causes"}]`
 - Interpreted: `[{"statement":"The degraded technical condition may shape the listener's sense of pressure or instability.","confidence":"medium","basis":"Technical reading, not proof of intent"}]`
 - Speculative: `[]`
 - Undetermined: `[{"statement":"Source, intention, location, playback conditions, and cultural meaning remain unknown.","confidence":"high","basis":"Unavailable contextual evidence"}]`

@@ -5,15 +5,7 @@
     "input_type": "audio_file",
     "listening_mode": "acoulogical-object-listening",
     "listening_claims": {
-      "heard": [
-        {
-          "statement": "A repeating granular sound appears against a quieter continuous layer.",
-          "confidence": "medium",
-          "basis": "Audio-native model observation, not source identification",
-          "source": "model",
-          "time_range": { "start_s": 0.8, "end_s": 4.2 }
-        }
-      ],
+      "heard": [],
       "measured": [
         {
           "statement": "The supplied file has two channels at 48000 Hz.",
@@ -22,7 +14,15 @@
           "source": "metadata"
         }
       ],
-      "inferred": [],
+      "inferred": [
+        {
+          "statement": "An audio model reports a repeating granular sound against a quieter continuous layer.",
+          "confidence": "medium",
+          "basis": "Audio-native model observation, not source identification",
+          "source": "model",
+          "time_range": { "start_s": 0.8, "end_s": 4.2 }
+        }
+      ],
       "interpreted": [],
       "speculative": [],
       "undetermined": [

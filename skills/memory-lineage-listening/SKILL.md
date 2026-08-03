@@ -129,9 +129,9 @@ Host stores speaking akousma spec v1.2 may attach two more record blocks this mo
 
 Input: a new harbor field recording plus three stored records tagged with the same harbor across two years.
 
-- Heard: `[{"statement":"The present recording contains low continuous machinery tone with intermittent gull-like calls, as described by the prior perceptual pass.","confidence":"medium","basis":"Present listening output","source":"audio"}]`
+- Heard: `[]`
 - Measured: `[]`
-- Inferred: `[{"statement":"The stored records and the present listening plausibly form a series of the same harbor position, based on matching store tags and recurring machinery-tone descriptions.","confidence":"low","basis":"Store tags and claim overlap across three consulted records","source":"memory"}]`
+- Inferred: `[{"statement":"The present model pass describes low continuous machinery tone with intermittent gull-like calls.","confidence":"medium","basis":"Attributable model output","source":"model"},{"statement":"The stored records and the present listening plausibly form a series of the same harbor position, based on matching store tags and recurring machinery-tone descriptions.","confidence":"low","basis":"Store tags and claim overlap across three consulted records","source":"memory"}]`
 - Interpreted: `[{"statement":"Across the series, bird-activity claims thin while machinery claims persist, which reads as a lineage of increasing mechanical dominance at this site.","confidence":"low","basis":"Comparison of stored claims over two years; apparatus varied between records","source":"memory"}]`
 - Speculative: `[]`
 - Undetermined: `[{"statement":"Whether the apparent change reflects the site, the season, recorder position, or apparatus differences remains undetermined; two records lack capture notes and one media reference is dead.","confidence":"high","basis":"Missing provenance in consulted records"}]`

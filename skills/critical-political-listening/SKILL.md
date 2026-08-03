@@ -170,9 +170,9 @@ For v0.9, audit the source of listening as well as the apparent source of sound.
 
 Input: an AI voice demo marketed as universal expressive speech.
 
-- Heard: `[{"statement":"The voice quality can be described only from the supplied audio, demo text, or user description.","confidence":"medium","basis":"Available sonic or textual evidence"}]`
+- Heard: `[]`
 - Measured: `[]`
-- Inferred: `[{"statement":"Dataset processing, accent smoothing, prosody modeling, or platform optimization may be involved, but none is confirmed without documentation.","confidence":"low","basis":"Plausible AI-audio mediation"}]`
+- Inferred: `[{"statement":"Any model description of voice quality must name whether it came from audio, demo text, or a user description.","confidence":"medium","basis":"Attributable machine or textual evidence"},{"statement":"Dataset processing, accent smoothing, prosody modeling, or platform optimization may be involved, but none is confirmed without documentation.","confidence":"low","basis":"Plausible AI-audio mediation"}]`
 - Interpreted: `[{"statement":"The phrase universal expressive speech may erase accent, disability, labor, consent, provenance, and normal-hearing assumptions.","confidence":"medium","basis":"Critical-political reading of the marketing frame"}]`
 - Speculative: `[{"statement":"Future voice-world implications require explicit speculative labeling.","confidence":"low","basis":"Possible-world extension, not evidence"}]`
 - Undetermined: `[{"statement":"Training data, consent, compensation, speaker identity, user demographics, deployment context, accessibility testing, and ownership remain unknown.","confidence":"high","basis":"Missing institutional evidence"}]`

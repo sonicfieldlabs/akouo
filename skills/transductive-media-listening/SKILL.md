@@ -153,9 +153,9 @@ For v0.9, treat every threshold, filter, resample, channel reduction, event labe
 
 Input: a hydrophone recording from an unknown underwater site.
 
-- Heard: `[{"statement":"Underwater sound is present only as supplied audio or as described by the user.","confidence":"medium","basis":"Available audio or description"}]`
+- Heard: `[]`
 - Measured: `[{"statement":"File, spectral, and noise traits belong here only after technical inspection.","confidence":"high","basis":"Verified signal or metadata evidence"}]`
-- Inferred: `[{"statement":"A hydrophone converts underwater pressure variation into an electrical and audible signal, but the specific device chain is unknown.","confidence":"medium","basis":"Known transductive function, unspecified equipment"}]`
+- Inferred: `[{"statement":"A model pass or supplied description reports underwater sound.","confidence":"medium","basis":"Attributable machine or textual evidence"},{"statement":"A hydrophone converts underwater pressure variation into an electrical and audible signal, but the specific device chain is unknown.","confidence":"medium","basis":"Known transductive function, unspecified equipment"}]`
 - Interpreted: `[{"statement":"The recording is a mediated interface with underwater vibration, not direct oceanic presence.","confidence":"medium","basis":"Transductive-media listening frame"}]`
 - Speculative: `[]`
 - Undetermined: `[{"statement":"Species, exact location, depth, equipment model, gain settings, ecological cause, editing chain, and platform processing remain unknown.","confidence":"high","basis":"Unavailable mediation evidence"}]`

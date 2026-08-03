@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.9.1 — Embodied heard boundary
+
+- Reserved `heard` claims for attributable embodied listeners. Machine and
+  sensor outputs remain measured, inferred, interpreted, or undetermined
+  according to their declared evidence.
+- Updated the manifest evidence ladder, router permissions, reference app,
+  public guidance, and bundled skill schemas without changing the
+  `akouo/v0.9` contract identifier.
+
 ## v0.9 — Listening Provenance and Several Times
 
 - Added canonical schemas for attributable listening passes, listening

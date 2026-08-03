@@ -143,9 +143,9 @@ Since v0.8, current producers should also emit `listening_context` using `refere
 
 Input: a video description of footsteps matching cuts in a dark hallway scene.
 
-- Heard: `[{"statement":"The supplied description links footsteps to cuts in a dark hallway scene.","confidence":"high","basis":"User-provided audiovisual description"}]`
+- Heard: `[]`
 - Measured: `[]`
-- Inferred: `[{"statement":"The described synchronization may guide attention to movement or threat, but actual timing requires video/audio inspection.","confidence":"low","basis":"Scene inference from description"}]`
+- Inferred: `[{"statement":"The supplied description links footsteps to cuts in a dark hallway scene.","confidence":"high","basis":"User-provided audiovisual description"},{"statement":"The described synchronization may guide attention to movement or threat, but actual timing requires video/audio inspection.","confidence":"low","basis":"Scene inference from description"}]`
 - Interpreted: `[{"statement":"The footsteps may add temporal pressure to the image by making the hallway feel paced and occupied.","confidence":"medium","basis":"Audiovisual-scenic listening frame"}]`
 - Speculative: `[]`
 - Undetermined: `[{"statement":"Actual sound design, mix level, edit timing, source, room, playback context, and production intent remain unknown.","confidence":"high","basis":"Unavailable audio-video evidence"}]`

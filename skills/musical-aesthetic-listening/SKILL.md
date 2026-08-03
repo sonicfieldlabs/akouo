@@ -150,9 +150,9 @@ Treat genre, tradition, geography, ethnicity, sacredness, exoticness, period, an
 
 Input: a four-second synthetic pulse described as regular, percussive, and accented.
 
-- Heard: `[{"statement":"The supplied description names a regular percussive pulse with accents.","confidence":"medium","basis":"User-provided description; not direct audio evidence if no binary audio is available"}]`
+- Heard: `[]`
 - Measured: `[]`
-- Inferred: `[{"statement":"The described material may function as a rhythmic grid or click-like pattern, but exact tempo and waveform require audio or measurement.","confidence":"low","basis":"Musical inference from prompt wording"}]`
+- Inferred: `[{"statement":"The supplied description names a regular percussive pulse with accents.","confidence":"medium","basis":"User-provided description; not an embodied hearing"},{"statement":"The described material may function as a rhythmic grid or click-like pattern, but exact tempo and waveform require audio or measurement.","confidence":"low","basis":"Musical inference from prompt wording"}]`
 - Interpreted: `[{"statement":"The repetition can be read aesthetically as stability, propulsion, or mechanical regularity, but this remains an interpretive reading.","confidence":"medium","basis":"Aesthetic reading grounded in described repetition"}]`
 - Speculative: `[{"statement":"If used in a composition, the pulse could become a skeletal clock, metronome, or machine-heart figure.","confidence":"low","basis":"Declared creative possibility"}]`
 - Undetermined: `[{"statement":"Actual BPM, envelope, timbre, source, production chain, genre, cultural context, and listener response remain undetermined without audio or metadata.","confidence":"high","basis":"Unavailable evidence"}]`
