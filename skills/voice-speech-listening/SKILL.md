@@ -139,9 +139,9 @@ For v0.9, declare `listening_provenance.source_of_voice` whenever voice is human
 
 Input: an ASR transcript with speaker labels from a recorded interview.
 
-- Heard: `[{"statement":"The supplied input is an ASR-style transcript with speaker labels.","confidence":"high","basis":"Provided transcript"}]`
+- Heard: `[]`
 - Measured: `[]`
-- Inferred: `[{"statement":"The labels may indicate diarization segments, but they do not confirm speaker identities.","confidence":"low","basis":"Common ASR/diarization output structure"}]`
+- Inferred: `[{"statement":"The supplied input is an ASR-style transcript with speaker labels.","confidence":"high","basis":"Provided transcript"},{"statement":"The labels may indicate diarization segments, but they do not confirm speaker identities.","confidence":"low","basis":"Common ASR/diarization output structure"}]`
 - Interpreted: `[{"statement":"The transcript is a mediated speech representation that may omit breath, tone, overlap, hesitation, and vocal texture.","confidence":"high","basis":"Voice-speech listening frame"}]`
 - Speculative: `[]`
 - Undetermined: `[{"statement":"Actual voice quality, accent, emotion, speaker identity, consent, transcript accuracy, recording chain, and diarization reliability remain unknown.","confidence":"high","basis":"No audio or provenance supplied"}]`

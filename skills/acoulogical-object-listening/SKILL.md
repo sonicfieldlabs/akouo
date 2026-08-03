@@ -157,9 +157,9 @@ Ask whether the sound is produced by the listener or user. Self-produced sound h
 
 Input: a short metallic scrape with a swelling noisy tail.
 
-- Heard: `[{"statement":"A bright scrape, rough grain, rising density, and noisy decay are present in the supplied sound or description.","confidence":"medium","basis":"Perceptual description before source identification"}]`
+- Heard: `[]`
 - Measured: `[]`
-- Inferred: `[{"statement":"Metal contact, a bowed object, a processed sample, or a synthetic gesture are possible causes, but none is confirmed.","confidence":"low","basis":"Causal possibilities from perceptual traits"}]`
+- Inferred: `[{"statement":"A model pass describes a bright scrape, rough grain, rising density, and noisy decay.","confidence":"medium","basis":"Attributable model perception before source identification"},{"statement":"Metal contact, a bowed object, a processed sample, or a synthetic gesture are possible causes, but none is confirmed.","confidence":"low","basis":"Causal possibilities from perceptual traits"}]`
 - Interpreted: `[{"statement":"Tension emerges from the contrast between sharp attack and unstable decay.","confidence":"medium","basis":"Acoulogical reading of morphology"}]`
 - Speculative: `[{"statement":"If requested, the sound could be framed as a fictional signal from a damaged machine.","confidence":"low","basis":"Declared possible-world reading, not evidence"}]`
 - Undetermined: `[{"statement":"Actual source, production chain, recording space, self-produced status, and intention remain unknown.","confidence":"high","basis":"Unavailable contextual evidence"}]`

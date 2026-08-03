@@ -158,9 +158,9 @@ Since v0.8, current producers should also emit `listening_context` using `refere
 
 Input: a prompt describing a choir of broken satellites singing at dawn.
 
-- Heard: `[{"statement":"The input is a fictional prompt describing satellite-like voices and a dawnlike atmosphere.","confidence":"high","basis":"Prompt content, not verified audio"}]`
+- Heard: `[]`
 - Measured: `[]`
-- Inferred: `[{"statement":"Metallic, choral, distant, harmonic, or glitching traits are suggested by the prompt but not confirmed as audio.","confidence":"low","basis":"Textual implication"}]`
+- Inferred: `[{"statement":"The input is a fictional prompt describing satellite-like voices and a dawnlike atmosphere.","confidence":"high","basis":"Prompt content, not an embodied hearing"},{"statement":"Metallic, choral, distant, harmonic, or glitching traits are suggested by the prompt but not confirmed as audio.","confidence":"low","basis":"Textual implication"}]`
 - Interpreted: `[{"statement":"The prompt stages communication between obsolete machines and planetary time.","confidence":"medium","basis":"Symbolic reading of the fiction"}]`
 - Speculative: `[{"statement":"A possible world appears in which orbital debris performs a synthetic dawn ritual.","confidence":"medium","basis":"Declared sonic-fiction frame"}]`
 - Undetermined: `[{"statement":"Actual audio content, production technique, acoustic space, cultural references, and intended narrative remain unknown.","confidence":"high","basis":"No audio or production context supplied"}]`

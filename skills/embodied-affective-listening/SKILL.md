@@ -157,9 +157,9 @@ Since v0.8, current producers should also emit `listening_context` using `refere
 
 Input: a sound prompt describing an endless low drone in a narrow room.
 
-- Heard: `[{"statement":"The prompt describes a low continuous drone in a narrow room.","confidence":"high","basis":"User-provided sound description"}]`
+- Heard: `[]`
 - Measured: `[]`
-- Inferred: `[{"statement":"Masking, room resonance, or pressure may be possible if the drone is loud and sustained, but no measurement confirms this.","confidence":"low","basis":"Plausible technical-bodily relation without audio or room data"}]`
+- Inferred: `[{"statement":"The prompt describes a low continuous drone in a narrow room.","confidence":"high","basis":"User-provided sound description"},{"statement":"Masking, room resonance, or pressure may be possible if the drone is loud and sustained, but no measurement confirms this.","confidence":"low","basis":"Plausible technical-bodily relation without audio or room data"}]`
 - Interpreted: `[{"statement":"The drone may organize attention through endurance and bodily orientation rather than explicit meaning.","confidence":"medium","basis":"Embodied-affective listening frame"}]`
 - Speculative: `[{"statement":"If requested, the drone could support a ritual or architectural sonic-fiction reading.","confidence":"low","basis":"Declared speculative extension"}]`
 - Undetermined: `[{"statement":"Actual volume, frequency, room modes, listener response, hearing context, duration, and source remain unknown.","confidence":"high","basis":"Missing playback and listener evidence"}]`

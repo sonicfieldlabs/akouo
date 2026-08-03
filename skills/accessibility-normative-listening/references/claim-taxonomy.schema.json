@@ -16,7 +16,7 @@
   "properties": {
     "heard": {
       "$ref": "#/$defs/claim_list",
-      "description": "Claims directly present to an auditory or explicitly declared perceptual aperture. Text in a prompt, transcript, field note, or supplied description is attributable input, but it is not itself a hearing of the represented sound."
+      "description": "Reports by an embodied listener of what was directly present to a declared auditory or perceptual aperture. Model, sensor, prompt, transcript, field-note, and description outputs remain measured, inferred, interpreted, or undetermined; they do not become heard claims by processing represented sound."
     },
     "measured": {
       "$ref": "#/$defs/claim_list",

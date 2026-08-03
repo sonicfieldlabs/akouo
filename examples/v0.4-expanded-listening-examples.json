@@ -7,15 +7,14 @@
       "input_type": "video",
       "listening_mode": "audiovisual-scenic-listening",
       "listening_claims": {
-        "heard": [
+        "heard": [],
+        "measured": [],
+        "inferred": [
           {
             "statement": "The supplied description links an offscreen alarm to a captioned game cutscene.",
             "confidence": "high",
             "basis": "User-provided audiovisual description"
-          }
-        ],
-        "measured": [],
-        "inferred": [
+          },
           {
             "statement": "The alarm may cue offscreen threat or interface state, but timing requires video/audio inspection.",
             "confidence": "low",
@@ -69,15 +68,14 @@
       "input_type": "transcript",
       "listening_mode": "voice-speech-listening",
       "listening_claims": {
-        "heard": [
+        "heard": [],
+        "measured": [],
+        "inferred": [
           {
             "statement": "The supplied input is an ASR-style transcript from a voice-agent demo.",
             "confidence": "high",
             "basis": "Provided transcript"
-          }
-        ],
-        "measured": [],
-        "inferred": [
+          },
           {
             "statement": "The text may represent a speech-to-text stage, but it does not verify vocal quality or speaker identity.",
             "confidence": "medium",
@@ -131,15 +129,14 @@
       "input_type": "sound_prompt",
       "listening_mode": "accessibility-normative-listening",
       "listening_claims": {
-        "heard": [
+        "heard": [],
+        "measured": [],
+        "inferred": [
           {
             "statement": "The prompt describes a workflow where alerts are audio-only.",
             "confidence": "high",
             "basis": "User-provided design description"
-          }
-        ],
-        "measured": [],
-        "inferred": [
+          },
           {
             "statement": "Users with muted devices, noisy environments, hearing variation, or unavailable speakers may miss alert state changes.",
             "confidence": "medium",
@@ -193,15 +190,14 @@
       "input_type": "sound_prompt",
       "listening_mode": "material-event-listening",
       "listening_claims": {
-        "heard": [
+        "heard": [],
+        "measured": [],
+        "inferred": [
           {
             "statement": "The prompt describes a long feedback tone in a resonant room.",
             "confidence": "high",
             "basis": "User-provided sound description"
-          }
-        ],
-        "measured": [],
-        "inferred": [
+          },
           {
             "statement": "Sustained feedback and room resonance are possible, but frequency, amplitude, and coupling require measurement.",
             "confidence": "low",

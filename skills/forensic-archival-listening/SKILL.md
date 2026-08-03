@@ -153,9 +153,9 @@ Treat background sounds, silences, degraded sections, and archive labels as evid
 
 Input: a phone recording described as a protest event.
 
-- Heard: `[{"statement":"Crowd-like voices, abrupt impacts, or intermittent shouting may be reported only if present in the audio or supplied description.","confidence":"medium","basis":"Available audible or described content"}]`
+- Heard: `[]`
 - Measured: `[{"statement":"Duration, clipping, noise, edits, and spectral traits belong here only after file or signal inspection.","confidence":"high","basis":"Verified technical evidence"}]`
-- Inferred: `[{"statement":"A dense public setting or overloaded phone microphone may be possible, but neither is proven.","confidence":"low","basis":"Plausible clue from described sound conditions"}]`
+- Inferred: `[{"statement":"A model pass or supplied description reports crowd-like voices, abrupt impacts, or intermittent shouting.","confidence":"medium","basis":"Attributable machine or textual evidence"},{"statement":"A dense public setting or overloaded phone microphone may be possible, but neither is proven.","confidence":"low","basis":"Plausible clue from described sound conditions"}]`
 - Interpreted: `[{"statement":"Evidentiary value depends on archive context, custody, mediation, corroboration, and the politics of who is heard.","confidence":"medium","basis":"Forensic-archival listening frame"}]`
 - Speculative: `[]`
 - Undetermined: `[{"statement":"Exact event, location, identities, sequence, causes of impacts, editing history, custody, and political meaning remain unknown.","confidence":"high","basis":"Unavailable corroborating evidence"}]`

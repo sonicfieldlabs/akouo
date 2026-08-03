@@ -452,23 +452,23 @@
     },
     {
       "level": "decoded_audio_metadata",
-      "heard_allowed": true,
+      "heard_allowed": false,
       "measured_allowed": true,
       "inferred_allowed": true,
       "interpreted_allowed": true,
       "speculative_allowed": false,
       "must_include_undetermined": true,
-      "notes": "heard only if audio was actually decoded and described; measured covers duration, sample rate, channels, and basic amplitude only."
+      "notes": "Machine decoding does not create an embodied hearing. Use measured for decoded facts and inferred for model descriptions; a separately attributed embodied listener may supply heard claims."
     },
     {
       "level": "measured_signal",
-      "heard_allowed": true,
+      "heard_allowed": false,
       "measured_allowed": true,
       "inferred_allowed": true,
       "interpreted_allowed": true,
       "speculative_allowed": false,
       "must_include_undetermined": true,
-      "notes": "measured within the limits of the tool used; declare the apparatus."
+      "notes": "Measured remains bounded by the declared tool. Model or sensor descriptions are inferred; a separately attributed embodied listener may supply heard claims."
     },
     {
       "level": "transcript_or_caption",
@@ -492,13 +492,13 @@
     },
     {
       "level": "mixed",
-      "heard_allowed": true,
+      "heard_allowed": false,
       "measured_allowed": true,
       "inferred_allowed": true,
       "interpreted_allowed": true,
       "speculative_allowed": false,
       "must_include_undetermined": true,
-      "notes": "Apply the weakest applicable permission to each individual claim per component; measured requires an actually-measured component."
+      "notes": "Apply the weakest applicable permission to each individual claim per component. Machine components may measure or infer but do not populate heard; embodied reports remain separately attributable."
     }
   ],
   "command_permission_overrides": {

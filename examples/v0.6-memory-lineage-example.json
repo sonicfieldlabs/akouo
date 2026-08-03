@@ -28,15 +28,7 @@
       "lineage_note": "Fourth listening in the harbor series; recurrence of machinery keynote, thinning bird activity across records."
     },
     "listening_claims": {
-      "heard": [
-        {
-          "statement": "A low continuous machinery tone with intermittent high calls is present in the current recording.",
-          "confidence": "medium",
-          "basis": "Host caption pass over the supplied audio",
-          "source": "model",
-          "time_range": { "start_s": 0, "end_s": 120 }
-        }
-      ],
+      "heard": [],
       "measured": [
         {
           "statement": "The current file is 120.0 seconds, mono, 16 kHz, with energy concentration below 500 Hz.",
@@ -46,6 +38,13 @@
         }
       ],
       "inferred": [
+        {
+          "statement": "A host model reports a low continuous machinery tone with intermittent high calls in the current recording.",
+          "confidence": "medium",
+          "basis": "Host caption pass over the supplied audio",
+          "source": "model",
+          "time_range": { "start_s": 0, "end_s": 120 }
+        },
         {
           "statement": "The three consulted records and the current listening plausibly form one series of the same harbor position.",
           "confidence": "low",
@@ -111,7 +110,7 @@
       { "mode": "signal-inspection-listening", "role": "corrective", "reason": "Apparent change across records could be apparatus change and needs measurement." }
     ],
     "claim_permissions": {
-      "heard_allowed": true,
+      "heard_allowed": false,
       "measured_allowed": true,
       "inferred_allowed": true,
       "interpreted_allowed": true,

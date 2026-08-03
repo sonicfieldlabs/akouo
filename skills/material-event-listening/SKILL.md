@@ -137,9 +137,9 @@ Since v0.8, current producers should also emit `listening_context` using `refere
 
 Input: a prompt describing a long feedback tone resonating through a metal room.
 
-- Heard: `[{"statement":"The prompt describes a long feedback tone resonating through a metal room.","confidence":"high","basis":"User-provided description"}]`
+- Heard: `[]`
 - Measured: `[]`
-- Inferred: `[{"statement":"Sustained feedback and room resonance are possible from the description, but exact frequency, amplitude, and material coupling require measurement.","confidence":"low","basis":"Technical-material inference from prompt"}]`
+- Inferred: `[{"statement":"The prompt describes a long feedback tone resonating through a metal room.","confidence":"high","basis":"User-provided description"},{"statement":"Sustained feedback and room resonance are possible from the description, but exact frequency, amplitude, and material coupling require measurement.","confidence":"low","basis":"Technical-material inference from prompt"}]`
 - Interpreted: `[{"statement":"The sound can be approached as an unfolding material event across speaker, room, metal surface, air, and listening body.","confidence":"medium","basis":"Material-event listening frame"}]`
 - Speculative: `[]`
 - Undetermined: `[{"statement":"Actual waveform, frequency, loudness, room dimensions, speaker position, material composition, source chain, and bodily effect remain unknown.","confidence":"high","basis":"No measured signal or room data supplied"}]`

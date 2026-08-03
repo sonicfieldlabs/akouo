@@ -155,9 +155,9 @@ For v0.9, listen across several times without compressing them: event, season, a
 
 Input: a night field recording with insects, distant engines, and wind.
 
-- Heard: `[{"statement":"Layered high-frequency insect-like textures, low distant mechanical tones, and wind-like motion are present if audible or described.","confidence":"medium","basis":"Available audio or field note"}]`
+- Heard: `[]`
 - Measured: `[{"statement":"Frequency bands, dynamics, and noise profile belong here only after signal inspection.","confidence":"high","basis":"Verified spectral or file evidence"}]`
-- Inferred: `[{"statement":"Mixed biophony, anthrophony, and weather layers are possible but not taxonomically confirmed.","confidence":"low","basis":"Ecological layer inference without species or site verification"}]`
+- Inferred: `[{"statement":"A model pass or field note describes layered insect-like textures, distant mechanical tones, and wind-like motion.","confidence":"medium","basis":"Attributable model output or field note"},{"statement":"Mixed biophony, anthrophony, and weather layers are possible but not taxonomically confirmed.","confidence":"low","basis":"Ecological layer inference without species or site verification"}]`
 - Interpreted: `[{"statement":"The recording presents habitat as an overlap of nonhuman rhythm, weather, infrastructure, and recording choices rather than pure nature.","confidence":"medium","basis":"Ecological-posthuman listening frame"}]`
 - Speculative: `[{"statement":"Nocturnal worldbuilding is possible only if the user requests a fictional pass.","confidence":"low","basis":"Declared speculative extension"}]`
 - Undetermined: `[{"statement":"Species, exact location, season, distance, microphone type, fieldwork context, land relations, and ecological condition remain unknown.","confidence":"high","basis":"Unavailable ecological context"}]`

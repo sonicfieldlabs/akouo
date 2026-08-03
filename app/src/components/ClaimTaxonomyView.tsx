@@ -19,7 +19,7 @@ export function ClaimTaxonomyView() {
 }
 
 const descriptions = {
-  heard: 'Directly present in audio/prompt/transcript.',
+  heard: 'Embodied listener report from a declared perceptual aperture.',
   measured: 'Produced by signal or adapter inspection.',
   inferred: 'Plausible but not directly confirmed.',
   interpreted: 'Cultural/theoretical reading.',

@@ -140,9 +140,9 @@ Since v0.8, current producers should also emit `listening_context` using `refere
 
 Input: an app description says alerts are audio-only.
 
-- Heard: `[{"statement":"The supplied description says the alerts are audio-only.","confidence":"high","basis":"User-provided design description"}]`
+- Heard: `[]`
 - Measured: `[]`
-- Inferred: `[{"statement":"Users who cannot hear the alert, have muted devices, or are in noisy environments may miss critical state changes.","confidence":"medium","basis":"Design inference from audio-only alert path"}]`
+- Inferred: `[{"statement":"The supplied description says the alerts are audio-only.","confidence":"high","basis":"User-provided design description"},{"statement":"Users who cannot hear the alert, have muted devices, or are in noisy environments may miss critical state changes.","confidence":"medium","basis":"Design inference from audio-only alert path"}]`
 - Interpreted: `[{"statement":"The design implies a normative hearing user and should provide visual, textual, and possibly haptic alternatives.","confidence":"high","basis":"Accessibility-normative listening frame"}]`
 - Speculative: `[]`
 - Undetermined: `[{"statement":"Actual alert content, urgency, volume, captioning, haptic support, visual state, user testing, and legal requirements remain unknown.","confidence":"high","basis":"Missing design and testing evidence"}]`
