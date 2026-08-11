@@ -1,7 +1,7 @@
 """Installed access to the canonical AKOÚŌ contract and skill library.
 
-v0.9.1 reserves heard claims for attributable embodied reports while machine
-outputs remain measured, inferred, interpreted, or undetermined.
+v0.9.2 resolves participants, passes, and influences while reserving heard
+claims for attributable human reports.
 Contract: ``akouo/v0.9``."""
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ from importlib.resources import files  # nosemgrep
 from pathlib import Path
 from typing import Any
 
-__version__ = "0.9.1"
+__version__ = "0.9.2"
 CONTRACT_VERSION = "0.9"
 CONTRACT = f"akouo/v{CONTRACT_VERSION}"
 

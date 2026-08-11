@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.9.2 — Human and agent listening conformance
+
+- Added a canonical paired integration example that keeps human and agent
+  records separate and connects them with `response_to` without inferring
+  same-source identity, listening-pass influence, or an ear swarm.
+- Added semantic release validation for participant, claim-pass, revision,
+  route-decision, ensemble, and influence references.
+- Required canonical `heard` examples to resolve to a human participant and
+  pass, use `source: "human"`, and cite a `human_report` provenance source.
+  Agent and sensor passes cannot carry `heard` claims.
+- Kept the data contract at `akouo/v0.9`; this is a conformance-only package
+  patch.
+
 ## v0.9.1 — Embodied heard boundary
 
 - Reserved `heard` claims for attributable embodied listeners. Machine and

@@ -69,6 +69,7 @@ Host apps should consume AKOÚŌ as data:
 - Outputs pin their contract with `akouo_version`, declare their `apparatus`, declare the listener, link stored records through `memory`, and attribute claims to evidence, apertures, listening passes, temporal scales, alternatives, and actionability.
 - Current outputs add context v2 plus `listening_provenance`, `listening_passes`, and `route_decisions`. `ensemble` is emitted only for an explicit plural-listening or ear-swarm declaration. Readers retain an explicit compatibility path for context v1.
 - Machine outputs, textual prompts, transcripts, field notes, and descriptions are attributable evidence, but are never placed in `heard`; use measured, inferred, interpreted, or undetermined according to their actual basis.
+- Release validation resolves participant, listening-pass, route-decision, and influence references. Canonical `heard` claims must resolve to a human pass and human-report source; ordinary record links do not create listening influence or an ensemble.
 
 Loading these files replaces hand-copied route tables, which drift. Prose in this guide explains the contract; the manifest is the source of truth.
 

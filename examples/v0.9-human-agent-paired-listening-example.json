@@ -1,0 +1,314 @@
+{
+  "description": "AKOÚŌ v0.9 integration example: a human listening responds to an agent record without merging records, asserting same-source identity, pass influence, or an ear swarm.",
+  "record_link": {
+    "relation": "response_to",
+    "from_akousma_id": "akousma-human-response-1",
+    "to_akousma_id": "akousma-agent-observation-1",
+    "declares_influence": false,
+    "declares_ensemble": false
+  },
+  "agent_listening_output": {
+    "object_listened_to": "an agent observation associated with a local acoustic event",
+    "input_type": "model_output",
+    "listening_mode": "acoulogical-object-listening",
+    "listening_claims": {
+      "heard": [],
+      "measured": [],
+      "inferred": [
+        {
+          "claim_id": "claim-agent-observation-1",
+          "statement": "The model report describes a brief pulse followed by a quieter interval.",
+          "confidence": "medium",
+          "basis": "Attributed model output; the agent does not convert it into an embodied hearing.",
+          "source": "model",
+          "evidence_refs": ["source-agent-model-1"],
+          "aperture_refs": ["aperture-agent-model-1"],
+          "listening_pass_id": "pass-agent-1",
+          "auditory_scale": "event",
+          "alternatives": [],
+          "actionability": "informational"
+        }
+      ],
+      "interpreted": [],
+      "speculative": [],
+      "undetermined": [
+        {
+          "claim_id": "claim-agent-source-unknown-1",
+          "statement": "Whether the later human response concerns the identical acoustic source is undetermined.",
+          "confidence": "high",
+          "basis": "A response link is not a verified same-source relation.",
+          "source": "context",
+          "evidence_refs": ["source-agent-model-1"],
+          "aperture_refs": ["aperture-agent-model-1"],
+          "listening_pass_id": "pass-agent-1",
+          "auditory_scale": "event",
+          "alternatives": [],
+          "actionability": "none"
+        }
+      ]
+    },
+    "what_appears": [
+      "An attributable model observation is available."
+    ],
+    "what_remains_hidden": [
+      "No embodied hearing is attributed to the agent.",
+      "The identity of the acoustic source is not established by the response link."
+    ],
+    "mediations": {
+      "technical": ["The report is mediated by an unspecified model process."],
+      "cultural": [],
+      "spatial": [],
+      "bodily": ["The agent has no embodied auditory aperture."],
+      "archival": ["The record preserves the model observation separately from later human accounts."],
+      "computational": ["The model output remains attributed as model evidence."]
+    },
+    "risks": {
+      "hallucination": ["Do not promote a model observation into a heard claim."],
+      "over_identification": [],
+      "cultural_flattening": [],
+      "forensic_overreach": ["Do not infer identical source events from an ordinary response link."],
+      "source_confusion": ["Keep the model report distinct from the represented sound and human response."],
+      "aesthetic_overstatement": []
+    },
+    "main_reading": "The agent account remains a model-attributed observation with an explicit epistemic boundary.",
+    "alternative_reading": "A verified source digest could later support a separate same-source relation without merging the records.",
+    "recommended_next_mode": "none",
+    "akouo_version": "0.9",
+    "apparatus": {
+      "substrate": "text_only_agent",
+      "perception_sources": ["attributed model output"],
+      "known_blind_spots": ["No embodied auditory aperture and no verified source identity."]
+    },
+    "listener": {
+      "type": "agent",
+      "process": "agent_automated"
+    },
+    "memory": {
+      "akousma_id": "akousma-agent-observation-1"
+    },
+    "listening_context": {
+      "contract": "akouo/listening-context/v2",
+      "position": {
+        "relation_to_object": "remote reading of an attributed model observation",
+        "limitations": ["No human or machine claim in this record verifies a shared source with a later response."]
+      },
+      "apertures": [
+        {
+          "id": "aperture-agent-model-1",
+          "kind": "model_observation",
+          "status": "available",
+          "description": "The model output supplied to the agent.",
+          "limits": ["It is not an embodied hearing or signal measurement."]
+        }
+      ],
+      "auditory_scales": ["event"],
+      "sources_of_listening": ["model", "context"],
+      "participants": [
+        {
+          "id": "listener-agent-1",
+          "type": "agent",
+          "role": "model-observation reporter",
+          "standing": "listener"
+        }
+      ],
+      "action_authority": {
+        "mode": "observe_only",
+        "scopes": ["report_model_observation"],
+        "requires_confirmation": true,
+        "reversible": true
+      },
+      "honest_absences": [],
+      "listening_passes": [
+        {
+          "id": "pass-agent-1",
+          "listener_id": "listener-agent-1",
+          "route": ["acoulogical-object-listening"],
+          "started_at": "2026-08-11T15:00:00Z",
+          "completed_at": "2026-08-11T15:00:01Z",
+          "moment": {
+            "relation": "past_capture",
+            "scales": ["event"],
+            "time_range": null
+          },
+          "source_refs": ["source-agent-model-1"],
+          "claim_refs": ["claim-agent-observation-1", "claim-agent-source-unknown-1"],
+          "decision_refs": [],
+          "influenced_by": [],
+          "revision_of": null,
+          "reorientation": null
+        }
+      ],
+      "route_decisions": [],
+      "ensemble_ref": null
+    },
+    "listening_provenance": {
+      "listening_sources": [
+        {
+          "id": "source-agent-model-1",
+          "kind": "model",
+          "label": "attributed agent model observation",
+          "provider": null,
+          "model_id": null,
+          "revision": null,
+          "jurisdiction": null,
+          "disclosure_status": "partial",
+          "limitations": ["The source event and model lineage are not verified in this example."]
+        }
+      ],
+      "cuts": [],
+      "corpus_lineage": []
+    }
+  },
+  "human_listening_output": {
+    "object_listened_to": "a human listening later linked as a response to an agent observation",
+    "input_type": "other",
+    "listening_mode": "acoulogical-object-listening",
+    "listening_claims": {
+      "heard": [
+        {
+          "claim_id": "claim-human-heard-1",
+          "statement": "The listener reports a brief pulse followed by a quieter interval.",
+          "confidence": "medium",
+          "basis": "First-person human report through a declared direct auditory aperture.",
+          "source": "human",
+          "evidence_refs": ["source-human-report-1"],
+          "aperture_refs": ["aperture-human-auditory-1"],
+          "listening_pass_id": "pass-human-1",
+          "auditory_scale": "event",
+          "alternatives": [],
+          "actionability": "informational"
+        }
+      ],
+      "measured": [],
+      "inferred": [],
+      "interpreted": [],
+      "speculative": [],
+      "undetermined": [
+        {
+          "claim_id": "claim-human-source-unknown-1",
+          "statement": "The human account does not establish that its acoustic source is identical to the source represented by the agent record.",
+          "confidence": "high",
+          "basis": "The records are connected only by response_to.",
+          "source": "context",
+          "evidence_refs": ["source-human-report-1"],
+          "aperture_refs": ["aperture-human-auditory-1"],
+          "listening_pass_id": "pass-human-1",
+          "auditory_scale": "event",
+          "alternatives": [],
+          "actionability": "none"
+        }
+      ]
+    },
+    "what_appears": [
+      "An attributable first-person human hearing is available."
+    ],
+    "what_remains_hidden": [
+      "The response relation does not prove source identity or causal influence between listening passes."
+    ],
+    "mediations": {
+      "technical": [],
+      "cultural": [],
+      "spatial": ["The precise location is intentionally absent from this public example."],
+      "bodily": ["The hearing is situated in one human listener's embodied auditory aperture."],
+      "archival": ["The human account remains a separate, revisable record."],
+      "computational": ["The linked agent record does not supply the human hearing."]
+    },
+    "risks": {
+      "hallucination": [],
+      "over_identification": ["Do not generalize one listener's account into consensus."],
+      "cultural_flattening": [],
+      "forensic_overreach": ["Do not infer same-source identity from response_to."],
+      "source_confusion": ["Keep the human report distinct from the linked model observation."],
+      "aesthetic_overstatement": []
+    },
+    "main_reading": "The human record may carry a heard claim because it resolves to a human participant, pass, aperture, and human-report source.",
+    "alternative_reading": "A later verified source digest could justify a separate same-source relation while preserving both accounts.",
+    "recommended_next_mode": "none",
+    "akouo_version": "0.9",
+    "apparatus": {
+      "substrate": "human_ear",
+      "perception_sources": ["first-person human auditory report"],
+      "known_blind_spots": ["No calibrated measurement or verified source digest is available."]
+    },
+    "listener": {
+      "type": "human",
+      "process": "human_independent"
+    },
+    "memory": {
+      "akousma_id": "akousma-human-response-1"
+    },
+    "listening_context": {
+      "contract": "akouo/listening-context/v2",
+      "position": {
+        "relation_to_object": "first-person embodied listening linked to an agent record after the listening pass",
+        "limitations": ["The response relation alone does not establish a shared acoustic source."]
+      },
+      "apertures": [
+        {
+          "id": "aperture-human-auditory-1",
+          "kind": "direct_audio",
+          "status": "available",
+          "description": "The human listener's declared auditory aperture.",
+          "limits": ["The account is not a calibrated signal measurement."]
+        }
+      ],
+      "auditory_scales": ["event"],
+      "sources_of_listening": ["audio", "human", "context"],
+      "participants": [
+        {
+          "id": "listener-human-1",
+          "type": "human",
+          "role": "first-person listener",
+          "standing": "listener"
+        }
+      ],
+      "action_authority": {
+        "mode": "observe_only",
+        "scopes": ["record_own_listening"],
+        "granted_by": "the reporting listener",
+        "requires_confirmation": false,
+        "reversible": true
+      },
+      "honest_absences": [],
+      "listening_passes": [
+        {
+          "id": "pass-human-1",
+          "listener_id": "listener-human-1",
+          "route": ["acoulogical-object-listening"],
+          "started_at": "2026-08-11T14:55:00Z",
+          "completed_at": "2026-08-11T14:55:01Z",
+          "moment": {
+            "relation": "live",
+            "scales": ["event"],
+            "time_range": null
+          },
+          "source_refs": ["source-human-report-1"],
+          "claim_refs": ["claim-human-heard-1", "claim-human-source-unknown-1"],
+          "decision_refs": [],
+          "influenced_by": [],
+          "revision_of": null,
+          "reorientation": null
+        }
+      ],
+      "route_decisions": [],
+      "ensemble_ref": null
+    },
+    "listening_provenance": {
+      "listening_sources": [
+        {
+          "id": "source-human-report-1",
+          "kind": "human_report",
+          "label": "first-person human auditory report",
+          "provider": null,
+          "model_id": null,
+          "revision": null,
+          "jurisdiction": null,
+          "disclosure_status": "known",
+          "limitations": ["This is an attributed report, not a calibrated measurement or independent source-identity proof."]
+        }
+      ],
+      "cuts": [],
+      "corpus_lineage": []
+    }
+  }
+}
