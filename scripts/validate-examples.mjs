@@ -3,6 +3,8 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
+import { validateListeningSemantics } from './listening-semantics.mjs';
+
 const repoRoot = process.argv[2] ?? new URL('..', import.meta.url).pathname;
 const schemasDir = join(repoRoot, 'schemas');
 const examplesDir = join(repoRoot, 'examples');
@@ -70,6 +72,9 @@ validateListeningOutput(accountableExample.listening_output, 'examples/v0.8-acco
 
 const accountableV2Example = readJson(join(examplesDir, 'v0.9-accountable-listening-example.json'));
 validateListeningOutput(accountableV2Example.listening_output, 'examples/v0.9-accountable-listening-example.json#/listening_output');
+
+const humanAgentPair = readJson(join(examplesDir, 'v0.9-human-agent-paired-listening-example.json'));
+validateHumanAgentPair(humanAgentPair, 'examples/v0.9-human-agent-paired-listening-example.json');
 
 validatePresets(readJson(join(repoRoot, 'presets', 'presets.json')), 'presets/presets.json');
 validateManifest(readJson(join(repoRoot, 'akouo.manifest.json')), 'akouo.manifest.json');
@@ -150,6 +155,45 @@ function validateListeningOutput(value, path) {
   expectString(value.alternative_reading, `${path}.alternative_reading`);
   if (value.recommended_next_mode !== 'none' && value.recommended_next_mode !== 'undetermined') {
     expectEnum(value.recommended_next_mode, listeningModes, `${path}.recommended_next_mode`);
+  }
+  errors.push(...validateListeningSemantics(value, path));
+}
+
+function validateHumanAgentPair(value, path) {
+  expectExactKeys(value, ['description', 'record_link', 'agent_listening_output', 'human_listening_output'], path);
+  expectNonEmptyString(value?.description, `${path}.description`);
+
+  const linkPath = `${path}.record_link`;
+  expectExactKeys(value?.record_link, ['relation', 'from_akousma_id', 'to_akousma_id', 'declares_influence', 'declares_ensemble'], linkPath);
+  if (value?.record_link?.relation !== 'response_to') errors.push(`${linkPath}.relation: expected "response_to"`);
+  expectNonEmptyString(value?.record_link?.from_akousma_id, `${linkPath}.from_akousma_id`);
+  expectNonEmptyString(value?.record_link?.to_akousma_id, `${linkPath}.to_akousma_id`);
+  if (value?.record_link?.declares_influence !== false) errors.push(`${linkPath}.declares_influence: ordinary record links must not declare pass influence`);
+  if (value?.record_link?.declares_ensemble !== false) errors.push(`${linkPath}.declares_ensemble: ordinary record links must not declare an ensemble`);
+
+  const agentPath = `${path}.agent_listening_output`;
+  const humanPath = `${path}.human_listening_output`;
+  validateListeningOutput(value?.agent_listening_output, agentPath);
+  validateListeningOutput(value?.human_listening_output, humanPath);
+
+  if (value?.agent_listening_output?.listener?.type !== 'agent') errors.push(`${agentPath}.listener.type: expected "agent"`);
+  if (value?.human_listening_output?.listener?.type !== 'human') errors.push(`${humanPath}.listener.type: expected "human"`);
+  if (arrayOrEmpty(value?.agent_listening_output?.listening_claims?.heard).length !== 0) errors.push(`${agentPath}.listening_claims.heard: agent record must not claim heard`);
+  if (arrayOrEmpty(value?.human_listening_output?.listening_claims?.heard).length === 0) errors.push(`${humanPath}.listening_claims.heard: expected an attributable human heard claim`);
+
+  if (value?.agent_listening_output?.memory?.akousma_id !== value?.record_link?.to_akousma_id) {
+    errors.push(`${linkPath}.to_akousma_id: must match agent_listening_output.memory.akousma_id`);
+  }
+  if (value?.human_listening_output?.memory?.akousma_id !== value?.record_link?.from_akousma_id) {
+    errors.push(`${linkPath}.from_akousma_id: must match human_listening_output.memory.akousma_id`);
+  }
+  for (const [output, outputPath] of [[value?.agent_listening_output, agentPath], [value?.human_listening_output, humanPath]]) {
+    if ('ensemble' in (output ?? {})) errors.push(`${outputPath}.ensemble: response_to alone must not create an ensemble`);
+    for (const [index, pass] of arrayOrEmpty(output?.listening_context?.listening_passes).entries()) {
+      if (arrayOrEmpty(pass?.influenced_by).length !== 0) {
+        errors.push(`${outputPath}.listening_context.listening_passes[${index}].influenced_by: response_to alone must not create influence`);
+      }
+    }
   }
 }
 
@@ -313,6 +357,14 @@ function validateListeningPasses(value, path) {
     item?.moment?.scales?.forEach((scale, scaleIndex) => expectEnum(scale, auditoryScales, `${itemPath}.moment.scales[${scaleIndex}]`));
     for (const key of ['source_refs', 'claim_refs', 'decision_refs']) expectTextArray(item?.[key], `${itemPath}.${key}`);
     expectArray(item?.influenced_by, `${itemPath}.influenced_by`);
+    item?.influenced_by?.forEach((influence, influenceIndex) => {
+      const influencePath = `${itemPath}.influenced_by[${influenceIndex}]`;
+      expectExactKeys(influence, ['pass_id', 'effect'], influencePath);
+      expectNonEmptyString(influence?.pass_id, `${influencePath}.pass_id`);
+      expectNonEmptyString(influence?.effect, `${influencePath}.effect`);
+    });
+    if ('revision_of' in (item ?? {}) && item.revision_of !== null) expectNonEmptyString(item.revision_of, `${itemPath}.revision_of`);
+    if ('reorientation' in (item ?? {}) && item.reorientation !== null) expectNonEmptyString(item.reorientation, `${itemPath}.reorientation`);
   });
 }
 
@@ -352,8 +404,17 @@ function validateEnsemble(value, path) {
   expectExactKeys(value, ['id', 'kind', 'participant_ids', 'listening_pass_ids', 'influence_edges', 'permissions_preserved', 'disagreements_preserved', 'dissolution_rule'], path);
   expectEnum(value?.kind, ensembleKinds, `${path}.kind`);
   expectArray(value?.participant_ids, `${path}.participant_ids`, 2);
+  value?.participant_ids?.forEach((id, index) => expectNonEmptyString(id, `${path}.participant_ids[${index}]`));
   expectArray(value?.listening_pass_ids, `${path}.listening_pass_ids`, 2);
+  value?.listening_pass_ids?.forEach((id, index) => expectNonEmptyString(id, `${path}.listening_pass_ids[${index}]`));
   expectArray(value?.influence_edges, `${path}.influence_edges`, value?.kind === 'ear_swarm' ? 1 : 0);
+  value?.influence_edges?.forEach((edge, index) => {
+    const edgePath = `${path}.influence_edges[${index}]`;
+    expectExactKeys(edge, ['from_pass_id', 'to_pass_id', 'effect'], edgePath);
+    expectNonEmptyString(edge?.from_pass_id, `${edgePath}.from_pass_id`);
+    expectNonEmptyString(edge?.to_pass_id, `${edgePath}.to_pass_id`);
+    expectNonEmptyString(edge?.effect, `${edgePath}.effect`);
+  });
   if (value?.kind === 'ear_swarm' && (value.permissions_preserved !== true || value.disagreements_preserved !== true)) {
     errors.push(`${path}: ear_swarm must preserve permissions and disagreements`);
   }
@@ -505,4 +566,8 @@ function expectString(value, path) {
   if (typeof value !== 'string') {
     errors.push(`${path}: expected string`);
   }
+}
+
+function arrayOrEmpty(value) {
+  return Array.isArray(value) ? value : [];
 }

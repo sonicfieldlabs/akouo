@@ -16,11 +16,13 @@ Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current r
 
 The `akouo-contract` Python distribution packages this repository's canonical
 skills, commands, presets, schemas, and manifest for Oída and other local
-agent hosts. Package release `0.9.1` implements the `akouo/v0.9` data
+agent hosts. Package release `0.9.2` implements the `akouo/v0.9` data
 contract; no skill fork is created inside a host application.
 
 ## Version Status
 
+- Package `0.9.2` adds executable cross-reference checks and a canonical
+  linked human/agent example without changing the `v0.9` contract.
 - `v0.9` distinguishes listening provenance from source provenance, represents several attributable listenings across time, makes route decisions and coded silence addressable, defines plural listening versus an ear swarm, and adds `corpus-listening` with `/corpus`.
 - `v0.8` adds an accountable listening context: position, apertures, auditory scale, sources of listening, participants, action authority, revision, and honest absence are first-class data rather than prose conventions.
 - `v0.7` adds `sovereign-listening`, the `/covenant` command, and an enforceable listening-covenant schema for consent, withholding, retention, precision, and quiet-hour rules.
@@ -102,7 +104,11 @@ route decision, and whether another listening actually changed it.
 
 The claim model also carries stable claim ids, evidence and aperture
 references, pass attribution, auditory scale, alternatives, and actionability.
-A claim still never grants its own authority.
+A claim still never grants its own authority. The canonical
+[`human/agent paired example`](examples/v0.9-human-agent-paired-listening-example.json)
+shows a human `heard` claim resolving to its participant, pass, aperture, and
+human-report source while an ordinary `response_to` record link remains
+neither pass influence nor an ensemble declaration.
 
 ## v0.8 Accountable Listening
 
@@ -312,7 +318,7 @@ akouo/
   README.md
   SYSTEM_GUIDE.md      # Operational guide for commands, workflows, and app contract
   SKILL_INDEX.md       # Quick-reference manifest of all skills
-  CHANGELOG.md         # Release history from v0.1 through v0.9.1
+  CHANGELOG.md         # Release history from v0.1 through v0.9.2
   akouo.manifest.json  # Machine-readable system contract (skills, commands, ladder, overrides)
   LICENSE
   .gitignore

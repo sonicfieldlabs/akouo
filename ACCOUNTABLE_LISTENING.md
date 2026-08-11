@@ -75,6 +75,13 @@ it is provenance rather than evidence.
 9. Do not call parallel or multi-listener execution an ear swarm. Require at
    least one declared influence edge, preserved permission and disagreement,
    and a dissolution rule.
+10. Resolve every pass listener to a participant, every claim pass to a
+    listening pass, and every influence endpoint to an existing pass. A
+    `heard` claim additionally resolves to a human participant, declares
+    `source: "human"`, and cites a `human_report` provenance source.
+11. Keep host record relations separate from listening-process influence. A
+    link such as `response_to` does not establish same-source identity, an
+    `influenced_by` edge, plural listening, or an ear swarm.
 
 ## Stack ownership
 
