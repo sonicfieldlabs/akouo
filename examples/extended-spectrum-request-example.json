@@ -1,0 +1,34 @@
+{
+  "contract": "akouo/extended-spectrum-request/v0.1",
+  "request_id": "request:spectral-fixture",
+  "subject_ref": "asset:synthetic-01",
+  "band_hz": {
+    "lower": 100,
+    "upper": 1000
+  },
+  "window_s": {
+    "start": 0,
+    "end": 10
+  },
+  "channel_count": 1,
+  "claim_kind": "spectral_measurement",
+  "resolved_refs": [
+    "asset:synthetic-01",
+    "sensor:fixture",
+    "calibration:fixture",
+    "repr:96k",
+    "receipt:synthetic-source",
+    "repr:16k",
+    "model:fixture",
+    "model-card:fixture",
+    "receipt:filtered-resample"
+  ],
+  "preprocessing": [
+    {
+      "receipt_ref": "receipt:filtered-resample",
+      "kind": "filtered_resample",
+      "input_ref": "repr:96k",
+      "output_ref": "repr:16k"
+    }
+  ]
+}

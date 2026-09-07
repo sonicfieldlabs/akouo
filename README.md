@@ -403,3 +403,23 @@ listenings (listener `human`, contract `akousmata/v0.1`).
 ## License
 
 MIT License. See `LICENSE`.
+
+Unreleased: the opt-in [structured agent report](docs/agent-report.md) adds a
+versioned feature envelope and offline Python validation without changing the
+current listening modes or `akouo/v0.9` outputs.
+
+The unreleased [extended-spectrum gate](docs/extended-spectrum.md) checks declared
+apparatus and model-input support before a host attempts spectral measurement.
+
+The opt-in [agent routes and MASA observation adapter](docs/agent-routes.md) compose
+existing modes for structured agent reports, second reports and `/beyond`, with
+narrowing-only permissions and retained source attribution. Python hosts can use
+the packaged companion manifest and validators; reference-app command dispatch
+remains integration work. Earworm now supplies opt-in observation-account storage
+bindings and matter-context labels for host adoption.
+
+The [companion routes](docs/companion-routes.md) package a second-report skill,
+explicit MASA scale/register selection, and radio, room, beyond-band, sky and
+sent-sound presets. They reuse existing skills and permission gates while keeping
+source modality, represented subject and access evidence separate. Runtime
+dispatch, DSP and retention enforcement remain host responsibilities.

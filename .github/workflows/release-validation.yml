@@ -28,6 +28,9 @@ jobs:
           cache: npm
           cache-dependency-path: app/package-lock.json
 
+      - name: Install Python contract and validator
+        run: python3 -m pip install .
+
       - name: Validate portable release
         run: ./scripts/validate-release.sh
 

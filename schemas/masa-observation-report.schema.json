@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/masa-observation-report.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract": {
+      "const": "akouo/masa-observation-report/v0.1"
+    },
+    "mapping_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_record_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_observation_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_snapshot": {
+      "type": "object"
+    },
+    "report": {
+      "$ref": "https://akouo.dev/schemas/agent-report.schema.json"
+    },
+    "attribution": {
+      "const": "retained_source"
+    },
+    "value_projection": {
+      "enum": [
+        "copied",
+        "qualified_absence",
+        "omitted_deleted",
+        "omitted_unknown_unit"
+      ]
+    },
+    "execution": {
+      "const": "not_requested"
+    }
+  },
+  "required": [
+    "contract",
+    "mapping_id",
+    "source_record_ref",
+    "source_observation_ref",
+    "source_snapshot",
+    "report",
+    "attribution",
+    "value_projection",
+    "execution"
+  ]
+}

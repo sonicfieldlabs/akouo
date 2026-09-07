@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/agent-route-request.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract": {
+      "const": "akouo/agent-route/v0.1"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profile": {
+      "enum": [
+        "agent",
+        "second_report",
+        "beyond"
+      ]
+    },
+    "supported_contracts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "listener_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "listening_pass_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "report_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "of": {
+          "enum": [
+            "representation",
+            "record",
+            "observation"
+          ]
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "of",
+        "ref"
+      ]
+    },
+    "input_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "report_of_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "apparatus_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recipients": {
+      "$ref": "https://akouo.dev/schemas/agent-report.schema.json#/properties/recipients"
+    },
+    "resolved_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "requested_categories": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "heard",
+          "measured",
+          "inferred",
+          "interpreted",
+          "speculative",
+          "undetermined"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "permission_overrides": {
+      "$ref": "https://akouo.dev/schemas/routing-plan.schema.json#/properties/claim_permissions"
+    }
+  },
+  "required": [
+    "contract",
+    "request_id",
+    "profile",
+    "supported_contracts",
+    "listener_id",
+    "listening_pass_id",
+    "report_id",
+    "relation",
+    "input_refs",
+    "report_of_refs",
+    "apparatus_ref",
+    "recipients",
+    "resolved_refs",
+    "requested_categories"
+  ]
+}

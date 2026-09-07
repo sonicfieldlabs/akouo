@@ -1,5 +1,39 @@
 # Changelog
 
+## Unreleased
+
+- Added an optional offline Earworm scenario-matrix runner using installed
+  contracts, with retained-source, output-identity and spectral/category checks.
+
+- Added opt-in second-report skill packaging with retained-source resolution,
+  MASA scale/register selection with separate modality and access evidence, and
+  radio, room, beyond-band, sky and sent-sound companion presets. These compose
+  existing skills and gates without granting execution or storage authority.
+- Added installed companion asset checks and supported/unsupported input tests.
+
+- Added a separate opt-in agent-route manifest and Python planner that compose
+  existing modes for agent reports, second reports and beyond-band requests.
+  Reused the spectral gate and route-decision contract; overrides only narrow
+  permissions, and output validation binds claims to the retained route.
+- Added a MASA Observation-profile attribution adapter using a host-supplied
+  validator. It retains source metadata and qualifications without promoting
+  inherited observations into receiving-agent measurements or disclosing them.
+
+- Added an opt-in extended-spectrum request and conservative Python gate using
+  the host-provided Earworm validator and existing route-decision schema. It
+  checks declared apparatus/input support and returns explicit abstentions; it
+  does not infer physical capture, hearing, native understanding, or SPL.
+- Reused one offline schema-validation implementation across agent reports and
+  spectral requests, and documented host negotiation and evidence boundaries.
+
+- Added opt-in `akouo/agent-report/v0.1` with qualified feature values, existing
+  claim categories and listener taxonomy, apparatus references, and recipients.
+- Added offline Python schema validation and report-local attribution checks,
+  packaged-schema tests, and release-validation coverage. Machine reports cannot
+  emit a `heard` category or grant action authority through this contract.
+- Kept `akouo/v0.9` and the current modes unchanged; host routing is a subsequent
+  integration.
+
 ## v0.9.2 — Human and agent listening conformance
 
 - Added a canonical paired integration example that keeps human and agent

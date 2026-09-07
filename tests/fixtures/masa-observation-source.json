@@ -1,0 +1,338 @@
+{
+  "$schema": "https://masa.sonicfield.org/schemas/0.2.0/matter-record.schema.json",
+  "masaVersion": "0.2.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-000000000005",
+  "type": "masa:MatterRecord",
+  "revision": 1,
+  "profiles": [
+    "core",
+    "observation",
+    "mapping"
+  ],
+  "createdAt": "2026-07-27T12:00:00Z",
+  "createdBy": "urn:uuid:00000000-0000-4000-8000-000000000101",
+  "title": "Stale observation skipped explicitly",
+  "description": "A representation is registered without claiming that it is identical to a physical event or perceptual object.",
+  "actors": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-000000000101",
+      "type": "masa:Actor",
+      "actorKind": "human",
+      "roles": [
+        "record-creator"
+      ],
+      "name": {
+        "state": "known",
+        "value": "Local example author"
+      },
+      "disclosure": "private",
+      "extensions": {}
+    }
+  ],
+  "sources": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-000000000801",
+      "type": "masa:Source",
+      "sourceKind": "astronomical-api-field",
+      "identification": {
+        "state": "known",
+        "value": "Example solar activity index"
+      },
+      "locator": {
+        "state": "known",
+        "value": "https://example.invalid/observations/solar-index"
+      },
+      "authority": {
+        "state": "unknown",
+        "reason": "Fixture does not assert institutional authority.",
+        "reasonCode": "fixture_only"
+      },
+      "rights": {
+        "state": "unknown",
+        "reason": "Provider terms were not retrieved for this offline fixture.",
+        "reasonCode": "not_retrieved"
+      },
+      "coverage": {
+        "state": "known",
+        "value": {
+          "scope": "demonstration only"
+        }
+      },
+      "health": {
+        "status": "degraded",
+        "checkedAt": "2026-07-27T11:00:00Z",
+        "reason": "Fixture marks the feed stale"
+      },
+      "freshness": {
+        "status": "stale",
+        "observedAt": "2026-07-26T11:00:00Z",
+        "ageSeconds": 90000
+      },
+      "policyRefs": [
+        "urn:uuid:00000000-0000-4000-8000-000000000301"
+      ],
+      "disclosure": "private",
+      "extensions": {}
+    }
+  ],
+  "representations": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-000000000201",
+      "type": "masa:Representation",
+      "role": "source-representation",
+      "mediaType": "application/octet-stream",
+      "format": {
+        "state": "unknown",
+        "reason": "The example does not include source bytes.",
+        "reasonCode": "not_bundled"
+      },
+      "availability": "unavailable",
+      "locator": {
+        "state": "unavailable",
+        "reason": "No asset is bundled with this minimal example.",
+        "reasonCode": "not_bundled"
+      },
+      "integrity": {
+        "state": "unknown",
+        "reason": "Integrity cannot be verified without bytes.",
+        "reasonCode": "not_bundled"
+      },
+      "policyRefs": [
+        "urn:uuid:00000000-0000-4000-8000-000000000301"
+      ],
+      "disclosure": "private",
+      "extensions": {}
+    }
+  ],
+  "encounters": [],
+  "apertures": [],
+  "listeningPasses": [],
+  "claims": [],
+  "regions": [],
+  "measurements": [],
+  "observations": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-000000000802",
+      "type": "masa:Observation",
+      "sourceRef": "urn:uuid:00000000-0000-4000-8000-000000000801",
+      "field": "solar_activity_index",
+      "observedAt": "2026-07-26T11:00:00Z",
+      "scope": {
+        "state": "known",
+        "value": "Example interval"
+      },
+      "value": {
+        "state": "known",
+        "value": 72.4
+      },
+      "unit": {
+        "state": "known",
+        "value": "index-point"
+      },
+      "method": {
+        "name": "offline fixture observation",
+        "version": {
+          "state": "known",
+          "value": "1.0.0"
+        },
+        "parameters": {}
+      },
+      "health": {
+        "status": "degraded",
+        "checkedAt": "2026-07-27T11:00:00Z",
+        "reason": "Fixture marks the feed stale"
+      },
+      "freshness": {
+        "status": "stale",
+        "observedAt": "2026-07-26T11:00:00Z",
+        "ageSeconds": 90000
+      },
+      "epistemicStatus": "reported",
+      "temporalCharacter": "aggregate",
+      "signalKind": "observation",
+      "disclosure": "private",
+      "extensions": {}
+    }
+  ],
+  "mappings": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-000000000803",
+      "type": "masa:Mapping",
+      "sourceObservationRefs": [
+        "urn:uuid:00000000-0000-4000-8000-000000000802"
+      ],
+      "sourceField": "solar_activity_index",
+      "sourceUnit": "index-point",
+      "inputRange": [
+        0,
+        100
+      ],
+      "normalization": {
+        "method": "linear",
+        "clipping": "clamp",
+        "parameters": {}
+      },
+      "target": "synth.filter.cutoff",
+      "outputRange": [
+        120,
+        7200
+      ],
+      "curve": "exponential",
+      "smoothingMs": 200,
+      "cadence": "once per accepted observation",
+      "missingData": "skip",
+      "epistemicNote": "This authored mapping does not make the synthesized result the source's voice.",
+      "actors": [
+        "urn:uuid:00000000-0000-4000-8000-000000000101"
+      ],
+      "createdAt": "2026-07-27T12:06:00Z",
+      "extensions": {
+        "example:control": {
+          "parameter": "filter.cutoff"
+        }
+      }
+    }
+  ],
+  "relations": [],
+  "policies": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-000000000301",
+      "type": "masa:Policy",
+      "policyKind": "composite",
+      "issuer": "urn:uuid:00000000-0000-4000-8000-000000000101",
+      "status": "active",
+      "disclosure": "private",
+      "rules": [
+        {
+          "id": "urn:uuid:00000000-0000-4000-8000-000000000302",
+          "effect": "permission",
+          "actions": [
+            "read",
+            "validate",
+            "map"
+          ],
+          "targets": [
+            "urn:uuid:00000000-0000-4000-8000-000000000005"
+          ],
+          "subjects": [
+            "urn:uuid:00000000-0000-4000-8000-000000000101"
+          ],
+          "authorityBasis": {
+            "state": "known",
+            "value": "Local creator declaration for this private example"
+          },
+          "constraints": {
+            "network": "prohibited"
+          },
+          "duties": [
+            "Preserve provenance and unknown states"
+          ]
+        }
+      ],
+      "review": {
+        "contact": {
+          "state": "unknown",
+          "reason": "No external contact exists for a local fixture.",
+          "reasonCode": "local_fixture"
+        },
+        "route": {
+          "state": "known",
+          "value": "Review the record with the local MASA CLI"
+        }
+      },
+      "extensions": {}
+    }
+  ],
+  "contexts": [],
+  "agentRuns": [],
+  "capabilities": [],
+  "integrity": {
+    "state": "unknown",
+    "reason": "The standalone example is an account rather than a bundled byte artifact.",
+    "reasonCode": "not_bundled"
+  },
+  "history": {
+    "mode": "embedded",
+    "events": [
+      {
+        "id": "urn:uuid:00000000-0000-4000-8000-000000000804",
+        "type": "masa:OperationReceipt",
+        "recordId": "urn:uuid:00000000-0000-4000-8000-000000000005",
+        "sequence": 0,
+        "operationType": "matter.map",
+        "effectClass": "map",
+        "finalStatus": "not_performed",
+        "startedAt": "2026-07-27T12:01:00Z",
+        "endedAt": "2026-07-27T12:01:01Z",
+        "actors": [
+          "urn:uuid:00000000-0000-4000-8000-000000000101"
+        ],
+        "inputs": [
+          "urn:uuid:00000000-0000-4000-8000-000000000802"
+        ],
+        "outputs": [],
+        "tool": {
+          "state": "known",
+          "value": {
+            "id": "urn:uuid:00000000-0000-4000-8000-000000000805",
+            "name": "Generic mapping adapter fixture",
+            "version": {
+              "state": "known",
+              "value": "0.1.0"
+            },
+            "kind": "software"
+          }
+        },
+        "parameters": {
+          "reason": "stale input",
+          "missingData": "skip"
+        },
+        "policyEvaluation": {
+          "action": "map",
+          "targets": [
+            "urn:uuid:00000000-0000-4000-8000-000000000803"
+          ],
+          "policyRefs": [
+            "urn:uuid:00000000-0000-4000-8000-000000000301"
+          ],
+          "result": "permitted",
+          "evaluatedAt": "2026-07-27T12:01:00Z",
+          "evaluator": "urn:uuid:00000000-0000-4000-8000-000000000101",
+          "authorityRefs": [
+            "urn:uuid:00000000-0000-4000-8000-000000000302"
+          ],
+          "reasons": [
+            "The active local fixture policy explicitly permits this bounded operation."
+          ]
+        },
+        "reversibility": "undetermined",
+        "determinism": {
+          "state": "deterministic"
+        },
+        "warnings": [
+          "Stale observation was not converted into a control value"
+        ],
+        "errors": [],
+        "claimRefs": [],
+        "extensions": {}
+      }
+    ]
+  },
+  "disclosure": "private",
+  "registers": [
+    "digital-technical"
+  ],
+  "scales": [
+    "object-event"
+  ],
+  "extensions": {
+    "example:roundtrip": {
+      "deep": {
+        "values": [
+          "preserve",
+          "without-interpretation"
+        ]
+      }
+    }
+  }
+}

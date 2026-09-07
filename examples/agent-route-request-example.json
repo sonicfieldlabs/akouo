@@ -1,0 +1,45 @@
+{
+  "contract": "akouo/agent-route/v0.1",
+  "request_id": "route:fixture",
+  "profile": "agent",
+  "supported_contracts": [
+    "akouo/agent-route/v0.1",
+    "akouo/agent-report/v0.1",
+    "earworm/listening-access/v1",
+    "akouo/extended-spectrum-request/v0.1"
+  ],
+  "listener_id": "agent:fixture",
+  "listening_pass_id": "pass:new-agent",
+  "report_id": "report:new-agent",
+  "relation": {
+    "of": "representation",
+    "ref": "asset:synthetic-01"
+  },
+  "input_refs": [
+    "repr:16k"
+  ],
+  "report_of_refs": [],
+  "apparatus_ref": "access:synthetic-wideband",
+  "recipients": [
+    {
+      "id": "agent:reviewer",
+      "type": "agent"
+    }
+  ],
+  "resolved_refs": [
+    "asset:synthetic-01",
+    "sensor:fixture",
+    "calibration:fixture",
+    "repr:96k",
+    "receipt:synthetic-source",
+    "repr:16k",
+    "model:fixture",
+    "model-card:fixture",
+    "receipt:filtered-resample",
+    "access:synthetic-wideband",
+    "agent:reviewer"
+  ],
+  "requested_categories": [
+    "interpreted"
+  ]
+}

@@ -219,7 +219,7 @@ fi
 # 6. Check examples against canonical schema structure
 echo
 echo "[6/9] Checking examples against canonical schema structure..."
-if node --test "$REPO_ROOT/scripts/listening-semantics.test.mjs" && node "$REPO_ROOT/scripts/validate-examples.mjs" "$REPO_ROOT"; then
+if node --test "$REPO_ROOT/scripts/listening-semantics.test.mjs" && node "$REPO_ROOT/scripts/validate-examples.mjs" "$REPO_ROOT" && "${AKOUO_PYTHON:-python3}" -m unittest discover -s "$REPO_ROOT/tests"; then
   echo "  OK: Examples match canonical structure and semantic references"
 else
   ERRORS=$((ERRORS + 1))

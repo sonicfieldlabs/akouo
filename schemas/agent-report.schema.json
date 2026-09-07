@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/agent-report.schema.json",
+  "title": "AKOUO structured agent report",
+  "description": "Opt-in akouo/agent-report/v0.1, separate from akouo/v0.9. Feature values, claim categories, confidence, apparatus, and recipients remain distinct. A report grants no action authority and makes no embodied heard claims.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "report_id",
+    "listener_id",
+    "listening_pass_id",
+    "subject_ref",
+    "input_refs",
+    "apparatus_ref",
+    "report_format",
+    "recipients",
+    "report_of_refs",
+    "features",
+    "limitations"
+  ],
+  "properties": {
+    "contract": {
+      "const": "akouo/agent-report/v0.1"
+    },
+    "report_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "listener_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "listening_pass_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "apparatus_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "report_format": {
+      "const": "structured"
+    },
+    "recipients": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "$ref": "https://akouo.dev/schemas/listening-output.schema.json#/$defs/listener/properties/type"
+          }
+        }
+      }
+    },
+    "report_of_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "feature_id",
+          "namespace",
+          "name",
+          "category",
+          "claim",
+          "value"
+        ],
+        "properties": {
+          "feature_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "namespace": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "enum": [
+              "measured",
+              "inferred",
+              "interpreted",
+              "speculative",
+              "undetermined"
+            ]
+          },
+          "claim": {
+            "allOf": [
+              {
+                "$ref": "https://akouo.dev/schemas/claim-taxonomy.schema.json#/$defs/claim"
+              },
+              {
+                "required": [
+                  "claim_id",
+                  "source",
+                  "evidence_refs",
+                  "listening_pass_id"
+                ],
+                "properties": {
+                  "evidence_refs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true,
+                    "minItems": 1
+                  },
+                  "listening_pass_id": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            ]
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "object",
+                "required": [
+                  "status",
+                  "value",
+                  "unit"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "const": "known"
+                  },
+                  "value": {
+                    "type": [
+                      "number",
+                      "string",
+                      "boolean",
+                      "object",
+                      "array"
+                    ]
+                  },
+                  "unit": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "required": [
+                  "status",
+                  "reason"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "unknown",
+                      "withheld",
+                      "unavailable",
+                      "not_applicable"
+                    ]
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    }
+  }
+}
