@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/listening-provenance.schema.json",
+  "title": "AKOÚŌ Listening Provenance",
+  "description": "Sources, cuts, inherited corpora, and source-of-voice declarations that conditioned a listening. Unknown lineage is carried as unknown and never reconstructed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["listening_sources", "cuts", "corpus_lineage"],
+  "properties": {
+    "listening_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "label", "disclosure_status"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "kind": { "type": "string", "enum": ["audio", "sensor", "dsp", "metadata", "transcript", "context", "human_report", "model", "memory", "audiovisual", "haptic", "none", "other"] },
+          "label": { "type": "string", "minLength": 1 },
+          "provider": { "type": ["string", "null"] },
+          "model_id": { "type": ["string", "null"] },
+          "revision": { "type": ["string", "null"] },
+          "jurisdiction": { "type": ["string", "null"] },
+          "disclosure_status": { "type": "string", "enum": ["known", "partial", "unknown", "not_applicable"] },
+          "limitations": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+        }
+      }
+    },
+    "cuts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "stage", "operation", "actor", "basis", "effect", "reversible"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "stage": { "type": "string", "enum": ["capture", "selection", "preprocessing", "classification", "routing", "output"] },
+          "operation": { "type": "string", "minLength": 1 },
+          "actor": { "type": "string", "minLength": 1 },
+          "basis": { "type": "string", "minLength": 1 },
+          "effect": { "type": "string", "minLength": 1 },
+          "reversible": { "type": "boolean" },
+          "source_ref": { "type": ["string", "null"] }
+        }
+      },
+      "description": "Signal/noise, inclusion/exclusion, and technical transformations. The ledger names the cut without reconstructing protected material."
+    },
+    "corpus_lineage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_ref", "disclosure_status", "corpus_refs", "limitations"],
+        "properties": {
+          "source_ref": { "type": "string", "minLength": 1 },
+          "disclosure_status": { "type": "string", "enum": ["known", "partial", "unknown", "not_applicable"] },
+          "corpus_refs": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+          "fine_tune_refs": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+          "limitations": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+        }
+      }
+    },
+    "source_of_voice": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["mode", "producer", "vocal_data_status", "synthetic_disclosure", "authority_to_speak", "unvoiced_parties"],
+      "properties": {
+        "mode": { "type": "string", "enum": ["human", "synthetic", "hybrid", "unknown"] },
+        "producer": { "type": "string", "minLength": 1 },
+        "provider": { "type": ["string", "null"] },
+        "model_id": { "type": ["string", "null"] },
+        "voice_id": { "type": ["string", "null"] },
+        "vocal_data_status": { "type": "string", "enum": ["known", "partial", "unknown", "not_applicable"] },
+        "synthetic_disclosure": { "type": "boolean" },
+        "authority_to_speak": { "type": "string", "minLength": 1 },
+        "unvoiced_parties": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      }
+    }
+  }
+}

@@ -10,6 +10,7 @@
         "observation"
       ],
       "chain": [
+        "agent-native-listening",
         "signal-inspection-listening",
         "transductive-media-listening"
       ],
@@ -40,6 +41,7 @@
         "representation"
       ],
       "chain": [
+        "agent-native-listening",
         "signal-inspection-listening",
         "transductive-media-listening"
       ],

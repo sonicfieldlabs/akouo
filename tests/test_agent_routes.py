@@ -147,6 +147,9 @@ class AgentRoutesTest(unittest.TestCase):
         legacy=json.loads((ROOT/'akouo.manifest.json').read_text())
         modes={item['id'] for item in legacy['skills']}
         for profile in manifest['profiles'].values(): self.assertTrue(set(profile['chain'])<=modes)
+        self.assertEqual(manifest['profiles']['beyond']['chain'][0],'agent-native-listening')
+        presets=json.loads((ROOT/'presets/presets.json').read_text())
+        self.assertIn('extended-spectrum',{item['id'] for item in presets['presets']})
         self.assertEqual(contract_errors('agent-route-request',self.request),[])
 
     def test_unsupported_band_cannot_enable_inference_from_an_agent_recipient(self):

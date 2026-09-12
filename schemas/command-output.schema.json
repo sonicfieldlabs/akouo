@@ -75,8 +75,16 @@
     },
     "recommended_next_mode": {
       "oneOf": [
-        { "$ref": "listening-output.schema.json#/$defs/listening_mode" },
-        { "type": "string", "enum": ["none", "undetermined"] }
+        {
+          "$ref": "listening-output.schema.json#/$defs/listening_mode"
+        },
+        {
+          "type": "string",
+          "enum": [
+            "none",
+            "undetermined"
+          ]
+        }
       ]
     },
     "akouo_version": {
@@ -111,7 +119,8 @@
         "memory-lineage-listening",
         "sovereign-listening",
         "corpus-listening",
-        "reference-layer"
+        "reference-layer",
+        "agent-native-listening"
       ]
     },
     "text_list": {

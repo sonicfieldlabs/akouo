@@ -1,0 +1,522 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/agent-native-evidence.schema.json",
+  "title": "AKOUO agent-native evidence v1",
+  "description": "Canonical structure; host reference and access validation required. Schema validity is not claim admission.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract": {
+      "const": "akouo/agent-native-evidence/v1"
+    },
+    "status": {
+      "const": "unvalidated"
+    },
+    "record_note": {
+      "type": "string",
+      "minLength": 1
+    },
+    "clocks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/clock"
+      }
+    },
+    "evidence_objects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    },
+    "apertures": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/aperture"
+      }
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/observation"
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relation"
+      }
+    },
+    "human_projections": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/projection"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "contract",
+    "status",
+    "record_note",
+    "clocks",
+    "evidence_objects",
+    "apertures",
+    "observations",
+    "relations",
+    "human_projections",
+    "limitations"
+  ],
+  "$defs": {
+    "clock": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "domain": {
+          "enum": [
+            "source",
+            "capture",
+            "analysis",
+            "render",
+            "logical"
+          ]
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "origin": {
+          "type": "string",
+          "minLength": 1
+        },
+        "alignment_note": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "domain",
+        "unit",
+        "origin",
+        "alignment_note"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "register": {
+          "enum": [
+            "acoustic_capture",
+            "digital_waveform",
+            "simulation",
+            "nonacoustic_observation",
+            "sonic_control",
+            "sonic_latent",
+            "sonic_analysis",
+            "speculative"
+          ]
+        },
+        "artifact_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "clock_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "units": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sample_rate_hz": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "retained_band_hz": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "number",
+              "minimum": 0
+            }
+          ],
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "band_basis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transform_note": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "representation_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "register",
+        "artifact_ref",
+        "clock_id",
+        "parent_ids",
+        "units",
+        "band_basis",
+        "transform_note"
+      ]
+    },
+    "aperture": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observer_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "available",
+            "unavailable",
+            "degraded",
+            "withheld"
+          ]
+        },
+        "available_band_hz": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "number",
+              "minimum": 0
+            }
+          ],
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "phase_preserved": {
+          "type": "boolean"
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "evidence_id",
+        "observer_ref",
+        "status",
+        "phase_preserved",
+        "limitations"
+      ]
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "name",
+        "value",
+        "unit"
+      ]
+    },
+    "access": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "observer_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "access": {
+          "enum": [
+            "native_computable",
+            "directly_audible_reported",
+            "requires_projection",
+            "not_rendered",
+            "unavailable",
+            "withheld",
+            "undetermined"
+          ]
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "observer_ref",
+        "access",
+        "basis"
+      ]
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "aperture_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "clock_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_interval_s": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "number",
+              "minimum": 0
+            }
+          ],
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "spectral_interval_hz": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "number",
+              "minimum": 0
+            }
+          ],
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "method_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/metric"
+          }
+        },
+        "access": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/access"
+          }
+        },
+        "external_claim_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "external_pass_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "evidence_id",
+        "aperture_id",
+        "clock_id",
+        "source_interval_s",
+        "method",
+        "method_version",
+        "metrics",
+        "access"
+      ]
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "from_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "to_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "derived_from",
+            "recurs_with",
+            "correlates_with",
+            "maps_to",
+            "conditions",
+            "responds_to",
+            "experimentally_changes",
+            "proposed_relation"
+          ]
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "external_claim_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "from_ref",
+        "to_ref",
+        "kind",
+        "basis",
+        "evidence_refs"
+      ]
+    },
+    "projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "executed",
+            "withheld"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "text",
+            "audification",
+            "sonification",
+            "visual",
+            "haptic"
+          ]
+        },
+        "mapping": {
+          "type": "string",
+          "minLength": 1
+        },
+        "losses": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "artifact_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authorization_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "source_refs",
+        "status",
+        "kind",
+        "mapping",
+        "losses"
+      ]
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/aperture-request.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract": {
+      "const": "akouo/aperture-request/v1"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "enum": [
+        "human_reference",
+        "beyond",
+        "centaur"
+      ]
+    },
+    "bands_hz": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "number",
+          "minimum": 0
+        },
+        "minItems": 2,
+        "maxItems": 2
+      },
+      "minItems": 1,
+      "maxItems": 16
+    },
+    "subject_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "representation_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "route_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claim_kind": {
+      "enum": [
+        "digital_dsp",
+        "physical_capture",
+        "model_input",
+        "human_projection"
+      ]
+    },
+    "window_s": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0
+      },
+      "minItems": 2,
+      "maxItems": 2
+    }
+  },
+  "required": [
+    "contract",
+    "request_id",
+    "mode",
+    "bands_hz",
+    "subject_ref",
+    "representation_ref",
+    "route_ref",
+    "claim_kind",
+    "window_s"
+  ]
+}

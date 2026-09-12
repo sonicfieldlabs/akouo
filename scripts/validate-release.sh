@@ -17,6 +17,7 @@ echo
 # 1. Check skill folder structure
 echo "[1/9] Checking skill folder structure..."
 LISTENING_MODES=(
+  "agent-native-listening"
   "signal-inspection-listening"
   "acoulogical-object-listening"
   "embodied-affective-listening"

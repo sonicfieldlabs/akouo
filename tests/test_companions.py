@@ -115,6 +115,13 @@ class CompanionTest(unittest.TestCase):
         spectral['band_hz']['upper']=25000
         self.assertEqual(self.ear(spectral_request=spectral)['route']['decision']['outcome'],'abstain')
 
+    def test_beyond_manifest_uses_promoted_preset_and_native_lead(self):
+        manifest=json.loads((ROOT/'companions/manifest.json').read_text())
+        beyond=manifest['ears']['beyond_band']
+        self.assertIn('beyond-band',beyond['presets'])
+        self.assertIn('extended-spectrum',beyond['presets'])
+        self.assertEqual(beyond['leading_modes'][0],'agent-native-listening')
+
     def test_sent_sound_requires_explicit_selection_and_retention(self):
         self.selection['ear']='sent_sound'
         with self.assertRaises(ValueError): self.ear()

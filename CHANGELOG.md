@@ -213,3 +213,7 @@
 ## v0.1 — Public Baseline
 
 - Published the initial portable AKOÚŌ skill library with router, listening modes, commands, canonical schemas, examples, and MIT license.
+
+## 0.10.0 — local Phase 1 contracts
+
+Canonical agent-native mode, disabled DSP presets, evidence v1 and claim-specific aperture admission. No host DSP/UI implementation or public release.

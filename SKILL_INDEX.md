@@ -4,7 +4,7 @@ A quick-reference manifest of all portable listening skills in this repository.
 
 ## Version Notes
 
-`v0.9` adds attributable listening passes, listening provenance and corpus lineage, addressable route decisions and coded silence, explicit plural-listening versus ear-swarm declarations, plus `corpus-listening` and `/corpus`; it also makes clear that supplied text is not heard sound. `v0.8` adds accountable listening context: position, apertures, auditory scales, sources, participants, authority, revision, and honest absence become validated data on every current hearing. `v0.7` adds the sovereignty layer: the `sovereign-listening` mode, the `/covenant` command, and the listening-covenant schema (`schemas/covenant.schema.json`). `v0.6` instruments the system for host apps with the manifest, presets, memory-lineage listening, apparatus/listener/memory declarations, and budget-aware routing plans.
+`v0.10` adds canonical `agent-native-listening`, host-validated native evidence, and claim-specific aperture request/decision contracts while preserving the extended-spectrum contract. `v0.9` adds attributable listening passes, listening provenance and corpus lineage, addressable route decisions and coded silence, explicit plural-listening versus ear-swarm declarations, plus `corpus-listening` and `/corpus`; it also makes clear that supplied text is not heard sound. `v0.8` adds accountable listening context: position, apertures, auditory scales, sources, participants, authority, revision, and honest absence become validated data on every current hearing. `v0.7` adds the sovereignty layer: the `sovereign-listening` mode, the `/covenant` command, and the listening-covenant schema (`schemas/covenant.schema.json`). `v0.6` instruments the system for host apps with the manifest, presets, memory-lineage listening, apparatus/listener/memory declarations, and budget-aware routing plans.
 
 ## Meta-Skills
 
@@ -63,3 +63,7 @@ Compatible with any LLM agent framework that supports skill injection (OpenCode,
 - **Humans**: Browse the table above and click through to individual `SKILL.md` files.
 - **Agents**: Load `SKILL.md` from any skill folder as a system prompt. Schemas are in `references/`.
 - **Developers**: Preserve the manifest and bundled-schema conventions, then run `./scripts/validate-release.sh` after adding or modifying a skill.
+
+## Agent-native listening (v0.10)
+
+[agent-native-listening](skills/agent-native-listening/SKILL.md): DSP-native registers, clocks, apertures and relations; host evidence/access validation required.

@@ -60,7 +60,7 @@ Use this process for most sound tasks:
 
 Every command begins with a router planning pass, even when its mode chain is fixed. The planning pass supplies the evidence inventory, risks, and forbidden assumptions that the command's synthesis must respect, so `akouo-router` appears in `skills_called` for every command output except `/one-sound-many-ears`, whose comparative contract runs all modes unconditionally.
 
-## Machine-Readable Contract (v0.9)
+## Machine-Readable Contract (v0.10)
 
 Host apps should consume AKOÚŌ as data:
 
@@ -397,3 +397,7 @@ sky accepts an observation; sent sound requires an explicit existing preset and
 retention selection. Host policy validation is required for a retention policy.
 None grants model dispatch, DSP, storage or transmission authority. See
 `docs/companion-routes.md` in the source repository for inputs and host callbacks.
+
+## Agent-native admission in v0.10
+
+The canonical mode is `agent-native-listening`. Route tags `agent-native`, `spectral_bundle`, `observation_series` and `simulated_field` select an opt-in DSP request, never additional authority. See [contracts](docs/agent-native-and-apertures.md). Existing modes and extended-spectrum requests remain valid.

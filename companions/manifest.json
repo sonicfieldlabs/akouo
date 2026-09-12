@@ -34,6 +34,7 @@
     },
     "beyond_band": {
       "presets": [
+        "beyond-band",
         "extended-spectrum"
       ],
       "relation_of": [
@@ -42,7 +43,9 @@
       "profiles": [
         "beyond"
       ],
-      "leading_modes": []
+      "leading_modes": [
+        "agent-native-listening"
+      ]
     },
     "sky": {
       "presets": [],
@@ -83,6 +86,7 @@
         "transductive-media-listening"
       ],
       "digital-technical": [
+        "agent-native-listening",
         "signal-inspection-listening",
         "transductive-media-listening"
       ],

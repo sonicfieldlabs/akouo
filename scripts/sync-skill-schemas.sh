@@ -24,3 +24,6 @@ cp "$repo_root/schemas/router-output.schema.json" "$repo_root/skills/akouo-route
 cp "$repo_root/schemas/routing-plan.schema.json" "$repo_root/skills/akouo-router/references/routing-plan.schema.json"
 cp "$repo_root/schemas/reference-map.schema.json" "$repo_root/skills/reference-layer/references/reference-map.schema.json"
 cp "$repo_root/schemas/covenant.schema.json" "$repo_root/skills/sovereign-listening/references/covenant.schema.json"
+for name in agent-native-evidence aperture-request aperture-decision; do
+  cp "$repo_root/schemas/$name.schema.json" "$repo_root/skills/agent-native-listening/references/$name.schema.json"
+done

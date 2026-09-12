@@ -1,0 +1,416 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/listening-output.schema.json",
+  "title": "akoúō Standard Listening Output",
+  "description": "Common output structure for every AKOÚŌ listening mode. In v0.9, context v2, provenance, temporal passes, route decisions, and explicit ensemble declarations keep several listenings inspectable without collapsing apparatus, covenant, claims, or authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_listened_to",
+    "input_type",
+    "listening_mode",
+    "listening_claims",
+    "what_appears",
+    "what_remains_hidden",
+    "mediations",
+    "risks",
+    "main_reading",
+    "alternative_reading",
+    "recommended_next_mode"
+  ],
+  "properties": {
+    "object_listened_to": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_type": {
+      "$ref": "#/$defs/input_type"
+    },
+    "listening_mode": {
+      "$ref": "#/$defs/listening_mode"
+    },
+    "listening_claims": {
+      "$ref": "claim-taxonomy.schema.json"
+    },
+    "what_appears": {
+      "$ref": "#/$defs/text_list"
+    },
+    "what_remains_hidden": {
+      "$ref": "#/$defs/text_list"
+    },
+    "mediations": {
+      "$ref": "#/$defs/mediations"
+    },
+    "risks": {
+      "$ref": "#/$defs/risks"
+    },
+    "main_reading": {
+      "type": "string"
+    },
+    "alternative_reading": {
+      "type": "string"
+    },
+    "recommended_next_mode": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/listening_mode"
+        },
+        {
+          "type": "string",
+          "enum": [
+            "none",
+            "undetermined"
+          ]
+        }
+      ]
+    },
+    "akouo_version": {
+      "type": "string",
+      "description": "Optional AKOÚŌ contract version that produced this output (e.g. \"0.6\"), so stores and benchmarks can pin records to a contract.",
+      "minLength": 1
+    },
+    "apparatus": {
+      "$ref": "#/$defs/apparatus",
+      "description": "Optional v0.6 declaration of the listening apparatus. Reduced or machine listening that hides its own technical conditions repeats the phantasmagoria it should expose; declare the substrate instead."
+    },
+    "listener": {
+      "$ref": "#/$defs/listener",
+      "description": "Optional v0.6 declaration of who or what listened: human, agent, or hybrid, and under which process."
+    },
+    "memory": {
+      "$ref": "#/$defs/memory_links",
+      "description": "Optional v0.6 link block connecting this output to stored sound-memories (earworm-style akousma records): the record this listening belongs to, the records it consulted, and a lineage note."
+    },
+    "covenant": {
+      "$ref": "#/$defs/covenant_ref",
+      "description": "Optional v0.7 declaration of the listening covenant this output was produced under: the covenant's identity plus honest absence — what was withheld under its rules, counted and attributed, never described."
+    },
+    "listening_context": {
+      "$ref": "listening-context.schema.json",
+      "description": "Optional v0.9 accountable listening context v2. Current producers SHOULD emit it; readers continue accepting legacy context v1 records through their compatibility layer."
+    },
+    "listening_provenance": {
+      "$ref": "listening-provenance.schema.json",
+      "description": "Sources, cuts, corpus inheritance, and source-of-voice disclosure for this listening."
+    },
+    "listening_passes": {
+      "type": "array",
+      "items": {
+        "$ref": "listening-pass.schema.json"
+      },
+      "description": "Several attributable listenings at several moments; an empty array is valid for pre-listening refusal."
+    },
+    "route_decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "route-decision.schema.json"
+      },
+      "description": "Accountable gate decisions, including coded silence."
+    },
+    "ensemble": {
+      "$ref": "ensemble.schema.json",
+      "description": "Explicit plurality or ear-swarm declaration. Multiple routes never imply a swarm by themselves."
+    }
+  },
+  "$defs": {
+    "input_type": {
+      "type": "string",
+      "enum": [
+        "audio_file",
+        "sound_prompt",
+        "transcript",
+        "field_note",
+        "archive_note",
+        "dataset_description",
+        "spectrogram",
+        "waveform",
+        "video",
+        "metadata",
+        "model_output",
+        "mixed",
+        "unknown",
+        "other",
+        "spectral_bundle",
+        "observation_series",
+        "simulated_field"
+      ]
+    },
+    "listening_mode": {
+      "type": "string",
+      "enum": [
+        "signal-inspection-listening",
+        "acoulogical-object-listening",
+        "embodied-affective-listening",
+        "transductive-media-listening",
+        "forensic-archival-listening",
+        "ecological-posthuman-listening",
+        "critical-political-listening",
+        "musical-aesthetic-listening",
+        "symbolic-fictional-listening",
+        "audiovisual-scenic-listening",
+        "voice-speech-listening",
+        "accessibility-normative-listening",
+        "material-event-listening",
+        "memory-lineage-listening",
+        "sovereign-listening",
+        "corpus-listening",
+        "agent-native-listening"
+      ]
+    },
+    "text_list": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": []
+    },
+    "mediations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "technical",
+        "cultural",
+        "spatial",
+        "bodily",
+        "archival",
+        "computational"
+      ],
+      "properties": {
+        "technical": {
+          "$ref": "#/$defs/text_list"
+        },
+        "cultural": {
+          "$ref": "#/$defs/text_list"
+        },
+        "spatial": {
+          "$ref": "#/$defs/text_list"
+        },
+        "bodily": {
+          "$ref": "#/$defs/text_list"
+        },
+        "archival": {
+          "$ref": "#/$defs/text_list"
+        },
+        "computational": {
+          "$ref": "#/$defs/text_list"
+        }
+      }
+    },
+    "risks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hallucination",
+        "over_identification",
+        "cultural_flattening",
+        "forensic_overreach",
+        "source_confusion",
+        "aesthetic_overstatement"
+      ],
+      "properties": {
+        "hallucination": {
+          "$ref": "#/$defs/text_list"
+        },
+        "over_identification": {
+          "$ref": "#/$defs/text_list"
+        },
+        "cultural_flattening": {
+          "$ref": "#/$defs/text_list"
+        },
+        "forensic_overreach": {
+          "$ref": "#/$defs/text_list"
+        },
+        "source_confusion": {
+          "$ref": "#/$defs/text_list"
+        },
+        "aesthetic_overstatement": {
+          "$ref": "#/$defs/text_list"
+        }
+      }
+    },
+    "apparatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "substrate",
+        "known_blind_spots"
+      ],
+      "properties": {
+        "substrate": {
+          "type": "string",
+          "enum": [
+            "human_ear",
+            "asr_cascade",
+            "audio_token_model",
+            "speech_native_model",
+            "dsp_toolchain",
+            "hybrid_agent_stack",
+            "text_only_agent",
+            "unknown",
+            "other"
+          ],
+          "description": "The listening architecture family. Each substrate carries its own epistemic stance: an ASR cascade reduces listening to transcription, a codec-token model to token prediction, a DSP toolchain to measurement."
+        },
+        "perception_sources": {
+          "$ref": "#/$defs/text_list",
+          "description": "Named perception streams that fed this output (e.g. 'moss-audio caption pass', 'browser FFT features', 'human field notes')."
+        },
+        "model_ids": {
+          "$ref": "#/$defs/text_list",
+          "description": "Model identifiers involved, when models were used."
+        },
+        "sample_rate_hz": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Sample rate the listening substrate actually received, when known."
+        },
+        "channels": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Channel count the listening substrate actually received, when known."
+        },
+        "bandwidth_limit_hz": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Upper frequency bound the substrate can register, when known. Claims above this bound belong in undetermined."
+        },
+        "known_blind_spots": {
+          "$ref": "#/$defs/text_list",
+          "description": "What this apparatus structurally cannot hear or verify (e.g. 'mono input: no stereo image claims', 'no absolute playback level')."
+        },
+        "capture_notes": {
+          "$ref": "#/$defs/text_list",
+          "description": "Known facts about the capture chain: microphone, recorder, room, codec history."
+        }
+      }
+    },
+    "listener": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "human",
+            "agent",
+            "hybrid",
+            "community",
+            "institution",
+            "sensor",
+            "habitat",
+            "other_animal",
+            "ensemble",
+            "other"
+          ]
+        },
+        "process": {
+          "type": "string",
+          "description": "How the listening was produced (e.g. 'agent_automated', 'agent_interactive', 'human_blind', 'human_informed', 'hybrid')."
+        }
+      }
+    },
+    "memory_links": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "akousma_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Identifier of the stored sound-memory record this listening belongs to or updates, when a store is in use."
+        },
+        "akousmata_refs": {
+          "$ref": "#/$defs/text_list",
+          "description": "Identifiers of stored records consulted or compared during this listening."
+        },
+        "lineage_note": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Short note on how this sound relates to its lineage (derived from, variant of, response to, recurrence of)."
+        }
+      }
+    },
+    "covenant_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The covenant's stable slug, optionally versioned: 'river-covenant/2'."
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The covenant's human name."
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "SHA-256 of the covenant's source text: identity without content."
+        },
+        "withheld": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "rule": {
+                "type": "string",
+                "description": "The covenant rule (verb or original line) under which material was withheld."
+              },
+              "subject": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "What was withheld, named at category level only (transcript, speech, location, …) — never described in content."
+              },
+              "count": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0
+              }
+            }
+          },
+          "description": "Honest absence: what this hearing declined to analyze, reveal, or retain, attributed to the rule that asked for it. Withheld material is counted and categorized, never characterized."
+        },
+        "commitments": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "description": "How many non-executable commitments the covenant carries; their text stays with the covenant, not with every output."
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,8 @@
 
 `akouo/agent-route/v0.1` is an unreleased, opt-in route contract. Its separate
 [manifest](../agent-routes.manifest.json) composes existing listening skills.
-The released v0.9 command and mode enums stay unchanged. Hosts must negotiate the
+The companion command enum remains opt-in. The v0.10 mode enum includes
+`agent-native-listening`; hosts must still negotiate the
 companion before exposing `/agent`, `/second-report`, or `/beyond`; installing it
 does not add these commands to the reference application automatically.
 
@@ -12,12 +13,14 @@ host's resolved reference scope. `relation.of` distinguishes a representation,
 record, and observation. These are subject types, not epistemic ranks or access
 permissions. References must resolve in the host's authorized local scope.
 
-- `/agent` composes signal inspection and mediation review for a structured report.
+- `/agent` composes agent-native, signal inspection and mediation review for a
+  structured report.
 - `/second-report` composes memory and forensic review of a retained record. Its
   subject must occur in `report_of_refs`, directly or as the record containing a
   host-resolved JSON-pointer report reference. The receiving account has new pass and
   report IDs; the source account is retained. This route never invents influence.
-- `/beyond` reuses the extended-spectrum gate and actual Earworm access validator.
+- `/beyond` composes agent-native listening with the existing extended-spectrum
+  gate and actual Earworm access validator.
   A supported request permits an observe-only measurement attempt. The route
   does not itself create a measured result, embodied hearing, SPL calibration,
   native model understanding, or execution authority.

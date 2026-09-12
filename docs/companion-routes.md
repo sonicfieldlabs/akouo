@@ -1,8 +1,9 @@
 # Opt-in companion routes
 
 `akouo/companions/v0.1` adds portable second-report packaging, explicit
-scale/register selection and per-ear plans. Package 0.9.2, `akouo/v0.9`, released
-presets, modes and commands remain unchanged. Import from
+scale/register selection and per-ear plans. In the v0.10 source, the beyond-band
+ear selects the promoted `beyond-band` preset and begins with
+`agent-native-listening`. Import from
 `akouo_contract.companions`; installed assets live below the package data root.
 
 `plan_second_report` validates actual retained records through a required host
@@ -37,7 +38,7 @@ the tag mapping grants no additional temporal capability.
 | --- | --- | --- |
 | radio | music preset, existing agent corrections | representation / agent |
 | room | material-event first, field preset | representation / agent; optional separately attributed human account |
-| beyond_band | extended-spectrum preset | representation / beyond; existing spectral gate required |
+| beyond_band | beyond-band preset | representation / beyond; existing spectral gate required |
 | sky | existing observation agent route | observation / agent; no simulated acoustic access |
 | sent_sound | explicitly selected existing preset | explicit agent, second_report or beyond route; explicit retention selection |
 

@@ -12,15 +12,19 @@ AKOÚŌ does not pretend that agents hear like humans. It gives them accountable
 
 This public release contains the portable AKOÚŌ skills, router, command definitions, schemas, and a local-first reference app for running the listening workflows.
 
-Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current release contract: `v0.9`.
+Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current source contract: `v0.10`.
 
 The `akouo-contract` Python distribution packages this repository's canonical
 skills, commands, presets, schemas, and manifest for Oída and other local
-agent hosts. Package release `0.9.2` implements the `akouo/v0.9` data
-contract; no skill fork is created inside a host application.
+agent hosts. The Phase 1 source targets package `0.10.0` and the
+`akouo/v0.10` contract; the latest public package remains `0.9.2` until a
+separate release. No skill fork is created inside a host application.
 
 ## Version Status
 
+- `v0.10` adopts `agent-native-listening`, host-validated native-evidence and
+  claim-specific aperture contracts, while preserving the existing
+  extended-spectrum evaluator.
 - Package `0.9.2` adds executable cross-reference checks and a canonical
   linked human/agent example without changing the `v0.9` contract.
 - `v0.9` distinguishes listening provenance from source provenance, represents several attributable listenings across time, makes route decisions and coded silence addressable, defines plural listening versus an ear swarm, and adds `corpus-listening` with `/corpus`.
@@ -35,11 +39,11 @@ contract; no skill fork is created inside a host application.
 
 ## Sonic Field Labs Stack
 
-AKOÚŌ is the shared listening contract across the stack. The current release contains 16 listening modes, 18 skills, and 19 commands.
+AKOÚŌ is the shared listening contract across the stack. The v0.10 source contains 17 listening modes, 19 skills, and 19 commands.
 
 | Project | Current integration |
 | --- | --- |
-| [OÍDA](https://github.com/sonicfieldlabs/oida) `0.9.2` | Loads the `akouo/v0.9` contract and returns addressable route decisions, passes, provenance, and optional local capabilities. |
+| [OÍDA](https://github.com/sonicfieldlabs/oida) `0.9.2` | Its current release loads `akouo/v0.9`; adoption of the v0.10 aperture and agent-native contracts is Phase 2 work. |
 | [Earworm](https://github.com/sonicfieldlabs/earworm) `0.6.1` | Persists addressable auditums and pre-capture decisions as `akousma/v1.5` records, including revision and forgetting receipts. |
 | [Akousmata](https://github.com/sonicfieldlabs/akousmata) `0.6.1` | Validates and navigates those records while keeping plural listeners distinct and requiring influence before declaring an ear swarm. |
 | [Algophony](https://github.com/sonicfieldlabs/algophony) `0.5.2` | Uses the listening contract for generation supervision, evaluation, and research workflows. |
