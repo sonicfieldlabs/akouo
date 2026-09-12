@@ -1,0 +1,84 @@
+{
+  "akousma_id": "ak_research",
+  "schema_version": "1.7.0",
+  "created_at": "2026-09-06T12:00:00Z",
+  "subject": "Synthetic contract fixture",
+  "provenance": {
+    "source_type": "unknown",
+    "origin": "unknown",
+    "originating_app": "contract-fixture",
+    "created_at": "2026-09-06T12:00:00Z"
+  },
+  "lineage": {
+    "parent_akousma_ids": [],
+    "relations": [
+      {
+        "contract": "earworm/relations/v1",
+        "relation_id": "rel:research",
+        "type": "research_for",
+        "target_akousma_id": "ak_legacy_appeal",
+        "declared_by": "actor:fixture",
+        "evidence_refs": [
+          "evidence:fixture"
+        ],
+        "epistemic_status": "undetermined",
+        "review": {
+          "status": "unreviewed"
+        }
+      },
+      {
+        "contract": "earworm/relations/v1",
+        "relation_id": "rel:similarity",
+        "type": "similar_by",
+        "target_akousma_id": "ak_generation",
+        "declared_by": "actor:fixture",
+        "evidence_refs": [
+          "evidence:fixture"
+        ],
+        "epistemic_status": "undetermined",
+        "review": {
+          "status": "unreviewed"
+        },
+        "criterion": {
+          "criterion_id": "criterion:centroid",
+          "feature": "fixture.spectral_centroid",
+          "unit": "Hz",
+          "method_ref": "method:fixture",
+          "method_revision": "fixture-v1",
+          "input_refs": [
+            "ak_generation",
+            "ak_legacy_appeal"
+          ],
+          "normalization": "Unnormalized declared frequency; no comparison executed.",
+          "score": {
+            "status": "unknown",
+            "reason": "No measurement has been run."
+          }
+        }
+      }
+    ]
+  },
+  "extensions": {
+    "earworm_research": {
+      "contract": "earworm/research/v1",
+      "proposal_id": "proposal:fixture",
+      "author_ref": "actor:fixture",
+      "question": "Which declared features would support this comparison?",
+      "source_refs": [
+        "ak_generation",
+        "ak_legacy_appeal"
+      ],
+      "evidence_refs": [
+        "evidence:fixture"
+      ],
+      "proposed_relation_refs": [
+        "rel:research",
+        "rel:similarity"
+      ],
+      "review": {
+        "status": "unreviewed"
+      }
+    }
+  },
+  "record_kind": "research_proposal"
+}

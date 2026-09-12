@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://akouo.dev/schemas/router-output.schema.json",
-  "title": "akoúō Router Output",
+  "title": "ako\u00fa\u014d Router Output",
   "description": "Output structure for akouo-router route selection.",
   "type": "object",
   "additionalProperties": false,
@@ -84,7 +84,8 @@
         "/route",
         "/remember",
         "/covenant",
-        "/corpus"
+        "/corpus",
+        "/orchestrate"
       ]
     },
     "text_list": {

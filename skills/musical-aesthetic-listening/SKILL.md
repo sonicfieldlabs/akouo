@@ -156,3 +156,24 @@ Input: a four-second synthetic pulse described as regular, percussive, and accen
 - Interpreted: `[{"statement":"The repetition can be read aesthetically as stability, propulsion, or mechanical regularity, but this remains an interpretive reading.","confidence":"medium","basis":"Aesthetic reading grounded in described repetition"}]`
 - Speculative: `[{"statement":"If used in a composition, the pulse could become a skeletal clock, metronome, or machine-heart figure.","confidence":"low","basis":"Declared creative possibility"}]`
 - Undetermined: `[{"statement":"Actual BPM, envelope, timbre, source, production chain, genre, cultural context, and listener response remain undetermined without audio or metadata.","confidence":"high","basis":"Unavailable evidence"}]`
+
+## Derivation and subsequent-listening decisions (unreleased A12/A13)
+
+For generation from retained accounts, call the installed
+`akouo_contract.record_workflows.derivation_plan` adapter with named parent records,
+per-source permission and a host-owned parameter policy. A proposed prompt and its
+parameters are speculative. They are not a listening output, a generated asset, or
+permission to execute. Preserve all original source categories and identities.
+
+After a host has generated and retained an actual output, request a separately
+attributed listening of that output through the applicable existing mode. Resolve
+its output/receipt binding and its later listening identity before calling
+`generation_decision`. Record reasons and policy/revision for keep, revise, discard
+or variation. Keep/discard stops; any continuation names a planned next job and
+remains subject to host authorization and execution limits. Do not infer quality
+improvement from the existence of this decision trace.
+
+A missing output, unbound pass or unavailable evidence ends this procedure without
+inventing a listening. An agent may interpret measurements or an attributed human
+report but cannot inherit that person's embodied hearing. The adapter returns an
+E16 decision record, not a replacement for either the generation or later account.

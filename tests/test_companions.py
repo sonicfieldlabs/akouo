@@ -53,7 +53,7 @@ class CompanionTest(unittest.TestCase):
         self.assertEqual(companion_bundle_errors(),[])
         for folder in ('companions','schemas'):
             for path in (ROOT/folder).rglob('*'):
-                if path.is_file():
+                if path.is_file() and path.name != ".DS_Store":
                     self.assertEqual((root()/path.relative_to(ROOT)).read_bytes(),path.read_bytes())
 
     def test_radio_composes_without_permission_upgrade(self):

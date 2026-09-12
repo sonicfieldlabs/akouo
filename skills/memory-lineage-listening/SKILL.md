@@ -135,3 +135,18 @@ Input: a new harbor field recording plus three stored records tagged with the sa
 - Interpreted: `[{"statement":"Across the series, bird-activity claims thin while machinery claims persist, which reads as a lineage of increasing mechanical dominance at this site.","confidence":"low","basis":"Comparison of stored claims over two years; apparatus varied between records","source":"memory"}]`
 - Speculative: `[]`
 - Undetermined: `[{"statement":"Whether the apparent change reflects the site, the season, recorder position, or apparatus differences remains undetermined; two records lack capture notes and one media reference is dead.","confidence":"high","basis":"Missing provenance in consulted records"}]`
+
+## Retained-record research route (unreleased A11)
+
+For bounded archive research, use the installed `akouo_contract.record_workflows`
+`research_proposal` adapter and `record-workflow-request` schema. Propose criterion-
+bearing `similar_by` relations as an E15 unreviewed research record through the
+Akousmata-owned research service. Keep method/revision, normalization, score policy,
+source inputs and evidence attribution explicit. Reuse existing descriptor comparison
+functions when applicable; do not introduce another research scheduler.
+
+A lookup or deterministic comparison alone creates no new listening pass. The earlier
+phrase “every comparison is a new listening” concerns an explicitly executed and
+attributed listening, not an automatic promotion of a query into hearing. Source
+claims remain producer-owned. Proposals do not inherit measured or heard status,
+and accepting a relation is an additive review event rather than a source rewrite.

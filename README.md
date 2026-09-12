@@ -423,3 +423,13 @@ explicit MASA scale/register selection, and radio, room, beyond-band, sky and
 sent-sound presets. They reuse existing skills and permission gates while keeping
 source modality, represented subject and access evidence separate. Runtime
 dispatch, DSP and retention enforcement remain host responsibilities.
+
+Retained ensembles and bounded local scheduling are documented in
+[orchestration](docs/orchestration.md) (unreleased Python integration).
+
+[`/orchestrate`](commands/orchestrate.md) declares ears, passes and direction through
+`akouo_contract.direction.plan_orchestration` without inferring an influence outcome.
+
+Unreleased [record workflow adapters](docs/record-workflows.md) define bounded
+memory research, speculative generation derivation and subsequent-listening decisions
+with canonical Earworm validation and explicit owner integration boundaries.
