@@ -4,7 +4,27 @@ from copy import deepcopy
 import json
 from pathlib import Path
 import pytest
-from akousma import AkousmataStore, validation_errors
+
+# `akousma` is Earworm's package, not this one. The release gate builds and
+# installs the akouo-contract wheel into an isolated environment on purpose, so
+# a sibling checkout is not on the path and must not be silently required.
+#
+# Before 15 September this module simply failed to import, and because the gate
+# ran `unittest discover` the failure was one of several that made the whole
+# Python step unreadable. Skipping explicitly states the reason and the cost:
+# these nine functions cover the akouo-contract/akousma boundary, and while they
+# skip, that boundary is only covered by the Central's integration tests.
+#
+# Install akousma into the test environment to run them.
+akousma = pytest.importorskip(
+    "akousma",
+    reason=(
+        "Earworm's akousma package is not installed. The record-workflow tests "
+        "cover the akouo-contract/akousma boundary and do not run without it."
+    ),
+)
+AkousmataStore = akousma.AkousmataStore
+validation_errors = akousma.validation_errors
 from akousma.record_evolution import next_record_reference_errors
 from akouo_contract.record_workflows import (
     research_proposal,
