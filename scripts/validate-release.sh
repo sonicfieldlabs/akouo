@@ -235,6 +235,15 @@ echo "[6/9] Checking examples against canonical schema structure..."
 # hands anyone.
 run_python_contract_tests() {
   local venv wheel
+  if [ ! -f "${AKOUO_AKOUSMA_WHEEL:-}" ] || [ -z "${AKOUO_AKOUSMA_SHA256:-}" ]; then
+    echo "  FAIL: set AKOUO_AKOUSMA_WHEEL and AKOUO_AKOUSMA_SHA256 to the reviewed Earworm wheel."
+    echo "        Installed record-workflow tests are required, not optional skips."
+    return 1
+  fi
+  if [ "$(shasum -a 256 "$AKOUO_AKOUSMA_WHEEL" | cut -d ' ' -f 1)" != "$AKOUO_AKOUSMA_SHA256" ]; then
+    echo "  FAIL: Earworm wheel hash does not match the supplied identity"
+    return 1
+  fi
   venv="$(mktemp -d)"
   trap 'rm -rf "$venv"' RETURN
 
@@ -245,13 +254,13 @@ run_python_contract_tests() {
     }
     wheel="$(find "$venv/dist" -name '*.whl' -print -quit)"
     [ -n "$wheel" ] || { echo "  FAIL: no wheel was produced"; return 1; }
-    uv venv "$venv/env" >/dev/null 2>&1 || return 1
+    uv venv --python "${AKOUO_TEST_PYTHON:-3.12}" "$venv/env" >/dev/null 2>&1 || return 1
     # pytest travels with the test environment, not with the package. It is
     # needed because four test modules are written in pytest style; under the
     # previously documented `unittest discover` those seventeen functions were
     # collected and never called. pytest collects unittest.TestCase classes too,
     # so one runner runs all of them.
-    VIRTUAL_ENV="$venv/env" uv pip install --quiet "$wheel" pytest >/dev/null 2>&1 || {
+    VIRTUAL_ENV="$venv/env" uv pip install --quiet "$wheel" "$AKOUO_AKOUSMA_WHEEL" pytest >/dev/null 2>&1 || {
       echo "  FAIL: the built wheel did not install"
       return 1
     }
@@ -259,14 +268,25 @@ run_python_contract_tests() {
     # Running from the repository root is fine — src/ is not on sys.path there —
     # but "fine" is not evidence, so the location is asserted.
     PYTHONPATH= "$venv/env/bin/python" - <<PYWHERE || return 1
-import akouo_contract, sys
+import akouo_contract, akousma, sys
+if "site-packages" not in (akousma.__file__ or ""):
+    sys.exit("FAIL: Earworm is not installed from the candidate wheel")
 where = akouo_contract.__file__ or ""
 if "site-packages" not in where:
     print(f"  FAIL: akouo_contract resolved to {where}, not the installed wheel")
     sys.exit(1)
 print(f"  OK: akouo_contract imports from the installed wheel")
 PYWHERE
-    ( cd "$REPO_ROOT" && PYTHONPATH= "$venv/env/bin/python" -m pytest tests -q ) || return 1
+    ( cd "$REPO_ROOT" && PYTHONPATH= "$venv/env/bin/python" -m pytest tests -q --junitxml="$venv/results.xml" ) || return 1
+    "$venv/env/bin/python" - "$venv/results.xml" <<'PYRESULT' || return 1
+import sys
+import xml.etree.ElementTree as ET
+root = ET.parse(sys.argv[1]).getroot()
+cases = list(root.iter("testcase"))
+if not cases or list(root.iter("skipped")):
+    sys.exit("FAIL: installed-package gate collected no cases or skipped required tests")
+print(f"  OK: {len(cases)} installed-package cases, no skips")
+PYRESULT
     # The data is the reason this package exists; prove the wheel carries it.
     "$venv/env/bin/python" - <<'PYCHECK' || return 1
 import importlib.resources as resources
@@ -291,10 +311,8 @@ PYCHECK
     return 0
   fi
 
-  echo "  SKIP: uv is not available, so the wheel could not be built or installed."
-  echo "        Falling back to a source-tree run, which cannot show whether the"
-  echo "        wheel bundles its data. This is not a release-grade result."
-  "${AKOUO_PYTHON:-python3}" -m unittest discover -s "$REPO_ROOT/tests"
+  echo "  FAIL: uv is required to verify the installed wheel; no source-only fallback."
+  return 1
 }
 
 if node --test "$REPO_ROOT/scripts/listening-semantics.test.mjs" && node "$REPO_ROOT/scripts/validate-examples.mjs" "$REPO_ROOT" && run_python_contract_tests; then
