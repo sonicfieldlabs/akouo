@@ -396,6 +396,16 @@ Conceptual refinements should be incorporated as public-facing skill language on
 
 Run `./scripts/validate-release.sh` before publishing to verify skill structure, schema consistency, hygiene, and absence of generated build artifacts.
 
+Its installed-package gate needs Earworm's record library as a reviewed wheel. Without one, the
+gate fails rather than skipping, because those record-workflow tests are required. To set it up:
+- Build the wheel from an Earworm checkout: `uv build --wheel packages/py-akousma`.
+- Set `AKOUO_AKOUSMA_WHEEL` to the wheel's path and `AKOUO_AKOUSMA_SHA256` to its SHA-256.
+- Optionally, set `AKOUO_TEST_PYTHON` to choose the Python of the throwaway test environment
+  (3.12 by default).
+
+The personal-data scan reads the working tree. It skips `node_modules/` and a local `.venv/`, such
+as the one `uv run` creates, and `.gitignore` excludes both.
+
 For a full operational guide covering commands, workflows, benchmark ingestion, and data structure, see [`SYSTEM_GUIDE.md`](SYSTEM_GUIDE.md).
 
 The store-connected flow now exists as its own app: the **akousmata listening

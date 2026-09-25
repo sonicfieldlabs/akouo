@@ -10,6 +10,7 @@ coverage/
 *.tsbuildinfo
 
 # Local environment and secrets
+.venv/
 .env
 .env.*
 !.env.example

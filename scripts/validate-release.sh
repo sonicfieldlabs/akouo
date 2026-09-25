@@ -344,7 +344,7 @@ PATTERNS=(
 
 FOUND=0
 for pattern in "${PATTERNS[@]}"; do
-  matches=$(grep -riE "$pattern" --include='*.md' --include='*.json' --include='*.ts' --include='*.tsx' --include='*.sh' --exclude='validate-release.sh' "$REPO_ROOT" | grep -v node_modules | grep -v '.git/' || true)
+  matches=$(grep -riE "$pattern" --include='*.md' --include='*.json' --include='*.ts' --include='*.tsx' --include='*.sh' --exclude='validate-release.sh' "$REPO_ROOT" | grep -v node_modules | grep -v '/.venv/' | grep -v '.git/' || true)
   if [ -n "$matches" ]; then
     echo "  ERROR: Potential personal data or secret pattern matched: $pattern"
     echo "$matches" | head -n 3 | sed 's/^/    /'
