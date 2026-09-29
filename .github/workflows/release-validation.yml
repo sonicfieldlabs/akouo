@@ -28,10 +28,19 @@ jobs:
           cache: npm
           cache-dependency-path: app/package-lock.json
 
+      - name: Install uv
+        uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
+
+      - name: Verify reviewed Earworm wheel
+        run: shasum -a 256 -c vendor/SHA256SUMS
+
       - name: Install Python contract and validator
         run: python3 -m pip install .
 
       - name: Validate portable release
+        env:
+          AKOUO_AKOUSMA_WHEEL: vendor/akousma-0.8.3-py3-none-any.whl
+          AKOUO_AKOUSMA_SHA256: cd1349b6cb15ead974416e626d19555ef79f3482df24441dd53156fa479f07f0
         run: ./scripts/validate-release.sh
 
       - name: Install app dependencies
