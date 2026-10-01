@@ -1,5 +1,45 @@
 # Changelog
 
+## Unreleased
+
+- Cached immutable installed schema validators and their offline reference
+  registry; explicit schema directories remain live for development. Unknown
+  contract names now raise a descriptive ValueError.
+- The Python contract package is 0.10.1 (`akouo/v0.10`); the independent router
+  app remains 0.9.2. Protocol identifiers are unchanged.
+
+- Added an optional offline Earworm scenario-matrix runner using installed
+  contracts, with retained-source, output-identity and spectral/category checks.
+
+- Added opt-in second-report skill packaging with retained-source resolution,
+  MASA scale/register selection with separate modality and access evidence, and
+  radio, room, beyond-band, sky and sent-sound companion presets. These compose
+  existing skills and gates without granting execution or storage authority.
+- Added installed companion asset checks and supported/unsupported input tests.
+
+- Added a separate opt-in agent-route manifest and Python planner that compose
+  existing modes for agent reports, second reports and beyond-band requests.
+  Reused the spectral gate and route-decision contract; overrides only narrow
+  permissions, and output validation binds claims to the retained route.
+- Added a MASA Observation-profile attribution adapter using a host-supplied
+  validator. It retains source metadata and qualifications without promoting
+  inherited observations into receiving-agent measurements or disclosing them.
+
+- Added an opt-in extended-spectrum request and conservative Python gate using
+  the host-provided Earworm validator and existing route-decision schema. It
+  checks declared apparatus/input support and returns explicit abstentions; it
+  does not infer physical capture, hearing, native understanding, or SPL.
+- Reused one offline schema-validation implementation across agent reports and
+  spectral requests, and documented host negotiation and evidence boundaries.
+
+- Added opt-in `akouo/agent-report/v0.1` with qualified feature values, existing
+  claim categories and listener taxonomy, apparatus references, and recipients.
+- Added offline Python schema validation and report-local attribution checks,
+  packaged-schema tests, and release-validation coverage. Machine reports cannot
+  emit a `heard` category or grant action authority through this contract.
+- The initial agent-report addition retained the then-current `akouo/v0.9`
+  modes; the later local 0.10 contract work is recorded below.
+
 ## v0.9.2 — Human and agent listening conformance
 
 - Added a canonical paired integration example that keeps human and agent
@@ -179,3 +219,7 @@
 ## v0.1 — Public Baseline
 
 - Published the initial portable AKOÚŌ skill library with router, listening modes, commands, canonical schemas, examples, and MIT license.
+
+## 0.10.0 — local Phase 1 contracts
+
+Canonical agent-native mode, disabled DSP presets, evidence v1 and claim-specific aperture admission. No host DSP/UI implementation or public release.

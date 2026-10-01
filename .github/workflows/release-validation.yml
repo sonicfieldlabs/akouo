@@ -13,13 +13,20 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Check out repository
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
@@ -28,7 +35,19 @@ jobs:
           cache: npm
           cache-dependency-path: app/package-lock.json
 
+      - name: Install uv
+        uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
+
+      - name: Verify reviewed Earworm wheel
+        run: shasum -a 256 -c vendor/SHA256SUMS
+
+      - name: Install Python contract and validator
+        run: python3 -m pip install .
+
       - name: Validate portable release
+        env:
+          AKOUO_AKOUSMA_WHEEL: vendor/akousma-0.8.4-py3-none-any.whl
+          AKOUO_AKOUSMA_SHA256: ed3c2c41dbc20804deae9da7fb9d5797c3074deb0e03a899ce47adb650e34539
         run: ./scripts/validate-release.sh
 
       - name: Install app dependencies

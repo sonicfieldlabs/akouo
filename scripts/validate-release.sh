@@ -17,6 +17,7 @@ echo
 # 1. Check skill folder structure
 echo "[1/9] Checking skill folder structure..."
 LISTENING_MODES=(
+  "agent-native-listening"
   "signal-inspection-listening"
   "acoulogical-object-listening"
   "embodied-affective-listening"
@@ -219,7 +220,102 @@ fi
 # 6. Check examples against canonical schema structure
 echo
 echo "[6/9] Checking examples against canonical schema structure..."
-if node --test "$REPO_ROOT/scripts/listening-semantics.test.mjs" && node "$REPO_ROOT/scripts/validate-examples.mjs" "$REPO_ROOT"; then
+# Finding P1-14 / R-A. The Python tests used to run under an ambient
+# interpreter against the source tree, which failed with
+# ModuleNotFoundError: No module named 'akouo_contract' and was read as a
+# packaging defect. It was not: it only showed that the package was not
+# installed where the gate looked.
+#
+# It also could not have shown what this gate is for. The wheel force-includes
+# the manifests, schemas, presets, skills, commands and system guide under
+# akouo_contract/data; a test run against src/ reads those from the repository
+# root and would pass even if the wheel shipped none of them. So the gate now
+# builds the wheel, installs it into a throwaway environment, and runs the tests
+# against the installed package — which is the only thing a release actually
+# hands anyone.
+run_python_contract_tests() {
+  local venv wheel
+  if [ ! -f "${AKOUO_AKOUSMA_WHEEL:-}" ] || [ -z "${AKOUO_AKOUSMA_SHA256:-}" ]; then
+    echo "  FAIL: set AKOUO_AKOUSMA_WHEEL and AKOUO_AKOUSMA_SHA256 to the reviewed Earworm wheel."
+    echo "        Installed record-workflow tests are required, not optional skips."
+    return 1
+  fi
+  if [ "$(shasum -a 256 "$AKOUO_AKOUSMA_WHEEL" | cut -d ' ' -f 1)" != "$AKOUO_AKOUSMA_SHA256" ]; then
+    echo "  FAIL: Earworm wheel hash does not match the supplied identity"
+    return 1
+  fi
+  venv="$(mktemp -d)"
+  trap 'rm -rf "$venv"' RETURN
+
+  if command -v uv >/dev/null 2>&1; then
+    uv build --wheel --out-dir "$venv/dist" "$REPO_ROOT" >/dev/null 2>&1 || {
+      echo "  FAIL: the wheel did not build"
+      return 1
+    }
+    wheel="$(find "$venv/dist" -name '*.whl' -print -quit)"
+    [ -n "$wheel" ] || { echo "  FAIL: no wheel was produced"; return 1; }
+    uv venv --python "${AKOUO_TEST_PYTHON:-3.12}" "$venv/env" >/dev/null 2>&1 || return 1
+    # pytest travels with the test environment, not with the package. It is
+    # needed because four test modules are written in pytest style; under the
+    # previously documented `unittest discover` those seventeen functions were
+    # collected and never called. pytest collects unittest.TestCase classes too,
+    # so one runner runs all of them.
+    VIRTUAL_ENV="$venv/env" uv pip install --quiet "$wheel" "$AKOUO_AKOUSMA_WHEEL" pytest >/dev/null 2>&1 || {
+      echo "  FAIL: the built wheel did not install"
+      return 1
+    }
+    # Prove the tests will import the *installed* package rather than src/.
+    # Running from the repository root is fine — src/ is not on sys.path there —
+    # but "fine" is not evidence, so the location is asserted.
+    PYTHONPATH= "$venv/env/bin/python" - <<PYWHERE || return 1
+import akouo_contract, akousma, sys
+if "site-packages" not in (akousma.__file__ or ""):
+    sys.exit("FAIL: Earworm is not installed from the candidate wheel")
+where = akouo_contract.__file__ or ""
+if "site-packages" not in where:
+    print(f"  FAIL: akouo_contract resolved to {where}, not the installed wheel")
+    sys.exit(1)
+print(f"  OK: akouo_contract imports from the installed wheel")
+PYWHERE
+    ( cd "$REPO_ROOT" && PYTHONPATH= "$venv/env/bin/python" -m pytest tests -q -p no:cacheprovider --junitxml="$venv/results.xml" ) || return 1
+    "$venv/env/bin/python" - "$venv/results.xml" <<'PYRESULT' || return 1
+import sys
+import xml.etree.ElementTree as ET
+root = ET.parse(sys.argv[1]).getroot()
+cases = list(root.iter("testcase"))
+if not cases or list(root.iter("skipped")):
+    sys.exit("FAIL: installed-package gate collected no cases or skipped required tests")
+print(f"  OK: {len(cases)} installed-package cases, no skips")
+PYRESULT
+    # The data is the reason this package exists; prove the wheel carries it.
+    "$venv/env/bin/python" - <<'PYCHECK' || return 1
+import importlib.resources as resources
+import sys
+
+required = [
+    "akouo.manifest.json",
+    "agent-routes.manifest.json",
+    "SYSTEM_GUIDE.md",
+]
+data = resources.files("akouo_contract") / "data"
+missing = [name for name in required if not (data / name).is_file()]
+for folder in ("schemas", "presets", "skills", "commands", "companions"):
+    if not (data / folder).is_dir():
+        missing.append(folder + "/")
+if missing:
+    print("  FAIL: the installed wheel is missing bundled data: " + ", ".join(missing))
+    sys.exit(1)
+skills = sum(1 for entry in (data / "skills").iterdir() if entry.is_dir())
+print(f"  OK: installed wheel carries its manifests, schemas and {skills} skills")
+PYCHECK
+    return 0
+  fi
+
+  echo "  FAIL: uv is required to verify the installed wheel; no source-only fallback."
+  return 1
+}
+
+if node --test "$REPO_ROOT/scripts/listening-semantics.test.mjs" && node "$REPO_ROOT/scripts/validate-examples.mjs" "$REPO_ROOT" && run_python_contract_tests; then
   echo "  OK: Examples match canonical structure and semantic references"
 else
   ERRORS=$((ERRORS + 1))
@@ -248,7 +344,7 @@ PATTERNS=(
 
 FOUND=0
 for pattern in "${PATTERNS[@]}"; do
-  matches=$(grep -riE "$pattern" --include='*.md' --include='*.json' --include='*.ts' --include='*.tsx' --include='*.sh' --exclude='validate-release.sh' "$REPO_ROOT" | grep -v node_modules | grep -v '.git/' || true)
+  matches=$(grep -riE "$pattern" --include='*.md' --include='*.json' --include='*.ts' --include='*.tsx' --include='*.sh' --exclude='validate-release.sh' "$REPO_ROOT" | grep -v node_modules | grep -v '/.venv/' | grep -v '.git/' || true)
   if [ -n "$matches" ]; then
     echo "  ERROR: Potential personal data or secret pattern matched: $pattern"
     echo "$matches" | head -n 3 | sed 's/^/    /'

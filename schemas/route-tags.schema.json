@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/route-tags.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "vocabulary",
+    "relation",
+    "registers",
+    "scales",
+    "source_modality",
+    "access_declaration_ref",
+    "declared_by",
+    "basis_refs"
+  ],
+  "properties": {
+    "contract": {
+      "const": "akouo/companions/v0.1"
+    },
+    "vocabulary": {
+      "const": "masa/0.2.0"
+    },
+    "relation": {
+      "$ref": "https://akouo.dev/schemas/agent-route-request.schema.json#/properties/relation"
+    },
+    "registers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*(:[a-z][a-z0-9_-]*)?$"
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "scales": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*(:[a-z][a-z0-9_-]*)?$"
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "source_modality": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "value",
+            "evidence_refs"
+          ],
+          "properties": {
+            "status": {
+              "const": "known"
+            },
+            "value": {
+              "enum": [
+                "acoustic",
+                "non_acoustic",
+                "mixed"
+              ]
+            },
+            "evidence_refs": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "reason"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "unknown",
+                "withheld",
+                "unavailable",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ]
+    },
+    "access_declaration_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "declared_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "basis_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    }
+  }
+}

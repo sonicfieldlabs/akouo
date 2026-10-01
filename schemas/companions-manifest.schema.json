@@ -1,0 +1,499 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/companions-manifest.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "status",
+    "assets",
+    "ears",
+    "tag_modes"
+  ],
+  "properties": {
+    "contract": {
+      "const": "akouo/companions/v0.1"
+    },
+    "status": {
+      "const": "unreleased"
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^companions/[A-Za-z/-]+[.]md$"
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "ears": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "radio",
+        "room",
+        "beyond_band",
+        "sky",
+        "sent_sound"
+      ],
+      "properties": {
+        "radio": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "presets",
+            "relation_of",
+            "profiles",
+            "leading_modes"
+          ],
+          "properties": {
+            "presets": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 0
+            },
+            "relation_of": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "representation",
+                  "record",
+                  "observation"
+                ]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "agent",
+                  "second_report",
+                  "beyond"
+                ]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "leading_modes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 0
+            }
+          }
+        },
+        "room": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "presets",
+            "relation_of",
+            "profiles",
+            "leading_modes"
+          ],
+          "properties": {
+            "presets": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 0
+            },
+            "relation_of": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "representation",
+                  "record",
+                  "observation"
+                ]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "agent",
+                  "second_report",
+                  "beyond"
+                ]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "leading_modes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 0
+            }
+          }
+        },
+        "beyond_band": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "presets",
+            "relation_of",
+            "profiles",
+            "leading_modes"
+          ],
+          "properties": {
+            "presets": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 0
+            },
+            "relation_of": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "representation",
+                  "record",
+                  "observation"
+                ]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "agent",
+                  "second_report",
+                  "beyond"
+                ]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "leading_modes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 0
+            }
+          }
+        },
+        "sky": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "presets",
+            "relation_of",
+            "profiles",
+            "leading_modes"
+          ],
+          "properties": {
+            "presets": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 0
+            },
+            "relation_of": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "representation",
+                  "record",
+                  "observation"
+                ]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "agent",
+                  "second_report",
+                  "beyond"
+                ]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "leading_modes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 0
+            }
+          }
+        },
+        "sent_sound": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "presets",
+            "relation_of",
+            "profiles",
+            "leading_modes"
+          ],
+          "properties": {
+            "presets": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 0
+            },
+            "relation_of": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "representation",
+                  "record",
+                  "observation"
+                ]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "agent",
+                  "second_report",
+                  "beyond"
+                ]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "leading_modes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 0
+            }
+          }
+        }
+      }
+    },
+    "tag_modes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "registers",
+        "scales"
+      ],
+      "properties": {
+        "registers": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "physical-event",
+            "perceptual-acoulogical",
+            "compositional-transformational",
+            "digital-technical",
+            "ecological-territorial",
+            "historical-political",
+            "cosmological-speculative"
+          ],
+          "properties": {
+            "physical-event": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "perceptual-acoulogical": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "compositional-transformational": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "digital-technical": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "ecological-territorial": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "historical-political": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "cosmological-speculative": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            }
+          }
+        },
+        "scales": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "microtemporal",
+            "spectral-stratal",
+            "object-event",
+            "meso-form",
+            "environmental",
+            "corpus-lineage",
+            "infrastructural",
+            "planetary",
+            "cosmic"
+          ],
+          "properties": {
+            "microtemporal": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "spectral-stratal": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "object-event": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "meso-form": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "environmental": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "corpus-lineage": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "infrastructural": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "planetary": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "cosmic": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

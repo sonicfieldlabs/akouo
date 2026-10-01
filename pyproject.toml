@@ -1,9 +1,10 @@
 [project]
 name = "akouo-contract"
-version = "0.9.2"
+version = "0.10.1"
 description = "Packaged AKOÚŌ listening skills, routes, presets, and JSON contracts."
 readme = "README.md"
 requires-python = ">=3.10"
+dependencies = ["jsonschema>=4.22", "referencing>=0.35"]
 license = { text = "MIT" }
 authors = [{ name = "Sonic Field Labs" }]
 
@@ -15,9 +16,15 @@ build-backend = "hatchling.build"
 packages = ["src/akouo_contract"]
 
 [tool.hatch.build.targets.wheel.force-include]
+"agent-routes.manifest.json" = "akouo_contract/data/agent-routes.manifest.json"
 "akouo.manifest.json" = "akouo_contract/data/akouo.manifest.json"
 "schemas" = "akouo_contract/data/schemas"
 "presets" = "akouo_contract/data/presets"
 "skills" = "akouo_contract/data/skills"
 "commands" = "akouo_contract/data/commands"
+"companions" = "akouo_contract/data/companions"
 "SYSTEM_GUIDE.md" = "akouo_contract/data/SYSTEM_GUIDE.md"
+
+# Explicit source inputs exclude local reports, plans and operator state.
+[tool.hatch.build.targets.sdist]
+include = ["src/akouo_contract", "pyproject.toml", "README.md", "LICENSE", "agent-routes.manifest.json", "akouo.manifest.json", "schemas", "presets", "skills", "commands", "companions", "SYSTEM_GUIDE.md"]

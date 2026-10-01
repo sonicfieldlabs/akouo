@@ -52,8 +52,16 @@
     },
     "recommended_next_mode": {
       "oneOf": [
-        { "$ref": "#/$defs/listening_mode" },
-        { "type": "string", "enum": ["none", "undetermined"] }
+        {
+          "$ref": "#/$defs/listening_mode"
+        },
+        {
+          "type": "string",
+          "enum": [
+            "none",
+            "undetermined"
+          ]
+        }
       ]
     },
     "akouo_version": {
@@ -87,12 +95,16 @@
     },
     "listening_passes": {
       "type": "array",
-      "items": { "$ref": "listening-pass.schema.json" },
+      "items": {
+        "$ref": "listening-pass.schema.json"
+      },
       "description": "Several attributable listenings at several moments; an empty array is valid for pre-listening refusal."
     },
     "route_decisions": {
       "type": "array",
-      "items": { "$ref": "route-decision.schema.json" },
+      "items": {
+        "$ref": "route-decision.schema.json"
+      },
       "description": "Accountable gate decisions, including coded silence."
     },
     "ensemble": {
@@ -117,7 +129,10 @@
         "model_output",
         "mixed",
         "unknown",
-        "other"
+        "other",
+        "spectral_bundle",
+        "observation_series",
+        "simulated_field"
       ]
     },
     "listening_mode": {
@@ -138,7 +153,8 @@
         "material-event-listening",
         "memory-lineage-listening",
         "sovereign-listening",
-        "corpus-listening"
+        "corpus-listening",
+        "agent-native-listening"
       ]
     },
     "text_list": {
@@ -161,12 +177,24 @@
         "computational"
       ],
       "properties": {
-        "technical": { "$ref": "#/$defs/text_list" },
-        "cultural": { "$ref": "#/$defs/text_list" },
-        "spatial": { "$ref": "#/$defs/text_list" },
-        "bodily": { "$ref": "#/$defs/text_list" },
-        "archival": { "$ref": "#/$defs/text_list" },
-        "computational": { "$ref": "#/$defs/text_list" }
+        "technical": {
+          "$ref": "#/$defs/text_list"
+        },
+        "cultural": {
+          "$ref": "#/$defs/text_list"
+        },
+        "spatial": {
+          "$ref": "#/$defs/text_list"
+        },
+        "bodily": {
+          "$ref": "#/$defs/text_list"
+        },
+        "archival": {
+          "$ref": "#/$defs/text_list"
+        },
+        "computational": {
+          "$ref": "#/$defs/text_list"
+        }
       }
     },
     "risks": {
@@ -181,18 +209,33 @@
         "aesthetic_overstatement"
       ],
       "properties": {
-        "hallucination": { "$ref": "#/$defs/text_list" },
-        "over_identification": { "$ref": "#/$defs/text_list" },
-        "cultural_flattening": { "$ref": "#/$defs/text_list" },
-        "forensic_overreach": { "$ref": "#/$defs/text_list" },
-        "source_confusion": { "$ref": "#/$defs/text_list" },
-        "aesthetic_overstatement": { "$ref": "#/$defs/text_list" }
+        "hallucination": {
+          "$ref": "#/$defs/text_list"
+        },
+        "over_identification": {
+          "$ref": "#/$defs/text_list"
+        },
+        "cultural_flattening": {
+          "$ref": "#/$defs/text_list"
+        },
+        "forensic_overreach": {
+          "$ref": "#/$defs/text_list"
+        },
+        "source_confusion": {
+          "$ref": "#/$defs/text_list"
+        },
+        "aesthetic_overstatement": {
+          "$ref": "#/$defs/text_list"
+        }
       }
     },
     "apparatus": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["substrate", "known_blind_spots"],
+      "required": [
+        "substrate",
+        "known_blind_spots"
+      ],
       "properties": {
         "substrate": {
           "type": "string",
@@ -218,15 +261,24 @@
           "description": "Model identifiers involved, when models were used."
         },
         "sample_rate_hz": {
-          "type": ["number", "null"],
+          "type": [
+            "number",
+            "null"
+          ],
           "description": "Sample rate the listening substrate actually received, when known."
         },
         "channels": {
-          "type": ["number", "null"],
+          "type": [
+            "number",
+            "null"
+          ],
           "description": "Channel count the listening substrate actually received, when known."
         },
         "bandwidth_limit_hz": {
-          "type": ["number", "null"],
+          "type": [
+            "number",
+            "null"
+          ],
           "description": "Upper frequency bound the substrate can register, when known. Claims above this bound belong in undetermined."
         },
         "known_blind_spots": {
@@ -242,11 +294,24 @@
     "listener": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["human", "agent", "hybrid", "community", "institution", "sensor", "habitat", "other_animal", "ensemble", "other"]
+          "enum": [
+            "human",
+            "agent",
+            "hybrid",
+            "community",
+            "institution",
+            "sensor",
+            "habitat",
+            "other_animal",
+            "ensemble",
+            "other"
+          ]
         },
         "process": {
           "type": "string",
@@ -259,7 +324,10 @@
       "additionalProperties": false,
       "properties": {
         "akousma_id": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "description": "Identifier of the stored sound-memory record this listening belongs to or updates, when a store is in use."
         },
         "akousmata_refs": {
@@ -267,7 +335,10 @@
           "description": "Identifiers of stored records consulted or compared during this listening."
         },
         "lineage_note": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "description": "Short note on how this sound relates to its lineage (derived from, variant of, response to, recurrence of)."
         }
       }
@@ -275,21 +346,32 @@
     "covenant_ref": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id"],
+      "required": [
+        "id"
+      ],
       "properties": {
         "id": {
           "type": "string",
           "description": "The covenant's stable slug, optionally versioned: 'river-covenant/2'."
         },
         "name": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "description": "The covenant's human name."
         },
         "version": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "sha256": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "description": "SHA-256 of the covenant's source text: identity without content."
         },
         "withheld": {
@@ -303,11 +385,17 @@
                 "description": "The covenant rule (verb or original line) under which material was withheld."
               },
               "subject": {
-                "type": ["string", "null"],
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "What was withheld, named at category level only (transcript, speech, location, …) — never described in content."
               },
               "count": {
-                "type": ["integer", "null"],
+                "type": [
+                  "integer",
+                  "null"
+                ],
                 "minimum": 0
               }
             }
@@ -315,7 +403,10 @@
           "description": "Honest absence: what this hearing declined to analyze, reveal, or retain, attributed to the rule that asked for it. Withheld material is counted and categorized, never characterized."
         },
         "commitments": {
-          "type": ["integer", "null"],
+          "type": [
+            "integer",
+            "null"
+          ],
           "minimum": 0,
           "description": "How many non-executable commitments the covenant carries; their text stays with the covenant, not with every output."
         }
