@@ -4,14 +4,15 @@
     {
       "distribution": "akousma",
       "version": "0.8.4",
+      "wheel": "vendor/akousma-0.8.4-py3-none-any.whl",
       "sha256": "ed3c2c41dbc20804deae9da7fb9d5797c3074deb0e03a899ce47adb650e34539",
       "source_repository": "earworm",
-      "base_commit": "c130fa61423517a0cc2ca8071124537978fad825",
-      "build_state": "Uncommitted sanitized candidate; inherited public base is not complete source identity.",
+      "base_commit": "c35bf9f6ad021d4aae7944840389ed6b64c6c844",
+      "build_state": "Versioned release candidate built from the recorded source inputs; registry publication remains separate.",
       "source_changes_sha256": "158d72d414f0c8c335d670c395c14dd47f6ba7b86258ac799c23a2c2eaaeab2e",
-      "source_changes_basis": "SHA256 of compact sorted JSON mapping explicit source-distribution inputs to file SHA256; excludes generated PKG-INFO.",
+      "source_changes_basis": "SHA256 of compact sorted JSON mapping explicit source-distribution input paths to file SHA256; excludes generated PKG-INFO.",
       "published": false,
-      "wheel": "vendor/akousma-0.8.4-py3-none-any.whl"
+      "builder": "hatchling==1.32.4"
     }
   ]
 }
