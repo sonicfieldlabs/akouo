@@ -1,6 +1,6 @@
 [project]
 name = "akouo-contract"
-version = "0.10.0"
+version = "0.10.1"
 description = "Packaged AKOÚŌ listening skills, routes, presets, and JSON contracts."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -24,3 +24,7 @@ packages = ["src/akouo_contract"]
 "commands" = "akouo_contract/data/commands"
 "companions" = "akouo_contract/data/companions"
 "SYSTEM_GUIDE.md" = "akouo_contract/data/SYSTEM_GUIDE.md"
+
+# Explicit source inputs exclude local reports, plans and operator state.
+[tool.hatch.build.targets.sdist]
+include = ["src/akouo_contract", "pyproject.toml", "README.md", "LICENSE", "agent-routes.manifest.json", "akouo.manifest.json", "schemas", "presets", "skills", "commands", "companions", "SYSTEM_GUIDE.md"]

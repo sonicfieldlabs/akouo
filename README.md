@@ -16,7 +16,7 @@ Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current s
 
 The `akouo-contract` Python distribution packages this repository's canonical
 skills, commands, presets, schemas, and manifest for Oída and other local
-agent hosts. The Phase 1 source targets package `0.10.0` and the
+agent hosts. The local source candidate targets package `0.10.1` and the
 `akouo/v0.10` contract; the latest public package remains `0.9.2` until a
 separate release. No skill fork is created inside a host application.
 
@@ -41,13 +41,15 @@ separate release. No skill fork is created inside a host application.
 
 AKOÚŌ is the shared listening contract across the stack. The v0.10 source contains 17 listening modes, 19 skills, and 19 commands.
 
+The following primary owner package versions are unpublished local candidates.
+
 | Project | Current integration |
 | --- | --- |
-| [OÍDA](https://github.com/sonicfieldlabs/oida) `0.9.2` | Its current release loads `akouo/v0.9`; adoption of the v0.10 aperture and agent-native contracts is Phase 2 work. |
-| [Earworm](https://github.com/sonicfieldlabs/earworm) `0.6.1` | Persists addressable auditums and pre-capture decisions as `akousma/v1.5` records, including revision and forgetting receipts. |
-| [Akousmata](https://github.com/sonicfieldlabs/akousmata) `0.6.1` | Validates and navigates those records while keeping plural listeners distinct and requiring influence before declaring an ear swarm. |
+| [OÍDA](https://github.com/sonicfieldlabs/oida) `0.11.2` | Loads the packaged `akouo/v0.10` aperture and agent-native contracts. |
+| [Earworm](https://github.com/sonicfieldlabs/earworm), `akousma 0.8.4` | Persists addressable auditums, revisions and forgetting receipts with explicit 1.6/1.7/1.8 record admission. |
+| [Akousmata](https://github.com/sonicfieldlabs/akousmata) `0.8.3` | Validates and navigates those records while keeping plural listeners distinct and requiring influence before declaring an ear swarm. |
 | [Algophony](https://github.com/sonicfieldlabs/algophony) `0.5.2` | Uses the listening contract for generation supervision, evaluation, and research workflows. |
-| [GERM](https://github.com/sonicfieldlabs/germ) `0.3.3` | Connects cultivation sessions to OÍDA and Akousmata for listening and lineage-aware workflows. |
+| [GERM](https://github.com/sonicfieldlabs/germ) `0.6.2` | Connects cultivation sessions to OÍDA and Akousmata for listening and lineage-aware workflows. |
 | [ORAM](https://github.com/sonicfieldlabs/oram) `0.4.1` | ORAM audio can be passed to any AKOÚŌ host; ORAM does not embed the contract directly. |
 
 ## Core Idea

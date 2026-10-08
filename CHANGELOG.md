@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Cached immutable installed schema validators and their offline reference
+  registry; explicit schema directories remain live for development. Unknown
+  contract names now raise a descriptive ValueError.
+- The Python contract package is 0.10.1 (`akouo/v0.10`); the independent router
+  app remains 0.9.2. Protocol identifiers are unchanged.
+
 - Added an optional offline Earworm scenario-matrix runner using installed
   contracts, with retained-source, output-identity and spectral/category checks.
 
@@ -31,8 +37,8 @@
 - Added offline Python schema validation and report-local attribution checks,
   packaged-schema tests, and release-validation coverage. Machine reports cannot
   emit a `heard` category or grant action authority through this contract.
-- Kept `akouo/v0.9` and the current modes unchanged; host routing is a subsequent
-  integration.
+- The initial agent-report addition retained the then-current `akouo/v0.9`
+  modes; the later local 0.10 contract work is recorded below.
 
 ## v0.9.2 — Human and agent listening conformance
 

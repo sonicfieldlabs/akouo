@@ -3,14 +3,14 @@
   "packages": [
     {
       "distribution": "akousma",
-      "version": "0.8.3",
-      "wheel": "vendor/akousma-0.8.3-py3-none-any.whl",
-      "sha256": "cd1349b6cb15ead974416e626d19555ef79f3482df24441dd53156fa479f07f0",
+      "version": "0.8.4",
+      "wheel": "vendor/akousma-0.8.4-py3-none-any.whl",
+      "sha256": "ed3c2c41dbc20804deae9da7fb9d5797c3074deb0e03a899ce47adb650e34539",
       "source_repository": "earworm",
-      "base_commit": "a653276bc3314e65f9fe0eb7bfa2f2c1532aabd8",
-      "build_state": "Unpublished phase 1 local candidate; source changes are not represented by base_commit alone.",
-      "source_changes_sha256": "2a8103d792b7615626f02c73ddb76377e06294d85fac1a7a45fac1013063fd17",
-      "source_changes_basis": "SHA256 of compact sorted JSON mapping package-input source paths to file SHA256; tracked and untracked nonignored inputs, no dependency trees",
+      "base_commit": "809438ad078f7bfb8434d10e3a658ea8b9df5d5f",
+      "build_state": "Uncommitted local Phase 4 candidate; base_commit is not the complete source identity.",
+      "source_changes_sha256": "4851b24cbcb82a6abc7fdaca362730bb7f3976d6341db5eeb957a9b8e9d966b0",
+      "source_changes_basis": "SHA256 of compact sorted JSON mapping explicit source-distribution input paths to file SHA256; excludes generated PKG-INFO.",
       "published": false
     }
   ]
