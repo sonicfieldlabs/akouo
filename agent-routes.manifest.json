@@ -1,0 +1,56 @@
+{
+  "contract": "akouo/agent-route/v0.1",
+  "status": "unreleased",
+  "profiles": {
+    "agent": {
+      "command": "/agent",
+      "relation_of": [
+        "representation",
+        "record",
+        "observation"
+      ],
+      "chain": [
+        "agent-native-listening",
+        "signal-inspection-listening",
+        "transductive-media-listening"
+      ],
+      "required_contracts": [
+        "akouo/agent-route/v0.1",
+        "akouo/agent-report/v0.1",
+        "earworm/listening-access/v1"
+      ]
+    },
+    "second_report": {
+      "command": "/second-report",
+      "relation_of": [
+        "record"
+      ],
+      "chain": [
+        "memory-lineage-listening",
+        "forensic-archival-listening"
+      ],
+      "required_contracts": [
+        "akouo/agent-route/v0.1",
+        "akouo/agent-report/v0.1",
+        "earworm/listening-access/v1"
+      ]
+    },
+    "beyond": {
+      "command": "/beyond",
+      "relation_of": [
+        "representation"
+      ],
+      "chain": [
+        "agent-native-listening",
+        "signal-inspection-listening",
+        "transductive-media-listening"
+      ],
+      "required_contracts": [
+        "akouo/agent-route/v0.1",
+        "akouo/agent-report/v0.1",
+        "earworm/listening-access/v1",
+        "akouo/extended-spectrum-request/v0.1"
+      ]
+    }
+  }
+}

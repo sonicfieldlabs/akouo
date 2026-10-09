@@ -1,8 +1,8 @@
 """Installed access to the canonical AKOÚŌ contract and skill library.
 
-v0.9.2 resolves participants, passes, and influences while reserving heard
+v0.10 adds canonical native evidence and claim-specific aperture admission, reserving heard
 claims for attributable human reports.
-Contract: ``akouo/v0.9``."""
+Contract: ``akouo/v0.10``."""
 from __future__ import annotations
 
 import json
@@ -11,8 +11,8 @@ from importlib.resources import files  # nosemgrep
 from pathlib import Path
 from typing import Any
 
-__version__ = "0.9.2"
-CONTRACT_VERSION = "0.9"
+__version__ = "0.10.1"
+CONTRACT_VERSION = "0.10"
 CONTRACT = f"akouo/v{CONTRACT_VERSION}"
 
 

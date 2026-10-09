@@ -10,6 +10,7 @@ coverage/
 *.tsbuildinfo
 
 # Local environment and secrets
+.venv/
 .env
 .env.*
 !.env.example
@@ -53,3 +54,25 @@ temp/
 exports/
 reports/
 __pycache__/
+
+# Private local output; maintained fixtures remain in their source directories
+/audits/
+/local-plans/
+/reports/
+/screenshots/
+/receipts/
+/recordings/
+/captures/
+/output/
+/runtime/
+/settings.json
+/*.sqlite
+/*.sqlite-*
+/*.sqlite3
+/*.sqlite3-*
+/*.db
+/docs/audits/
+
+# Python verification cache
+.pytest_cache/
+*.py[cod]

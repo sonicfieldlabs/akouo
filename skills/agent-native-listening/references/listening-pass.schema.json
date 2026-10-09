@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/listening-pass.schema.json",
+  "title": "AKOÚŌ Listening Pass",
+  "description": "One attributable listening at one moment. Several passes remain separate and can declare how an earlier pass reoriented a later one.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "listener_id", "route", "started_at", "moment", "source_refs", "claim_refs", "decision_refs", "influenced_by"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "listener_id": { "type": "string", "minLength": 1 },
+    "route": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
+    "started_at": { "type": "string", "minLength": 1 },
+    "completed_at": { "type": ["string", "null"] },
+    "moment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relation", "scales"],
+      "properties": {
+        "relation": { "type": "string", "enum": ["live", "past_capture", "relisten", "archive", "seasonal", "prospective", "unknown"] },
+        "scales": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["sample", "frame", "gesture", "event", "scene", "session", "archive", "lineage", "infrastructural", "planetary", "unknown"] },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "time_range": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["start_s", "end_s"],
+          "properties": {
+            "start_s": { "type": "number", "minimum": 0 },
+            "end_s": { "type": "number", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "source_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "claim_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "decision_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "influenced_by": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["pass_id", "effect"],
+        "properties": {
+          "pass_id": { "type": "string", "minLength": 1 },
+          "effect": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "revision_of": { "type": ["string", "null"] },
+    "reorientation": { "type": ["string", "null"] }
+  }
+}

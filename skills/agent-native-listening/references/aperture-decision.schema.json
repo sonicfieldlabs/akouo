@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/aperture-decision.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract": {
+      "const": "akouo/aperture-decision/v1"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "route_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "representation_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claim_status": {
+      "const": "undetermined"
+    },
+    "outcome": {
+      "enum": [
+        "permitted",
+        "refused"
+      ]
+    },
+    "bands": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "band_hz": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": 0
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "support": {
+            "enum": [
+              "supported",
+              "unsupported",
+              "undetermined"
+            ]
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "band_hz",
+          "support",
+          "reasons"
+        ]
+      }
+    }
+  },
+  "required": [
+    "contract",
+    "request_id",
+    "route_ref",
+    "subject_ref",
+    "representation_ref",
+    "claim_status",
+    "outcome",
+    "bands"
+  ]
+}

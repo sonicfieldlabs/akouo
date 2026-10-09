@@ -1,0 +1,58 @@
+{
+  "contract": "earworm/listening-access/v1",
+  "declaration_id": "access:synthetic-wideband",
+  "subject_ref": "asset:synthetic-01",
+  "capture": {
+    "status": "known",
+    "apparatus_ref": "sensor:fixture",
+    "supported_band_hz": {
+      "lower": 20,
+      "upper": 40000
+    },
+    "evidence_refs": [
+      "calibration:fixture"
+    ]
+  },
+  "sampled_representation": {
+    "status": "known",
+    "representation_ref": "repr:96k",
+    "sample_rate_hz": 96000,
+    "retained_band_hz": {
+      "lower": 0,
+      "upper": 40000
+    },
+    "evidence_refs": [
+      "receipt:synthetic-source"
+    ],
+    "channels": 1
+  },
+  "model_input": {
+    "status": "known",
+    "model_ref": "model:fixture",
+    "representation_ref": "repr:16k",
+    "sample_rate_hz": 16000,
+    "effective_band_hz": {
+      "lower": 0,
+      "upper": 7500
+    },
+    "window_s": {
+      "start": 0,
+      "end": 10
+    },
+    "preprocessing_refs": [
+      "receipt:filtered-resample"
+    ],
+    "evidence_refs": [
+      "model-card:fixture",
+      "receipt:filtered-resample"
+    ],
+    "channels": 1,
+    "blind_spots": []
+  },
+  "human_access": [
+    {
+      "status": "unknown",
+      "reason": "No human access declaration supplied."
+    }
+  ]
+}

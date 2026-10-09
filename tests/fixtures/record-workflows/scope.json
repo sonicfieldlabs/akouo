@@ -1,0 +1,272 @@
+[
+  {
+    "akousma_id": "ak_legacy_appeal",
+    "schema_version": "1.6.0",
+    "created_at": "2026-08-11T15:00:00Z",
+    "subject": "night insects heard from an open window",
+    "provenance": {
+      "source_type": "unknown",
+      "origin": "live-input",
+      "originating_app": "akousmata",
+      "created_at": "2026-08-11T15:00:00Z"
+    },
+    "listening": {
+      "human.note": {
+        "contract": "akouo/v0.9",
+        "created_at": "2026-08-11T15:00:00Z",
+        "summary": "A sparse pulse above a continuous insect bed.",
+        "payload": {
+          "notes": "The foreground pulse appeared three times; its source remained undetermined."
+        }
+      }
+    },
+    "lineage": {
+      "parent_akousma_ids": []
+    },
+    "tags": [
+      "human-listening"
+    ],
+    "annotations": {},
+    "extensions": {
+      "earworm_listening_access": {
+        "contract": "earworm/listening-access/v1",
+        "declaration_id": "access:context",
+        "subject_ref": "event:context",
+        "capture": {
+          "status": "unknown",
+          "reason": "No apparatus evidence supplied for this synthetic fixture."
+        },
+        "sampled_representation": {
+          "status": "unknown",
+          "reason": "No apparatus evidence supplied for this synthetic fixture."
+        },
+        "model_input": {
+          "status": "unknown",
+          "reason": "No apparatus evidence supplied for this synthetic fixture."
+        },
+        "human_access": [
+          {
+            "status": "unknown",
+            "reason": "No apparatus evidence supplied for this synthetic fixture."
+          }
+        ]
+      },
+      "earworm_listening_context": {
+        "contract": "earworm/listening-context/v1",
+        "contexts": [
+          {
+            "listening_ref": "lst_human_001",
+            "subject_ref": "event:context",
+            "recipients": [
+              {
+                "id": "reviewer:fixture",
+                "type": "agent"
+              }
+            ],
+            "access_declaration_ref": "access:context",
+            "report": {
+              "ref": "report:context",
+              "contract": "akouo/v0.9",
+              "format": "structured",
+              "readability": {
+                "status": "known",
+                "value": "machine_readable"
+              },
+              "human_rendering": {
+                "status": "none",
+                "reason": "No human rendering was created."
+              }
+            },
+            "renderings": []
+          }
+        ],
+        "claims": [
+          {
+            "claim_ref": "claim:context",
+            "listening_ref": "lst_human_001",
+            "validity": {
+              "status": "expires",
+              "issued_at": "2026-09-06T12:00:00Z",
+              "expires_at": "2026-09-06T13:00:00Z"
+            },
+            "retention": {
+              "status": "review_after",
+              "review_after": "2026-09-08T13:00:00Z",
+              "policy_ref": "policy:fixture"
+            }
+          }
+        ]
+      },
+      "oida": {
+        "appeal": {
+          "status": "approved",
+          "unexpected": [
+            "preserve",
+            0,
+            null
+          ],
+          "private_note": "Synthetic legacy payload, not a real appeal."
+        },
+        "other_field": {
+          "preserve": true
+        }
+      }
+    },
+    "summary": "Synthetic context conformance record.",
+    "auditum": {
+      "contract": "earworm/auditum/v2",
+      "listenings": [
+        {
+          "listening_id": "lst_human_001",
+          "listener_id": "local-listener-001",
+          "listener_type": "human",
+          "created_at": "2026-08-11T15:00:00Z",
+          "report_namespace": "human.note",
+          "contract": "akouo/v0.9",
+          "note": "Embodied listening; no recording was retained."
+        }
+      ],
+      "disagreements": [],
+      "honest_absences": [
+        {
+          "id": "absence_raw_audio_001",
+          "kind": "not_retained",
+          "subject": "raw audio",
+          "attributed_to": "local retention boundary",
+          "listening_id": "lst_human_001",
+          "count": 1,
+          "note": "The account preserves the hearing, not a fabricated asset."
+        }
+      ],
+      "actions": [
+        {
+          "action_id": "action:context",
+          "proposal": "Review the synthetic report.",
+          "status": "proposed",
+          "authority": {
+            "mode": "observe_only",
+            "scopes": [],
+            "requires_confirmation": true,
+            "expires_at": "2026-09-07T12:00:00Z"
+          }
+        }
+      ],
+      "route_decisions": [
+        {
+          "decision_id": "decision_memory_001",
+          "gate": "memory",
+          "outcome": "proceed",
+          "subject": "human listening account",
+          "reason": "The listener explicitly chose to retain their account.",
+          "decided_at": "2026-08-11T15:01:00Z",
+          "listening_id": "lst_human_001",
+          "producer_contract": "akouo/v0.9",
+          "authority": {
+            "mode": "request",
+            "actor": "local-listener-001",
+            "granted_by": "local-listener-001",
+            "requires_confirmation": true,
+            "reversible": true
+          }
+        }
+      ]
+    }
+  },
+  {
+    "akousma_id": "ak_generation",
+    "schema_version": "1.6.0",
+    "created_at": "2026-09-06T10:00:00Z",
+    "subject": "Synthetic contract fixture",
+    "provenance": {
+      "source_type": "generated",
+      "origin": "generated",
+      "originating_app": "contract-fixture",
+      "created_at": "2026-09-06T10:00:00Z"
+    },
+    "lineage": {
+      "parent_akousma_ids": [],
+      "relations": []
+    },
+    "extensions": {},
+    "audio": {
+      "asset_id": "asset:generated-fixture"
+    }
+  },
+  {
+    "akousma_id": "ak_subsequent_listening",
+    "schema_version": "1.6.0",
+    "created_at": "2026-09-06T11:00:00Z",
+    "subject": "Synthetic listening to a generated fixture",
+    "provenance": {
+      "source_type": "unknown",
+      "origin": "live-input",
+      "originating_app": "akousmata",
+      "created_at": "2026-09-06T11:00:00Z"
+    },
+    "listening": {
+      "human.note": {
+        "contract": "akouo/v0.9",
+        "created_at": "2026-08-11T15:00:00Z",
+        "summary": "A sparse pulse above a continuous insect bed.",
+        "payload": {
+          "notes": "The foreground pulse appeared three times; its source remained undetermined."
+        }
+      }
+    },
+    "lineage": {
+      "parent_akousma_ids": []
+    },
+    "tags": [
+      "human-listening"
+    ],
+    "annotations": {},
+    "extensions": {},
+    "summary": "A human listening account without retained raw audio.",
+    "auditum": {
+      "contract": "earworm/auditum/v2",
+      "listenings": [
+        {
+          "listening_id": "lst_human_001",
+          "listener_id": "local-listener-001",
+          "listener_type": "human",
+          "created_at": "2026-09-06T11:00:00Z",
+          "report_namespace": "human.note",
+          "contract": "akouo/v0.9",
+          "note": "Embodied listening; no recording was retained."
+        }
+      ],
+      "disagreements": [],
+      "honest_absences": [
+        {
+          "id": "absence_raw_audio_001",
+          "kind": "not_retained",
+          "subject": "raw audio",
+          "attributed_to": "local retention boundary",
+          "listening_id": "lst_human_001",
+          "count": 1,
+          "note": "The account preserves the hearing, not a fabricated asset."
+        }
+      ],
+      "actions": [],
+      "route_decisions": [
+        {
+          "decision_id": "decision_memory_001",
+          "gate": "memory",
+          "outcome": "proceed",
+          "subject": "human listening account",
+          "reason": "The listener explicitly chose to retain their account.",
+          "decided_at": "2026-09-06T11:00:00Z",
+          "listening_id": "lst_human_001",
+          "producer_contract": "akouo/v0.9",
+          "authority": {
+            "mode": "request",
+            "actor": "local-listener-001",
+            "granted_by": "local-listener-001",
+            "requires_confirmation": true,
+            "reversible": true
+          }
+        }
+      ]
+    }
+  }
+]

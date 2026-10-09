@@ -1,0 +1,140 @@
+{
+  "contract": "akouo/companions/v0.1",
+  "status": "unreleased",
+  "assets": [
+    "companions/skills/second-report/SKILL.md",
+    "companions/commands/second-report.md"
+  ],
+  "ears": {
+    "radio": {
+      "presets": [
+        "music"
+      ],
+      "relation_of": [
+        "representation"
+      ],
+      "profiles": [
+        "agent"
+      ],
+      "leading_modes": []
+    },
+    "room": {
+      "presets": [
+        "field"
+      ],
+      "relation_of": [
+        "representation"
+      ],
+      "profiles": [
+        "agent"
+      ],
+      "leading_modes": [
+        "material-event-listening"
+      ]
+    },
+    "beyond_band": {
+      "presets": [
+        "beyond-band",
+        "extended-spectrum"
+      ],
+      "relation_of": [
+        "representation"
+      ],
+      "profiles": [
+        "beyond"
+      ],
+      "leading_modes": [
+        "agent-native-listening"
+      ]
+    },
+    "sky": {
+      "presets": [],
+      "relation_of": [
+        "observation"
+      ],
+      "profiles": [
+        "agent"
+      ],
+      "leading_modes": []
+    },
+    "sent_sound": {
+      "presets": [],
+      "relation_of": [
+        "representation",
+        "record",
+        "observation"
+      ],
+      "profiles": [
+        "agent",
+        "second_report",
+        "beyond"
+      ],
+      "leading_modes": []
+    }
+  },
+  "tag_modes": {
+    "registers": {
+      "physical-event": [
+        "material-event-listening",
+        "signal-inspection-listening"
+      ],
+      "perceptual-acoulogical": [
+        "acoulogical-object-listening"
+      ],
+      "compositional-transformational": [
+        "musical-aesthetic-listening",
+        "transductive-media-listening"
+      ],
+      "digital-technical": [
+        "agent-native-listening",
+        "signal-inspection-listening",
+        "transductive-media-listening"
+      ],
+      "ecological-territorial": [
+        "ecological-posthuman-listening"
+      ],
+      "historical-political": [
+        "forensic-archival-listening",
+        "critical-political-listening"
+      ],
+      "cosmological-speculative": [
+        "transductive-media-listening",
+        "critical-political-listening"
+      ]
+    },
+    "scales": {
+      "microtemporal": [
+        "signal-inspection-listening"
+      ],
+      "spectral-stratal": [
+        "signal-inspection-listening"
+      ],
+      "object-event": [
+        "material-event-listening",
+        "acoulogical-object-listening"
+      ],
+      "meso-form": [
+        "musical-aesthetic-listening"
+      ],
+      "environmental": [
+        "ecological-posthuman-listening"
+      ],
+      "corpus-lineage": [
+        "memory-lineage-listening",
+        "corpus-listening"
+      ],
+      "infrastructural": [
+        "transductive-media-listening",
+        "critical-political-listening"
+      ],
+      "planetary": [
+        "ecological-posthuman-listening",
+        "critical-political-listening"
+      ],
+      "cosmic": [
+        "transductive-media-listening",
+        "critical-political-listening"
+      ]
+    }
+  }
+}

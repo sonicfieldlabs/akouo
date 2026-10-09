@@ -1,0 +1,60 @@
+{
+  "akousma_id": "ak_decision",
+  "schema_version": "1.7.0",
+  "created_at": "2026-09-06T12:00:00Z",
+  "subject": "Synthetic contract fixture",
+  "provenance": {
+    "source_type": "unknown",
+    "origin": "unknown",
+    "originating_app": "contract-fixture",
+    "created_at": "2026-09-06T12:00:00Z"
+  },
+  "lineage": {
+    "parent_akousma_ids": [],
+    "relations": [
+      {
+        "contract": "earworm/relations/v1",
+        "relation_id": "rel:decision",
+        "type": "decision_on",
+        "target_akousma_id": "ak_generation",
+        "declared_by": "actor:fixture",
+        "evidence_refs": [
+          "evidence:fixture"
+        ],
+        "epistemic_status": "undetermined",
+        "review": {
+          "status": "unreviewed"
+        }
+      }
+    ]
+  },
+  "extensions": {
+    "earworm_generation_decision": {
+      "contract": "earworm/generation-decision/v1",
+      "decision_id": "decision:fixture",
+      "actor_ref": "actor:fixture",
+      "generation_ref": "ak_generation",
+      "subsequent_listenings": [
+        {
+          "record_ref": "ak_subsequent_listening",
+          "listening_ref": "lst_human_001"
+        }
+      ],
+      "outcome": "variation",
+      "reason": "Propose a synthetic variation for a later authorized worker.",
+      "policy_ref": "policy:fixture",
+      "policy_revision": "fixture-v1",
+      "input_refs": [
+        "ak_generation",
+        "ak_subsequent_listening"
+      ],
+      "next_job": {
+        "status": "planned",
+        "job_ref": "job:fixture"
+      },
+      "stop_outcome": "continue",
+      "execution": "not_requested"
+    }
+  },
+  "record_kind": "generation_decision"
+}

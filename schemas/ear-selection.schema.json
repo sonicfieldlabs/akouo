@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/ear-selection.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "ear",
+    "retention"
+  ],
+  "properties": {
+    "contract": {
+      "const": "akouo/companions/v0.1"
+    },
+    "ear": {
+      "enum": [
+        "radio",
+        "room",
+        "beyond_band",
+        "sky",
+        "sent_sound"
+      ]
+    },
+    "selected_preset": {
+      "type": "string",
+      "minLength": 1
+    },
+    "retention": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode"
+          ],
+          "properties": {
+            "mode": {
+              "const": "none"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "policy_ref"
+          ],
+          "properties": {
+            "mode": {
+              "const": "policy"
+            },
+            "policy_ref": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ]
+    },
+    "human_account_ref": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

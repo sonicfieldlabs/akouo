@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/extended-spectrum-request.schema.json",
+  "title": "Extended spectrum gate request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "request_id",
+    "subject_ref",
+    "band_hz",
+    "window_s",
+    "channel_count",
+    "claim_kind",
+    "resolved_refs",
+    "preprocessing"
+  ],
+  "properties": {
+    "contract": {
+      "const": "akouo/extended-spectrum-request/v0.1"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "band_hz": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lower",
+        "upper"
+      ],
+      "properties": {
+        "lower": {
+          "type": "number",
+          "minimum": 0
+        },
+        "upper": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "window_s": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "start",
+        "end"
+      ],
+      "properties": {
+        "start": {
+          "type": "number",
+          "minimum": 0
+        },
+        "end": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "channel_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "claim_kind": {
+      "enum": [
+        "spectral_measurement",
+        "native_understanding",
+        "embodied_hearing",
+        "spl"
+      ]
+    },
+    "resolved_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "preprocessing": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "receipt_ref",
+          "kind",
+          "input_ref",
+          "output_ref"
+        ],
+        "properties": {
+          "receipt_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "identity",
+              "filtered_resample",
+              "channel_mix",
+              "window_crop",
+              "playback_rate_change",
+              "frequency_translation",
+              "pitch_shift",
+              "unknown"
+            ]
+          },
+          "input_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "output_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "contract": "akouo/agent-report/v0.1",
+  "report_id": "report:synthetic-01",
+  "listener_id": "agent:fixture",
+  "listening_pass_id": "pass:agent",
+  "subject_ref": "asset:synthetic-01",
+  "input_refs": [
+    "repr:16k"
+  ],
+  "apparatus_ref": "access:synthetic-wideband",
+  "report_format": "structured",
+  "recipients": [
+    {
+      "id": "agent:reviewer",
+      "type": "agent"
+    }
+  ],
+  "report_of_refs": [],
+  "features": [
+    {
+      "feature_id": "feature:duration",
+      "namespace": "fixture.audio",
+      "name": "window-duration",
+      "category": "measured",
+      "claim": {
+        "claim_id": "claim:duration",
+        "statement": "The declared model input window spans ten seconds.",
+        "confidence": "high",
+        "source": "metadata",
+        "evidence_refs": [
+          "receipt:filtered-resample"
+        ],
+        "listening_pass_id": "pass:agent",
+        "actionability": "informational"
+      },
+      "value": {
+        "status": "known",
+        "value": 10,
+        "unit": "s"
+      }
+    }
+  ],
+  "limitations": [
+    "Synthetic conformance data; no physical capture or embodied listening is demonstrated."
+  ]
+}

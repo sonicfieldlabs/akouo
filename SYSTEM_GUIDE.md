@@ -60,7 +60,7 @@ Use this process for most sound tasks:
 
 Every command begins with a router planning pass, even when its mode chain is fixed. The planning pass supplies the evidence inventory, risks, and forbidden assumptions that the command's synthesis must respect, so `akouo-router` appears in `skills_called` for every command output except `/one-sound-many-ears`, whose comparative contract runs all modes unconditionally.
 
-## Machine-Readable Contract (v0.9)
+## Machine-Readable Contract (v0.10)
 
 Host apps should consume AKOÚŌ as data:
 
@@ -345,3 +345,59 @@ a person at the apparatus.
 - Always keep mode outputs distinct before synthesis.
 - Declare the apparatus when known; derive forbidden claims from the declared substrate (mono input forbids stereo claims, model-only perception forbids `measured`).
 - Never invent stored records, identifiers, or lineage; absence from a store is not novelty in the world.
+
+## Unreleased apparatus-aware spectral gate
+
+The Python contract package now provides an opt-in `extended_spectrum_decision`
+helper under `akouo_contract.spectral_gate`. A host supplies Earworm's negotiated
+`listening_access_errors` validator and a validated
+`akouo/extended-spectrum-request/v0.1` request. This checks declared physical,
+sampled, and effective model bands, window, channels, blind spots, and the resolved
+preprocessing chain. A sample rate alone cannot establish physical sensing.
+Missing support produces an explicit abstention; supported declarations only
+permit an observe-only measurement attempt, with the claim still undetermined.
+
+This helper does not add a route or invoke a model. Native beyond-band
+understanding, calibrated SPL, and embodied hearing need distinct evidence and
+are not established by an agent recipient or an unavailable human rendering.
+Host wiring is a subsequent integration. See `docs/extended-spectrum.md` in the
+source repository for the request, reference-resolution boundary, and example.
+
+
+### Opt-in agent route planning
+
+`akouo/agent-route/v0.1` composes existing modes through the separate packaged
+`agent-routes.manifest.json`. Python hosts can plan `/agent`, `/second-report` and
+`/beyond` after explicit contract negotiation. The receiving pass, retained source,
+epistemic category and permitted action remain separate. Overrides only narrow
+permissions. `/beyond` consumes the existing spectral gate; a permitted attempt
+is not a measured result. Reference-app command dispatch remains unchanged.
+
+`akouo/masa-observation-report/v0.1` preserves a complete validated MASA 0.2.0
+source while producing a separate attribution report. Receiving claims do not
+inherit measured status, freshness or source authority. The host supplies MASA's
+validator and authorized local reference scope. See `docs/agent-routes.md`.
+
+### Opt-in companion skills and ears
+
+`akouo/companions/v0.1` bundles `companions/manifest.json`, the second-report
+skill and command contract, scale/register mappings and per-ear selections.
+Use `akouo_contract.companions` to plan over existing skills, presets and gates.
+Source report pointers resolve against host-validated records, whose snapshots
+remain separate from the fresh receiving pass and report.
+
+Scale/register annotations guide selection only. Source modality, subject kind,
+physical capture, sampled representation, model input and human access retain
+their separate evidence. For observation tags reuse the host's Earworm
+`matter_context_errors`; unknown namespaced labels remain unmapped.
+
+Radio selects music and signal skills; room leads with material/event and keeps
+any human account separately attributed; beyond-band requires the spectral gate;
+sky accepts an observation; sent sound requires an explicit existing preset and
+retention selection. Host policy validation is required for a retention policy.
+None grants model dispatch, DSP, storage or transmission authority. See
+`docs/companion-routes.md` in the source repository for inputs and host callbacks.
+
+## Agent-native admission in v0.10
+
+The canonical mode is `agent-native-listening`. Route tags `agent-native`, `spectral_bundle`, `observation_series` and `simulated_field` select an opt-in DSP request, never additional authority. See [contracts](docs/agent-native-and-apertures.md). Existing modes and extended-spectrum requests remain valid.

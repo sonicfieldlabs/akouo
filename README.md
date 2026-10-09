@@ -12,15 +12,19 @@ AKOÚŌ does not pretend that agents hear like humans. It gives them accountable
 
 This public release contains the portable AKOÚŌ skills, router, command definitions, schemas, and a local-first reference app for running the listening workflows.
 
-Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current release contract: `v0.9`.
+Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current source contract: `v0.10`.
 
 The `akouo-contract` Python distribution packages this repository's canonical
 skills, commands, presets, schemas, and manifest for Oída and other local
-agent hosts. Package release `0.9.2` implements the `akouo/v0.9` data
-contract; no skill fork is created inside a host application.
+agent hosts. The local source candidate targets package `0.10.1` and the
+`akouo/v0.10` contract; the latest public package remains `0.9.2` until a
+separate release. No skill fork is created inside a host application.
 
 ## Version Status
 
+- `v0.10` adopts `agent-native-listening`, host-validated native-evidence and
+  claim-specific aperture contracts, while preserving the existing
+  extended-spectrum evaluator.
 - Package `0.9.2` adds executable cross-reference checks and a canonical
   linked human/agent example without changing the `v0.9` contract.
 - `v0.9` distinguishes listening provenance from source provenance, represents several attributable listenings across time, makes route decisions and coded silence addressable, defines plural listening versus an ear swarm, and adds `corpus-listening` with `/corpus`.
@@ -35,15 +39,17 @@ contract; no skill fork is created inside a host application.
 
 ## Sonic Field Labs Stack
 
-AKOÚŌ is the shared listening contract across the stack. The current release contains 16 listening modes, 18 skills, and 19 commands.
+AKOÚŌ is the shared listening contract across the stack. The v0.10 source contains 17 listening modes, 19 skills, and 19 commands.
+
+The following primary owner package versions are unpublished local candidates.
 
 | Project | Current integration |
 | --- | --- |
-| [OÍDA](https://github.com/sonicfieldlabs/oida) `0.9.2` | Loads the `akouo/v0.9` contract and returns addressable route decisions, passes, provenance, and optional local capabilities. |
-| [Earworm](https://github.com/sonicfieldlabs/earworm) `0.6.1` | Persists addressable auditums and pre-capture decisions as `akousma/v1.5` records, including revision and forgetting receipts. |
-| [Akousmata](https://github.com/sonicfieldlabs/akousmata) `0.6.1` | Validates and navigates those records while keeping plural listeners distinct and requiring influence before declaring an ear swarm. |
+| [OÍDA](https://github.com/sonicfieldlabs/oida) `0.11.2` | Loads the packaged `akouo/v0.10` aperture and agent-native contracts. |
+| [Earworm](https://github.com/sonicfieldlabs/earworm), `akousma 0.8.4` | Persists addressable auditums, revisions and forgetting receipts with explicit 1.6/1.7/1.8 record admission. |
+| [Akousmata](https://github.com/sonicfieldlabs/akousmata) `0.8.3` | Validates and navigates those records while keeping plural listeners distinct and requiring influence before declaring an ear swarm. |
 | [Algophony](https://github.com/sonicfieldlabs/algophony) `0.5.2` | Uses the listening contract for generation supervision, evaluation, and research workflows. |
-| [GERM](https://github.com/sonicfieldlabs/germ) `0.3.3` | Connects cultivation sessions to OÍDA and Akousmata for listening and lineage-aware workflows. |
+| [GERM](https://github.com/sonicfieldlabs/germ) `0.6.2` | Connects cultivation sessions to OÍDA and Akousmata for listening and lineage-aware workflows. |
 | [ORAM](https://github.com/sonicfieldlabs/oram) `0.4.1` | ORAM audio can be passed to any AKOÚŌ host; ORAM does not embed the contract directly. |
 
 ## Core Idea
@@ -392,6 +398,16 @@ Conceptual refinements should be incorporated as public-facing skill language on
 
 Run `./scripts/validate-release.sh` before publishing to verify skill structure, schema consistency, hygiene, and absence of generated build artifacts.
 
+Its installed-package gate needs Earworm's record library as a reviewed wheel. Without one, the
+gate fails rather than skipping, because those record-workflow tests are required. To set it up:
+- Build the wheel from an Earworm checkout: `uv build --wheel packages/py-akousma`.
+- Set `AKOUO_AKOUSMA_WHEEL` to the wheel's path and `AKOUO_AKOUSMA_SHA256` to its SHA-256.
+- Optionally, set `AKOUO_TEST_PYTHON` to choose the Python of the throwaway test environment
+  (3.12 by default).
+
+The personal-data scan reads the working tree. It skips `node_modules/` and a local `.venv/`, such
+as the one `uv run` creates, and `.gitignore` excludes both.
+
 For a full operational guide covering commands, workflows, benchmark ingestion, and data structure, see [`SYSTEM_GUIDE.md`](SYSTEM_GUIDE.md).
 
 The store-connected flow now exists as its own app: the **akousmata listening
@@ -403,3 +419,33 @@ listenings (listener `human`, contract `akousmata/v0.1`).
 ## License
 
 MIT License. See `LICENSE`.
+
+Unreleased: the opt-in [structured agent report](docs/agent-report.md) adds a
+versioned feature envelope and offline Python validation without changing the
+current listening modes or `akouo/v0.9` outputs.
+
+The unreleased [extended-spectrum gate](docs/extended-spectrum.md) checks declared
+apparatus and model-input support before a host attempts spectral measurement.
+
+The opt-in [agent routes and MASA observation adapter](docs/agent-routes.md) compose
+existing modes for structured agent reports, second reports and `/beyond`, with
+narrowing-only permissions and retained source attribution. Python hosts can use
+the packaged companion manifest and validators; reference-app command dispatch
+remains integration work. Earworm now supplies opt-in observation-account storage
+bindings and matter-context labels for host adoption.
+
+The [companion routes](docs/companion-routes.md) package a second-report skill,
+explicit MASA scale/register selection, and radio, room, beyond-band, sky and
+sent-sound presets. They reuse existing skills and permission gates while keeping
+source modality, represented subject and access evidence separate. Runtime
+dispatch, DSP and retention enforcement remain host responsibilities.
+
+Retained ensembles and bounded local scheduling are documented in
+[orchestration](docs/orchestration.md) (unreleased Python integration).
+
+[`/orchestrate`](commands/orchestrate.md) declares ears, passes and direction through
+`akouo_contract.direction.plan_orchestration` without inferring an influence outcome.
+
+Unreleased [record workflow adapters](docs/record-workflows.md) define bounded
+memory research, speculative generation derivation and subsequent-listening decisions
+with canonical Earworm validation and explicit owner integration boundaries.
