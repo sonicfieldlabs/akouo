@@ -277,7 +277,7 @@ if "site-packages" not in where:
     sys.exit(1)
 print(f"  OK: akouo_contract imports from the installed wheel")
 PYWHERE
-    ( cd "$REPO_ROOT" && PYTHONPATH= "$venv/env/bin/python" -m pytest tests -q --junitxml="$venv/results.xml" ) || return 1
+    ( cd "$REPO_ROOT" && PYTHONPATH= "$venv/env/bin/python" -m pytest tests -q -p no:cacheprovider --junitxml="$venv/results.xml" ) || return 1
     "$venv/env/bin/python" "$REPO_ROOT/scripts/generate-listening-presets.py" --check || return 1
     "$venv/env/bin/python" - "$venv/results.xml" <<'PYRESULT' || return 1
 import sys

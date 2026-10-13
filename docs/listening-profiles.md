@@ -1,6 +1,6 @@
 # LISTENING.md authoring and operation
 
-Opt-in source candidate: `akouo-contract` 0.12.0. The global `akouo/v0.10`
+Opt-in source: `akouo-contract` 0.12.1. The global `akouo/v0.10`
 contract, legacy schemas, listening modes and existing presets retain their
 identities. This lifecycle is a new interface. Installing its examples does
 not adopt a document or change a host's listening identity.

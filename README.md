@@ -16,9 +16,8 @@ Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current s
 
 The `akouo-contract` Python distribution packages this repository's canonical
 skills, commands, presets, schemas, and manifest for Oída and other local
-agent hosts. The local source candidate targets package `0.12.0`, with the
-existing `akouo/v0.10` default and an opt-in representation route. Publication
-is separate from this source candidate. No skill fork is created inside a host
+agent hosts. The latest public package is `0.10.1`. This source targets package `0.12.1`,
+with the existing `akouo/v0.10` default and an opt-in representation route. No skill fork is created inside a host
 application.
 
 ## Primary representations and textual sounding

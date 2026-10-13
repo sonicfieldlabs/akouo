@@ -13,13 +13,20 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Check out repository
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
@@ -39,8 +46,8 @@ jobs:
 
       - name: Validate portable release
         env:
-          AKOUO_AKOUSMA_WHEEL: vendor/akousma-0.8.3-py3-none-any.whl
-          AKOUO_AKOUSMA_SHA256: cd1349b6cb15ead974416e626d19555ef79f3482df24441dd53156fa479f07f0
+          AKOUO_AKOUSMA_WHEEL: vendor/akousma-0.10.1-py3-none-any.whl
+          AKOUO_AKOUSMA_SHA256: f3aa570f572f6e95c9ef31be3bda4bd3412998ccc58dbda688aa20057bf053e3
         run: ./scripts/validate-release.sh
 
       - name: Install app dependencies
