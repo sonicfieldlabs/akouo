@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/listening-lifecycle-event.schema.json",
+  "title": "listening-lifecycle-event",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract": {
+      "const": "akouo/listening-lifecycle-event/v1"
+    },
+    "event_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "adopt",
+        "replace",
+        "revoke"
+      ]
+    },
+    "adoption_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "replacement_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "actor_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authority_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recorded_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "effective_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generation": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "contract",
+    "event_ref",
+    "action",
+    "adoption_ref",
+    "actor_ref",
+    "authority_ref",
+    "recorded_at",
+    "effective_at",
+    "generation"
+  ]
+}

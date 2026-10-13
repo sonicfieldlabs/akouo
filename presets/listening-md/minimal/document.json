@@ -1,0 +1,18 @@
+{
+  "contract": "akouo/listening-document/v1",
+  "document_id": "akouo:preset:minimal",
+  "revision_ref": "akouo:preset:minimal:v1",
+  "representation_ref": "akouo:preset:minimal:v1:representation",
+  "artifact_ref": "presets/listening-md/minimal/LISTENING.md",
+  "sha256": "56d573eb236c9c477a65d912f6e4148ff3a17e90e6d2aacfa846f2d28e022f11",
+  "byte_count": 431,
+  "encoding": "utf-8",
+  "authors": [
+    "sonicfieldlabs",
+    "agent:codex"
+  ],
+  "authored_at": "2026-10-12T22:01:09.390067+00:00",
+  "purpose": "orientation",
+  "lineage": [],
+  "terms_ref": "license:MIT"
+}

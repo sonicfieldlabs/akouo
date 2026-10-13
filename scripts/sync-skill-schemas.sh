@@ -20,10 +20,22 @@ for skill_dir in "$repo_root"/skills/*; do
   done
 done
 
+for skill in agent-native-listening transductive-media-listening sovereign-listening; do
+  for name in listening-common listening-document listening-profile listening-capabilities listening-adoption listening-lifecycle-event listening-application listening-state; do
+    cp "$repo_root/schemas/$name.schema.json" "$repo_root/skills/$skill/references/$name.schema.json"
+  done
+done
+
 cp "$repo_root/schemas/router-output.schema.json" "$repo_root/skills/akouo-router/references/router-output.schema.json"
 cp "$repo_root/schemas/routing-plan.schema.json" "$repo_root/skills/akouo-router/references/routing-plan.schema.json"
 cp "$repo_root/schemas/reference-map.schema.json" "$repo_root/skills/reference-layer/references/reference-map.schema.json"
 cp "$repo_root/schemas/covenant.schema.json" "$repo_root/skills/sovereign-listening/references/covenant.schema.json"
 for name in agent-native-evidence aperture-request aperture-decision; do
   cp "$repo_root/schemas/$name.schema.json" "$repo_root/skills/agent-native-listening/references/$name.schema.json"
+done
+
+for skill in agent-native-listening transductive-media-listening sovereign-listening; do
+  for name in representation-capabilities representation-route-request representation-route-result representation-output; do
+    cp "$repo_root/schemas/$name.schema.json" "$repo_root/skills/$skill/references/$name.schema.json"
+  done
 done

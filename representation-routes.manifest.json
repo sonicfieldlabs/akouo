@@ -1,0 +1,14 @@
+{
+  "contract": "akouo/representation-route/v1",
+  "status": "opt_in_unreleased",
+  "required_contracts": [
+    "akouo/representation-route/v1",
+    "akouo/representation-output/v1",
+    "earworm/representation/v1",
+    "earworm/representation-access/v1",
+    "earworm/representation-output/v1",
+    "earworm/representation-record/v1",
+    "earworm/akousma/v1.9"
+  ],
+  "description": "Plan primary text or other represented material and choose an account or completed work. Consumers must separately admit bytes, binding references and operation scope. No model or policy is invoked by this library."
+}

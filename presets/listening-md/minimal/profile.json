@@ -1,0 +1,24 @@
+{
+  "contract": "akouo/listening-profile/v1",
+  "revision_ref": "akouo:preset:minimal:v1",
+  "document_sha256": "56d573eb236c9c477a65d912f6e4148ff3a17e90e6d2aacfa846f2d28e022f11",
+  "document_record_sha256": "44c1c096b52b56fa5ae6d52886f8629e4d63f5d4c6c1bca3492678259d8f1a0a",
+  "parser": "akouo/listening-controls/v1",
+  "controls": [],
+  "commitment_spans": [
+    {
+      "commitment_ref": "akouo:preset:minimal:v1:commitment:0",
+      "range": {
+        "start": 0,
+        "end": 431
+      },
+      "sha256": "56d573eb236c9c477a65d912f6e4148ff3a17e90e6d2aacfa846f2d28e022f11"
+    }
+  ],
+  "context": {
+    "policy": "full",
+    "max_bytes": 65536
+  },
+  "profile_ref": "sha256:5c41b7770f415ff8920fa00d6611466d8def816759f5f1cb3d526fff197ebc4e",
+  "sha256": "5c41b7770f415ff8920fa00d6611466d8def816759f5f1cb3d526fff197ebc4e"
+}

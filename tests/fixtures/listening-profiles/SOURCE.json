@@ -1,0 +1,7 @@
+{
+  "source": "Earworm canonical synthetic representation conformance fixture",
+  "file": "earworm-instruction.json",
+  "upstream_path": "tests/contracts/representations/instruction.json",
+  "sha256": "da62e7d01a463afd3cbdb6a14a1b5796e9e9ffbe7a4c61785bb0e45750d97048",
+  "use": "Binding conformance only; no actual owner adoption or model execution."
+}

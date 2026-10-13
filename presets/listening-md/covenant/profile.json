@@ -1,0 +1,65 @@
+{
+  "contract": "akouo/listening-profile/v1",
+  "revision_ref": "akouo:preset:covenant:v1",
+  "document_sha256": "7febd0aec7adf3ce8c6072516ff00c4f992388ecbedcaada7fa2ac987f52a477",
+  "document_record_sha256": "965ec4d0cd77185661254f29c78d0888fb99e884ff2a3c440740fc33b4224b68",
+  "parser": "akouo/listening-controls/v1",
+  "controls": [
+    {
+      "control_id": "execution-agreement",
+      "gate": "execution",
+      "target": "execution.consent_refs",
+      "operator": "require_refs",
+      "refs": [
+        "illustrative:execution-agreement"
+      ],
+      "required": true
+    },
+    {
+      "control_id": "retention-agreement",
+      "gate": "retention",
+      "target": "retention.consent_refs",
+      "operator": "require_refs",
+      "refs": [
+        "illustrative:retention-agreement"
+      ],
+      "required": true
+    },
+    {
+      "control_id": "disclosure-agreement",
+      "gate": "disclosure",
+      "target": "disclosure.consent_refs",
+      "operator": "require_refs",
+      "refs": [
+        "illustrative:disclosure-agreement"
+      ],
+      "required": true
+    },
+    {
+      "control_id": "bounded-disclosure",
+      "gate": "disclosure",
+      "target": "disclosure.destination",
+      "operator": "deny_values",
+      "values": [
+        "public"
+      ],
+      "required": true
+    }
+  ],
+  "commitment_spans": [
+    {
+      "commitment_ref": "akouo:preset:covenant:v1:commitment:0",
+      "range": {
+        "start": 0,
+        "end": 2688
+      },
+      "sha256": "af4f1469b65b92027f81c3fc5d759320f8a06678f407aba10fe776b679d80468"
+    }
+  ],
+  "context": {
+    "policy": "full",
+    "max_bytes": 65536
+  },
+  "profile_ref": "sha256:021aa93c54440d9f6865aa749278684a815df226422b843e3ad4e93e521024ca",
+  "sha256": "021aa93c54440d9f6865aa749278684a815df226422b843e3ad4e93e521024ca"
+}

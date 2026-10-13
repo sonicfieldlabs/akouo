@@ -1,0 +1,197 @@
+{
+  "contract": "earworm/representation-record/v1",
+  "record_ref": "fixture:record:sound",
+  "operation_ref": "fixture:operation:sound",
+  "representations": [
+    {
+      "contract": "earworm/representation/v1",
+      "representation_id": "fixture:source",
+      "subject_ref": "fixture:subject:fixture:source",
+      "form": "text",
+      "media_type": "text/plain",
+      "encoding": "utf-8",
+      "origin": {
+        "kind": "authored",
+        "domain": "non_acoustic",
+        "source_refs": []
+      },
+      "source_class": "authored_work",
+      "artifact": {
+        "state": "retained",
+        "ref": "fixture:fixture:source",
+        "sha256": "743253a60ed0b8562bbf60a553941ff4988c6827852adb2a2b99484ba630f84e",
+        "byte_count": 42,
+        "inline_text": "hum\n\nhum, again.\nNo sound was played. \u2736\n"
+      },
+      "preservation": {
+        "layout": "preserved",
+        "losses": []
+      },
+      "convention": {
+        "status": "not_applicable"
+      },
+      "time_basis": [
+        {
+          "kind": "sequence",
+          "unit": "unicode_codepoint"
+        }
+      ],
+      "terms": {
+        "status": "declared",
+        "ref": "fixture:terms:repository-license"
+      }
+    },
+    {
+      "contract": "earworm/representation/v1",
+      "representation_id": "fixture:account",
+      "subject_ref": "fixture:subject:fixture:account",
+      "form": "text",
+      "media_type": "text/plain",
+      "encoding": "utf-8",
+      "origin": {
+        "kind": "authored",
+        "domain": "non_acoustic",
+        "source_refs": [
+          "fixture:source"
+        ]
+      },
+      "source_class": "authored_work",
+      "artifact": {
+        "state": "retained",
+        "ref": "fixture:fixture:account",
+        "sha256": "1119974a7d43ae16f2db9bafabe401d2751b83602fb2767dfdef04dfd79ad738",
+        "byte_count": 78,
+        "inline_text": "Contract example: recurrence is described; no acoustic waveform was supplied.\n"
+      },
+      "preservation": {
+        "layout": "preserved",
+        "losses": []
+      },
+      "convention": {
+        "status": "not_applicable"
+      },
+      "time_basis": [
+        {
+          "kind": "sequence",
+          "unit": "unicode_codepoint"
+        }
+      ],
+      "terms": {
+        "status": "declared",
+        "ref": "fixture:terms:repository-license"
+      }
+    },
+    {
+      "contract": "earworm/representation/v1",
+      "representation_id": "fixture:work",
+      "subject_ref": "fixture:subject:fixture:work",
+      "form": "text",
+      "media_type": "text/plain",
+      "encoding": "utf-8",
+      "origin": {
+        "kind": "authored",
+        "domain": "non_acoustic",
+        "source_refs": [
+          "fixture:source",
+          "fixture:account"
+        ]
+      },
+      "source_class": "authored_work",
+      "artifact": {
+        "state": "retained",
+        "ref": "fixture:fixture:work",
+        "sha256": "9c79705dba3e7f29a0700c0e4e8192ece47058d661b1de0aabdcbd5c0ebccc82",
+        "byte_count": 41,
+        "inline_text": "hum\n    hum\n\nlet the next line stay open\n"
+      },
+      "preservation": {
+        "layout": "preserved",
+        "losses": []
+      },
+      "convention": {
+        "status": "not_applicable"
+      },
+      "time_basis": [
+        {
+          "kind": "sequence",
+          "unit": "unicode_codepoint"
+        }
+      ],
+      "terms": {
+        "status": "declared",
+        "ref": "fixture:terms:repository-license"
+      }
+    }
+  ],
+  "accesses": [
+    {
+      "contract": "earworm/representation-access/v1",
+      "access_id": "fixture:access:sound-source",
+      "operation_ref": "fixture:operation:sound",
+      "representation_ref": "fixture:source",
+      "role": "subject",
+      "status": "available",
+      "received_representation_ref": "fixture:source",
+      "coverage": {
+        "kind": "full",
+        "unit": "byte",
+        "ranges": [],
+        "omissions": []
+      }
+    },
+    {
+      "contract": "earworm/representation-access/v1",
+      "access_id": "fixture:access:account",
+      "operation_ref": "fixture:operation:sound",
+      "representation_ref": "fixture:account",
+      "role": "account",
+      "status": "available",
+      "received_representation_ref": "fixture:account",
+      "coverage": {
+        "kind": "full",
+        "unit": "byte",
+        "ranges": [],
+        "omissions": []
+      }
+    }
+  ],
+  "relations": [
+    {
+      "relation_id": "fixture:relation:prior-account",
+      "kind": "account_of",
+      "from_ref": "fixture:account",
+      "to_ref": "fixture:source",
+      "declared_by": "fixture-author"
+    },
+    {
+      "relation_id": "fixture:relation:work",
+      "kind": "response_to",
+      "from_ref": "fixture:work",
+      "to_ref": "fixture:source",
+      "declared_by": "fixture-author"
+    }
+  ],
+  "outputs": [
+    {
+      "contract": "earworm/representation-output/v1",
+      "output_id": "fixture:output:work",
+      "operation_ref": "fixture:operation:sound",
+      "kind": "work",
+      "representation_ref": "fixture:work",
+      "completion": "complete",
+      "authored_by": [
+        "fixture-author"
+      ],
+      "input_access_refs": [
+        "fixture:access:sound-source",
+        "fixture:access:account"
+      ]
+    }
+  ],
+  "binding_refs": [],
+  "outcome": {
+    "status": "completed",
+    "recorded_by": "fixture-author",
+    "reason": "Synthetic contract conformance example; no model or listening runtime was invoked."
+  }
+}

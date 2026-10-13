@@ -1,0 +1,44 @@
+{
+  "contract": "akouo/listening-profile/v1",
+  "revision_ref": "akouo:preset:swarm:v1",
+  "document_sha256": "291af5433d830e787104b9ae1f6cb40f14a3e4f308a7b924ba366599be3808bb",
+  "document_record_sha256": "eebd7041a7d23402d7a6dd209c1e93eeb86a175a2f9c9f1cc25da803e1a54552",
+  "parser": "akouo/listening-controls/v1",
+  "controls": [
+    {
+      "control_id": "declared-participants",
+      "gate": "execution",
+      "target": "execution.participant_refs",
+      "operator": "allow_values",
+      "values": [
+        "illustrative:reader-a",
+        "illustrative:reader-b"
+      ],
+      "required": true
+    },
+    {
+      "control_id": "ending",
+      "gate": "execution",
+      "target": "execution.turn_count",
+      "operator": "max_value",
+      "limit": 12,
+      "required": true
+    }
+  ],
+  "commitment_spans": [
+    {
+      "commitment_ref": "akouo:preset:swarm:v1:commitment:0",
+      "range": {
+        "start": 0,
+        "end": 2518
+      },
+      "sha256": "a662a55d849b186c55ac666d4247d5a278e9b2056d4a972654e8024692161eb7"
+    }
+  ],
+  "context": {
+    "policy": "explicit_selection",
+    "max_bytes": 65536
+  },
+  "profile_ref": "sha256:3bea6ad5756d0dc6f5aea00b620a1c11d8a664749de4aa65ac550a8b3ef5c358",
+  "sha256": "3bea6ad5756d0dc6f5aea00b620a1c11d8a664749de4aa65ac550a8b3ef5c358"
+}

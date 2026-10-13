@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/listening-state.schema.json",
+  "title": "listening-state",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract": {
+      "const": "akouo/listening-state/v1"
+    },
+    "generation": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "adoptions": {
+      "type": "array",
+      "items": {
+        "$ref": "https://akouo.dev/schemas/listening-adoption.schema.json"
+      },
+      "minItems": 0
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "https://akouo.dev/schemas/listening-lifecycle-event.schema.json"
+      },
+      "minItems": 0
+    },
+    "applications": {
+      "type": "array",
+      "items": {
+        "$ref": "https://akouo.dev/schemas/listening-application.schema.json"
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "contract",
+    "generation",
+    "adoptions",
+    "events",
+    "applications"
+  ]
+}

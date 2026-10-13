@@ -1,0 +1,9 @@
+{
+  "contract": "earworm/representation-measurement/v1",
+  "measurement_id": "fixture:measurement:bytes",
+  "representation_ref": "fixture:source",
+  "method_ref": "fixture/utf8-byte-count/v1",
+  "quantity": "byte_count",
+  "value": 42,
+  "unit": "byte"
+}

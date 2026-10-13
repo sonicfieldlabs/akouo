@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/representation-output.schema.json",
+  "title": "Representation output report bound to a retained route",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract": {
+      "const": "akouo/representation-output/v1"
+    },
+    "route_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "operation_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "output_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "heard",
+              "measured",
+              "inferred",
+              "interpreted",
+              "speculative",
+              "undetermined"
+            ]
+          },
+          "representation_ref": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "measurement_ref": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "required": [
+          "claim_id",
+          "category",
+          "representation_ref",
+          "statement",
+          "evidence_refs"
+        ]
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "contract",
+    "route_ref",
+    "operation_ref",
+    "output_ref",
+    "claims"
+  ]
+}

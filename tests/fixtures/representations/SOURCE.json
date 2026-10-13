@@ -1,0 +1,14 @@
+{
+  "source": "earworm/tests/contracts/representations",
+  "status": "synthetic-contract-fixtures-not-runtime-evidence",
+  "sha256": {
+    "return.json": "7e3c781001455ca1c616c56a2ecadab96e9b68e1e85e0e538cd505aa8eedb34f",
+    "work.json": "c45670aa2532a39adcc8b1ab332b373f8edd2708e0104bab23a6f12e2c5e5c68",
+    "account.json": "8abce395616abfafab902cdcc9d8b9de1e2b88e4e4beeb2783c68037deb0cbbf",
+    "read-file.json": "3b249ceb989845c1f5878dbb8997a6280775f74e7080474392bcf82d56fdbe8e",
+    "listen.json": "52a58a0d897631e7fe9c469451a916fde2cc8f20b84235d182425f92dfc45edf",
+    "refused.json": "bd18e4e4a74c7df4a4d30567c0c3e59f63f24e92b2351e48be6d9deaebc0251a",
+    "sound.json": "c340103d4a4e36d15c6e15072219f36836c7393a80451fc691843876e825f701",
+    "partial.json": "3d65bd7caf886d96cce94db8e1b94a61d9826255705dbe86af9af2ab28e422dc"
+  }
+}

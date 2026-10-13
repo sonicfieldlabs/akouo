@@ -16,9 +16,42 @@ Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current s
 
 The `akouo-contract` Python distribution packages this repository's canonical
 skills, commands, presets, schemas, and manifest for Oída and other local
-agent hosts. The local source candidate targets package `0.10.1` and the
-`akouo/v0.10` contract; the latest public package remains `0.9.2` until a
-separate release. No skill fork is created inside a host application.
+agent hosts. The local source candidate targets package `0.12.0`, with the
+existing `akouo/v0.10` default and an opt-in representation route. Publication
+is separate from this source candidate. No skill fork is created inside a host
+application.
+
+## Primary representations and textual sounding
+
+The opt-in `akouo/representation-route/v1` plans a listening from primary text,
+notation, MIDI, data, Morse, glyphs, code, or audio under declared capabilities.
+`akouo/representation-output/v1` binds an account or completed work to that
+route's actual inputs. A textual work can finish in writing and become another
+listening input. The contracts keep material, account, prompt, and work
+addressable as different contributions.
+
+Earworm owns the representation, access, output, and record definitions. The
+host supplies its validator and admits the material's exact bytes, applicable
+bindings, and return references. The representation route plans and checks the
+claim boundary; it invokes no model, adopts no file, and grants no action permission. Existing
+audio contracts keep their current identities. See
+[representation routing](docs/representation-routing.md) for the opt-in API,
+capability negotiation, and the requirements for consumer integration.
+
+## LISTENING.md files and adoption
+
+Five complete canonical examples live under [presets/listening-md](presets/listening-md/README.md).
+Minimal listening, research, phantom acoustics, covenants, and swarms each have
+an exact document revision and parsed profile. The separate
+`akouo_contract.listening_profiles` API records scoped adoption, replacement,
+revocation, and per-gate application through owner-verified authority and facts.
+Draft editing changes no adopted revision. Context delivery identifies the
+complete document and the exact supplied bytes, including explicit omissions.
+
+The opt-in lifecycle remains separate from the existing Oída orientation API
+and legacy Covenant parser. Consumer installation and runtime adapters are
+pending. See [file lifecycle](docs/listening-profiles.md) for the grammar,
+authority boundary, gates, and Earworm binding adapter.
 
 ## Version Status
 

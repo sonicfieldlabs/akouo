@@ -1,0 +1,70 @@
+{
+  "contract": "earworm/representation-record/v1",
+  "record_ref": "fixture:record:read-file",
+  "operation_ref": "fixture:operation:read-file",
+  "representations": [
+    {
+      "contract": "earworm/representation/v1",
+      "representation_id": "fixture:LISTENING.md",
+      "subject_ref": "fixture:subject:fixture:LISTENING.md",
+      "form": "text",
+      "media_type": "text/plain",
+      "encoding": "utf-8",
+      "origin": {
+        "kind": "authored",
+        "domain": "non_acoustic",
+        "source_refs": []
+      },
+      "source_class": "authored_work",
+      "artifact": {
+        "state": "retained",
+        "ref": "fixture:fixture:LISTENING.md",
+        "sha256": "3c1c2963f179c6dbfca25f63abb944a1368c9877e27efc93211ef1552b8954df",
+        "byte_count": 76,
+        "inline_text": "LISTENING.md\nThis file is being read as material. It does not adopt itself.\n"
+      },
+      "preservation": {
+        "layout": "preserved",
+        "losses": []
+      },
+      "convention": {
+        "status": "not_applicable"
+      },
+      "time_basis": [
+        {
+          "kind": "sequence",
+          "unit": "unicode_codepoint"
+        }
+      ],
+      "terms": {
+        "status": "declared",
+        "ref": "fixture:terms:repository-license"
+      }
+    }
+  ],
+  "accesses": [
+    {
+      "contract": "earworm/representation-access/v1",
+      "access_id": "fixture:access:file",
+      "operation_ref": "fixture:operation:read-file",
+      "representation_ref": "fixture:LISTENING.md",
+      "role": "subject",
+      "status": "available",
+      "received_representation_ref": "fixture:LISTENING.md",
+      "coverage": {
+        "kind": "full",
+        "unit": "byte",
+        "ranges": [],
+        "omissions": []
+      }
+    }
+  ],
+  "relations": [],
+  "outputs": [],
+  "binding_refs": [],
+  "outcome": {
+    "status": "pending",
+    "recorded_by": "fixture-author",
+    "reason": "Synthetic contract conformance example; no model or listening runtime was invoked."
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/listening-adoption.schema.json",
+  "title": "listening-adoption",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract": {
+      "const": "akouo/listening-adoption/v1"
+    },
+    "adoption_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "document_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "profile_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profile_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "scope_path": {
+      "$ref": "https://akouo.dev/schemas/listening-common.schema.json#/$defs/scope_path"
+    },
+    "party_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "adopted_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authority_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "effective_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expires_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_adoption_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "required_contracts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "contract",
+    "adoption_ref",
+    "revision_ref",
+    "document_sha256",
+    "profile_ref",
+    "profile_sha256",
+    "scope_path",
+    "party_refs",
+    "adopted_by",
+    "authority_ref",
+    "effective_at",
+    "required_contracts"
+  ]
+}

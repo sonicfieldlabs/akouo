@@ -1,0 +1,295 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/listening-application.schema.json",
+  "title": "listening-application",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract": {
+      "const": "akouo/listening-application/v1"
+    },
+    "application_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operation_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "host_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope_path": {
+      "$ref": "https://akouo.dev/schemas/listening-common.schema.json#/$defs/scope_path"
+    },
+    "gate": {
+      "type": "string",
+      "enum": [
+        "input",
+        "execution",
+        "output",
+        "retention",
+        "disclosure"
+      ]
+    },
+    "at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "actor_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authority_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "adoption_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "profile_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "contexts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "adoption_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "revision_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "document_representation_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "document_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "received_representation_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "received_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "received_byte_count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "coverage": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "full",
+                  "partial"
+                ]
+              },
+              "unit": {
+                "const": "byte"
+              },
+              "ranges": {
+                "type": "array",
+                "items": {
+                  "$ref": "https://akouo.dev/schemas/listening-common.schema.json#/$defs/span"
+                },
+                "minItems": 1
+              },
+              "omitted_ranges": {
+                "type": "array",
+                "items": {
+                  "$ref": "https://akouo.dev/schemas/listening-common.schema.json#/$defs/span"
+                },
+                "minItems": 0
+              }
+            },
+            "required": [
+              "kind",
+              "unit",
+              "ranges",
+              "omitted_ranges"
+            ]
+          },
+          "commitments_received": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "commitments_omitted": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          }
+        },
+        "required": [
+          "adoption_ref",
+          "revision_ref",
+          "document_representation_ref",
+          "document_sha256",
+          "received_representation_ref",
+          "received_sha256",
+          "received_byte_count",
+          "coverage",
+          "commitments_received",
+          "commitments_omitted"
+        ]
+      },
+      "minItems": 0
+    },
+    "control_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "source_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "control_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "gate": {
+            "type": "string",
+            "enum": [
+              "input",
+              "execution",
+              "output",
+              "retention",
+              "disclosure"
+            ]
+          },
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "checked",
+              "denied",
+              "unsupported",
+              "not_checked"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "source_ref",
+          "control_id",
+          "gate",
+          "target",
+          "operator",
+          "required",
+          "status",
+          "evidence_refs",
+          "reason"
+        ]
+      },
+      "minItems": 0
+    },
+    "gate_result": {
+      "type": "string",
+      "enum": [
+        "cleared",
+        "blocked"
+      ]
+    },
+    "context_status": {
+      "type": "string",
+      "enum": [
+        "supplied",
+        "not_supplied"
+      ]
+    },
+    "attestation": {
+      "const": "owner_declared"
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "execution": {
+      "const": "not_executed"
+    },
+    "generation": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "contract",
+    "application_ref",
+    "operation_ref",
+    "host_ref",
+    "scope_path",
+    "gate",
+    "at",
+    "actor_ref",
+    "authority_ref",
+    "adoption_refs",
+    "profile_refs",
+    "contexts",
+    "control_results",
+    "gate_result",
+    "context_status",
+    "attestation",
+    "reasons",
+    "execution",
+    "generation"
+  ]
+}

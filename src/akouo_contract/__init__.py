@@ -11,7 +11,7 @@ from importlib.resources import files  # nosemgrep
 from pathlib import Path
 from typing import Any
 
-__version__ = "0.10.1"
+__version__ = "0.12.0"
 CONTRACT_VERSION = "0.10"
 CONTRACT = f"akouo/v{CONTRACT_VERSION}"
 

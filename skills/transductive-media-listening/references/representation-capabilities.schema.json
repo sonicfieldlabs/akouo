@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/representation-capabilities.schema.json",
+  "title": "Opt-in representation capabilities",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract": {
+      "const": "akouo/representation-capabilities/v1"
+    },
+    "provider_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "input_forms": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "text",
+          "audio",
+          "notation",
+          "midi",
+          "data",
+          "morse",
+          "glyphs",
+          "code",
+          "other"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "output_forms": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "text",
+          "audio",
+          "notation",
+          "midi",
+          "data",
+          "morse",
+          "glyphs",
+          "code",
+          "other"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "conventions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "required": [
+          "id",
+          "revision"
+        ]
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "supported_contracts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "contract",
+    "provider_ref",
+    "input_forms",
+    "output_forms",
+    "conventions",
+    "supported_contracts"
+  ]
+}

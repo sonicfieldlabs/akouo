@@ -1,0 +1,131 @@
+{
+  "contract": "earworm/representation-record/v1",
+  "record_ref": "fixture:record:partial",
+  "operation_ref": "fixture:operation:partial",
+  "representations": [
+    {
+      "contract": "earworm/representation/v1",
+      "representation_id": "fixture:full-file",
+      "subject_ref": "fixture:subject:fixture:full-file",
+      "form": "text",
+      "media_type": "text/plain",
+      "encoding": "utf-8",
+      "origin": {
+        "kind": "authored",
+        "domain": "non_acoustic",
+        "source_refs": []
+      },
+      "source_class": "authored_work",
+      "artifact": {
+        "state": "retained",
+        "ref": "fixture:fixture:full-file",
+        "sha256": "90b3a58b60f059dc630877e98c635318d039e0601ed2e940fc2e65cb3423bb93",
+        "byte_count": 4810,
+        "inline_text": "start\nreading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading end\n"
+      },
+      "preservation": {
+        "layout": "preserved",
+        "losses": []
+      },
+      "convention": {
+        "status": "not_applicable"
+      },
+      "time_basis": [
+        {
+          "kind": "sequence",
+          "unit": "unicode_codepoint"
+        }
+      ],
+      "terms": {
+        "status": "declared",
+        "ref": "fixture:terms:repository-license"
+      }
+    },
+    {
+      "contract": "earworm/representation/v1",
+      "representation_id": "fixture:excerpt",
+      "subject_ref": "fixture:subject:fixture:excerpt",
+      "form": "text",
+      "media_type": "text/plain",
+      "encoding": "utf-8",
+      "origin": {
+        "kind": "transformed",
+        "domain": "non_acoustic",
+        "source_refs": [
+          "fixture:full-file"
+        ]
+      },
+      "source_class": "authored_work",
+      "artifact": {
+        "state": "retained",
+        "ref": "fixture:fixture:excerpt",
+        "sha256": "744708e7e340b94e6d6ebe9f62d1b0b4ad05abd8d35227a8db21a79344ebb599",
+        "byte_count": 1200,
+        "inline_text": "start\nreading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading reading re"
+      },
+      "preservation": {
+        "layout": "transformed",
+        "losses": [
+          "Later source bytes not supplied in this excerpt."
+        ]
+      },
+      "convention": {
+        "status": "not_applicable"
+      },
+      "time_basis": [
+        {
+          "kind": "sequence",
+          "unit": "unicode_codepoint"
+        }
+      ],
+      "terms": {
+        "status": "declared",
+        "ref": "fixture:terms:repository-license"
+      }
+    }
+  ],
+  "accesses": [
+    {
+      "contract": "earworm/representation-access/v1",
+      "access_id": "fixture:access:partial",
+      "operation_ref": "fixture:operation:partial",
+      "representation_ref": "fixture:full-file",
+      "role": "subject",
+      "status": "available",
+      "received_representation_ref": "fixture:excerpt",
+      "coverage": {
+        "kind": "partial",
+        "unit": "byte",
+        "ranges": [
+          {
+            "start": 0,
+            "end": 1200
+          }
+        ],
+        "omissions": [
+          "Remaining source bytes."
+        ]
+      }
+    }
+  ],
+  "relations": [
+    {
+      "relation_id": "fixture:relation:excerpt",
+      "kind": "transformed_from",
+      "from_ref": "fixture:excerpt",
+      "to_ref": "fixture:full-file",
+      "declared_by": "fixture-author",
+      "method_ref": "fixture/byte-slice/v1",
+      "losses": [
+        "Later source bytes not supplied in this excerpt."
+      ]
+    }
+  ],
+  "outputs": [],
+  "binding_refs": [],
+  "outcome": {
+    "status": "pending",
+    "recorded_by": "fixture-author",
+    "reason": "Synthetic contract conformance example; no model or listening runtime was invoked."
+  }
+}

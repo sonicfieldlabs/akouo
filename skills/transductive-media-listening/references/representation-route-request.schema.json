@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/representation-route-request.schema.json",
+  "title": "Primary representation route request",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract": {
+      "const": "akouo/representation-route/v1"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "operation_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "primary_access_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "input_access_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "intent": {
+      "type": "string",
+      "enum": [
+        "listen",
+        "sound",
+        "relisten"
+      ]
+    },
+    "mode": {
+      "$ref": "listening-output.schema.json#/$defs/listening_mode"
+    },
+    "output_kind": {
+      "type": "string",
+      "enum": [
+        "account",
+        "work",
+        "prompt"
+      ]
+    },
+    "output_form": {
+      "type": "string",
+      "enum": [
+        "text",
+        "audio",
+        "notation",
+        "midi",
+        "data",
+        "morse",
+        "glyphs",
+        "code",
+        "other"
+      ]
+    },
+    "requested_categories": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "heard",
+          "measured",
+          "inferred",
+          "interpreted",
+          "speculative",
+          "undetermined"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "measurement_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "supported_contracts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "contract",
+    "request_id",
+    "operation_ref",
+    "primary_access_ref",
+    "input_access_refs",
+    "intent",
+    "mode",
+    "output_kind",
+    "output_form",
+    "requested_categories",
+    "measurement_refs",
+    "supported_contracts"
+  ]
+}
