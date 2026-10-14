@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/listening-capabilities.schema.json",
+  "title": "listening-capabilities",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract": {
+      "const": "akouo/listening-capabilities/v1"
+    },
+    "host_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supported_contracts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "supported_controls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "max_context_bytes": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1048576
+    }
+  },
+  "required": [
+    "contract",
+    "host_ref",
+    "supported_contracts",
+    "supported_controls",
+    "max_context_bytes"
+  ]
+}

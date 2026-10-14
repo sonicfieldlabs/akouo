@@ -278,6 +278,7 @@ if "site-packages" not in where:
 print(f"  OK: akouo_contract imports from the installed wheel")
 PYWHERE
     ( cd "$REPO_ROOT" && PYTHONPATH= "$venv/env/bin/python" -m pytest tests -q -p no:cacheprovider --junitxml="$venv/results.xml" ) || return 1
+    "$venv/env/bin/python" "$REPO_ROOT/scripts/generate-listening-presets.py" --check || return 1
     "$venv/env/bin/python" - "$venv/results.xml" <<'PYRESULT' || return 1
 import sys
 import xml.etree.ElementTree as ET
@@ -295,6 +296,8 @@ import sys
 required = [
     "akouo.manifest.json",
     "agent-routes.manifest.json",
+    "representation-routes.manifest.json",
+    "listening-profiles.manifest.json",
     "SYSTEM_GUIDE.md",
 ]
 data = resources.files("akouo_contract") / "data"

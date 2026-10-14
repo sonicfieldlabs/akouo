@@ -48,8 +48,10 @@ new hardware bandwidth, data access, memory, tool, or emission permission.
 A raw waveform is not compulsory. Supported objects may include physical
 acoustic captures, born-digital signals, simulated sonic fields, sonic control
 graphs, acoustic representations, and environmental observations with declared
-sonic mappings. Text-only material supports planning and interpretation, not
-fabricated signal measurements.
+sonic mappings. A source text can be approached as sonic material in its own
+form. Measurements of an inscription name their method and the exact supplied
+representation. A description of unavailable audio cannot supply acoustic
+measurement evidence.
 
 ## Workflow
 
@@ -166,6 +168,23 @@ The bundled schema validates local evidence structure. The host validator must
 also resolve external references and observer access in its authorized scope;
 reader tolerance is not runtime understanding. Use the mode and contracts from
 `akouo.manifest.json`, and do not fork shared skills inside Oída.
+
+## Opt-in primary representation route
+
+When the host declares `akouo/representation-route/v1`, use the bundled
+`references/representation-route-request.schema.json` and
+`references/representation-capabilities.schema.json`. Earworm's negotiated
+representation record identifies the primary material and actual context.
+Frequency and sample rate apply where the selected representation requires
+them; text, data and notation keep their own conventions and time bases.
+
+The host validates supplied bytes and any instruction bindings before
+execution. AKOÚŌ's route plan remains `execution: not_requested`. A listening
+account uses `references/representation-output.schema.json`, with claims scoped
+to the actual received representation. A completed textual work uses the
+Earworm output kind `work`; acoustic performance is a separately identified
+realization. These opt-in outputs use their explicit contracts. Existing native
+evidence and legacy listening outputs keep their current contracts.
 
 ## Human projection policy
 

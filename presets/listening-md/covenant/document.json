@@ -1,0 +1,18 @@
+{
+  "contract": "akouo/listening-document/v1",
+  "document_id": "akouo:preset:covenant",
+  "revision_ref": "akouo:preset:covenant:v1",
+  "representation_ref": "akouo:preset:covenant:v1:representation",
+  "artifact_ref": "presets/listening-md/covenant/LISTENING.md",
+  "sha256": "7febd0aec7adf3ce8c6072516ff00c4f992388ecbedcaada7fa2ac987f52a477",
+  "byte_count": 3584,
+  "encoding": "utf-8",
+  "authors": [
+    "sonicfieldlabs",
+    "agent:codex"
+  ],
+  "authored_at": "2026-10-12T22:01:09.432834+00:00",
+  "purpose": "covenant",
+  "lineage": [],
+  "terms_ref": "license:MIT"
+}

@@ -1,0 +1,80 @@
+{
+  "contract": "earworm/representation-record/v1",
+  "record_ref": "fixture:record:return",
+  "operation_ref": "fixture:operation:return",
+  "representations": [
+    {
+      "contract": "earworm/representation/v1",
+      "representation_id": "fixture:work",
+      "subject_ref": "fixture:subject:fixture:work",
+      "form": "text",
+      "media_type": "text/plain",
+      "encoding": "utf-8",
+      "origin": {
+        "kind": "authored",
+        "domain": "non_acoustic",
+        "source_refs": [
+          "fixture:source",
+          "fixture:account"
+        ]
+      },
+      "source_class": "authored_work",
+      "artifact": {
+        "state": "retained",
+        "ref": "fixture:fixture:work",
+        "sha256": "9c79705dba3e7f29a0700c0e4e8192ece47058d661b1de0aabdcbd5c0ebccc82",
+        "byte_count": 41,
+        "inline_text": "hum\n    hum\n\nlet the next line stay open\n"
+      },
+      "preservation": {
+        "layout": "preserved",
+        "losses": []
+      },
+      "convention": {
+        "status": "not_applicable"
+      },
+      "time_basis": [
+        {
+          "kind": "sequence",
+          "unit": "unicode_codepoint"
+        }
+      ],
+      "terms": {
+        "status": "declared",
+        "ref": "fixture:terms:repository-license"
+      }
+    }
+  ],
+  "accesses": [
+    {
+      "contract": "earworm/representation-access/v1",
+      "access_id": "fixture:access:return",
+      "operation_ref": "fixture:operation:return",
+      "representation_ref": "fixture:work",
+      "role": "work",
+      "status": "available",
+      "received_representation_ref": "fixture:work",
+      "coverage": {
+        "kind": "full",
+        "unit": "byte",
+        "ranges": [],
+        "omissions": []
+      }
+    }
+  ],
+  "relations": [],
+  "outputs": [],
+  "binding_refs": [],
+  "outcome": {
+    "status": "pending",
+    "recorded_by": "fixture-author",
+    "reason": "Synthetic contract conformance example; no model or listening runtime was invoked."
+  },
+  "return": {
+    "previous_operation_ref": "fixture:operation:sound",
+    "representation_ref": "fixture:work",
+    "kind": "descendant",
+    "context_basis": "independent",
+    "context_access_refs": []
+  }
+}

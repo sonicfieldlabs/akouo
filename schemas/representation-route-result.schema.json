@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/representation-route-result.schema.json",
+  "title": "Representation route plan without execution",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract": {
+      "const": "akouo/representation-route/v1"
+    },
+    "request": {
+      "$ref": "representation-route-request.schema.json"
+    },
+    "capabilities": {
+      "$ref": "representation-capabilities.schema.json"
+    },
+    "record_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "received_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "measurement_scope": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "measurement_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "representation_ref": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "method_ref": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "required": [
+          "measurement_id",
+          "representation_ref",
+          "method_ref"
+        ]
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "claim_permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "heard_allowed": {
+          "type": "boolean"
+        },
+        "measured_allowed": {
+          "type": "boolean"
+        },
+        "inferred_allowed": {
+          "type": "boolean"
+        },
+        "interpreted_allowed": {
+          "type": "boolean"
+        },
+        "speculative_allowed": {
+          "type": "boolean"
+        },
+        "must_include_undetermined": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "heard_allowed",
+        "measured_allowed",
+        "inferred_allowed",
+        "interpreted_allowed",
+        "speculative_allowed",
+        "must_include_undetermined"
+      ]
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "proceed",
+            "abstain"
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "outcome",
+        "reasons"
+      ]
+    },
+    "execution": {
+      "const": "not_requested"
+    },
+    "input_snapshot": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "access_ref",
+          "source_ref",
+          "received_ref",
+          "source_sha256",
+          "sha256",
+          "byte_count",
+          "role",
+          "coverage",
+          "binding",
+          "terms"
+        ],
+        "properties": {
+          "access_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "received_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_sha256": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "byte_count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1
+          },
+          "coverage": {
+            "type": "object"
+          },
+          "binding": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "terms": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "contract",
+    "request",
+    "capabilities",
+    "record_ref",
+    "received_refs",
+    "measurement_scope",
+    "claim_permissions",
+    "decision",
+    "execution",
+    "input_snapshot"
+  ]
+}

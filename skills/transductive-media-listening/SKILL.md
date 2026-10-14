@@ -59,6 +59,7 @@ This skill can work with:
 - an AI audio generation prompt
 - a dataset description
 - a transcript produced by speech-to-text
+- a primary text, notation, data sequence, or code inscription under a declared reading convention
 - an archive or field recording note
 - machine-listening, ASR, classifier, embedding, or codec-token output
 
@@ -78,6 +79,18 @@ If the mediation chain is unknown, the skill must say so. It can identify likely
 10. Recommend a next mode to ground or critique the mediated sound.
 
 ## Output Structure
+
+For the negotiated `akouo/representation-route/v1`, use
+`references/representation-output.schema.json` and the host's Earworm
+representation record. Keep the original inscription, supplied excerpt,
+transform method, and declared losses addressable. A text-to-text relation can
+remain non-acoustic throughout; a later performance has its own lineage.
+Measurements refer to the material and method actually admitted. Source
+origin, current representation, and operation role remain independent.
+
+The following shared listening output belongs to the existing default
+contract. Do not relabel a primary textual work as a transcript or a missing
+audio file to make it fit that contract.
 
 Return the shared listening output:
 

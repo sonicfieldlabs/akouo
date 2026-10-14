@@ -1,0 +1,44 @@
+{
+  "contract": "akouo/listening-profile/v1",
+  "revision_ref": "akouo:preset:research:v1",
+  "document_sha256": "ceec81c6556489e7e561b3df41e3df3dcd562108d7afc4fe9461fb7c9f55f40a",
+  "document_record_sha256": "b887aed7c05023552568acf1635d687bb9b69aeda8511ac7be7a50b0c165ce9a",
+  "parser": "akouo/listening-controls/v1",
+  "controls": [
+    {
+      "control_id": "bounded-inquiry",
+      "gate": "execution",
+      "target": "execution.turn_count",
+      "operator": "max_value",
+      "limit": 24,
+      "required": true
+    },
+    {
+      "control_id": "research-outputs",
+      "gate": "output",
+      "target": "output.kind",
+      "operator": "allow_values",
+      "values": [
+        "account",
+        "work"
+      ],
+      "required": true
+    }
+  ],
+  "commitment_spans": [
+    {
+      "commitment_ref": "akouo:preset:research:v1:commitment:0",
+      "range": {
+        "start": 0,
+        "end": 4110
+      },
+      "sha256": "117bbfd8c8beeb320293c6282005ec8f8751a7f771c58786ca9ae8356889182b"
+    }
+  ],
+  "context": {
+    "policy": "explicit_selection",
+    "max_bytes": 65536
+  },
+  "profile_ref": "sha256:2f74e5ecb9217574a1491852fcbd87d965ea9d175e8b3021b3ece57172a7bea4",
+  "sha256": "2f74e5ecb9217574a1491852fcbd87d965ea9d175e8b3021b3ece57172a7bea4"
+}

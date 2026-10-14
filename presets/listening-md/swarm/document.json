@@ -1,0 +1,18 @@
+{
+  "contract": "akouo/listening-document/v1",
+  "document_id": "akouo:preset:swarm",
+  "revision_ref": "akouo:preset:swarm:v1",
+  "representation_ref": "akouo:preset:swarm:v1:representation",
+  "artifact_ref": "presets/listening-md/swarm/LISTENING.md",
+  "sha256": "291af5433d830e787104b9ae1f6cb40f14a3e4f308a7b924ba366599be3808bb",
+  "byte_count": 3036,
+  "encoding": "utf-8",
+  "authors": [
+    "sonicfieldlabs",
+    "agent:codex"
+  ],
+  "authored_at": "2026-10-12T22:01:09.446281+00:00",
+  "purpose": "swarm",
+  "lineage": [],
+  "terms_ref": "license:MIT"
+}

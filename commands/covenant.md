@@ -2,7 +2,10 @@
 
 ## Purpose
 
-`/covenant` is the sovereignty command of akoúō. It loads, verifies, and applies a listening covenant — a human-written declaration of what this ear will not listen to, will release after hearing, will not reveal, will not retain, will blur, or will refuse at certain hours — and runs the listening under it, reporting what was enforced, what was withheld, and what remains as commitment.
+`/covenant` is the sovereignty command of akoúō. Its parties author the covenant
+and the owner applies the adopted revision. The command reports which
+supported rules were checked, which material was withheld, and which terms
+remain interpretive commitments.
 
 Use it when the listening answers to someone: a person's right to silence, a household's retention rules, a community's protocol for ancestral or place-bound sound, a habitat's "and not one decibel more."
 
@@ -49,4 +52,16 @@ The command output must include:
 - Withholding is attributed, never silent; absence without attribution is indistinguishable from a bad ear.
 - Withheld is not `undetermined`; `undetermined` is not withheld. Keep the vocabulary apart.
 - A covenant governs the listener that adopted it. Refuse framings that use it to silence third parties or to hide the operator's own accountability.
-- Conflicts between covenant and request are surfaced, not resolved by exception: the covenant holds until its author changes it.
+- Conflicts between covenant and request are surfaced. The adopted revision
+  holds until an authorized replacement or revocation takes effect; editing a
+  draft alone changes no binding.
+
+## Opt-in LISTENING.md lifecycle
+
+A host negotiating `akouo/listening-adoption/v1` separates the authored
+document, parsed profile, scoped adoption, and per-gate application. The five
+canonical files are examples, not active agreements. Required controls must
+be supported by the grammar and host; prose cannot mark them enforced.
+Complete-file identity and actual received context retain separate hashes
+and coverage. The owner verifies authority, resolves immutable revisions,
+checks facts, and enforces gates. See `docs/listening-profiles.md`.

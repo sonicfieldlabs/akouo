@@ -1,0 +1,20 @@
+{
+  "contract": "akouo/representation-capabilities/v1",
+  "provider_ref": "fixture:provider",
+  "input_forms": [
+    "text"
+  ],
+  "output_forms": [
+    "text"
+  ],
+  "conventions": [],
+  "supported_contracts": [
+    "akouo/representation-route/v1",
+    "akouo/representation-output/v1",
+    "earworm/representation/v1",
+    "earworm/representation-access/v1",
+    "earworm/representation-output/v1",
+    "earworm/representation-record/v1",
+    "earworm/akousma/v1.9"
+  ]
+}

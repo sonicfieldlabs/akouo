@@ -1,0 +1,75 @@
+{
+  "contract": "akouo/listening-profiles/v1",
+  "status": "opt_in_unreleased",
+  "grammar": "akouo/listening-controls/v1",
+  "max_document_bytes": 1048576,
+  "default_context_bytes": 65536,
+  "scope_order": [
+    "workspace",
+    "workflow",
+    "swarm",
+    "run",
+    "invocation"
+  ],
+  "required_contracts": [
+    "akouo/listening-document/v1",
+    "akouo/listening-profile/v1",
+    "akouo/listening-capabilities/v1",
+    "akouo/listening-adoption/v1",
+    "akouo/listening-lifecycle-event/v1",
+    "akouo/listening-application/v1",
+    "akouo/listening-state/v1"
+  ],
+  "presets": [
+    {
+      "id": "minimal",
+      "directory": "presets/listening-md/minimal",
+      "revision_ref": "akouo:preset:minimal:v1",
+      "document_sha256": "56d573eb236c9c477a65d912f6e4148ff3a17e90e6d2aacfa846f2d28e022f11",
+      "profile_ref": "sha256:5c41b7770f415ff8920fa00d6611466d8def816759f5f1cb3d526fff197ebc4e",
+      "profile_sha256": "5c41b7770f415ff8920fa00d6611466d8def816759f5f1cb3d526fff197ebc4e",
+      "adoption": "not_adopted",
+      "example_kind": "illustrative"
+    },
+    {
+      "id": "research",
+      "directory": "presets/listening-md/research",
+      "revision_ref": "akouo:preset:research:v1",
+      "document_sha256": "ceec81c6556489e7e561b3df41e3df3dcd562108d7afc4fe9461fb7c9f55f40a",
+      "profile_ref": "sha256:2f74e5ecb9217574a1491852fcbd87d965ea9d175e8b3021b3ece57172a7bea4",
+      "profile_sha256": "2f74e5ecb9217574a1491852fcbd87d965ea9d175e8b3021b3ece57172a7bea4",
+      "adoption": "not_adopted",
+      "example_kind": "illustrative"
+    },
+    {
+      "id": "phantom-acoustics",
+      "directory": "presets/listening-md/phantom-acoustics",
+      "revision_ref": "akouo:preset:phantom-acoustics:v1",
+      "document_sha256": "ba3eaae8daf9b8b86f931d2362c0e123169bed6d912ab74b9b8c594ffc0893e8",
+      "profile_ref": "sha256:05ab276e281cecdd441b80bb13bd6d2a7d19b844defc6768fcd049759fd47f01",
+      "profile_sha256": "05ab276e281cecdd441b80bb13bd6d2a7d19b844defc6768fcd049759fd47f01",
+      "adoption": "not_adopted",
+      "example_kind": "illustrative"
+    },
+    {
+      "id": "covenant",
+      "directory": "presets/listening-md/covenant",
+      "revision_ref": "akouo:preset:covenant:v1",
+      "document_sha256": "7febd0aec7adf3ce8c6072516ff00c4f992388ecbedcaada7fa2ac987f52a477",
+      "profile_ref": "sha256:021aa93c54440d9f6865aa749278684a815df226422b843e3ad4e93e521024ca",
+      "profile_sha256": "021aa93c54440d9f6865aa749278684a815df226422b843e3ad4e93e521024ca",
+      "adoption": "not_adopted",
+      "example_kind": "illustrative"
+    },
+    {
+      "id": "swarm",
+      "directory": "presets/listening-md/swarm",
+      "revision_ref": "akouo:preset:swarm:v1",
+      "document_sha256": "291af5433d830e787104b9ae1f6cb40f14a3e4f308a7b924ba366599be3808bb",
+      "profile_ref": "sha256:3bea6ad5756d0dc6f5aea00b620a1c11d8a664749de4aa65ac550a8b3ef5c358",
+      "profile_sha256": "3bea6ad5756d0dc6f5aea00b620a1c11d8a664749de4aa65ac550a8b3ef5c358",
+      "adoption": "not_adopted",
+      "example_kind": "illustrative"
+    }
+  ]
+}

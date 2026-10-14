@@ -2,7 +2,7 @@
 name: sovereign-listening
 description: >
   AKOÚŌ sovereignty ear. Use this skill whenever a listening must happen under an explicit
-  listening covenant: a small, human-written declaration of sonic sovereignty that says what
+  listening covenant: a situated, authored declaration of sonic sovereignty that says what
   this ear will not listen to, will release after hearing, will not reveal, will not retain,
   will blur, or will refuse at certain hours — and why. Use it when a person, a household, a
   community, a habitat, an institution, or another agent has rules about being heard: consented
@@ -27,7 +27,7 @@ compatibility: >
 
 Every other AKOÚŌ mode disciplines what a listening may *claim*. This mode disciplines what a listening may *do*: which sounds it refuses before capture, which it releases after hearing, which aspects it declines to reveal, what it will not keep. It is the Rights of the Audible made operational — the right to silence, the right to opacity, the right of communities to their own protocols — as a runtime layer instead of a paragraph.
 
-A **listening covenant** is the unit. It is written by a human in plain text, parsed into rules and commitments, and carried by the listening system. Rules are the executable subset (refuse this source, ignore that class, withhold this aspect, retain nothing, blur the place, close the ear at night). Commitments are everything else the author asked for — lines no engine can yet execute — kept verbatim, reported with every hearing, addressed to humans and to future machines. The covenant is a bridge, not a cage: it does not make the machine obedient; it makes the machine *answerable*, because what was asked, what was enforced, and what was withheld are all on the record.
+A **listening covenant** is the unit. Its parties can write, discuss and revise a plain-text document, including contributions from agents. Adoption identifies which revision governs a declared process and who has authority to bind it. Rules are the executable subset supported by the owner. Commitments preserve the other terms verbatim for present participants and future systems. The record identifies what was asked, what was applied, and what was withheld.
 
 ## When To Use
 
@@ -84,8 +84,32 @@ Current v0.9 producers should emit context v2 plus `route_decisions`, `listening
 - Never present withholding as inability (`undetermined`) or inability as withholding.
 - Never apply a covenant the operator did not adopt; never silently keep applying one that was deactivated.
 - Never treat the covenant's `because` text as evidence about the audio.
-- When a rule conflicts with a direct operator request, surface the conflict; the covenant holds until the operator changes the covenant. The resolution is an edit, not an exception.
+- When a rule conflicts with a direct operator request, surface the conflict. The adopted revision holds until an authorized replacement or revocation takes effect. Editing a draft alone does not replace a process's binding.
 - A covenant cannot *add* claim strength anywhere: it only refuses, releases, withholds, coarsens, and remembers.
+
+## Opt-in representation and binding references
+
+For `akouo/representation-route/v1`, a LISTENING.md text can be the subject of a
+listening without adopting it. An `instruction` access role requires a separate
+binding reference naming the complete document digest, adoption, application,
+scope, and effective time. The host must validate that binding; its presence
+alone is a declaration. The opt-in `akouo/listening-adoption/v1` lifecycle fixes
+an exact document and parsed profile at an owner-authorized scope. Draft
+revision changes no adopted binding. Required controls unsupported by the
+grammar or host stop adoption; unknown optional controls remain explicit.
+
+Use the bundled `listening-*` schemas for this negotiated lifecycle. A current,
+cleared execution application records the actual context, complete-document
+digest, received bytes and coverage. Input, execution, output, retention and
+disclosure gates remain distinct. Replacing or revoking a parent blocks old
+child bindings until they are explicitly rebound. The host authenticates
+authority and facts and enforces every applicable gate. Supplying this skill
+or a prose document does not certify that a model followed it.
+
+Use `references/representation-output.schema.json` for this negotiated route.
+The owner's retention and disclosure terms apply equally to original texts,
+accounts, completed textual works, and audio. Refusal, withholding, explicit
+non-response and missing history keep their respective outcome states.
 
 ## Recommended Next Modes
 

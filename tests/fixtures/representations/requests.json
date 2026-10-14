@@ -1,0 +1,177 @@
+{
+  "listen": {
+    "contract": "akouo/representation-route/v1",
+    "request_id": "fixture:request:listen",
+    "operation_ref": "fixture:operation:listen",
+    "primary_access_ref": "fixture:access:source",
+    "input_access_refs": [
+      "fixture:access:source"
+    ],
+    "intent": "listen",
+    "mode": "agent-native-listening",
+    "output_kind": "account",
+    "output_form": "text",
+    "requested_categories": [
+      "inferred",
+      "interpreted",
+      "speculative",
+      "undetermined"
+    ],
+    "measurement_refs": [],
+    "supported_contracts": [
+      "akouo/representation-route/v1",
+      "akouo/representation-output/v1",
+      "earworm/representation/v1",
+      "earworm/representation-access/v1",
+      "earworm/representation-output/v1",
+      "earworm/representation-record/v1",
+      "earworm/akousma/v1.9"
+    ]
+  },
+  "sound": {
+    "contract": "akouo/representation-route/v1",
+    "request_id": "fixture:request:sound",
+    "operation_ref": "fixture:operation:sound",
+    "primary_access_ref": "fixture:access:sound-source",
+    "input_access_refs": [
+      "fixture:access:sound-source",
+      "fixture:access:account"
+    ],
+    "intent": "sound",
+    "mode": "symbolic-fictional-listening",
+    "output_kind": "work",
+    "output_form": "text",
+    "requested_categories": [
+      "inferred",
+      "interpreted",
+      "speculative",
+      "undetermined"
+    ],
+    "measurement_refs": [],
+    "supported_contracts": [
+      "akouo/representation-route/v1",
+      "akouo/representation-output/v1",
+      "earworm/representation/v1",
+      "earworm/representation-access/v1",
+      "earworm/representation-output/v1",
+      "earworm/representation-record/v1",
+      "earworm/akousma/v1.9"
+    ]
+  },
+  "return": {
+    "contract": "akouo/representation-route/v1",
+    "request_id": "fixture:request:return",
+    "operation_ref": "fixture:operation:return",
+    "primary_access_ref": "fixture:access:return",
+    "input_access_refs": [
+      "fixture:access:return"
+    ],
+    "intent": "relisten",
+    "mode": "agent-native-listening",
+    "output_kind": "account",
+    "output_form": "text",
+    "requested_categories": [
+      "inferred",
+      "interpreted",
+      "speculative",
+      "undetermined"
+    ],
+    "measurement_refs": [],
+    "supported_contracts": [
+      "akouo/representation-route/v1",
+      "akouo/representation-output/v1",
+      "earworm/representation/v1",
+      "earworm/representation-access/v1",
+      "earworm/representation-output/v1",
+      "earworm/representation-record/v1",
+      "earworm/akousma/v1.9"
+    ]
+  },
+  "partial": {
+    "contract": "akouo/representation-route/v1",
+    "request_id": "fixture:request:partial",
+    "operation_ref": "fixture:operation:partial",
+    "primary_access_ref": "fixture:access:partial",
+    "input_access_refs": [
+      "fixture:access:partial"
+    ],
+    "intent": "listen",
+    "mode": "agent-native-listening",
+    "output_kind": "account",
+    "output_form": "text",
+    "requested_categories": [
+      "inferred",
+      "interpreted",
+      "speculative",
+      "undetermined"
+    ],
+    "measurement_refs": [],
+    "supported_contracts": [
+      "akouo/representation-route/v1",
+      "akouo/representation-output/v1",
+      "earworm/representation/v1",
+      "earworm/representation-access/v1",
+      "earworm/representation-output/v1",
+      "earworm/representation-record/v1",
+      "earworm/akousma/v1.9"
+    ]
+  },
+  "read-file": {
+    "contract": "akouo/representation-route/v1",
+    "request_id": "fixture:request:read-file",
+    "operation_ref": "fixture:operation:read-file",
+    "primary_access_ref": "fixture:access:file",
+    "input_access_refs": [
+      "fixture:access:file"
+    ],
+    "intent": "listen",
+    "mode": "agent-native-listening",
+    "output_kind": "account",
+    "output_form": "text",
+    "requested_categories": [
+      "inferred",
+      "interpreted",
+      "speculative",
+      "undetermined"
+    ],
+    "measurement_refs": [],
+    "supported_contracts": [
+      "akouo/representation-route/v1",
+      "akouo/representation-output/v1",
+      "earworm/representation/v1",
+      "earworm/representation-access/v1",
+      "earworm/representation-output/v1",
+      "earworm/representation-record/v1",
+      "earworm/akousma/v1.9"
+    ]
+  },
+  "refused": {
+    "contract": "akouo/representation-route/v1",
+    "request_id": "fixture:request:refused",
+    "operation_ref": "fixture:operation:listen",
+    "primary_access_ref": "fixture:access:source",
+    "input_access_refs": [
+      "fixture:access:source"
+    ],
+    "intent": "listen",
+    "mode": "agent-native-listening",
+    "output_kind": "account",
+    "output_form": "text",
+    "requested_categories": [
+      "inferred",
+      "interpreted",
+      "speculative",
+      "undetermined"
+    ],
+    "measurement_refs": [],
+    "supported_contracts": [
+      "akouo/representation-route/v1",
+      "akouo/representation-output/v1",
+      "earworm/representation/v1",
+      "earworm/representation-access/v1",
+      "earworm/representation-output/v1",
+      "earworm/representation-record/v1",
+      "earworm/akousma/v1.9"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "contract": "akouo/listening-document/v1",
+  "document_id": "akouo:preset:phantom-acoustics",
+  "revision_ref": "akouo:preset:phantom-acoustics:v1",
+  "representation_ref": "akouo:preset:phantom-acoustics:v1:representation",
+  "artifact_ref": "presets/listening-md/phantom-acoustics/LISTENING.md",
+  "sha256": "ba3eaae8daf9b8b86f931d2362c0e123169bed6d912ab74b9b8c594ffc0893e8",
+  "byte_count": 2962,
+  "encoding": "utf-8",
+  "authors": [
+    "sonicfieldlabs",
+    "agent:codex"
+  ],
+  "authored_at": "2026-10-12T22:01:09.420264+00:00",
+  "purpose": "imagination",
+  "lineage": [],
+  "terms_ref": "license:MIT"
+}

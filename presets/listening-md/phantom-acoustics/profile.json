@@ -1,0 +1,55 @@
+{
+  "contract": "akouo/listening-profile/v1",
+  "revision_ref": "akouo:preset:phantom-acoustics:v1",
+  "document_sha256": "ba3eaae8daf9b8b86f931d2362c0e123169bed6d912ab74b9b8c594ffc0893e8",
+  "document_record_sha256": "0871e4bc28bfd571ad6ad3b6bfff3b96d3576c919403a1e72a38064f51da92c9",
+  "parser": "akouo/listening-controls/v1",
+  "controls": [
+    {
+      "control_id": "compose",
+      "gate": "execution",
+      "target": "execution.action",
+      "operator": "allow_values",
+      "values": [
+        "sound"
+      ],
+      "required": true
+    },
+    {
+      "control_id": "finished-work",
+      "gate": "output",
+      "target": "output.kind",
+      "operator": "allow_values",
+      "values": [
+        "work"
+      ],
+      "required": true
+    },
+    {
+      "control_id": "textual-sounding",
+      "gate": "output",
+      "target": "output.form",
+      "operator": "allow_values",
+      "values": [
+        "text"
+      ],
+      "required": true
+    }
+  ],
+  "commitment_spans": [
+    {
+      "commitment_ref": "akouo:preset:phantom-acoustics:v1:commitment:0",
+      "range": {
+        "start": 0,
+        "end": 2369
+      },
+      "sha256": "8be270dc5830c96f1d118d5ebac9205a6e762a5dabdcb2849c70f0826d0475c8"
+    }
+  ],
+  "context": {
+    "policy": "full",
+    "max_bytes": 65536
+  },
+  "profile_ref": "sha256:05ab276e281cecdd441b80bb13bd6d2a7d19b844defc6768fcd049759fd47f01",
+  "sha256": "05ab276e281cecdd441b80bb13bd6d2a7d19b844defc6768fcd049759fd47f01"
+}

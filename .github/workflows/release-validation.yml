@@ -46,8 +46,8 @@ jobs:
 
       - name: Validate portable release
         env:
-          AKOUO_AKOUSMA_WHEEL: vendor/akousma-0.8.4-py3-none-any.whl
-          AKOUO_AKOUSMA_SHA256: ed3c2c41dbc20804deae9da7fb9d5797c3074deb0e03a899ce47adb650e34539
+          AKOUO_AKOUSMA_WHEEL: vendor/akousma-0.10.1-py3-none-any.whl
+          AKOUO_AKOUSMA_SHA256: f3aa570f572f6e95c9ef31be3bda4bd3412998ccc58dbda688aa20057bf053e3
         run: ./scripts/validate-release.sh
 
       - name: Install app dependencies

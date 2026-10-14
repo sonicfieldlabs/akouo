@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://akouo.dev/schemas/listening-profile.schema.json",
+  "title": "listening-profile",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract": {
+      "const": "akouo/listening-profile/v1"
+    },
+    "profile_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "revision_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "document_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "parser": {
+      "const": "akouo/listening-controls/v1"
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "$ref": "https://akouo.dev/schemas/listening-common.schema.json#/$defs/control"
+      },
+      "minItems": 0
+    },
+    "commitment_spans": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "commitment_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "range": {
+            "$ref": "https://akouo.dev/schemas/listening-common.schema.json#/$defs/span"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "commitment_ref",
+          "range",
+          "sha256"
+        ]
+      },
+      "minItems": 0
+    },
+    "context": {
+      "$ref": "https://akouo.dev/schemas/listening-common.schema.json#/$defs/context"
+    },
+    "document_record_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "contract",
+    "profile_ref",
+    "sha256",
+    "revision_ref",
+    "document_sha256",
+    "parser",
+    "controls",
+    "commitment_spans",
+    "context",
+    "document_record_sha256"
+  ]
+}
