@@ -348,6 +348,9 @@ a person at the apparatus.
 
 ## Unreleased apparatus-aware spectral gate
 
+Included in `akouo-contract 0.12.1` (tag of 14 October 2026); registry delivery
+has not happened, and the selected host's actual enforcement remains separate.
+
 The Python contract package now provides an opt-in `extended_spectrum_decision`
 helper under `akouo_contract.spectral_gate`. A host supplies Earworm's negotiated
 `listening_access_errors` validator and a validated
