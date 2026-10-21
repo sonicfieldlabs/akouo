@@ -20,6 +20,14 @@ agent hosts. The latest public package is `0.10.1`. This source targets package 
 with the existing `akouo/v0.10` default and an opt-in representation route. No skill fork is created inside a host
 application.
 
+In maintained guides, “unreleased” Python helpers are present in the 0.12.1
+contract (tag `akouo-contract-v0.12.1`, 14 October 2026); the word refers to
+registry delivery, which has not happened, and is not a loaded-owner
+qualification. A draft contract's opt-in status is separate from package
+delivery. Package `0.12.1`, default protocol `akouo/v0.10` and Oída's retained
+`akouo/v0.9` host profile are distinct bindings; hosts must name the profile they
+actually implement rather than renumber it from the installed package.
+
 ## Primary representations and textual sounding
 
 The opt-in `akouo/representation-route/v1` plans a listening from primary text,
@@ -73,15 +81,15 @@ authority boundary, gates, and Earworm binding adapter.
 
 AKOÚŌ is the shared listening contract across the stack. The v0.10 source contains 17 listening modes, 19 skills, and 19 commands.
 
-The following primary owner package versions are unpublished local candidates.
+The following primary owner versions are GitHub releases (none is on PyPI).
 
 | Project | Current integration |
 | --- | --- |
-| [OÍDA](https://github.com/sonicfieldlabs/oida) `0.11.2` | Loads the packaged `akouo/v0.10` aperture and agent-native contracts. |
-| [Earworm](https://github.com/sonicfieldlabs/earworm), `akousma 0.8.4` | Persists addressable auditums, revisions and forgetting receipts with explicit 1.6/1.7/1.8 record admission. |
-| [Akousmata](https://github.com/sonicfieldlabs/akousmata) `0.8.3` | Validates and navigates those records while keeping plural listeners distinct and requiring influence before declaring an ear swarm. |
+| [OÍDA](https://github.com/sonicfieldlabs/oida) `0.14.0` | Loads the packaged contracts; the existing `oida/gateway/v0.6` keeps its declared `akouo/v0.9` host profile alongside opt-in representation routes. |
+| [Earworm](https://github.com/sonicfieldlabs/earworm) `0.8.0`, `akousma 0.10.1` | Default 1.6 custody with separately selected 1.7–1.9 contracts; complete representation and return custody is opt-in. |
+| [Akousmata](https://github.com/sonicfieldlabs/akousmata) `0.9.1` | Validates and navigates those records while keeping plural listeners distinct and requiring influence before declaring an ear swarm. |
 | [Algophony](https://github.com/sonicfieldlabs/algophony) `0.5.2` | Uses the listening contract for generation supervision, evaluation, and research workflows. |
-| [GERM](https://github.com/sonicfieldlabs/germ) `0.6.2` | Connects cultivation sessions to OÍDA and Akousmata for listening and lineage-aware workflows. |
+| [GERM](https://github.com/sonicfieldlabs/germ) `0.7.0` | Optional cultivation owner; exact selected environment and protocol compatibility require their own qualification. |
 | [ORAM](https://github.com/sonicfieldlabs/oram) `0.4.1` | ORAM audio can be passed to any AKOÚŌ host; ORAM does not embed the contract directly. |
 
 ## Core Idea

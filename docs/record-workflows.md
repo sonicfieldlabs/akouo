@@ -1,6 +1,9 @@
 # Retained-record research, derivation and subsequent-listening decisions
 
-Unreleased local A11/A12/A13 contracts. `record_workflows.py` consumes
+A11/A12/A13 are included in `akouo-contract 0.12.1` (tag of 14 October 2026);
+“unreleased” refers to registry delivery, which has not happened, not to absent source.
+Installed/loaded owner compatibility still requires separate qualification.
+`record_workflows.py` consumes
 `record-workflow-request.schema.json`. These adapters are deliberately separate
 from the perception report builder and do not create a listening pass, run a model,
 start a job or write to a store. The host supplies Earworm's canonical validators
