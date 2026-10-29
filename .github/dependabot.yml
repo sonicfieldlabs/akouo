@@ -1,0 +1,41 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directories:
+      - "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "10:00"
+      timezone: America/Bogota
+    open-pull-requests-limit: 2
+    groups:
+      compatible-pip:
+        patterns: ["*"]
+        update-types: [minor, patch]
+  - package-ecosystem: npm
+    directories:
+      - "/app"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "10:00"
+      timezone: America/Bogota
+    open-pull-requests-limit: 2
+    groups:
+      compatible-npm:
+        patterns: ["*"]
+        update-types: [minor, patch]
+  - package-ecosystem: github-actions
+    directories:
+      - "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "10:00"
+      timezone: America/Bogota
+    open-pull-requests-limit: 2
+    groups:
+      compatible-github-actions:
+        patterns: ["*"]
+        update-types: [minor, patch]
