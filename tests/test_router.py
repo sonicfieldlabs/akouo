@@ -63,6 +63,11 @@ class AccountRouting(unittest.TestCase):
         voiced = route_account("A voice speaks over birds in a forest soundscape.", command="/voice")
         self.assertEqual(voiced["primary"], "voice-speech-listening")
 
+    def test_an_ambiguous_word_does_not_overturn_a_voice_route(self):
+        voiced = route_account("A voice speaks; a speaker talks in an interview.")
+        self.assertEqual(voiced["primary"], "voice-speech-listening")
+        self.assertIn("speech", voiced["heard_as"])
+
     def test_a_task_frame_weighs_without_deciding_alone(self):
         framed = route_account("Hiss and a distant hum.", command="/field")
         self.assertEqual(framed["primary"], "ecological-posthuman-listening")

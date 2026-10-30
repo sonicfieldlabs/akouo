@@ -34,7 +34,10 @@ HEARD_AS = {
 }
 SILENCE_TERMS = ("silence", "silent", "near silence", "no audible", "nothing audible", "inaudible", "empty", "dead air")
 _NEGATORS = {"no", "not", "without", "absent", "absence", "lacks", "lacking", "neither", "nor", "none", "never"}
-_FIELD_MODES = ("musical-aesthetic-listening", "ecological-posthuman-listening", "material-event-listening")
+#: The ears whose task keeps its own primary when someone is speaking (the vococentrism rule).
+#: Material-event is left out: its family shares "speaker" with voice, so one ambiguous word
+#: would otherwise overturn a voice route.
+_FIELD_MODES = ("musical-aesthetic-listening", "ecological-posthuman-listening")
 
 
 @lru_cache(maxsize=1)
