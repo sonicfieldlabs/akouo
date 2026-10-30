@@ -1,18 +1,18 @@
 #!/usr/bin/env node
-// Run the reference app's router (router.ts, bundled with esbuild) over shared cases and keep its
+// Run the reference app's router (router.ts, its types stripped by Node) over shared cases and keep its
 // roles and confidence as the fixture akouo_contract.router must match. --check fails on drift.
 import { mkdtempSync, readFileSync, writeFileSync, existsSync, copyFileSync } from 'node:fs';
-import { createRequire } from 'node:module';
+import { stripTypeScriptTypes } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-// Transpile the three modules the router needs with the app's own TypeScript; no bundler.
+// Strip the types from the three modules the router needs with Node's own type stripping; no
+// bundler. TypeScript 7's package no longer offers the JavaScript transpile API.
 const root = new URL('..', import.meta.url).pathname;
-const ts = createRequire(join(root, 'app/package.json'))('typescript');
 const out = mkdtempSync(join(tmpdir(), 'akouo-router-'));
 for (const name of ['router', 'textMatch', 'types']) {
   const source = readFileSync(join(root, `app/src/akouo/${name}.ts`), 'utf8');
-  const { outputText } = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } });
+  const outputText = stripTypeScriptTypes(source);
   writeFileSync(join(out, `${name}.mjs`), outputText
     .replace(/from '\.\/routerRules\.json';/, "from './routerRules.json' with { type: 'json' };")
     .replace(/from '\.\/(types|textMatch)'/g, "from './$1.mjs'"));
