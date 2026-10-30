@@ -1,0 +1,158 @@
+[
+  {
+    "name": "empty",
+    "primary": "acoulogical-object-listening",
+    "secondary": "signal-inspection-listening",
+    "corrective": "critical-political-listening",
+    "confidence": "undetermined",
+    "route_reasoning": [
+      "acoulogical-object-listening: General listening should first describe the auditum before source claims.",
+      "signal-inspection-listening: Selected as a balancing listening mode.",
+      "critical-political-listening: Selected as a balancing listening mode."
+    ]
+  },
+  {
+    "name": "audio file only",
+    "primary": "signal-inspection-listening",
+    "secondary": "acoulogical-object-listening",
+    "corrective": "transductive-media-listening",
+    "confidence": "high",
+    "route_reasoning": [
+      "signal-inspection-listening: Signal-like input asks for technical inspection.",
+      "acoulogical-object-listening: General listening should first describe the auditum before source claims.",
+      "transductive-media-listening: Uploaded audio still has an unknown capture and encoding chain."
+    ]
+  },
+  {
+    "name": "music prompt",
+    "primary": "signal-inspection-listening",
+    "secondary": "musical-aesthetic-listening",
+    "corrective": "acoulogical-object-listening",
+    "confidence": "medium",
+    "route_reasoning": [
+      "signal-inspection-listening: Signal-like input asks for technical inspection.",
+      "musical-aesthetic-listening: Musical or aesthetic terms require rhythm, pitch, timbre, form, and genre caution.",
+      "acoulogical-object-listening: General listening should first describe the auditum before source claims."
+    ]
+  },
+  {
+    "name": "field recording",
+    "primary": "ecological-posthuman-listening",
+    "secondary": "transductive-media-listening",
+    "corrective": "critical-political-listening",
+    "confidence": "high",
+    "route_reasoning": [
+      "ecological-posthuman-listening: Field or environment input requires ecological and more-than-human listening.",
+      "transductive-media-listening: Selected as a balancing listening mode.",
+      "critical-political-listening: Selected as a balancing listening mode."
+    ]
+  },
+  {
+    "name": "voice transcript",
+    "primary": "voice-speech-listening",
+    "secondary": "forensic-archival-listening",
+    "corrective": "accessibility-normative-listening",
+    "confidence": "high",
+    "route_reasoning": [
+      "voice-speech-listening: Speech, voice, transcript, ASR, TTS, or speaker terms require voice-specific caution.",
+      "forensic-archival-listening: Archive, transcript, testimony, or evidence input requires evidentiary restraint.",
+      "accessibility-normative-listening: Accessibility, caption, haptic, disability, or hearing-norm terms require access audit."
+    ]
+  },
+  {
+    "name": "forensic command",
+    "primary": "forensic-archival-listening",
+    "secondary": "signal-inspection-listening",
+    "corrective": "critical-political-listening",
+    "confidence": "high",
+    "route_reasoning": [
+      "forensic-archival-listening: Archive, transcript, testimony, or evidence input requires evidentiary restraint.",
+      "signal-inspection-listening: The /forensic command needs technical grounding.",
+      "critical-political-listening: The /forensic command needs institutional and harm-context caution."
+    ]
+  },
+  {
+    "name": "video scene",
+    "primary": "audiovisual-scenic-listening",
+    "secondary": "acoulogical-object-listening",
+    "corrective": "critical-political-listening",
+    "confidence": "high",
+    "route_reasoning": [
+      "audiovisual-scenic-listening: Video or visual-scene input requires sound-image routing.",
+      "acoulogical-object-listening: Selected as a balancing listening mode.",
+      "critical-political-listening: Selected as a balancing listening mode."
+    ]
+  },
+  {
+    "name": "plural variants",
+    "primary": "musical-aesthetic-listening",
+    "secondary": "acoulogical-object-listening",
+    "corrective": "critical-political-listening",
+    "confidence": "medium",
+    "route_reasoning": [
+      "musical-aesthetic-listening: Musical or aesthetic terms require rhythm, pitch, timbre, form, and genre caution.",
+      "acoulogical-object-listening: General listening should first describe the auditum before source claims.",
+      "critical-political-listening: Selected as a balancing listening mode."
+    ]
+  },
+  {
+    "name": "covenant",
+    "primary": "sovereign-listening",
+    "secondary": "acoulogical-object-listening",
+    "corrective": "critical-political-listening",
+    "confidence": "high",
+    "route_reasoning": [
+      "sovereign-listening: Covenant, withholding, refusal, retention, or sonic-sovereignty terms require an explicit authority boundary.",
+      "acoulogical-object-listening: General listening should first describe the auditum before source claims.",
+      "critical-political-listening: Selected as a balancing listening mode."
+    ]
+  },
+  {
+    "name": "corpus",
+    "primary": "corpus-listening",
+    "secondary": "transductive-media-listening",
+    "corrective": "critical-political-listening",
+    "confidence": "high",
+    "route_reasoning": [
+      "corpus-listening: Corpus, training, fine-tuning, annotation, provider, or licensing terms require a lineage and permission audit.",
+      "transductive-media-listening: Mediation, platform, sensor, codec, model, or dataset terms require transductive mapping.",
+      "critical-political-listening: Power, access, identity, labor, platform, or institutional stakes require critique."
+    ]
+  },
+  {
+    "name": "memory",
+    "primary": "memory-lineage-listening",
+    "secondary": "acoulogical-object-listening",
+    "corrective": "signal-inspection-listening",
+    "confidence": "high",
+    "route_reasoning": [
+      "memory-lineage-listening: Memory, lineage, recurrence, or archive-of-ours terms require listening with stored records.",
+      "acoulogical-object-listening: General listening should first describe the auditum before source claims.",
+      "signal-inspection-listening: Signal-like input asks for technical inspection."
+    ]
+  },
+  {
+    "name": "material",
+    "primary": "signal-inspection-listening",
+    "secondary": "material-event-listening",
+    "corrective": "acoulogical-object-listening",
+    "confidence": "low",
+    "route_reasoning": [
+      "signal-inspection-listening: Signal-like input asks for technical inspection.",
+      "material-event-listening: Material, vibrational, resonant, or processual terms require material-event listening.",
+      "acoulogical-object-listening: General listening should first describe the auditum before source claims."
+    ]
+  },
+  {
+    "name": "tie",
+    "primary": "acoulogical-object-listening",
+    "secondary": "signal-inspection-listening",
+    "corrective": "critical-political-listening",
+    "confidence": "high",
+    "route_reasoning": [
+      "acoulogical-object-listening: General listening should first describe the auditum before source claims.",
+      "signal-inspection-listening: Selected as a balancing listening mode.",
+      "critical-political-listening: Selected as a balancing listening mode."
+    ]
+  }
+]

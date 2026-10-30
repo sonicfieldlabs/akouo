@@ -1,5 +1,21 @@
 # Changelog
 
+## Unreleased: akouo-contract 0.13.0
+
+- The listening router as code. The Reference Routing Heuristic is data
+  (`app/src/akouo/routerRules.json`, packaged as `data/router-rules.json`) read
+  by both the reference app's `router.ts` and the new `akouo_contract.router`.
+  `route(...)` reproduces the reference app's primary, secondary and corrective
+  ears, reasoning and confidence; `scripts/router-parity.mjs` runs the TypeScript
+  router over shared cases and CI checks the fixture does not drift.
+  `route_account(account, command=..., heard=..., generated=...)` routes the
+  next listening of one retained excerpt from its latest machine account:
+  keyword families only (the evidence does not change between passes), negated
+  mentions ignored, vococentrism corrected, coarse kinds heard named (music,
+  speech, soundscape, material, signal, silence, generated, unknown) and an
+  alternative reading kept. It is an attributed reading, never a measurement,
+  and it grants no authority to act. Contract `akouo/v0.10` is unchanged.
+
 ## Unreleased
 
 - Cached immutable installed schema validators and their offline reference

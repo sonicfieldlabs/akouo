@@ -58,6 +58,9 @@ jobs:
         working-directory: app
         run: npm run typecheck
 
+      - name: Check router parity with the Python contract
+        run: node scripts/router-parity.mjs --check
+
       - name: Build app
         working-directory: app
         run: npm run build

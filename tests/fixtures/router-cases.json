@@ -1,0 +1,15 @@
+[
+  {"name": "empty", "input_type": "unknown"},
+  {"name": "audio file only", "input_type": "audio_file", "audio_inspection": true},
+  {"name": "music prompt", "prompt": "a looped melody over a steady pulse and a bass drone", "input_type": "audio_file", "audio_inspection": true},
+  {"name": "field recording", "prompt": "field recording of a river and birds at dawn in the forest", "input_type": "field_note"},
+  {"name": "voice transcript", "prompt": "speaker interview transcript with an accent", "input_type": "transcript"},
+  {"name": "forensic command", "prompt": "damaged tape of a protest", "input_type": "archive_note", "command": "/forensic"},
+  {"name": "video scene", "prompt": "game trailer with UI sound", "input_type": "video"},
+  {"name": "plural variants", "prompt": "two songs and several melodies", "input_type": "sound_prompt"},
+  {"name": "covenant", "prompt": "do not retain this under the covenant; quiet hours apply", "input_type": "mixed"},
+  {"name": "corpus", "prompt": "training data and model card for a dataset lineage", "input_type": "dataset_description"},
+  {"name": "memory", "prompt": "have we heard before this recurrence in our archive", "input_type": "audio_file", "command": "/remember"},
+  {"name": "material", "prompt": "a low rumble and feedback from a loudspeaker installation", "input_type": "audio_file"},
+  {"name": "tie", "prompt": "texture", "input_type": "other"}
+]
