@@ -1,5 +1,6 @@
 import { listeningModes } from './types';
 import { hasAnyRequestTerm } from './textMatch';
+import routerRules from './routerRules.json';
 import type {
   ClaimPermissions,
   CommandName,
@@ -29,65 +30,10 @@ interface RouteRule {
   terms?: string[];
 }
 
-const routeRules: RouteRule[] = [
-  { mode: 'signal-inspection-listening', weight: 5, reason: 'Signal-like input asks for technical inspection.', inputTypes: ['audio_file', 'spectrogram', 'waveform', 'metadata'] },
-  { mode: 'signal-inspection-listening', weight: 3, reason: 'Technical terms require measurement caution.', terms: ['waveform', 'spectrogram', 'lufs', 'rms', 'dbfs', 'clipping', 'noise floor', 'frequency', 'sample rate', 'codec', 'phase'] },
-  { mode: 'acoulogical-object-listening', weight: 3, reason: 'General listening should first describe the auditum before source claims.', inputTypes: ['audio_file', 'sound_prompt', 'mixed', 'unknown', 'other'] },
-  { mode: 'acoulogical-object-listening', weight: 3, reason: 'Perceptual texture terms suggest auditum-first description.', terms: ['texture', 'timbre', 'grain', 'scrape', 'foley', 'object', 'acousmatic', 'source', 'ambiguous'] },
-  { mode: 'musical-aesthetic-listening', weight: 5, reason: 'Musical or aesthetic terms require rhythm, pitch, timbre, form, and genre caution.', terms: ['music', 'song', 'beat', 'rhythm', 'pulse', 'tempo', 'meter', 'melody', 'harmony', 'chord', 'pitch', 'interval', 'drone', 'bass', 'mix', 'track', 'loop', 'aesthetic', 'sound design'] },
-  { mode: 'embodied-affective-listening', weight: 4, reason: 'Body, pressure, attention, or affect terms require situated embodied listening.', terms: ['body', 'pressure', 'vibration', 'fatigue', 'dread', 'pleasure', 'alarm', 'siren', 'asmr', 'club', 'dance', 'attention', 'overload', 'haptic'] },
-  { mode: 'transductive-media-listening', weight: 4, reason: 'Mediation, platform, sensor, codec, model, or dataset terms require transductive mapping.', inputTypes: ['dataset_description', 'model_output', 'metadata'] },
-  { mode: 'transductive-media-listening', weight: 4, reason: 'Conversion and media-chain terms require transductive mapping.', terms: ['sensor', 'sonification', 'hydrophone', 'contact mic', 'microphone', 'compression', 'dataset', 'model', 'ai audio', 'voice clone', 'speech-to-text', 'asr', 'tts', 'platform', 'codec'] },
-  { mode: 'forensic-archival-listening', weight: 5, reason: 'Archive, transcript, testimony, or evidence input requires evidentiary restraint.', inputTypes: ['archive_note', 'transcript'] },
-  { mode: 'forensic-archival-listening', weight: 5, reason: 'Evidence and harm terms require forensic-archival caution.', terms: ['archive', 'testimony', 'evidence', 'violence', 'surveillance', 'protest', 'damaged tape', 'oral history', 'witness', 'legal', 'custody', 'court'] },
-  { mode: 'ecological-posthuman-listening', weight: 5, reason: 'Field or environment input requires ecological and more-than-human listening.', inputTypes: ['field_note'] },
-  { mode: 'ecological-posthuman-listening', weight: 4, reason: 'Place, habitat, soundscape, or nonhuman terms require ecological listening.', terms: ['field recording', 'forest', 'river', 'ocean', 'weather', 'animal', 'bird', 'insect', 'habitat', 'ecology', 'soundscape', 'geophony', 'biophony', 'soundwalk', 'acoustemology', 'aurality', 'place'] },
-  { mode: 'critical-political-listening', weight: 4, reason: 'Power, access, identity, labor, platform, or institutional stakes require critique.', terms: ['platform', 'market', 'labor', 'race', 'gender', 'class', 'colonial', 'border', 'police', 'military', 'accessibility', 'dataset', 'consent', 'surveillance', 'extraction', 'sovereignty'] },
-  { mode: 'symbolic-fictional-listening', weight: 5, reason: 'Declared fiction, myth, ritual, or impossible sound requires speculative boundaries.', terms: ['fiction', 'myth', 'ritual', 'dream', 'alien', 'ghost', 'cosmic', 'worldbuilding', 'hyperstition', 'impossible', 'hauntology'] },
-  { mode: 'audiovisual-scenic-listening', weight: 6, reason: 'Video or visual-scene input requires sound-image routing.', inputTypes: ['video'] },
-  { mode: 'audiovisual-scenic-listening', weight: 5, reason: 'Audiovisual, film, game, UI, subtitle, or scene terms require scenic listening.', terms: ['video', 'film', 'game', 'scene', 'image', 'screen', 'subtitle', 'caption', 'synchresis', 'audiovisual', 'diegetic', 'interface', 'ui sound', 'trailer'] },
-  { mode: 'voice-speech-listening', weight: 5, reason: 'Speech, voice, transcript, ASR, TTS, or speaker terms require voice-specific caution.', inputTypes: ['transcript'] },
-  { mode: 'voice-speech-listening', weight: 5, reason: 'Voice and speech terms require separation of vocal sound, transcript, identity, and model mediation.', terms: ['voice', 'speech', 'speaker', 'accent', 'transcript', 'asr', 'tts', 'prosody', 'diarization', 'spoken', 'vocal', 'podcast', 'radio', 'voice agent', 'dubbing'] },
-  { mode: 'accessibility-normative-listening', weight: 5, reason: 'Accessibility, caption, haptic, disability, or hearing-norm terms require access audit.', terms: ['accessibility', 'caption', 'subtitle', 'transcript', 'deaf', 'hard of hearing', 'haptic', 'hearing', 'assistive', 'audism', 'sensory', 'universal design', 'intelligibility'] },
-  { mode: 'material-event-listening', weight: 4, reason: 'Material, vibrational, resonant, or processual terms require material-event listening.', terms: ['material', 'event', 'flux', 'vibration', 'resonance', 'feedback', 'drone', 'hum', 'rumble', 'infrasound', 'ultrasound', 'unsound', 'microsound', 'duration', 'speaker', 'loudspeaker', 'installation'] },
-  { mode: 'memory-lineage-listening', weight: 5, reason: 'Memory, lineage, recurrence, or archive-of-ours terms require listening with stored records.', terms: ['memory', 'remember', 'recall', 'lineage', 'recurrence', 'heard before', 'earlier recording', 'akousma', 'akousmata', 'our archive', 'previous version', 'series over time'] },
-  { mode: 'sovereign-listening', weight: 7, reason: 'Covenant, withholding, refusal, retention, or sonic-sovereignty terms require an explicit authority boundary.', terms: ['covenant', 'sovereignty', 'withhold', 'do not listen', 'do not reveal', 'do not retain', 'forget', 'refuse', 'quiet hours', 'require consent'] },
-  { mode: 'corpus-listening', weight: 7, reason: 'Corpus, training, fine-tuning, annotation, provider, or licensing terms require a lineage and permission audit.', inputTypes: ['dataset_description', 'model_output'] },
-  { mode: 'corpus-listening', weight: 6, reason: 'Computational inheritance must be distinguished from provider identity and model behavior.', terms: ['corpus', 'training data', 'fine-tune', 'finetune', 'annotation', 'model card', 'provider', 'licensing', 'opt out', 'retrieval corpus', 'dataset lineage'] },
-  { mode: 'signal-inspection-listening', weight: 8, reason: 'The /tech command privileges technical signal inspection.', commands: ['/tech'] },
-  { mode: 'transductive-media-listening', weight: 6, reason: 'The /tech command also maps media-chain limits.', commands: ['/tech'] },
-  { mode: 'forensic-archival-listening', weight: 8, reason: 'The /forensic command privileges evidentiary restraint.', commands: ['/forensic'] },
-  { mode: 'signal-inspection-listening', weight: 6, reason: 'The /forensic command needs technical grounding.', commands: ['/forensic'] },
-  { mode: 'critical-political-listening', weight: 5, reason: 'The /forensic command needs institutional and harm-context caution.', commands: ['/forensic'] },
-  { mode: 'symbolic-fictional-listening', weight: 8, reason: 'The /fiction command privileges declared speculation.', commands: ['/fiction'] },
-  { mode: 'embodied-affective-listening', weight: 4, reason: 'The /fiction command often needs affective force mapping.', commands: ['/fiction'] },
-  { mode: 'transductive-media-listening', weight: 8, reason: 'The /transduce command privileges mediation and conversion.', commands: ['/transduce'] },
-  { mode: 'voice-speech-listening', weight: 8, reason: 'The /voice command privileges voice and speech analysis.', commands: ['/voice'] },
-  { mode: 'audiovisual-scenic-listening', weight: 8, reason: 'The /audiovision command privileges sound-image-scene analysis.', commands: ['/audiovision'] },
-  { mode: 'accessibility-normative-listening', weight: 8, reason: 'The /access command privileges access and hearing-norm audit.', commands: ['/access'] },
-  { mode: 'ecological-posthuman-listening', weight: 8, reason: 'The /field command privileges ecological and field-recording analysis.', commands: ['/field'] },
-  { mode: 'material-event-listening', weight: 4, reason: 'The /field command includes event, scale, vibration, and material context.', commands: ['/field'] },
-  { mode: 'acoulogical-object-listening', weight: 5, reason: 'The /study and /method commands need perceptual grounding.', commands: ['/study', '/method'] },
-  { mode: 'critical-political-listening', weight: 5, reason: 'The /study and /method commands need methodological critique.', commands: ['/study', '/method'] },
-  { mode: 'accessibility-normative-listening', weight: 4, reason: 'The /method command audits implied listener and access path.', commands: ['/method'] },
-  { mode: 'critical-political-listening', weight: 6, reason: 'The /litany command audits sound-versus-vision assumptions.', commands: ['/litany'] },
-  { mode: 'audiovisual-scenic-listening', weight: 5, reason: 'The /litany command often concerns audiovisual claims.', commands: ['/litany'] },
-  { mode: 'memory-lineage-listening', weight: 8, reason: 'The /remember command privileges memory and lineage listening.', commands: ['/remember'] },
-  { mode: 'acoulogical-object-listening', weight: 4, reason: 'The /remember command grounds memory comparison in a fresh perceptual pass.', commands: ['/remember'] },
-  { mode: 'sovereign-listening', weight: 10, reason: 'The /covenant command privileges explicit listening authority and attributed absence.', commands: ['/covenant'] },
-  { mode: 'corpus-listening', weight: 10, reason: 'The /corpus command privileges disclosed and unknown computational lineage.', commands: ['/corpus'] },
-  { mode: 'critical-political-listening', weight: 5, reason: 'The /corpus command audits labor, permission, extraction, and jurisdiction.', commands: ['/corpus'] },
-  { mode: 'transductive-media-listening', weight: 4, reason: 'The /corpus command maps the model and provider mediation chain.', commands: ['/corpus'] },
-];
+// The rules are data shared with akouo_contract.router (packaged as data/router-rules.json).
+const routeRules: RouteRule[] = routerRules.rules as RouteRule[];
 
-const correctiveModes: ListeningMode[] = [
-  'critical-political-listening',
-  'signal-inspection-listening',
-  'transductive-media-listening',
-  'accessibility-normative-listening',
-  'forensic-archival-listening',
-  'acoulogical-object-listening',
-];
+const correctiveModes: ListeningMode[] = routerRules.corrective_modes as ListeningMode[];
 
 export function createRouteDraft(request: ListeningRequest): RouterOutput {
   const scores = scoreRoutes(request);

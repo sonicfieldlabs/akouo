@@ -16,8 +16,10 @@ Official public repository: <https://github.com/sonicfieldlabs/akouo>. Current s
 
 The `akouo-contract` Python distribution packages this repository's canonical
 skills, commands, presets, schemas, and manifest for Oída and other local
-agent hosts. The latest public package is `0.10.1`. This source targets package `0.12.1`,
-with the existing `akouo/v0.10` default and an opt-in representation route. No skill fork is created inside a host
+agent hosts. The latest public package is `0.10.1`; the latest tag is `akouo-contract-v0.12.1`
+(14 October 2026). This source targets package `0.13.0`, which adds the listening router as code
+(`akouo_contract.router`: the reference heuristic with parity to the reference app, and account
+routing for re-listening), with the existing `akouo/v0.10` default and an opt-in representation route. No skill fork is created inside a host
 application.
 
 In maintained guides, “unreleased” Python helpers are present in the 0.12.1
