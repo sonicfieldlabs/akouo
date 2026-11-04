@@ -86,12 +86,18 @@ export const listeningModes = [
   'memory-lineage-listening',
   'sovereign-listening',
   'corpus-listening',
+  'agent-native-listening',
 ] as const;
 
 export type ListeningMode = (typeof listeningModes)[number];
 
+// The comparative output (`comparative-listening-output.schema.json`) compares fifteen modes:
+// neither sovereign nor agent-native listening is one ear among the others.
+type NonComparativeMode = 'sovereign-listening' | 'agent-native-listening';
+
 export const comparativeListeningModes = listeningModes.filter(
-  (mode): mode is Exclude<ListeningMode, 'sovereign-listening'> => mode !== 'sovereign-listening',
+  (mode): mode is Exclude<ListeningMode, NonComparativeMode> =>
+    mode !== 'sovereign-listening' && mode !== 'agent-native-listening',
 );
 
 export type ComparativeListeningMode = (typeof comparativeListeningModes)[number];

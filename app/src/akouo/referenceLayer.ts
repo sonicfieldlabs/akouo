@@ -318,6 +318,8 @@ function researchRouteForMode(mode: ListeningMode): string {
       return 'covenant-aware listening that keeps consent, withholding, opacity, retention, precision, and refusal inspectable';
     case 'corpus-listening':
       return 'corpus listening that traces disclosed computational inheritance while preserving unknown lineage as unknown';
+    case 'agent-native-listening':
+      return 'machine-operable sonic distinctions across bandwidths, timescales, passes, archives, and declared observation-to-sound mappings, granting no capture or emission';
   }
 }
 
