@@ -1,6 +1,6 @@
 {
   "contract": "akouo/router-rules/v1",
-  "description": "The reference routing heuristic of skills/akouo-router (Reference Routing Heuristic) as data, read by the reference app (router.ts) and by akouo_contract.router. Each matching rule adds its weight to its mode; ties keep the mode order.",
+  "description": "The reference routing heuristic of skills/akouo-router (Reference Routing Heuristic) as data, read by the reference app (router.ts) and by akouo_contract.router. Each matching rule adds its weight to its mode; ties keep the mode order. A rule with `when: only_negations` matches a text that negates everything it names.",
   "modes": [
     "signal-inspection-listening",
     "acoulogical-object-listening",
@@ -624,6 +624,30 @@
       "commands": [
         "/corpus"
       ]
+    },
+    {
+      "mode": "signal-inspection-listening",
+      "weight": 6,
+      "reason": "Steady noise (hum, hiss, static, buzz) is first a signal to inspect, before it is heard as music or as material.",
+      "terms": [
+        "hum",
+        "hiss",
+        "static",
+        "buzz",
+        "white noise",
+        "pink noise",
+        "broadband noise",
+        "background noise",
+        "mains hum",
+        "electrical hum",
+        "hvac"
+      ]
+    },
+    {
+      "mode": "signal-inspection-listening",
+      "weight": 4,
+      "reason": "The account names only what is absent; inspect the signal for what is present.",
+      "when": "only_negations"
     }
   ]
 }

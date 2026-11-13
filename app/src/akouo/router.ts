@@ -1,5 +1,5 @@
 import { listeningModes } from './types';
-import { hasAnyRequestTerm } from './textMatch';
+import { hasAnyRequestTerm, namesOnlyAbsences } from './textMatch';
 import routerRules from './routerRules.json';
 import type {
   ClaimPermissions,
@@ -28,12 +28,18 @@ interface RouteRule {
   commands?: CommandName[];
   inputTypes?: ListeningRequest['inputType'][];
   terms?: string[];
+  // only_negations: the text negates everything it names ("no speech, music or event").
+  when?: 'only_negations';
 }
 
 // The rules are data shared with akouo_contract.router (packaged as data/router-rules.json).
 const routeRules: RouteRule[] = routerRules.rules as RouteRule[];
 
 const correctiveModes: ListeningMode[] = routerRules.corrective_modes as ListeningMode[];
+
+// Every term any rule listens for: what a text must still name, once its negations are dropped,
+// for it to say something.
+const everyTerm: string[] = routeRules.flatMap((rule) => rule.terms ?? []);
 
 export function createRouteDraft(request: ListeningRequest): RouterOutput {
   const scores = scoreRoutes(request);
@@ -242,8 +248,12 @@ function routeForScores(scores: RouteScore[]): RouteRole {
 function ruleMatches(rule: RouteRule, request: ListeningRequest): boolean {
   const commandMatch = rule.commands?.includes(request.command as CommandName) ?? false;
   const inputMatch = rule.inputTypes?.includes(request.inputType) ?? false;
-  const termMatch = rule.terms ? hasAny(request, rule.terms) : false;
-  return commandMatch || inputMatch || termMatch;
+  // A text that negates everything it names mentions its terms without naming anything: the
+  // term rules stay silent and the only-negations rule speaks.
+  const onlyAbsences = namesOnlyAbsences(`${request.prompt ?? ''} ${request.objectName}`, everyTerm);
+  const termMatch = rule.terms && !onlyAbsences ? hasAny(request, rule.terms) : false;
+  const absenceMatch = rule.when === 'only_negations' && onlyAbsences;
+  return commandMatch || inputMatch || termMatch || absenceMatch;
 }
 
 function addScore(scores: RouteScore[], mode: ListeningMode, weight: number, reason: string) {

@@ -11,5 +11,9 @@
   {"name": "corpus", "prompt": "training data and model card for a dataset lineage", "input_type": "dataset_description"},
   {"name": "memory", "prompt": "have we heard before this recurrence in our archive", "input_type": "audio_file", "command": "/remember"},
   {"name": "material", "prompt": "a low rumble and feedback from a loudspeaker installation", "input_type": "audio_file"},
-  {"name": "tie", "prompt": "texture", "input_type": "other"}
+  {"name": "tie", "prompt": "texture", "input_type": "other"},
+  {"name": "steady hum", "prompt": "a low-frequency hum with subtle modulation and a faint hiss", "input_type": "audio_file", "audio_inspection": true},
+  {"name": "hum described", "prompt": "steady electrical hum and static under a drone", "input_type": "sound_prompt"},
+  {"name": "only negations", "prompt": "no discernible speech, music or event", "input_type": "unknown"},
+  {"name": "negation beside content", "prompt": "no speech is audible; birds and wind in a forest", "input_type": "field_note"}
 ]

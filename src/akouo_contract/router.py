@@ -83,20 +83,40 @@ def has_any_term(value: str, terms: Iterable[str]) -> bool:
     return any(f" {variant} " in normalized for term in terms for variant in _variants(_normalize(term)))
 
 
-def _rule_matches(rule: dict, text: str, input_type: str | None, command: str | None) -> bool:
+def _rule_matches(rule: dict, text: str, input_type: str | None, command: str | None, said: str = "") -> bool:
     if command and command in (rule.get("commands") or []):
         return True
     if input_type and input_type in (rule.get("inputTypes") or []):
         return True
-    return bool(rule.get("terms")) and has_any_term(text, rule["terms"])
+    # A text that negates everything it names mentions its terms without naming anything: the
+    # term rules stay silent and the only-negations rule speaks.
+    only_absences = names_only_absences(said)
+    if rule.get("when") == "only_negations" and only_absences:
+        return True
+    return bool(rule.get("terms")) and not only_absences and has_any_term(text, rule["terms"])
 
 
-def _scores(text: str, *, input_type: str | None, command: str | None) -> list[dict]:
+@lru_cache(maxsize=1)
+def _every_term() -> tuple[str, ...]:
+    """Every term any rule listens for: what a text must still name to say something."""
+    return tuple(term for rule in rules()["rules"] for term in rule.get("terms") or [])
+
+
+def names_only_absences(said: str) -> bool:
+    """Whether a text negates everything it names ("no discernible speech, music or event")."""
+    if not any(word in _NEGATORS for word in _normalize(said or "").split()):
+        return False
+    return not has_any_term(_strip_negated(said), _every_term())
+
+
+def _scores(text: str, *, input_type: str | None, command: str | None, said: str = "") -> list[dict]:
+    """`text` is what the term rules read; `said` is the person's or the account's own words,
+    which the only-negations rule reads whole."""
     data = rules()
     scores = [{"mode": mode, "score": 0, "reasons": []} for mode in data["modes"]]
     by_mode = {item["mode"]: item for item in scores}
     for rule in data["rules"]:
-        if _rule_matches(rule, text, input_type, command) and rule["mode"] in by_mode:
+        if _rule_matches(rule, text, input_type, command, said) and rule["mode"] in by_mode:
             by_mode[rule["mode"]]["score"] += rule["weight"]
             by_mode[rule["mode"]]["reasons"].append(rule["reason"])
     return scores
@@ -184,7 +204,7 @@ def route(
 ) -> dict[str, Any]:
     """The reference router (parity with the reference app's createRouteDraft roles and confidence)."""
     text = f"{prompt} {object_name} {input_type} {command or ''}"
-    scores = _scores(text, input_type=input_type, command=command)
+    scores = _scores(text, input_type=input_type, command=command, said=f"{prompt} {object_name}")
     if audio_inspection:
         _add(scores, "signal-inspection-listening", 3, "Decoded audio metadata is available.")
         _add(scores, "transductive-media-listening", 1, "Uploaded audio still has an unknown capture and encoding chain.")
@@ -204,18 +224,30 @@ def route(
 
 
 def _strip_negated(text: str) -> str:
-    """Drop the words a negator governs (up to four, or to the next clause) from a normalized text."""
-    out, skip = [], 0
+    """Drop the words a negator governs from a normalized text: up to four, or to the next clause,
+    and a list's last item after "or" ("no speech, music or event" leaves nothing)."""
+    out, skip, tail, after_or = [], 0, False, False
     for word in _normalize(text).split():
         if word in _NEGATORS:
-            skip = 4
+            skip, tail = 4, False
             continue
         if skip:
             skip -= 1
             if word in {"and", "but", "while", "though", "yet"}:
-                skip = 0
+                skip, tail = 0, False
                 out.append(word)
+                continue
+            tail, after_or = skip == 0, word == "or"
             continue
+        if tail:
+            if after_or:
+                # The governed words ended on "or": this is the list's last item.
+                after_or, tail = False, False
+                continue
+            if word == "or":
+                after_or = True
+                continue
+            tail = False
         out.append(word)
     return " ".join(out)
 
@@ -235,7 +267,8 @@ def route_account(
     was heard as, a reasoning line and an alternative reading.
     """
     text = _strip_negated(account or "")
-    scores = _scores(text, input_type=None, command=command)
+    only_absences = names_only_absences(account or "")
+    scores = _scores(text, input_type=None, command=command, said=account or "")
     scores.sort(key=lambda item: -item["score"])
     by_mode = {item["mode"]: item for item in scores}
     corrected = False
@@ -250,6 +283,9 @@ def route_account(
     heard_as = [kind for kind, mode in HEARD_AS.items() if by_mode.get(mode, {}).get("score", 0) > 0]
     if has_any_term(text, SILENCE_TERMS) or (account or "").strip() and not text.strip():
         heard_as.append("silence")
+    if only_absences:
+        # Nothing was named but what is absent: the signal is to be inspected, and nothing is known.
+        heard_as = [kind for kind in heard_as if kind != "signal"]
     if generated:
         heard_as.append("generated")
     if not heard_as:
@@ -257,6 +293,8 @@ def route_account(
     confidence = _confidence(scores, bool((account or "").strip()))
     if corrected and confidence == "high":
         confidence = "medium"
+    if only_absences:
+        confidence = "low"
     reasons = _reasoning(scores, (primary,))
     reasoning = f"The account reads as {', '.join(heard_as)}; {reasons[0]}"
     if corrected:

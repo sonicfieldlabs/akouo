@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased: akouo-contract 0.13.1
+
+- Two readings in the router's rules, in both ports. Steady noise (hum, hiss,
+  static, buzz, white or pink noise, background noise) routes to
+  signal-inspection (weight 6) before it is heard as music or as material: an
+  account of a mains hum used to route to the musical ear by its "drone". A
+  text that negates everything it names ("no discernible speech, music or
+  event") names nothing: its keyword families stay silent and signal-inspection
+  takes 4, to ask what is present; `route_account` reports such an account with
+  low confidence. A negated list now ends with its last item after "or".
+  `scripts/router-parity.mjs` covers both with four new cases.
+
 ## Unreleased: akouo-contract 0.13.0
 
 - The listening router as code. The Reference Routing Heuristic is data
