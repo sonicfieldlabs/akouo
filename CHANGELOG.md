@@ -1,6 +1,18 @@
 # Changelog
 
-## Unreleased: akouo-contract 0.13.0
+## Unreleased: akouo-contract 0.13.1
+
+- Two readings in the router's rules, in both ports. Steady noise (hum, hiss,
+  static, buzz, white or pink noise, background noise) routes to
+  signal-inspection (weight 6) before it is heard as music or as material: an
+  account of a mains hum used to route to the musical ear by its "drone". A
+  text that negates everything it names ("no discernible speech, music or
+  event") names nothing: its keyword families stay silent and signal-inspection
+  takes 4, to ask what is present; `route_account` reports such an account with
+  low confidence. A negated list now ends with its last item after "or".
+  `scripts/router-parity.mjs` covers both with four new cases.
+
+## akouo-contract 0.13.0 — 2026-11-04
 
 - The listening router as code. The Reference Routing Heuristic is data
   (`app/src/akouo/routerRules.json`, packaged as `data/router-rules.json`) read
@@ -16,7 +28,7 @@
   alternative reading kept. It is an attributed reading, never a measurement,
   and it grants no authority to act. Contract `akouo/v0.10` is unchanged.
 
-## Unreleased
+## akouo-contract 0.10.1 to 0.12.1 — 2026-10-09 to 2026-10-13
 
 - Cached immutable installed schema validators and their offline reference
   registry; explicit schema directories remain live for development. Unknown

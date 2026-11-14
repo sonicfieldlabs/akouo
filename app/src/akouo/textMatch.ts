@@ -43,3 +43,58 @@ function pluralize(word: string): string {
   if (word.endsWith('ch') || word.endsWith('sh') || word.endsWith('x') || word.endsWith('z')) return `${word}es`;
   return `${word}s`;
 }
+
+const negators = new Set(['no', 'not', 'without', 'absent', 'absence', 'lacks', 'lacking', 'neither', 'nor', 'none', 'never']);
+const clauseTurns = new Set(['and', 'but', 'while', 'though', 'yet']);
+
+// Drop the words a negator governs: up to four, or to the next clause, and a list's last item
+// after "or" ("no speech, music or event" leaves nothing). Shared with akouo_contract.router.
+export function stripNegated(value: string): string {
+  const out: string[] = [];
+  let skip = 0; // words the last negator still governs
+  let tail = false; // the governed words just ended; the list may go on with "or"
+  let afterOr = false;
+  for (const word of normalizeForTermMatch(value).split(' ')) {
+    if (!word) continue;
+    if (negators.has(word)) {
+      skip = 4;
+      tail = false;
+      continue;
+    }
+    if (skip > 0) {
+      skip -= 1;
+      if (clauseTurns.has(word)) {
+        skip = 0;
+        tail = false;
+        out.push(word);
+        continue;
+      }
+      tail = skip === 0;
+      afterOr = word === 'or';
+      continue;
+    }
+    if (tail) {
+      if (afterOr) {
+        // The governed words ended on "or": this is the list's last item.
+        afterOr = false;
+        tail = false;
+        continue;
+      }
+      if (word === 'or') {
+        afterOr = true;
+        continue;
+      }
+      tail = false;
+    }
+    out.push(word);
+  }
+  return out.join(' ');
+}
+
+// A text that negates everything it names: it has a negator, and none of `terms` is left once
+// the negated words are dropped.
+export function namesOnlyAbsences(value: string, terms: string[]): boolean {
+  const words = normalizeForTermMatch(value).split(' ');
+  if (!words.some((word) => negators.has(word))) return false;
+  return !hasAnyTerm(stripNegated(value), terms);
+}

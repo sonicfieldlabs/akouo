@@ -132,9 +132,13 @@ When judgment alone does not settle a route, apply this transparent additive sco
 
 ### Keyword-family signals
 
+A text that negates everything it names ("no discernible speech, music or event") names nothing:
+its keyword families stay silent, and signal-inspection takes 4, to ask what is present.
+
 | Family (examples) | Mode (weight) |
 |---|---|
 | waveform, spectrogram, LUFS, RMS, clipping, codec, phase, sample rate | signal-inspection (3) |
+| hum, hiss, static, buzz, white or pink noise, background noise, HVAC | signal-inspection (6): steady noise is a signal to inspect before it is heard as music or as material |
 | texture, timbre, grain, foley, acousmatic, ambiguous source | acoulogical-object (3) |
 | music, beat, rhythm, tempo, melody, harmony, pitch, loop, sound design | musical-aesthetic (5) |
 | body, pressure, vibration, fatigue, dread, ASMR, club, alarm, haptic | embodied-affective (4) |

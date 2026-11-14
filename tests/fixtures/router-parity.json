@@ -154,5 +154,53 @@
       "signal-inspection-listening: Selected as a balancing listening mode.",
       "critical-political-listening: Selected as a balancing listening mode."
     ]
+  },
+  {
+    "name": "steady hum",
+    "primary": "signal-inspection-listening",
+    "secondary": "material-event-listening",
+    "corrective": "acoulogical-object-listening",
+    "confidence": "high",
+    "route_reasoning": [
+      "signal-inspection-listening: Signal-like input asks for technical inspection.",
+      "material-event-listening: Material, vibrational, resonant, or processual terms require material-event listening.",
+      "acoulogical-object-listening: General listening should first describe the auditum before source claims."
+    ]
+  },
+  {
+    "name": "hum described",
+    "primary": "signal-inspection-listening",
+    "secondary": "musical-aesthetic-listening",
+    "corrective": "acoulogical-object-listening",
+    "confidence": "low",
+    "route_reasoning": [
+      "signal-inspection-listening: Steady noise (hum, hiss, static, buzz) is first a signal to inspect, before it is heard as music or as material.",
+      "musical-aesthetic-listening: Musical or aesthetic terms require rhythm, pitch, timbre, form, and genre caution.",
+      "acoulogical-object-listening: General listening should first describe the auditum before source claims."
+    ]
+  },
+  {
+    "name": "only negations",
+    "primary": "signal-inspection-listening",
+    "secondary": "acoulogical-object-listening",
+    "corrective": "critical-political-listening",
+    "confidence": "low",
+    "route_reasoning": [
+      "signal-inspection-listening: The account names only what is absent; inspect the signal for what is present.",
+      "acoulogical-object-listening: General listening should first describe the auditum before source claims.",
+      "critical-political-listening: Selected as a balancing listening mode."
+    ]
+  },
+  {
+    "name": "negation beside content",
+    "primary": "ecological-posthuman-listening",
+    "secondary": "voice-speech-listening",
+    "corrective": "critical-political-listening",
+    "confidence": "high",
+    "route_reasoning": [
+      "ecological-posthuman-listening: Field or environment input requires ecological and more-than-human listening.",
+      "voice-speech-listening: Voice and speech terms require separation of vocal sound, transcript, identity, and model mediation.",
+      "critical-political-listening: Selected as a balancing listening mode."
+    ]
   }
 ]
