@@ -12,7 +12,7 @@
   low confidence. A negated list now ends with its last item after "or".
   `scripts/router-parity.mjs` covers both with four new cases.
 
-## Unreleased: akouo-contract 0.13.0
+## akouo-contract 0.13.0 — 2026-11-04
 
 - The listening router as code. The Reference Routing Heuristic is data
   (`app/src/akouo/routerRules.json`, packaged as `data/router-rules.json`) read
@@ -28,7 +28,7 @@
   alternative reading kept. It is an attributed reading, never a measurement,
   and it grants no authority to act. Contract `akouo/v0.10` is unchanged.
 
-## Unreleased
+## akouo-contract 0.10.1 to 0.12.1 — 2026-10-09 to 2026-10-13
 
 - Cached immutable installed schema validators and their offline reference
   registry; explicit schema directories remain live for development. Unknown
