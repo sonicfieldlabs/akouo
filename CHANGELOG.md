@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased: akouo-contract 0.13.1
+## akouo-contract 0.13.1 — 2026-11-14
 
 - Two readings in the router's rules, in both ports. Steady noise (hum, hiss,
   static, buzz, white or pink noise, background noise) routes to
